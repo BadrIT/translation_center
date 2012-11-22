@@ -1,0 +1,8 @@
+Description:
+    Explain the generator
+
+Example:
+    rails generate translation_center Thing
+
+    This will create:
+        what/will/it/create

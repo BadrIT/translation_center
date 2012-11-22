@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @translation_key.name %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @translation_key.category_id %>
+</p>
+
+<p>
+  <b>Last accessed:</b>
+  <%= @translation_key.last_accessed %>
+</p>
+
+
+<%= link_to 'Edit', edit_translation_key_path(@translation_key) %> |
+<%= link_to 'Back', translation_keys_path %>

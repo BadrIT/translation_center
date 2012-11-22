@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  translation_key_id: 1
+  value: MyString
+  lang: MyString
+  status: MyString
+  user_id: 1
+
+two:
+  translation_key_id: 1
+  value: MyString
+  lang: MyString
+  status: MyString
+  user_id: 1
