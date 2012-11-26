@@ -1,156 +1,158 @@
 --- 
-activerecord: 
+en: 
+  activerecord: 
+    errors: 
+      messages: 
+        record_invalid: "Validation failed: %{errors}"
+        taken: "has already been taken"
+  date: 
+    abbr_day_names: ""
+    abbr_month_names: ""
+    day_names: ""
+    formats: 
+      default: ""
+      long: ""
+      short: ""
+    month_names: ""
+    order: ""
+  datetime: 
+    distance_in_words: 
+      about_x_hours: 
+        one: ""
+        other: ""
+      about_x_months: 
+        one: ""
+        other: ""
+      about_x_years: 
+        one: ""
+        other: ""
+      almost_x_years: 
+        one: ""
+        other: ""
+      half_a_minute: ""
+      less_than_x_minutes: 
+        one: ""
+        other: ""
+      less_than_x_seconds: 
+        one: ""
+        other: ""
+      over_x_years: 
+        one: ""
+        other: ""
+      x_days: 
+        one: ""
+        other: ""
+      x_minutes: 
+        one: ""
+        other: ""
+      x_months: 
+        one: ""
+        other: ""
+      x_seconds: 
+        one: ""
+        other: ""
+    prompts: 
+      day: ""
+      hour: ""
+      minute: ""
+      month: ""
+      second: ""
+      year: ""
   errors: 
+    format: ""
     messages: 
-      record_invalid: "Validation failed: %{errors}"
-      taken: "has already been taken"
-date: 
-  abbr_day_names: ""
-  abbr_month_names: ""
-  day_names: ""
-  formats: 
-    default: ""
-    long: ""
-    short: ""
-  month_names: ""
-  order: ""
-datetime: 
-  distance_in_words: 
-    about_x_hours: 
-      one: ""
-      other: ""
-    about_x_months: 
-      one: ""
-      other: ""
-    about_x_years: 
-      one: ""
-      other: ""
-    almost_x_years: 
-      one: ""
-      other: ""
-    half_a_minute: ""
-    less_than_x_minutes: 
-      one: ""
-      other: ""
-    less_than_x_seconds: 
-      one: ""
-      other: ""
-    over_x_years: 
-      one: ""
-      other: ""
-    x_days: 
-      one: ""
-      other: ""
-    x_minutes: 
-      one: ""
-      other: ""
-    x_months: 
-      one: ""
-      other: ""
-    x_seconds: 
-      one: ""
-      other: ""
-  prompts: 
-    day: ""
-    hour: ""
-    minute: ""
-    month: ""
-    second: ""
-    year: ""
-errors: 
-  format: ""
-  messages: 
-    accepted: ""
-    blank: ""
-    confirmation: ""
-    empty: ""
-    equal_to: ""
-    even: ""
-    exclusion: ""
-    greater_than: ""
-    greater_than_or_equal_to: ""
-    inclusion: ""
-    invalid: ""
-    less_than: ""
-    less_than_or_equal_to: ""
-    not_a_number: ""
-    not_an_integer: ""
-    odd: ""
-    too_long: ""
-    too_short: ""
-    wrong_length: ""
-helpers: 
-  button: 
-    create: ""
-    submit: ""
-    update: ""
-  select: 
-    prompt: ""
-  submit: 
-    create: ""
-    submit: ""
-    update: ""
-number: 
-  currency: 
-    format: 
-      delimiter: ""
-      format: ""
-      precision: ""
-      separator: ""
-      significant: ""
-      strip_insignificant_zeros: ""
-      unit: ""
-  format: 
-    delimiter: ""
-    precision: ""
-    separator: ""
-    significant: ""
-    strip_insignificant_zeros: ""
-  human: 
-    decimal_units: 
-      format: ""
-      units: 
-        billion: ""
-        million: ""
-        quadrillion: ""
-        thousand: ""
-        trillion: ""
+      accepted: ""
+      blank: ""
+      confirmation: ""
+      empty: ""
+      equal_to: ""
+      even: ""
+      exclusion: ""
+      greater_than: ""
+      greater_than_or_equal_to: ""
+      inclusion: ""
+      invalid: ""
+      less_than: ""
+      less_than_or_equal_to: ""
+      not_a_number: ""
+      not_an_integer: ""
+      odd: ""
+      too_long: ""
+      too_short: ""
+      wrong_length: ""
+  helpers: 
+    button: 
+      create: ""
+      submit: ""
+      update: ""
+    select: 
+      prompt: ""
+    submit: 
+      create: ""
+      submit: ""
+      update: ""
+  number: 
+    currency: 
+      format: 
+        delimiter: ""
+        format: ""
+        precision: ""
+        separator: ""
+        significant: ""
+        strip_insignificant_zeros: ""
         unit: ""
     format: 
       delimiter: ""
       precision: ""
+      separator: ""
       significant: ""
       strip_insignificant_zeros: ""
-    storage_units: 
-      format: ""
-      units: 
-        byte: 
-          one: ""
-          other: ""
-        gb: ""
-        kb: ""
-        mb: ""
-        tb: ""
-  percentage: 
-    format: 
-      delimiter: ""
-  precision: 
-    format: 
-      delimiter: ""
-posts: 
-  index: 
-    Content: ""
-    Listing_posts: ""
-    Title: ""
-support: 
-  array: 
-    last_word_connector: ""
-    two_words_connector: ""
-    words_connector: ""
-time: 
-  am: ""
-  formats: 
-    default: ""
-    long: ""
-    short: ""
-  pm: ""
+    human: 
+      decimal_units: 
+        format: ""
+        units: 
+          billion: ""
+          million: ""
+          quadrillion: ""
+          thousand: ""
+          trillion: ""
+          unit: ""
+      format: 
+        delimiter: ""
+        precision: ""
+        significant: ""
+        strip_insignificant_zeros: ""
+      storage_units: 
+        format: ""
+        units: 
+          byte: 
+            one: ""
+            other: ""
+          gb: ""
+          kb: ""
+          mb: ""
+          tb: ""
+    percentage: 
+      format: 
+        delimiter: ""
+    precision: 
+      format: 
+        delimiter: ""
+  posts: 
+    index: 
+      Content: ""
+      Listing_posts: ""
+      Title: ""
+      top_posts: ""
+  support: 
+    array: 
+      last_word_connector: ""
+      two_words_connector: ""
+      words_connector: ""
+  time: 
+    am: ""
+    formats: 
+      default: ""
+      long: ""
+      short: ""
+    pm: ""

@@ -1,7 +1,7 @@
 namespace :translation_center do
 
   desc "Insert yaml translations in db"
-  task :import => :environment do
+  task :yaml2db => :environment do
 
     def collect_keys(scope, translations)
       full_keys = []
@@ -26,8 +26,6 @@ namespace :translation_center do
     end.flatten.uniq
     puts "#{all_keys.size} #{all_keys.size == 1 ? 'unique key' : 'unique keys'} found."
 
-    missing_count = 0
-    new_keys = 0
     all_keys.each do |key|
       translation_key = TranslationCenter::TranslationKey.find_or_initialize_by_name(key)
       if translation_key.new_record?
@@ -36,38 +34,42 @@ namespace :translation_center do
       end
 
       I18n.available_locales.each do |locale|
+        missing_count = 0
+        new_keys = 0
+        puts "Translating keys to #{locale.to_s}"
         I18n.locale = locale
         begin
           translation = TranslationCenter::Translation.find_or_initialize_by_translation_key_id_and_lang(translation_key.id, locale.to_s)
           value = I18n.translate(key, :raise => true)
-          translation.update_attributes(value: value, lang: locale.to_s)
+          translation.update_attribute(:value, value)
         rescue I18n::MissingInterpolationArgument
           # noop
         rescue I18n::MissingTranslationData
           missing_count += 1
         end
+
+        puts "found new #{new_keys} key(s)"
+        puts "missing #{missing_count} translation(s)"
       end
+      
     end
-    puts "found new #{new_keys} key(s)"
-    puts "missing #{missing_count} translation(s)"
   end
 
   desc "Export translations from db to yaml"
-  task :export => :environment do
-    result = {}
+  task :db2yaml => :environment do
+    # for each locale build a hash for the translations and write to file
     I18n.available_locales.each do |locale|
+      result = {}
       I18n.locale = locale
       puts "Started exporting translations in #{locale}"
       TranslationCenter::TranslationKey.all.each do |key|
         key.add_to_hash(result, locale) 
       end
       File.open("config/locales/#{locale.to_s}.yml", 'w') do |file|
-        file.write(result.ya2yaml())
-        
+        file.write({locale.to_s => result}.ya2yaml)
       end
       puts "Done exporting translations of #{locale} to #{locale.to_s}.yml"
     end 
-
     
   end
 
