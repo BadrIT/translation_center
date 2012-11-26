@@ -61,7 +61,7 @@ namespace :translation_center do
       TranslationCenter::TranslationKey.all.each do |key|
         key.add_to_hash(result, locale) 
       end
-      File.open("#{locale.to_s}.yml", 'w') do |file|
+      File.open("config/locales/#{locale.to_s}.yml", 'w') do |file|
         file.write(result.ya2yaml())
         
       end
