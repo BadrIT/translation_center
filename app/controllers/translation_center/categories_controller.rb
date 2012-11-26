@@ -17,7 +17,8 @@ module TranslationCenter
     # GET /categories/1.json
     def show
       @category = Category.find(params[:id])
-  
+      @translation_keys = @category.keys
+      
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @category }

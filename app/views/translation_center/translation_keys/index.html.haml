@@ -1,0 +1,19 @@
+%h1 Listing translation_keys
+%table
+  %tr
+    %th Name
+    %th Category
+    %th Last accessed
+    %th
+    %th
+    %th
+  - @translation_keys.each do |translation_key|
+    %tr
+      %td= translation_key.name
+      %td= translation_key.category_id
+      %td= translation_key.last_accessed
+      %td= link_to 'Show', translation_key
+      %td= link_to 'Edit', edit_translation_key_path(translation_key)
+      %td= link_to 'Destroy', translation_key, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Translation key', new_translation_key_path

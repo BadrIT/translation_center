@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %b Name:
+  = @category.name
+
+= link_to 'Edit', edit_category_path(@category)
+|
+= link_to 'Back', categories_path
+
+= render 'translation_center/translation_keys/translation_keys', translation_keys: @translation_keys

@@ -2,7 +2,7 @@ if Rails.env.development?
   module ApplicationHelper
     def t *args
       key = scope_key_by_partial(args.first)
-
+      
       # add the new key or update it
       translation_key = TranslationCenter::TranslationKey.find_or_initialize_by_name(key)
       category_name = key.split('.').first
