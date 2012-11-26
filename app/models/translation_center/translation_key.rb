@@ -9,6 +9,11 @@ module TranslationCenter
     validates :name, uniqueness: true
     validates :category, presence: true
 
+    # returns true if the key has an accepted translation in this lang
+    def accepted_in?(lang)
+      self.accepted_translation_in(lang) == 1
+    end
+
     # returns the accepted translation in certain language
     def accepted_translation_in(lang)
       self.translations.accepted.in(lang).first

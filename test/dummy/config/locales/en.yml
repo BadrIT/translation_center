@@ -140,7 +140,7 @@ en:
         delimiter: ""
   posts: 
     index: 
-      Content: ""
+      Content:
       Listing_posts: ""
       Title: ""
       top_posts: ""

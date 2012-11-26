@@ -18,6 +18,7 @@ module TranslationCenter
     def show
       @category = Category.find(params[:id])
       @translation_keys = @category.keys
+      @translation_key = TranslationKey.new
       
       respond_to do |format|
         format.html # show.html.erb
@@ -61,7 +62,7 @@ module TranslationCenter
     # PUT /categories/1.json
     def update
       @category = Category.find(params[:id])
-  
+    
       respond_to do |format|
         if @category.update_attributes(params[:category])
           format.html { redirect_to @category, notice: 'Category was successfully updated.' }

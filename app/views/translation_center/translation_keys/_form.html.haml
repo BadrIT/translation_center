@@ -1,0 +1,18 @@
+= form_for(@translation_key) do |f|
+  - if @translation_key.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@translation_key.errors.count, "error")
+        prohibited this translation_key from being saved:
+      %ul
+        - @translation_key.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name
+  .field
+    = f.hidden_field :category_id, value: @category.id
+   
+  .actions
+    = f.submit
