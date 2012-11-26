@@ -30,15 +30,14 @@ module TranslationCenter
           value = translation.try(:value).blank? ? '' : translation.value
           {current_level => value}
         else
-          # if the translation key doesn't exist create it and return and merge
+          levels.shift
+          # if the translation key doesn't exist at current level then create it
           unless(all_translations.has_key?(current_level))
             all_translations[current_level] = {}
-            all_translations.merge!({levels.shift => add_to_hash_rec(all_translations[current_level],levels, lang)})
-          else
-            levels.shift
-            all_translations[current_level].merge!( add_to_hash_rec(all_translations[current_level],levels, lang) )
-            all_translations
           end
+          # merge the current level with the rest of the translation key
+          all_translations[current_level].merge!( add_to_hash_rec(all_translations[current_level],levels, lang) )
+          all_translations
         end
       end
 
