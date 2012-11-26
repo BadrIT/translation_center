@@ -14,8 +14,10 @@ module TranslationCenter
       migration_template 'migrations/create_translation_center_translation_keys.rb', 'db/migrate/create_translation_center_translation_keys.rb'
       migration_template 'migrations/create_translation_center_translations.rb', 'db/migrate/create_translation_center_translations.rb'
 
-      # to do check if acts as votable already exists
-      migration_template 'migrations/translation_center_acts_as_votable_migration.rb', 'db/migrate/translation_center_acts_as_votable_migration.rb'
+      # generate votes if it doesn't already exist
+      unless ActiveRecord::Base.connection.table_exists? 'votes'
+        migration_template 'migrations/translation_center_acts_as_votable_migration.rb', 'db/migrate/translation_center_acts_as_votable_migration.rb'
+      end
       
       copy_file 'initializers/translation_center.rb', 'config/initializers/translation_center.rb'
     end

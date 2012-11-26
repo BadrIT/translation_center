@@ -1,10 +1,9 @@
 module TranslationCenter
   class Category < ActiveRecord::Base
     attr_accessible :name
-    has_many :translation_keys
+    has_many :translation_keys, dependent: :destroy
 
     # validations
-    validates_presence_of :name
-    validates_uniqueness_of :name
+    validates :name, presence: true, uniqueness: true
   end
 end

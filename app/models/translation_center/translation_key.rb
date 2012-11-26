@@ -6,8 +6,8 @@ module TranslationCenter
     has_many :translations, dependent: :destroy
 
     # validations
-    validates_uniqueness_of :name
-    validates_presence_of :category
+    validates :name, uniqueness: true
+    validates :category, presence: true
 
     # returns the accepted translation in certain language
     def accepted_translation_in(lang)
