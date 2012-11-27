@@ -1,0 +1,14 @@
+.tabbable
+  %ul.nav.nav-tabs
+    %li
+      %a{ href: "#translations_#{translation_key.id}",  'data-toggle' => 'tab' }
+        Translations
+    %li
+      %a{ href: "#add_translations_#{translation_key.id}",  'data-toggle' => 'tab' }
+        Add Translations
+
+  .tab-content
+    .tab-pane{ id: "#translations_#{translation_key.id}"}
+      translations
+    .tab-pane{ id: "#add_translations_#{translation_key.id}"}
+      add translation here

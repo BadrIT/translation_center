@@ -11,7 +11,7 @@ module TranslationCenter
 
     # returns true if the key has an accepted translation in this lang
     def accepted_in?(lang)
-      self.accepted_translation_in(lang) == 1
+      !self.accepted_translation_in(lang).blank?
     end
 
     # returns the accepted translation in certain language
@@ -32,8 +32,7 @@ module TranslationCenter
         # if we are at the bottom level just return the translation
         if(levels.count == 1)
           translation = self.accepted_translation_in(lang)
-          value = translation.try(:value).blank? ? '' : translation.value
-          {current_level => value}
+          {current_level => translation.value}
         else
           levels.shift
           # if the translation key doesn't exist at current level then create it
