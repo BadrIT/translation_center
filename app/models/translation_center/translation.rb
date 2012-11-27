@@ -17,7 +17,7 @@ module TranslationCenter
     scope :accepted, where(status: 'accepted')
 
     # returns translations in a certain language
-    scope :in, lambda { |lang| where(lang: lang.to_s) }
+    scope :in, lambda { |lang| where(lang: lang.to_s.strip) }
 
     # returns true if the status of the translation is accepted
     def accepted?

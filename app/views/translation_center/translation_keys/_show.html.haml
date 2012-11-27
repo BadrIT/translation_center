@@ -4,12 +4,15 @@
   %ul.nav.nav-tabs
     %li.active
       %a{"data-toggle" => "tab", :href => "#translations#{translation_key.id}"}
-        Translations
+        = t('.Translations')
     %li
       %a{"data-toggle" => "tab", :href => "#add_translations#{translation_key.id}"}
-        Add Translation
+        = t('.Add_Translation')
   .tab-content
     .tab-pane.active{ id: "translations#{translation_key.id}"}
-      %p= translation_key.id
+      - translation_key.translations.in(to_lang).each do |translation|
+        = translation.value
+      - if translation_key.translations.empty?
+        = t('.no_translations_available')
     .tab-pane{ id: "add_translations#{translation_key.id}"}
-      %p asdas
+      %p form to add a translation

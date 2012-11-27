@@ -2,5 +2,6 @@
   .category_name
     = category.view_name
   %span
-    = category.complete_percentage_in :en
-    = '% Complete'
+    = category.complete_percentage_in(to_lang)
+    = '%'
+    = t('.Complete')

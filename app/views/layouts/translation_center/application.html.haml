@@ -11,13 +11,36 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+          %a.btn.btn-navbar{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse"}
             %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.brand{:href => "/translation_center"} Translation Center
-          .nav-collapse
-            %ul.nav
+          %a.brand{:href => root_url}
+            = t('.Translation_Center')
+          %ul.nav
+            %li.divider-vertical
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                = t('.languages')
+                %b.caret
+              %ul.dropdown-menu
+                %li.dropdown-submenu
+                  %a{ tabinde: '-1', href: '#'}
+                    = t('.from')
+                  %ul.dropdown-menu
+                    - I18n.available_locales.each do |locale|
+                      %li
+                        %a.language_from{ tabinde: '-1', href: '#'}
+                          = locale.inspect
+                %li.dropdown-submenu
+                  %a{ tabinde: '-1', href: '#'}
+                    = t('.to')
+                  %ul.dropdown-menu
+                    - I18n.available_locales.each do |locale|
+                      %li
+                        %a.language_to{ tabinde: '-1', href: '#'}
+                          = locale.inspect
+
+
+
     .container
       .row
         .span12
