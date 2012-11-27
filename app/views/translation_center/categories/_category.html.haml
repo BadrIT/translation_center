@@ -1,0 +1,6 @@
+%a.category{ href: category_path(category) }
+  .category_name
+    = category.view_name
+  %span
+    = category.complete_percentage_in :en
+    = '% Complete'

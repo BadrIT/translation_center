@@ -9,6 +9,18 @@ module TranslationCenter
     validates :name, uniqueness: true
     validates :category, presence: true
 
+    # called after key is created
+    after_create :add_category
+
+    # add a category of this translation key
+    def add_category
+      category_name = self.name.to_s.split('.').first
+      category = Category.find_or_initialize_by_name(category_name)
+      category.save if category.new_record?
+      self.update_attribute(:category, category)
+      self.update_attribute(:last_accessed, Time.now)
+    end
+
     # returns true if the key has an accepted translation in this lang
     def accepted_in?(lang)
       !self.accepted_translation_in(lang).blank?

@@ -2,3 +2,24 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+
+.category {
+  display: block;
+  float: left;
+  width: 280px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #E5F3FA;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.category:hover {
+  text-decoration: none;
+  background-color: #D9EDF7;
+}
+
+.translation_key_list {
+  
+}

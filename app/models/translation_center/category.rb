@@ -23,5 +23,10 @@ module TranslationCenter
       self.keys.reject{ |key| !key.accepted_in?(lang) }
     end
 
+    # returns a name that is better for presentation
+    def view_name
+      self.name.gsub('_',' ').camelize
+    end
+
   end
 end

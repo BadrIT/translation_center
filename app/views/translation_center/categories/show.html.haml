@@ -1,17 +1,3 @@
-%p#notice= notice
-%p
-  %b= t('.name')
-  %br
-  = @category.name
-  %br
-  = @category.complete_percentage_in :en
-  = '%'
+.span9
+  = render 'translation_center/translation_keys/translation_keys', translation_keys: @translation_keys
 
-= link_to 'Edit', edit_category_path(@category)
-|
-= link_to 'Back', categories_path
-
-= render 'translation_center/translation_keys/translation_keys', translation_keys: @translation_keys
-
-= render 'translation_center/translation_keys/form', category: @category
-  
