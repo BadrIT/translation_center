@@ -43,7 +43,9 @@
                       %a.language_to{ href: '#'}
                         = locale.to_s
 
-
+    :javascript
+      // use this root url before any ajax request sent to the engine
+      root_url = "#{main_app.translation_center_path}"
 
     .container
       .row

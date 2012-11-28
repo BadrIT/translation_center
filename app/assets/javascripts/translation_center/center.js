@@ -7,7 +7,7 @@ $(document).ready(function(){
     var language_to = $.trim($(this).text());
     $.ajax({
       type: 'POST',
-      url: '/translation_center/set_language_to',
+      url: root_url + '/set_language_to',
       data: { lang : language_to },
       success: function(){
         location.reload();
@@ -19,7 +19,7 @@ $(document).ready(function(){
     var language_from = $(this).text();
     $.ajax({
       type: 'POST',
-      url: '/translation_center/set_language_from',
+      url: root_url + '/set_language_from',
       data: { lang : language_from },
       success: function(){
         location.reload();
