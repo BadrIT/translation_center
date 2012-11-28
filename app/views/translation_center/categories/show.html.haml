@@ -1,17 +1,16 @@
 %input#category_key{ type: 'hidden', value: @category.id }
 %h1
   = @category.name.camelize
-.tabbable.tabs-left
-  %ul.nav.nav-pills
-    %li.active
-      %a#untranslated_keys.keys_filter{:href => "#"}
-        = t('.untranslated')
-    %li
-      %a#pending_keys.keys_filter{:href => "#"}
-        = t('.pending')
-    %li
-      %a#translated_keys.keys_filter{:href => "#"}
-        = t('.translated')
-  .span9#category
-    = render 'translation_center/translation_keys/translation_keys', translation_keys: @untranslated_keys, category: @category
+%ul.nav.nav-pills
+  %li.active
+    %a#untranslated_keys.keys_filter{:href => "#"}
+      = t('.untranslated')
+  %li
+    %a#pending_keys.keys_filter{:href => "#"}
+      = t('.pending')
+  %li
+    %a#translated_keys.keys_filter{:href => "#"}
+      = t('.translated')
+.span9#category
+  = render 'translation_center/translation_keys/translation_keys', translation_keys: @untranslated_keys, category: @category
 
