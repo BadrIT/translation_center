@@ -18,26 +18,30 @@
           %ul.nav
             %li.divider-vertical
             %li.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = t('.languages')
-                %b.caret
-              %ul.dropdown-menu
-                %li.dropdown-submenu
-                  %a{ tabinde: '-1', href: '#'}
-                    = t('.from')
-                  %ul.dropdown-menu
-                    - I18n.available_locales.each do |locale|
-                      %li
-                        %a.language_from{ tabinde: '-1', href: '#'}
-                          = locale.inspect
-                %li.dropdown-submenu
-                  %a{ tabinde: '-1', href: '#'}
-                    = t('.to')
-                  %ul.dropdown-menu
-                    - I18n.available_locales.each do |locale|
-                      %li
-                        %a.language_to{ tabinde: '-1', href: '#'}
-                          = locale.inspect
+              %div
+                %span
+                  Translating from
+                %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  
+                  = from_lang
+                  %b.caret
+                %ul.dropdown-menu
+                  - I18n.available_locales.each do |locale|
+                    %li
+                      %a.language_from{ href: '#'}
+                        = locale.to_s
+            %li.dropdown
+              %div
+                %span
+                  to
+                %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  = to_lang
+                  %b.caret
+                %ul.dropdown-menu
+                  - I18n.available_locales.each do |locale|
+                    %li
+                      %a.language_to{ href: '#'}
+                        = locale.to_s
 
 
 

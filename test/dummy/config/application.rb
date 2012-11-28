@@ -9,7 +9,7 @@ module Dummy
   class Application < Rails::Application
 
     AVAILABLE_LANGS = {en: 'English', ar: 'Arabic'}
-    I18n.available_locales ||= AVAILABLE_LANGS.keys
+    I18n.available_locales = AVAILABLE_LANGS.keys
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
