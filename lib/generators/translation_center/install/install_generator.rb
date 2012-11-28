@@ -20,6 +20,7 @@ module TranslationCenter
       end
       
       copy_file 'initializers/translation_center.rb', 'config/initializers/translation_center.rb'
+      copy_file 'config/translation_center.yml', 'config/translation_center.yml'
     end
 
   end

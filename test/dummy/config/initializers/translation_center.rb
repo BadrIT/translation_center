@@ -15,6 +15,13 @@ module TranslationCenter
     translate_without_adding(locale, key, options)
   end
 
+  # load tha translation config
+  CONFIG = YAML.load_file("#{Rails.root}/config/translation_center.yml")[Rails.env]
+  I18n.available_locales = CONFIG['lang'].keys
+
 end
 
 I18n::Backend::Base.send :include, TranslationCenter
+
+
+

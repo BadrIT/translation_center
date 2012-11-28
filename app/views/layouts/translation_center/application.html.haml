@@ -22,26 +22,25 @@
                 %span
                   Translating from
                 %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  
-                  = from_lang
+                  = language_name(from_lang)
                   %b.caret
                 %ul.dropdown-menu
                   - I18n.available_locales.each do |locale|
                     %li
-                      %a.language_from{ href: '#'}
-                        = locale.to_s
+                      %a.language_from{ href: '#', lang_sym: locale}
+                        = language_name(locale)
             %li.dropdown
               %div
                 %span
                   to
                 %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = to_lang
+                  = language_name(to_lang)
                   %b.caret
                 %ul.dropdown-menu
                   - I18n.available_locales.each do |locale|
                     %li
-                      %a.language_to{ href: '#'}
-                        = locale.to_s
+                      %a.language_to{ href: '#', lang_sym: locale}
+                        = language_name(locale)
 
     :javascript
       // use this root url before any ajax request sent to the engine

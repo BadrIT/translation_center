@@ -11,5 +11,10 @@ module TranslationCenter
       session[:lang_to]
     end
 
+    # returns the display name of the language
+    def language_name(lang)
+      TranslationCenter::CONFIG['lang'][lang.to_s]
+    end
+
   end
 end

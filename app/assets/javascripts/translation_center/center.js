@@ -4,7 +4,7 @@
 $(document).ready(function(){
 
   $('.language_to').click(function(){
-    var language_to = $.trim($(this).text());
+    var language_to = $.trim($(this).attr('lang_sym'));
     $.ajax({
       type: 'POST',
       url: root_url + '/set_language_to',
@@ -16,7 +16,7 @@ $(document).ready(function(){
   });
 
   $('.language_from').click(function(){
-    var language_from = $(this).text();
+    var language_from = $.trim($(this).attr('lang_sym'));
     $.ajax({
       type: 'POST',
       url: root_url + '/set_language_from',
