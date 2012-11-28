@@ -16,7 +16,7 @@
             = t('.Translation_Center')
           %ul.nav
             %li.divider-vertical
-            %li.dropdown
+            %li.dropdown.nav_text
               %span
                 = t('.from')
               %button.btn-small.dropdown-toggle{"data-toggle" => "dropdown"}
@@ -27,7 +27,7 @@
                   %li
                     %a.language_from{ href: '#', lang_sym: locale}
                       = language_name(locale)
-            %li.dropdown
+            %li.dropdown.nav_text
               %span
                 = t('.to')
               %button.btn-small.dropdown-toggle{"data-toggle" => "dropdown"}

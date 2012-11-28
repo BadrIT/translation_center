@@ -1,7 +1,8 @@
 %h1
   = @category.name.camelize
 .tabbable.tabs-left
-  
+  %ul.nav.nav-pills
+    
   %ul.nav.nav-tabs.translation_keys_listing
     - translation_keys.each_with_index do |translation_key, index|
       %li{ class: "#{index == 0 ? 'well well-small active' : 'well well-small' }" }
