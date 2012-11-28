@@ -17,12 +17,37 @@ module TranslationCenter
     # GET /categories/1.json
     def show
       @category = Category.find(params[:id])
-      @translation_keys = @category.keys
-      @translation_key = TranslationKey.new
-      
+      @untranslated_keys = @category.untranslated_keys(session[:lang_to])
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @category }
+      end
+    end
+
+    # GET /categories/1/untranslated_keys.json
+    def untranslated_keys
+      @category = Category.find(params[:category_id])
+      @keys = @category.untranslated_keys(session[:lang_to])
+      respond_to do |format|
+        format.js { render 'keys' }
+      end
+    end
+
+    # GET /categories/1/translated_keys.json
+    def translated_keys
+      @category = Category.find(params[:category_id])
+      @keys = @category.accepted_keys(session[:lang_to])
+      respond_to do |format|
+        format.js { render 'keys' }
+      end
+    end
+
+    # GET /categories/1/pending_keys.json
+    def pending_keys
+      @category = Category.find(params[:category_id])
+      @keys = @category.pending_keys(session[:lang_to])
+      respond_to do |format|
+        format.js { render 'keys' }
       end
     end
   

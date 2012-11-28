@@ -32,8 +32,13 @@ module TranslationCenter
     end
 
     # returns true if the translation key has no translations in the language
-    def empty_in?(lang)
+    def no_translations_in?(lang)
       self.translations.in(lang).empty?
+    end
+
+    # returns true if the key has translations in the language
+    def has_translations_in?(lang)
+      !no_translations_in?(lang)
     end
 
     # adds a translation key with its translation to a translation yaml hash

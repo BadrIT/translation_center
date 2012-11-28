@@ -23,6 +23,16 @@ module TranslationCenter
       self.keys.reject{ |key| !key.accepted_in?(lang) }
     end
 
+    # gets the keys that have no translations in the language
+    def untranslated_keys(lang)
+      self.keys.reject{ |key| key.has_translations_in?(lang) }
+    end
+
+    # gets the keys that have no translations in the language
+    def pending_keys(lang)
+      self.keys.reject{ |key| key.no_translations_in?(lang) || key.accepted_in?(lang) }
+    end
+
     # returns a name that is better for presentation
     def view_name
       self.name.gsub('_',' ').camelize

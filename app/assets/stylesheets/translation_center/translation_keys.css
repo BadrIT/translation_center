@@ -9,7 +9,7 @@
   width: 40%;
 }
 
-.translation_keys_listing p {
+.translation_keys_listing small, .translation_keys_listing p {
   word-break:break-all;
 }
 
@@ -31,4 +31,9 @@
 
 .translations_count {
   margin-right: 5px;
+}
+
+.nav.nav-pills {
+  border-bottom: 1px solid #DDD;
+  padding-bottom: 10px;
 }

@@ -5,7 +5,7 @@
 
       %a{"data-toggle" => "tab", :href => "#translations#{translation_key.id}"}
         - translations_count = translation_key.translations.in(to_lang).count
-        - if translation_key.empty_in?(to_lang)
+        - if translation_key.no_translations_in?(to_lang)
           %span.badge.badge-important.pull-left.translations_count
             = translations_count
         - else

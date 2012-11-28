@@ -1,28 +1,30 @@
-%h1
-  = @category.name.camelize
-.tabbable.tabs-left
-  %ul.nav.nav-pills
+- if translation_keys.empty?
+  = t('.no_translation_keys')
+- else
+  .tabbable.tabs-left
     
-  %ul.nav.nav-tabs.translation_keys_listing
-    - translation_keys.each_with_index do |translation_key, index|
-      %li{ class: "#{index == 0 ? 'well well-small active' : 'well well-small' }" }
-        - if translation_key.accepted_in?(to_lang)
-          .translation_key_badge.badge-success
-        - elsif translation_key.empty_in?(to_lang)
-          .translation_key_badge.badge-important
-        - else
-          .translation_key_badge.badge-warning
+    %ul.nav.nav-tabs.translation_keys_listing
+      - translation_keys.each_with_index do |translation_key, index|
+        %li{ class: "#{index == 0 ? 'well well-small active' : 'well well-small' }" }
+          - if translation_key.accepted_in?(to_lang)
+            .translation_key_badge.badge-success
+          - elsif translation_key.no_translations_in?(to_lang)
+            .translation_key_badge.badge-important
+          - else
+            .translation_key_badge.badge-warning
 
-        %a{ href: "##{translation_key.id}", 'data-toggle' => "tab"}
-          
+          %a{ href: "##{translation_key.id}", 'data-toggle' => "tab"}
+            %p
+              %em
+                = t(translation_key.name)
+              
+            %small
+              = translation_key.name
+
+    .tab-content.translations_listing
+      - translation_keys.each_with_index do |translation_key, index|
+        %div{ class: "#{index == 0 ? 'tab-pane active' : 'tab-pane' }", id: translation_key.id }
           %p
-            = translation_key.name
-          %small
-            = t(translation_key.name)
-  .tab-content
-    - translation_keys.each_with_index do |translation_key, index|
-      %div{ class: "#{index == 0 ? 'tab-pane active' : 'tab-pane' }", id: translation_key.id }
-        %p
-          = render 'translation_center/translation_keys/show', translation_key: translation_key
+            = render 'translation_center/translation_keys/show', translation_key: translation_key
 
 
