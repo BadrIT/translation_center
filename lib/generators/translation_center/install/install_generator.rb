@@ -21,6 +21,9 @@ module TranslationCenter
       
       copy_file 'initializers/translation_center.rb', 'config/initializers/translation_center.rb'
       copy_file 'config/translation_center.yml', 'config/translation_center.yml'
+
+      # user can replace this logo to change the logo
+      copy_file 'assets/translation_center_logo.png', 'assets/images/translation_center_logo.png'
     end
 
   end

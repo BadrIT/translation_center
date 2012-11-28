@@ -13,15 +13,17 @@
         .container
           %a.btn.btn-navbar{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse"}
           %a.brand{:href => root_url}
+            = favicon_link_tag
             = Rails.application.class.parent_name
             %em.center_title
               = t('.Translation_Center')
           %ul.nav
             %li.divider-vertical
-            %li.dropdown.nav_text
-              %span
-                = t('.from')
-              %button.btn-small.dropdown-toggle{"data-toggle" => "dropdown"}
+            .pull-left.nav_text
+              = t('.from')
+            %li.dropdown.pull-left
+              
+              %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
                 = language_name(from_lang)
                 %b.caret
               %ul.dropdown-menu
@@ -29,10 +31,11 @@
                   %li
                     %a.language_from{ href: '#', lang_sym: locale}
                       = language_name(locale)
-            %li.dropdown.nav_text
-              %span
-                = t('.to')
-              %button.btn-small.dropdown-toggle{"data-toggle" => "dropdown"}
+            .pull-left.nav_text
+              = t('.to')
+            %li.dropdown.pull-left
+              
+              %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
                 = language_name(to_lang)
                 %b.caret
               %ul.dropdown-menu
