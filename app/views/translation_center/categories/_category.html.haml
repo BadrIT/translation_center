@@ -5,3 +5,5 @@
     = category.complete_percentage_in(to_lang)
     = '%'
     = t('.Complete')
+    .progress.progress-info
+      .bar{:style => "width: #{category.complete_percentage_in(to_lang)}%"}

@@ -1,10 +1,19 @@
 
 .tabbable
-  / Only required for left/right tabs
   %ul.nav.nav-tabs
     %li.active
+
       %a{"data-toggle" => "tab", :href => "#translations#{translation_key.id}"}
-        = t('.Translations')
+        - translations_count = translation_key.translations.in(to_lang).count
+        - if translation_key.empty_in?(to_lang)
+          %span.badge.badge-important.pull-left.translations_count
+            = translations_count
+        - else
+          %span.badge.badge-info.pull-left.translations_count
+            = translations_count
+        %span
+          = t('.Translations')
+
     %li
       %a{"data-toggle" => "tab", :href => "#add_translations#{translation_key.id}"}
         = t('.Add_Translation')
@@ -12,7 +21,7 @@
     .tab-pane.active{ id: "translations#{translation_key.id}"}
       - translation_key.translations.in(to_lang).each do |translation|
         = translation.value
-      - if translation_key.translations.empty?
+      - if translation_key.translations.in(to_lang).empty?
         = t('.no_translations_available')
     .tab-pane{ id: "add_translations#{translation_key.id}"}
       %p form to add a translation

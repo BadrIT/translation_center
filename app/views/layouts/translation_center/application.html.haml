@@ -12,35 +12,32 @@
       .navbar-inner
         .container
           %a.btn.btn-navbar{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse"}
-            %span.icon-bar
           %a.brand{:href => root_url}
             = t('.Translation_Center')
           %ul.nav
             %li.divider-vertical
             %li.dropdown
-              %div
-                %span
-                  Translating from
-                %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = language_name(from_lang)
-                  %b.caret
-                %ul.dropdown-menu
-                  - I18n.available_locales.each do |locale|
-                    %li
-                      %a.language_from{ href: '#', lang_sym: locale}
-                        = language_name(locale)
+              %span
+                = t('.from')
+              %button.btn-small.dropdown-toggle{"data-toggle" => "dropdown"}
+                = language_name(from_lang)
+                %b.caret
+              %ul.dropdown-menu
+                - I18n.available_locales.each do |locale|
+                  %li
+                    %a.language_from{ href: '#', lang_sym: locale}
+                      = language_name(locale)
             %li.dropdown
-              %div
-                %span
-                  to
-                %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = language_name(to_lang)
-                  %b.caret
-                %ul.dropdown-menu
-                  - I18n.available_locales.each do |locale|
-                    %li
-                      %a.language_to{ href: '#', lang_sym: locale}
-                        = language_name(locale)
+              %span
+                = t('.to')
+              %button.btn-small.dropdown-toggle{"data-toggle" => "dropdown"}
+                = language_name(to_lang)
+                %b.caret
+              %ul.dropdown-menu
+                - I18n.available_locales.each do |locale|
+                  %li
+                    %a.language_to{ href: '#', lang_sym: locale}
+                      = language_name(locale)
 
     :javascript
       // use this root url before any ajax request sent to the engine

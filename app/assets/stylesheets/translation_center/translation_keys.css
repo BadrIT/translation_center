@@ -2,3 +2,33 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+
+.translation_keys_listing {
+  height: 450px;
+  overflow: auto;
+  width: 40%;
+}
+
+.translation_keys_listing p {
+  word-break:break-all;
+}
+
+.translation_keys_listing small {
+  color: black;
+}
+
+.translation_keys_listing li {
+  overflow: hidden;
+  position: relative;
+}
+
+.translation_key_badge {
+  height: 80%;
+  width: 5px;
+  float: left;
+  position: absolute;
+}
+
+.translations_count {
+  margin-right: 5px;
+}
