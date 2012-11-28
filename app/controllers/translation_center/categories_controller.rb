@@ -18,6 +18,9 @@ module TranslationCenter
     def show
       @category = Category.find(params[:id])
       @keys = @category.send "#{session[:current_filter]}_keys", session[:lang_to]
+      @untranslated_keys_count = @category.untranslated_keys(session[:lang_to]).count
+      @translated_keys_count = @category.translated_keys(session[:lang_to]).count
+      @pending_keys_count = @category.pending_keys(session[:lang_to]).count
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @category }

@@ -1,1 +1,2 @@
 $('#category').html("#{escape_javascript(render 'translation_center/translation_keys/translation_keys', translation_keys: @keys, category: @category)}")
+$('#' + "#{current_filter}" + '_keys_count').text('(' + "#{@keys.count}" + ')')

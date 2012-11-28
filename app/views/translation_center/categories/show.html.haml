@@ -6,12 +6,18 @@
   %li{class: "#{current_filter_is?('untranslated') ? 'active' : ''}"}
     %a#untranslated_keys.keys_filter{:href => "#"}
       = t('.untranslated')
+      %span#untranslated_keys_count
+        = "(#{@untranslated_keys_count})"
   %li{class: "#{current_filter_is?('pending') ? 'active' : ''}"}
     %a#pending_keys.keys_filter{:href => "#"}
       = t('.pending')
+      %span#pending_keys_count
+        = "(#{@pending_keys_count})"
   %li{class: "#{current_filter_is?('translated') ? 'active' : ''}"}
     %a#translated_keys.keys_filter{:href => "#"}
       = t('.translated')
+      %span#translated_keys_count
+        = "(#{@translated_keys_count})"
   %li
     #loading
       = image_tag 'translation_center/loading.gif'
