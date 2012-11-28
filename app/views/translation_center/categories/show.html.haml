@@ -2,15 +2,19 @@
 %h1
   = @category.name.camelize
 %ul.nav.nav-pills
-  %li.active
+  
+  %li{class: "#{current_filter_is?('untranslated') ? 'active' : ''}"}
     %a#untranslated_keys.keys_filter{:href => "#"}
       = t('.untranslated')
-  %li
+  %li{class: "#{current_filter_is?('pending') ? 'active' : ''}"}
     %a#pending_keys.keys_filter{:href => "#"}
       = t('.pending')
-  %li
+  %li{class: "#{current_filter_is?('translated') ? 'active' : ''}"}
     %a#translated_keys.keys_filter{:href => "#"}
       = t('.translated')
+  %li
+    #loading
+      = image_tag 'translation_center/loading.gif'
 .span9#category
-  = render 'translation_center/translation_keys/translation_keys', translation_keys: @untranslated_keys, category: @category
+  = render 'translation_center/translation_keys/translation_keys', translation_keys: @keys, category: @category
 

@@ -22,6 +22,7 @@
       - translation_key.translations.in(to_lang).each do |translation|
         = translation.value
       - if translation_key.translations.in(to_lang).empty?
-        = t('.no_translations_available')
+        .alert.alert-error
+          = t('.no_translations_available')
     .tab-pane{ id: "add_translations#{translation_key.id}"}
       %p form to add a translation

@@ -11,7 +11,7 @@ module TranslationCenter
     # gets how much complete translation of category is in a certain language
     def complete_percentage_in(lang)
       if self.keys.empty?
-        0
+        100
       else
         accepted_keys = accepted_keys(lang)
         100 * accepted_keys.count / self.keys.count
@@ -22,6 +22,7 @@ module TranslationCenter
     def accepted_keys(lang)
       self.keys.reject{ |key| !key.accepted_in?(lang) }
     end
+    alias_method :translated_keys, :accepted_keys
 
     # gets the keys that have no translations in the language
     def untranslated_keys(lang)

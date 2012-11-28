@@ -17,7 +17,7 @@ module TranslationCenter
     # GET /categories/1.json
     def show
       @category = Category.find(params[:id])
-      @untranslated_keys = @category.untranslated_keys(session[:lang_to])
+      @keys = @category.send "#{session[:current_filter]}_keys", session[:lang_to]
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @category }
@@ -28,6 +28,7 @@ module TranslationCenter
     def untranslated_keys
       @category = Category.find(params[:category_id])
       @keys = @category.untranslated_keys(session[:lang_to])
+      session[:current_filter] = 'untranslated'
       respond_to do |format|
         format.js { render 'keys' }
       end
@@ -37,6 +38,7 @@ module TranslationCenter
     def translated_keys
       @category = Category.find(params[:category_id])
       @keys = @category.accepted_keys(session[:lang_to])
+      session[:current_filter] = 'translated'
       respond_to do |format|
         format.js { render 'keys' }
       end
@@ -46,6 +48,7 @@ module TranslationCenter
     def pending_keys
       @category = Category.find(params[:category_id])
       @keys = @category.pending_keys(session[:lang_to])
+      session[:current_filter] = 'pending'
       respond_to do |format|
         format.js { render 'keys' }
       end

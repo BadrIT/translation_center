@@ -1,5 +1,6 @@
 - if translation_keys.empty?
-  = t('.no_translation_keys')
+  .alert.alert-info
+    = t('.no_translation_keys')
 - else
   .tabbable.tabs-left
     

@@ -16,5 +16,15 @@ module TranslationCenter
       TranslationCenter::CONFIG['lang'][lang.to_s]
     end
 
+    # returns the current status filter for translation keys
+    def current_filter
+      session[:current_filter]
+    end
+
+    # returns true if the current filter is equal to the passed filter
+    def current_filter_is?(filter)
+      session[:current_filter] == filter
+    end
+
   end
 end

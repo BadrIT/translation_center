@@ -4,7 +4,8 @@
 */
 
 .translation_keys_listing {
-  height: 450px;
+  max-height: 410px;
+  min-height: 92px;
   overflow: auto;
   width: 40%;
 }

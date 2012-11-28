@@ -13,7 +13,9 @@
         .container
           %a.btn.btn-navbar{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse"}
           %a.brand{:href => root_url}
-            = t('.Translation_Center')
+            = Rails.application.class.parent_name
+            %em.center_title
+              = t('.Translation_Center')
           %ul.nav
             %li.divider-vertical
             %li.dropdown.nav_text
