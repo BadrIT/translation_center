@@ -6,14 +6,15 @@ source "http://rubygems.org"
 gemspec
 
 # jquery-rails is used by the dummy application
-gem 'mysql2'
 gem "jquery-rails"
+gem 'mysql2'
 gem 'haml'
 gem 'haml-rails'
 gem 'acts_as_votable'
 gem 'ya2yaml'
-gem 'linecache19', :git => 'git://github.com/mark-moseley/linecache'
+# gem 'linecache19', :git => 'git://github.com/mark-moseley/linecache'
 gem 'will_paginate'
+gem 'devise'
 
 group :development do
   gem 'ruby-debug-base19x', '~> 0.11.30.pre4'

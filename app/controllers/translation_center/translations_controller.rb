@@ -2,6 +2,8 @@ require_dependency "translation_center/application_controller"
 
 module TranslationCenter
   class TranslationsController < ApplicationController
+    before_filter :authenticate_user!
+    
     # GET /translations
     # GET /translations.json
     def index

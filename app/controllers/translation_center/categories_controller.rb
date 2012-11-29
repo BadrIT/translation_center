@@ -3,6 +3,7 @@ require_dependency "translation_center/application_controller"
 module TranslationCenter
   class CategoriesController < ApplicationController
     require 'will_paginate/array'
+    before_filter :authenticate_user!
 
     # GET /categories
     # GET /categories.json

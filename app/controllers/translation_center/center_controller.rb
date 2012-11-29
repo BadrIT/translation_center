@@ -2,6 +2,7 @@ require_dependency "translation_center/application_controller"
 
 module TranslationCenter
   class CenterController < ApplicationController
+    before_filter :authenticate_user!
 
     # set language user translating from
     def set_language_from
