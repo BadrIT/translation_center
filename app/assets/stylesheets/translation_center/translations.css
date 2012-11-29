@@ -7,3 +7,11 @@
   padding-left: 20px;
   height: 410px;
 }
+
+.translation_info {
+}
+
+.translation_box {
+  min-height: 40px !important;
+  padding-bottom: 9px;
+}

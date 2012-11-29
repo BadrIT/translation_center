@@ -2,7 +2,10 @@ TranslationCenter::Engine.routes.draw do
   
   resources :translations
 
-  resources :translation_keys
+  resources :translation_keys do
+    post :update_translation
+    get :translations
+  end
 
   resources :categories  do
     get :translated_keys

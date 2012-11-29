@@ -1,0 +1,14 @@
+.well.well-small.translation_box
+  = translation.value
+  %div.translation_info.pull-right
+    %small
+      %em
+        = t('.by')
+        - if translation.user == current_user
+          = t('.you')
+        - else
+          = translation.user.email
+        = t('.on')
+        = I18n.localize(translation.created_at, format: '%b, %d %Y')
+
+

@@ -7,7 +7,7 @@ $(document).ready(function(){
   current_page = 1;
   var fetching = false
 
-  $('.translation_keys_listing').bind('mousewheel DOMMouseScroll', function(e)
+  $('.translation_keys_listing').live('mousewheel DOMMouseScroll', function(e)
   {
     if(e.originalEvent.wheelDelta < 0 &&
        $(this).scrollTop() + 

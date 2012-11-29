@@ -3,6 +3,29 @@ require_dependency "translation_center/application_controller"
 module TranslationCenter
   class TranslationKeysController < ApplicationController
     before_filter :authenticate_user!
+
+    # POST /translation_keys/1/update_translation.js
+    def update_translation
+      @translation_key = TranslationKey.find(params[:translation_key_id])
+      @translation = current_user.translation_for @translation_key, session[:lang_to]
+      
+        respond_to do |format|
+          unless @translation.accepted?
+            @translation.update_attribute(:value, params[:value].strip)
+            format.json {render json: @translation.value}
+          else
+            render nothing: true
+          end
+        end
+    end
+
+    def translations
+      @translation_key = TranslationKey.find(params[:translation_key_id])
+      @translations = @translation_key.translations
+      respond_to do |format|
+        format.js
+      end
+    end
     
     # GET /translation_keys
     # GET /translation_keys.json

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= rquire jquery.editable.mini
 //= require_tree .
 
 function Category() {
