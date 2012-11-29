@@ -27,6 +27,7 @@ module TranslationCenter
     def accepted_in?(lang)
       !self.accepted_translation_in(lang).blank?
     end
+    alias_method :translated_in?, :accepted_in?
 
     # returns the accepted translation in certain language
     def accepted_translation_in(lang)
@@ -37,10 +38,16 @@ module TranslationCenter
     def no_translations_in?(lang)
       self.translations.in(lang).empty?
     end
+    alias_method :untranslated_in?, :no_translations_in?
 
     # returns true if the key has translations in the language
     def has_translations_in?(lang)
       !no_translations_in?(lang)
+    end
+
+    # returns true if the key has translations but none are accepted
+    def pending_in?(lang)
+      !accepted_in?(lang) && !untranslated_in?(lang)
     end
 
     # adds a translation key with its translation to a translation yaml hash
