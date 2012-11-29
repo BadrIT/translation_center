@@ -14,6 +14,23 @@
 //= require jquery_ujs
 //= require_tree .
 
+function Category() {
+}
+
+Category.key = function() {
+  return $('#category_key').val();
+}
+
+Category.path = function() {
+  return '/categories/' + Category.key();
+}
+
+function Filter() {
+}
+
+Filter.key = function() {
+  return $('#current_filter').val();
+}
 
 $(document).ready(function(){
 

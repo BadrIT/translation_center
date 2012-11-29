@@ -12,6 +12,8 @@ module TranslationCenter
     # called after key is created
     after_create :add_category
 
+    PER_PAGE = 7
+
     # add a category of this translation key
     def add_category
       category_name = self.name.to_s.split('.').first

@@ -2,6 +2,8 @@ require_dependency "translation_center/application_controller"
 
 module TranslationCenter
   class CategoriesController < ApplicationController
+    require 'will_paginate/array'
+
     # GET /categories
     # GET /categories.json
     def index
@@ -17,20 +19,21 @@ module TranslationCenter
     # GET /categories/1.json
     def show
       @category = Category.find(params[:id])
-      @keys = @category.send "#{session[:current_filter]}_keys", session[:lang_to]
+      session[:current_filter] = params[:filter].blank? ? session[:current_filter] : params[:filter]
+      @keys = @category.send("#{session[:current_filter]}_keys", session[:lang_to]).paginate(:page => params[:page], :per_page => TranslationKey::PER_PAGE)
       @untranslated_keys_count = @category.untranslated_keys(session[:lang_to]).count
       @translated_keys_count = @category.translated_keys(session[:lang_to]).count
       @pending_keys_count = @category.pending_keys(session[:lang_to]).count
       respond_to do |format|
         format.html # show.html.erb
-        format.json { render json: @category }
+        format.js
       end
     end
 
     # GET /categories/1/untranslated_keys.json
     def untranslated_keys
       @category = Category.find(params[:category_id])
-      @keys = @category.untranslated_keys(session[:lang_to])
+      @keys = @category.untranslated_keys(session[:lang_to]).paginate(:page => params[:page], :per_page => TranslationKey::PER_PAGE)
       session[:current_filter] = 'untranslated'
       respond_to do |format|
         format.js { render 'keys' }
@@ -40,7 +43,7 @@ module TranslationCenter
     # GET /categories/1/translated_keys.json
     def translated_keys
       @category = Category.find(params[:category_id])
-      @keys = @category.accepted_keys(session[:lang_to])
+      @keys = @category.accepted_keys(session[:lang_to]).paginate(:page => params[:page], :per_page => TranslationKey::PER_PAGE)
       session[:current_filter] = 'translated'
       respond_to do |format|
         format.js { render 'keys' }
@@ -50,7 +53,7 @@ module TranslationCenter
     # GET /categories/1/pending_keys.json
     def pending_keys
       @category = Category.find(params[:category_id])
-      @keys = @category.pending_keys(session[:lang_to])
+      @keys = @category.pending_keys(session[:lang_to]).paginate(:page => params[:page], :per_page => TranslationKey::PER_PAGE)
       session[:current_filter] = 'pending'
       respond_to do |format|
         format.js { render 'keys' }

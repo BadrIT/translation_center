@@ -4,6 +4,6 @@
 */
 
 .translations_listing {
-  border-left: 1px solid #DDD;
   padding-left: 20px;
+  height: 410px;
 }

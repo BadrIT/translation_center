@@ -23,7 +23,7 @@
               = t('.from')
             %li.dropdown.pull-left
               
-              %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", href: '#'}
                 = language_name(from_lang)
                 %b.caret
               %ul.dropdown-menu
@@ -35,7 +35,7 @@
               = t('.to')
             %li.dropdown.pull-left
               
-              %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", href: '#'}
                 = language_name(to_lang)
                 %b.caret
               %ul.dropdown-menu

@@ -1,11 +1,15 @@
 TranslationCenter::Engine.routes.draw do
+  
   resources :translations
+
   resources :translation_keys
+
   resources :categories  do
     get :translated_keys
     get :pending_keys
     get :untranslated_keys
   end
+
   root to: 'categories#index'
 
   # set the language from and to for the user

@@ -4,7 +4,7 @@
   %div
     %span.label.label-info
       = category.translation_keys.count
-      = t('.translation_keys')
+      = t('.keys')
     - completion = category.complete_percentage_in(to_lang)
     - if(completion > 80)
       %span.label.label-success
