@@ -8,8 +8,9 @@
 
   %a{ href: "##{translation_key.id}", 'data-toggle' => "tab"}
     %p
-      %em
-        = t(translation_key.name)
+      %b
+        %em
+          = t(translation_key.name)
       
     %small
       = translation_key.name

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   # TODO move to acts_as_translator
   has_many :translations, class_name: 'TranslationCenter::Translation'
-
+  acts_as_voter
   # returns the translation a user has made for a certain key in a certain language
   def translation_for(key, lang)
     self.translations.find_or_initialize_by_translation_key_id_and_lang(key.id, lang.to_s)

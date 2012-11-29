@@ -11,7 +11,7 @@ module TranslationCenter
     acts_as_votable
 
     # validations
-    validates :translation_key_id, :lang, :status, presence: true
+    validates :translation_key_id, :lang, :status, :value, presence: true
 
     # returns accepted transations
     scope :accepted, where(status: 'accepted')

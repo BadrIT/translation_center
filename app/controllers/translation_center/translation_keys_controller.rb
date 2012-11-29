@@ -9,16 +9,17 @@ module TranslationCenter
       @translation_key = TranslationKey.find(params[:translation_key_id])
       @translation = current_user.translation_for @translation_key, session[:lang_to]
       
-        respond_to do |format|
-          unless @translation.accepted?
-            @translation.update_attribute(:value, params[:value].strip)
-            format.json {render json: @translation.value}
-          else
-            render nothing: true
-          end
+      respond_to do |format|
+        if !@translation.accepted? && !params[:value].strip.blank?
+          @translation.update_attribute(:value, params[:value].strip)
+          format.json {render json: @translation.value}
+        else
+          render nothing: true
         end
+      end
     end
 
+    # GET /translation_keys/1
     def translations
       @translation_key = TranslationKey.find(params[:translation_key_id])
       @translations = @translation_key.translations

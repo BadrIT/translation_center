@@ -20,5 +20,10 @@
           .tab-pane.active{ id: "translations#{translation_key.id}" }
             = render 'translation_center/translations/index', translation_key: translation_key
         .tab-pane{ class: "#{translation_key.has_translations_in?(to_lang) ? '' : 'active'}", id: "add_translations#{translation_key.id}" }
+          
+          %em
+            %b
+              = t(translation_key.name)
+          %hr
           .user_translation.well.well-small{ 'key-id' => translation_key.id }
             = current_user.translation_for(translation_key, to_lang).value

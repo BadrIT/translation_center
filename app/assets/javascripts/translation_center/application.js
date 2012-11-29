@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= rquire jquery.editable.mini
 //= require_tree .
 

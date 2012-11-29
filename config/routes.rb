@@ -1,6 +1,9 @@
 TranslationCenter::Engine.routes.draw do
   
-  resources :translations
+  resources :translations do
+    post :vote
+    post :unvote
+  end
 
   resources :translation_keys do
     post :update_translation
