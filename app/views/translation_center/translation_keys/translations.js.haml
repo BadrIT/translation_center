@@ -1,3 +1,3 @@
-$('#translations' + "#{@translation_key.id}").html("#{escape_javascript(render 'translation_center/translations/index', translation_key: @translation_key)}")
+$('#translations' + "#{@translation_key.id}").html("#{escape_javascript(render 'translation_center/translations/index', translations: @translations, translation_key: @translation_key)}")
 
-$("#translations_#{@translation_key.id}_count").text("#{@translations.in(to_lang).count}")
+$("#translations_#{@translation_key.id}_count").text("#{@translations.count}")

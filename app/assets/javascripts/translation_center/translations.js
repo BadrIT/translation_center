@@ -4,8 +4,15 @@
 $(document).ready(function() {
 
   editableTranslations();
-  
-  $('.translations_tab').live('click', function(){
+  $('.sort_by_votes').live('click', function(){
+    $.ajax({
+      type: 'GET',
+      url: root_url + '/translation_keys/' + $(this).attr('key-id') + '/translations.js',
+      data: {sort_by: 'votes'}
+    });
+  });
+
+  $('.translations_tab, .sort_by_date').live('click', function(){
     $.ajax({
       type: 'GET',
       url: root_url + '/translation_keys/' + $(this).attr('key-id') + '/translations.js'

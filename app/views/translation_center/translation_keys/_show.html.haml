@@ -18,7 +18,7 @@
       .tab-content
         - if translation_key.has_translations_in?(to_lang)
           .tab-pane.active{ id: "translations#{translation_key.id}" }
-            = render 'translation_center/translations/index', translation_key: translation_key
+            = render 'translation_center/translations/index', translations: translation_key.translations.order('created_at DESC').in(to_lang), translation_key: translation_key
         .tab-pane{ class: "#{translation_key.has_translations_in?(to_lang) ? '' : 'active'}", id: "add_translations#{translation_key.id}" }
           
           %em

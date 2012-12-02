@@ -21,7 +21,10 @@ module TranslationCenter
 
     # GET /translation_keys/1
     def translations
-      @translations = @translation_key.translations
+      @translations = @translation_key.translations.in(session[:lang_to]).order('created_at DESC')
+      @translations = Translation.sort_by_votes(@translations) if params[:sort_by] == 'votes'
+      Rails.logger.debug @translations.inspect
+
       respond_to do |format|
         format.js
       end
