@@ -1,0 +1,56 @@
+!!!
+%html
+  %head
+    %title TranslationCenter
+    = stylesheet_link_tag    "translation_center/application", :media => "all"
+    = stylesheet_link_tag    "translation_center/bootstrap"
+    = javascript_include_tag "translation_center/application"
+    = javascript_include_tag "translation_center/bootstrap"
+    = csrf_meta_tags
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.btn.btn-navbar{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse"}
+          %a.brand{:href => root_url}
+            = favicon_link_tag
+            = Rails.application.class.parent_name
+            %em.center_title
+              = t('.Translation_Center')
+          %ul.nav
+            %li.divider-vertical
+            .pull-left.nav_text
+              = t('.from')
+            %li.dropdown.pull-left
+              
+              %a.dropdown-toggle{"data-toggle" => "dropdown", href: '#'}
+                = language_name(from_lang)
+                %b.caret
+              %ul.dropdown-menu
+                - I18n.available_locales.each do |locale|
+                  %li
+                    %a.language_from{ href: '#', lang_sym: locale}
+                      = language_name(locale)
+            .pull-left.nav_text
+              = t('.to')
+            %li.dropdown.pull-left
+
+              
+              %a.dropdown-toggle{"data-toggle" => "dropdown", href: '#'}
+                = language_name(to_lang)
+                %b.caret
+              %ul.dropdown-menu
+                - I18n.available_locales.each do |locale|
+                  %li
+                    %a.language_to{ href: '#', lang_sym: locale}
+                      = language_name(locale)
+
+    :javascript
+      // use this root url before any ajax request sent to the engine
+      root_url = "#{main_app.translation_center_path}"
+
+    .container
+      .row
+        .span12
+          = yield
+        

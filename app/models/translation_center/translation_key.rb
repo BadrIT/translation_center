@@ -9,9 +9,46 @@ module TranslationCenter
     validates :name, uniqueness: true
     validates :category, presence: true
 
+    # called after key is created
+    after_create :add_category
+
+    PER_PAGE = 7
+
+    # add a category of this translation key
+    def add_category
+      category_name = self.name.to_s.split('.').first
+      # if one word then add to general category
+      category_name = 'general' if self.name.to_s.split('.').size == 1
+      category = Category.find_or_initialize_by_name(category_name)
+      category.save if category.new_record?
+      self.update_attributes(category_id: category.id, last_accessed: Time.now)
+    end
+
+    # returns true if the key has an accepted translation in this lang
+    def accepted_in?(lang)
+      !self.accepted_translation_in(lang).blank?
+    end
+    alias_method :translated_in?, :accepted_in?
+
     # returns the accepted translation in certain language
     def accepted_translation_in(lang)
       self.translations.accepted.in(lang).first
+    end
+
+    # returns true if the translation key has no translations in the language
+    def no_translations_in?(lang)
+      self.translations.in(lang).empty?
+    end
+    alias_method :untranslated_in?, :no_translations_in?
+
+    # returns true if the key has translations in the language
+    def has_translations_in?(lang)
+      !no_translations_in?(lang)
+    end
+
+    # returns true if the key has translations but none are accepted
+    def pending_in?(lang)
+      !accepted_in?(lang) && !untranslated_in?(lang)
     end
 
     # adds a translation key with its translation to a translation yaml hash
@@ -27,8 +64,7 @@ module TranslationCenter
         # if we are at the bottom level just return the translation
         if(levels.count == 1)
           translation = self.accepted_translation_in(lang)
-          value = translation.try(:value).blank? ? '' : translation.value
-          {current_level => value}
+          {current_level => translation.value}
         else
           levels.shift
           # if the translation key doesn't exist at current level then create it

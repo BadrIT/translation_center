@@ -1,0 +1,29 @@
+.well.well-small.translation_box
+  
+  %div.translation_info
+    %span.pull-left
+      = translation.value
+  
+    %small.pull-right
+      %em
+        = t('.by')
+        - if translation.user == current_user
+          = t('.you')
+        - else
+          = translation.user.email
+        = t('.on')
+        = I18n.localize(translation.created_at, format: '%b, %d %Y')
+  %div.translation_voting
+    %a{href: '#'}
+      - voted = current_user.voted_for?(translation)
+      %span.badge.pull-left.translations_vote{ class: "#{voted ? 'badge-success' : ''}", 'translation-id' => translation.id,  voted: voted.to_s}
+        - if voted
+          = t('.unvote')
+        - else
+          = t('.vote')
+    .votes_count.badge.badge-success
+      %span.count{ 'translation-id' => translation.id }
+        = translation.votes.count
+      = t('.votes')
+
+

@@ -2,6 +2,9 @@ require_dependency "translation_center/application_controller"
 
 module TranslationCenter
   class CategoriesController < ApplicationController
+    require 'will_paginate/array'
+    before_filter :authenticate_user!
+
     # GET /categories
     # GET /categories.json
     def index
@@ -17,13 +20,26 @@ module TranslationCenter
     # GET /categories/1.json
     def show
       @category = Category.find(params[:id])
-  
+      session[:current_filter] = params[:filter] || session[:current_filter]
+      @keys = @category.send("#{session[:current_filter]}_keys", session[:lang_to]).paginate(:page => params[:page], :per_page => TranslationKey::PER_PAGE)
+      @untranslated_keys_count = @category.untranslated_keys(session[:lang_to]).count
+      @translated_keys_count = @category.translated_keys(session[:lang_to]).count
+      @pending_keys_count = @category.pending_keys(session[:lang_to]).count
       respond_to do |format|
         format.html # show.html.erb
-        format.json { render json: @category }
+        format.js
       end
     end
-  
+
+    # GET /categories/1/more_keys.js
+    def more_keys
+      @category = Category.find(params[:category_id])
+      @keys = @category.send("#{session[:current_filter]}_keys", session[:lang_to]).paginate(:page => params[:page], :per_page => TranslationKey::PER_PAGE)
+      respond_to do |format|
+        format.js { render 'keys' }
+      end
+    end
+
     # GET /categories/new
     # GET /categories/new.json
     def new
@@ -60,7 +76,7 @@ module TranslationCenter
     # PUT /categories/1.json
     def update
       @category = Category.find(params[:id])
-  
+    
       respond_to do |format|
         if @category.update_attributes(params[:category])
           format.html { redirect_to @category, notice: 'Category was successfully updated.' }

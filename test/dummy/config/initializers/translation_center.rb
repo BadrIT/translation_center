@@ -9,16 +9,19 @@ module TranslationCenter
   def translate_with_adding(locale, key, options = {})
     # add the new key or update it
     translation_key = TranslationCenter::TranslationKey.find_or_initialize_by_name(key)
-    category_name = key.to_s.split('.').first
-    category = TranslationCenter::Category.find_or_initialize_by_name(category_name)
-    category.save if category.new_record?
-    translation_key.update_attribute(:category, category)
     translation_key.update_attribute(:last_accessed, Time.now)
 
     # just return the normal I18n translation
     translate_without_adding(locale, key, options)
   end
 
+  # load tha translation config
+  CONFIG = YAML.load_file("#{Rails.root}/config/translation_center.yml")[Rails.env]
+  I18n.available_locales = CONFIG['lang'].keys
+
 end
 
 I18n::Backend::Base.send :include, TranslationCenter
+
+
+

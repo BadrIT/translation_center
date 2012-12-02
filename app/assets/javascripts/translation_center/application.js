@@ -12,4 +12,30 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= rquire jquery.editable.mini
 //= require_tree .
+
+function Category() {
+}
+
+Category.key = function() {
+  return $('#category_key').val();
+}
+
+Category.path = function() {
+  return root_url + '/categories/' + Category.key();
+}
+
+function Filter() {
+}
+
+Filter.key = function() {
+  return $('#current_filter').val();
+}
+
+$(document).ready(function(){
+
+  $('.dropdown-toggle').dropdown()
+
+});

@@ -63,7 +63,7 @@ namespace :translation_center do
       I18n.locale = locale
       puts "Started exporting translations in #{locale}"
       TranslationCenter::TranslationKey.all.each do |key|
-        key.add_to_hash(result, locale) 
+        key.add_to_hash(result, locale) if key.accepted_in?(locale)
       end
       File.open("config/locales/#{locale.to_s}.yml", 'w') do |file|
         file.write({locale.to_s => result}.ya2yaml)

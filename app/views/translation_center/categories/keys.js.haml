@@ -1,0 +1,9 @@
+- @keys.each_with_index do |key, index|
+  $('.translation_keys_listing').append("#{escape_javascript(render 'translation_center/translation_keys/show_keys', translation_key: key, index: -1)}")  
+
+
+- @keys.each_with_index do |key, index|
+  $('.translations_listing').append("#{escape_javascript(render 'translation_center/translation_keys/show', translation_key: key, index: -1)}")  
+
+editableTranslations();
+
