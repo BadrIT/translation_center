@@ -4,6 +4,7 @@ module TranslationCenter
   class TranslationKeysController < ApplicationController
     before_filter :authenticate_user!
     before_filter :get_translation_key
+    before_filter :can_admin?, only: [ :destroy, :update ]
 
     # POST /translation_keys/1/update_translation.js
     def update_translation
@@ -104,16 +105,17 @@ module TranslationCenter
     # DELETE /translation_keys/1.json
     def destroy
       @translation_key = TranslationKey.find(params[:id])
+      @translation_key_id = @translation_key.id
       @translation_key.destroy
   
       respond_to do |format|
-        format.html { redirect_to translation_keys_url }
-        format.json { head :no_content }
+        format.js
       end
     end
 
     def get_translation_key
-      @translation_key = TranslationKey.find(params[:translation_key_id])
+      id = params[:translation_key_id] || params[:id]
+      @translation_key = TranslationKey.find(id)
     end
   end
 end

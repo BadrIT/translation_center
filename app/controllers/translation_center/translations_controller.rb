@@ -3,7 +3,7 @@ require_dependency "translation_center/application_controller"
 module TranslationCenter
   class TranslationsController < ApplicationController
     before_filter :authenticate_user!
-    before_filter :can_admin?, only: [ :destroy, :acceptو :unaccept ]
+    before_filter :can_admin?, only: [ :destroy, :accept, :unaccept ]
 
     # POST /translations/1/vote
     def vote
@@ -120,10 +120,6 @@ module TranslationCenter
       respond_to do |format|
         format.js
       end
-    end
-
-    def can_admin?
-      current_user.respond_to?(:can_admin_translations?) && current_user.can_admin_translations?
     end
 
   end
