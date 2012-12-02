@@ -88,14 +88,11 @@ module TranslationCenter
     # PUT /translation_keys/1
     # PUT /translation_keys/1.json
     def update
-      @translation_key = TranslationKey.find(params[:id])
-  
+      params[:value].strip!
       respond_to do |format|
-        if @translation_key.update_attributes(params[:translation_key])
-          format.html { redirect_to @translation_key, notice: 'Translation key was successfully updated.' }
-          format.json { head :no_content }
+        if !params[:value].blank? && @translation_key.update_attribute(:name, params[:value])
+          format.json { render json: @translation_key.name }
         else
-          format.html { render action: "edit" }
           format.json { render json: @translation_key.errors, status: :unprocessable_entity }
         end
       end

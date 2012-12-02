@@ -1,6 +1,12 @@
-$('#translation_id_' + "#{@translation.id}").fadeOut();
-var translated_count = parseInt($('#translated_keys_count').text().replace('(','').replace(')','')) + 1;
-$('#translated_keys_count').text('(' + translated_count + ')');
-var pending_count = parseInt($('#pending_keys_count').text().replace('(','').replace(')','')) - 1;
-$('#pending_keys_count').text('(' + pending_count + ')');
-moveToNextKey($('#translation_id_' + "#{@translation.id}").attr('key-id'));
+- if(current_filter_is?('all'))
+  $('li.translation_key[key-id=' + "#{@translation.key.id}" + ']').children('div').removeClass('badge-warning').addClass('badge-success');
+- else
+
+  $('#translation_id_' + "#{@translation.id}").fadeOut();
+  var translated_count = parseInt($('#translated_keys_count').text().replace('(','').replace(')','')) + 1;
+  $('#translated_keys_count').text('(' + translated_count + ')');
+  var pending_count = parseInt($('#pending_keys_count').text().replace('(','').replace(')','')) - 1;
+  $('#pending_keys_count').text('(' + pending_count + ')');
+  moveToNextKey($('#translation_id_' + "#{@translation.id}").attr('key-id'));
+
+$('#translation_id_' + "#{@translation.id}").find('.accept_translation').removeClass('accept_translation').addClass('unaccept_translation').text('Unaccept')

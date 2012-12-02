@@ -28,7 +28,7 @@ ar:
       show: 
         accept: اقبل
         accepted: مقبولة
-        unvote: "إاغاء التصويت"
+        unvote: "إلغاء التصويت"
         vote: صوت
         votes: تصويتات
         you: أنت

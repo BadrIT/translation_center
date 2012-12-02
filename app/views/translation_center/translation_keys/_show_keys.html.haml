@@ -14,6 +14,7 @@
       %b
         %em
           = t(translation_key.name)
-      
+    
     %small
-      = translation_key.name
+      %div{ 'key-id' => translation_key.id, class: "#{translation_admin? ? 'key_editable' : '' }"}
+        = translation_key.name

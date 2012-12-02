@@ -4,6 +4,7 @@
 $(document).ready(function() {
 
   editableTranslations();
+  editableKeyTranslations();
 
   $('.accept_translation').live('click', function(){
     $.ajax({
@@ -100,17 +101,37 @@ function editableTranslations(){
       placeholder : 'click to add or edit your translation',
       tooltip     : 'click to add or edit your translation',
       callback : function(value, settings) {
+        
         if(Filter.key() == 'untranslated')
         {
-          moveToNextKey($(this).attr('key-id'));
           var count = parseInt($('#untranslated_keys_count').text().replace('(', '').replace(')', '')) - 1;
           $('#untranslated_keys_count').text('(' + count +  ')');
           var count = parseInt($('#pending_keys_count').text().replace('(', '').replace(')', '')) + 1;
           $('#pending_keys_count').text('(' + count +  ')');
+          moveToNextKey($(this).attr('key-id'));
+        }else if(Filter.key() == 'all')
+        {
+          $('li.translation_key[key-id=' + key_id + ']').children('div').removeClass('badge-important').addClass('badge-warning');
         }
       }
 
       
+    });
+
+  });
+
+}
+
+function editableKeyTranslations(){
+
+  $.each($('.key_editable'), function(){
+    var key_id = $(this).attr('key-id');
+
+    $(this).editable(root_url + '/translation_keys/' + key_id + '.json', {
+      method: 'PUT',
+      onblur : 'submit',
+      // TODO use I18n.t for translations
+      tooltip     : 'Click to edit translation key'
     });
 
   });

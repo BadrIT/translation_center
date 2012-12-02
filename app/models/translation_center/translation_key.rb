@@ -7,10 +7,10 @@ module TranslationCenter
 
     # validations
     validates :name, uniqueness: true
-    validates :category, presence: true
+    validates :category, :name, presence: true
 
-    # called after key is created
-    after_create :add_category
+    # called after key is created or updated
+    before_save :add_category
 
     PER_PAGE = 7
 
@@ -21,7 +21,8 @@ module TranslationCenter
       category_name = 'general' if self.name.to_s.split('.').size == 1
       category = Category.find_or_initialize_by_name(category_name)
       category.save if category.new_record?
-      self.update_attributes(category_id: category.id, last_accessed: Time.now)
+      self.category_id = category.id
+      self.last_accessed = Time.now
     end
 
     # returns true if the key has an accepted translation in this lang

@@ -16,7 +16,7 @@
           = translation.user.email
         = t('.on')
         = I18n.localize(translation.created_at, format: '%b, %d %Y')
-  %div.translat-ion_voting
+  %div.translation_voting
     %a{href: '#'}
       - voted = current_user.voted_for?(translation)
       %span.badge.pull-left.translations_vote{ class: "#{voted ? 'badge-success' : ''}", 'translation-id' => translation.id,  voted: voted.to_s}

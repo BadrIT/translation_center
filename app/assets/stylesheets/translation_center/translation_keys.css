@@ -37,3 +37,7 @@
   border-bottom: 1px solid #DDD;
   padding-bottom: 10px;
 }
+
+.key_editable {
+  cursor: pointer;
+}

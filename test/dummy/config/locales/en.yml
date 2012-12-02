@@ -30,6 +30,8 @@ en:
         translated: Translated
         untranslated: Untranslated
     translation_keys: 
+      show: 
+        Add/Edit_Translation: "Add/Edit Translation"
       show_keys: 
         translated: Translated
         untranslated: UnTranslated
