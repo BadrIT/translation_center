@@ -2,6 +2,26 @@ require_dependency "translation_center/application_controller"
 
 module TranslationCenter
   class TranslationsController < ApplicationController
+    before_filter :authenticate_user!
+
+    # POST /translations/1/vote
+    def vote
+      @translation = Translation.find(params[:translation_id])
+      current_user.likes(@translation)
+      respond_to do |format|
+        format.js
+      end
+    end
+
+    # POST /translations/1/unvote
+    def unvote
+      @translation = Translation.find(params[:translation_id])
+      current_user.unlike @translation
+      respond_to do |format|
+        format.js
+      end
+    end
+    
     # GET /translations
     # GET /translations.json
     def index

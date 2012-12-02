@@ -1,0 +1,20 @@
+%a.category{ href: category_path(category) }
+  .category_name
+    = category.view_name
+  %div
+    %span.label.label-info
+      = category.translation_keys.count
+      = t('.keys')
+    - completion = category.complete_percentage_in(to_lang)
+    - if(completion > 80)
+      %span.label.label-success
+        = "#{completion} %"
+        = t('.complete')
+    - elsif(completion > 60)
+      %span.label.label-warning
+        = "#{completion} %"
+        = t('.complete')
+    - else
+      %span.label.label-important
+        = "#{completion} %"
+        = t('.complete')

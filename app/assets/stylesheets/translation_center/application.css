@@ -11,3 +11,26 @@
  *= require_self
  *= require_tree .
  */
+
+ body { padding-top: 60px; }
+
+.nav_text {
+  margin-top: 10px !important;
+  margin-right: 5px;
+}
+
+.navbar span {
+  margin-left: 5px;
+}
+.navbar .brand,.navbar span, .navbar .nav > li > a {
+  color: white !important;
+}
+
+.navbar-inner {
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #009ED2), color-stop(100%, #008CBA)) !important;
+}
+
+.navbar .brand {
+  padding-left: 58px !important;
+  background: url(/assets/translation_center_logo.png) no-repeat 20px 7px
+}

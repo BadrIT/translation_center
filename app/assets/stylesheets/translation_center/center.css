@@ -1,0 +1,12 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+#loading {
+  display: none;
+}
+
+.center_title {
+  font-size: 60%;
+}

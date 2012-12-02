@@ -1,0 +1,29 @@
+%div{ class: "#{index == 0 ? 'tab-pane active' : 'tab-pane' }", id: translation_key.id }
+  %p
+    .tabbable
+      %ul.nav.nav-tabs
+        
+        - if translation_key.has_translations_in?(to_lang)
+          %li.active
+            %a.translations_tab{'key-id' => translation_key.id, "data-toggle" => "tab", :href => "#translations#{translation_key.id}"}
+              %span.badge.badge-info.pull-left.translations_count{ id: "translations_#{translation_key.id}_count"}
+                = translation_key.translations.in(to_lang).count
+              %span
+                = t('.Translations')
+
+        - if !translation_key.accepted_in?(to_lang)
+          %li{ class: "#{translation_key.has_translations_in?(to_lang) ? '' : 'active'}" }
+            %a{"data-toggle" => "tab", :href => "#add_translations#{translation_key.id}"}
+              = t('.Add/Edit_Translation')
+      .tab-content
+        - if translation_key.has_translations_in?(to_lang)
+          .tab-pane.active{ id: "translations#{translation_key.id}" }
+            = render 'translation_center/translations/index', translation_key: translation_key
+        .tab-pane{ class: "#{translation_key.has_translations_in?(to_lang) ? '' : 'active'}", id: "add_translations#{translation_key.id}" }
+          
+          %em
+            %b
+              = t(translation_key.name)
+          %hr
+          .user_translation.well.well-small{ 'key-id' => translation_key.id }
+            = current_user.translation_for(translation_key, to_lang).value

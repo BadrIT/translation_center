@@ -1,0 +1,27 @@
+%input#category_key{ type: 'hidden', value: @category.id }
+%input#current_filter{ type: 'hidden', value: current_filter }
+%h1
+  = @category.name.camelize
+%ul.nav.nav-pills
+  
+  %li{class: "#{current_filter_is?('untranslated') ? 'active' : ''}"}
+    %a#untranslated.keys_filter{:href => "#"}
+      = t('.untranslated')
+      %span#untranslated_keys_count
+        = "(#{@untranslated_keys_count})"
+  %li{class: "#{current_filter_is?('pending') ? 'active' : ''}"}
+    %a#pending.keys_filter{:href => "#"}
+      = t('.pending')
+      %span#pending_keys_count
+        = "(#{@pending_keys_count})"
+  %li{class: "#{current_filter_is?('translated') ? 'active' : ''}"}
+    %a#translated.keys_filter{:href => "#"}
+      = t('.translated')
+      %span#translated_keys_count
+        = "(#{@translated_keys_count})"
+  %li
+    #loading
+      = image_tag 'translation_center/loading.gif'
+.span9#category
+  = render 'translation_center/translation_keys/translation_keys', translation_keys: @keys, category: @category
+

@@ -2,6 +2,31 @@ require_dependency "translation_center/application_controller"
 
 module TranslationCenter
   class TranslationKeysController < ApplicationController
+    before_filter :authenticate_user!
+    before_filter :get_translation_key
+
+    # POST /translation_keys/1/update_translation.js
+    def update_translation
+      @translation = current_user.translation_for @translation_key, session[:lang_to]
+      
+      respond_to do |format|
+        if !@translation.accepted? && !params[:value].strip.blank?
+          @translation.update_attributes(value: params[:value].strip, status: 'pending')
+          format.json {render json: @translation.value}
+        else
+          render nothing: true
+        end
+      end
+    end
+
+    # GET /translation_keys/1
+    def translations
+      @translations = @translation_key.translations
+      respond_to do |format|
+        format.js
+      end
+    end
+    
     # GET /translation_keys
     # GET /translation_keys.json
     def index
@@ -38,19 +63,21 @@ module TranslationCenter
     # GET /translation_keys/1/edit
     def edit
       @translation_key = TranslationKey.find(params[:id])
+      @category = @translation_key.category
     end
   
     # POST /translation_keys
     # POST /translation_keys.json
     def create
       @translation_key = TranslationKey.new(params[:translation_key])
-  
+      @translation_key.last_accessed = Time.now
+      category = Category.find(params[:translation_key][:category_id])
       respond_to do |format|
         if @translation_key.save
-          format.html { redirect_to @translation_key, notice: 'Translation key was successfully created.' }
+          format.html { redirect_to @translation_key.category, notice: 'Translation key was successfully created.' }
           format.json { render json: @translation_key, status: :created, location: @translation_key }
         else
-          format.html { render action: "new" }
+          format.html { redirect_to category, notice: 'Translation key must have a name.' }
           format.json { render json: @translation_key.errors, status: :unprocessable_entity }
         end
       end
@@ -82,6 +109,10 @@ module TranslationCenter
         format.html { redirect_to translation_keys_url }
         format.json { head :no_content }
       end
+    end
+
+    def get_translation_key
+      @translation_key = TranslationKey.find(params[:translation_key_id])
     end
   end
 end

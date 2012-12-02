@@ -1,0 +1,7 @@
+%h1
+  = t('.categories')
+
+- @categories.each do |category|
+  = render 'category', category: category
+
+%br/

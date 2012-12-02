@@ -1,0 +1,16 @@
+- if translation_keys.empty?
+  .alert.alert-info
+    = t('.no_translation_keys')
+- else
+  .tabbable.tabs-left
+    
+    %ul.nav.nav-tabs.translation_keys_listing
+      - translation_keys.each_with_index do |translation_key, index|
+        = render 'translation_center/translation_keys/show_keys', translation_key: translation_key, index: index
+        
+
+    .tab-content.translations_listing
+      - translation_keys.each_with_index do |translation_key, index|
+        = render 'translation_center/translation_keys/show', translation_key: translation_key, index: index
+
+
