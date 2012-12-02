@@ -3,15 +3,15 @@ require_dependency "translation_center/application_controller"
 module TranslationCenter
   class TranslationKeysController < ApplicationController
     before_filter :authenticate_user!
+    before_filter :get_translation_key
 
     # POST /translation_keys/1/update_translation.js
     def update_translation
-      @translation_key = TranslationKey.find(params[:translation_key_id])
       @translation = current_user.translation_for @translation_key, session[:lang_to]
       
       respond_to do |format|
         if !@translation.accepted? && !params[:value].strip.blank?
-          @translation.update_attribute(:value, params[:value].strip)
+          @translation.update_attributes(value: params[:value].strip, status: 'pending')
           format.json {render json: @translation.value}
         else
           render nothing: true
@@ -21,7 +21,6 @@ module TranslationCenter
 
     # GET /translation_keys/1
     def translations
-      @translation_key = TranslationKey.find(params[:translation_key_id])
       @translations = @translation_key.translations
       respond_to do |format|
         format.js
@@ -110,6 +109,10 @@ module TranslationCenter
         format.html { redirect_to translation_keys_url }
         format.json { head :no_content }
       end
+    end
+
+    def get_translation_key
+      @translation_key = TranslationKey.find(params[:translation_key_id])
     end
   end
 end

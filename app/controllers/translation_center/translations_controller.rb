@@ -7,10 +7,7 @@ module TranslationCenter
     # POST /translations/1/vote
     def vote
       @translation = Translation.find(params[:translation_id])
-      
-      if !current_user.voted_for?(@translation)
-        current_user.likes(@translation)
-      end
+      current_user.likes(@translation)
       respond_to do |format|
         format.js
       end

@@ -19,7 +19,7 @@ $(document).ready(function(){
       current_page++
       $.ajax({
         type: 'GET',
-        url: root_url + Category.path() + '/' + Filter.key() + '_keys',
+        url: Category.path() + '/more_keys',
         data: { page : current_page },
         complete: (function(){ fetching = false })
       });

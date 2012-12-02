@@ -12,6 +12,7 @@ module TranslationCenter
 
     # validations
     validates :translation_key_id, :lang, :status, :value, presence: true
+    validate :one_translation_per_lang_per_key
 
     # returns accepted transations
     scope :accepted, where(status: 'accepted')
@@ -27,6 +28,17 @@ module TranslationCenter
     # returns true if the status of the translation is pending
     def pending?
       self.status == 'pending'
+    end
+
+    # make sure user has one translation per key per lang
+    def one_translation_per_lang_per_key
+      same_count = Translation.where(lang: self.lang, user_id: self.user, translation_key_id: self.key).count
+      if same_count == 0
+        true
+      else
+        false
+        self.errors.add(:lang, I18n.t('.one_translation_per_lang_per_key'))
+      end
     end
 
   end

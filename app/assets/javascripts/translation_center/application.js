@@ -24,7 +24,7 @@ Category.key = function() {
 }
 
 Category.path = function() {
-  return '/categories/' + Category.key();
+  return root_url + '/categories/' + Category.key();
 }
 
 function Filter() {

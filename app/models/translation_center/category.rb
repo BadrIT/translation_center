@@ -36,7 +36,7 @@ module TranslationCenter
 
     # returns a name that is better for presentation
     def view_name
-      self.name.gsub('_',' ').camelize
+      self.name.titleize
     end
 
   end

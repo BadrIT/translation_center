@@ -11,9 +11,7 @@ TranslationCenter::Engine.routes.draw do
   end
 
   resources :categories  do
-    get :translated_keys
-    get :pending_keys
-    get :untranslated_keys
+    get :more_keys
   end
 
   root to: 'categories#index'
