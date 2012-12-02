@@ -3,6 +3,7 @@ require_dependency "translation_center/application_controller"
 module TranslationCenter
   class TranslationsController < ApplicationController
     before_filter :authenticate_user!
+    before_filter :can_admin?, only: :destroy
 
     # POST /translations/1/vote
     def vote
@@ -96,12 +97,16 @@ module TranslationCenter
     # DELETE /translations/1.json
     def destroy
       @translation = Translation.find(params[:id])
-      @translation.destroy
-  
+      @translation_id = @translation.id
+      @translation.destroy 
       respond_to do |format|
-        format.html { redirect_to translations_url }
-        format.json { head :no_content }
+        format.js
       end
     end
+
+    def can_admin?
+      current_user.respond_to?(:can_admin_translations?) && current_user.can_admin_translations?
+    end
+
   end
 end

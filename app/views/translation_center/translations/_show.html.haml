@@ -1,9 +1,12 @@
-.well.well-small.translation_box
+.well.well-small.translation_box{ id: "translation_id_#{translation.id}" }
   
   %div.translation_info
     %span.pull-left
       = translation.value
-  
+    
+    - if current_user.respond_to?(:can_admin_translations?) && current_user.can_admin_translations?
+      = link_to '×', translation_path(translation), method: :delete, data: { confirm: t('actions.are_you_sure') }, class: 'close', remote: true
+    %br
     %small.pull-right
       %em
         = t('.by')

@@ -5,3 +5,5 @@ en:
       messages: 
         record_invalid: "Validation failed: %{errors}"
         taken: "has already been taken"
+  actions:
+    are_you_sure: 'Are you sure ?'
