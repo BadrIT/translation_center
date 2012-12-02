@@ -4,7 +4,7 @@
     %span.pull-left
       = translation.value
     
-    - if current_user.respond_to?(:can_admin_translations?) && current_user.can_admin_translations?
+    - if translation_admin?
       = link_to '×', translation_path(translation), method: :delete, data: { confirm: t('actions.are_you_sure') }, class: 'close', remote: true
     %br
     %small.pull-right
@@ -24,7 +24,7 @@
           = t('.unvote')
         - else
           = t('.vote')
-    - if current_user.respond_to?(:can_admin_translations?) && current_user.can_admin_translations?
+    - if translation_admin?
       = render 'translation_center/translations/accept_translation', translation: translation
     .votes_count.badge.badge-success
       %span.count{ 'translation-id' => translation.id }

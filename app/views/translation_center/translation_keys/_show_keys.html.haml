@@ -5,8 +5,9 @@
     .translation_key_badge.badge-important{title: t('.untranslated')}
   - else
     .translation_key_badge.badge-warning{title: t('.waiting_acceptance')}
-  %div
-    = link_to '×', translation_key_path(translation_key), method: :delete, data: { confirm: t('actions.are_you_sure') }, class: 'close', remote: true
+  - if translation_admin?
+    %div
+      = link_to '×', translation_key_path(translation_key), method: :delete, data: { confirm: t('actions.are_you_sure') }, class: 'close', remote: true
 
   %a{ href: "##{translation_key.id}", 'data-toggle' => "tab"}
     %p
