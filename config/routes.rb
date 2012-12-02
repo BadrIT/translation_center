@@ -3,6 +3,8 @@ TranslationCenter::Engine.routes.draw do
   resources :translations do
     post :vote
     post :unvote
+    post :accept
+    post :unaccept
   end
 
   resources :translation_keys do

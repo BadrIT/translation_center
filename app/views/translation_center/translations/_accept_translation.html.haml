@@ -1,0 +1,6 @@
+- if translation.accepted?
+  %button.unaccept_translation.btn.btn-success{ 'translation-id' => translation.id }
+    = t('.unaccept')
+- else 
+  %button.accept_translation.btn.btn-success{ 'translation-id' => translation.id }
+    = t('.accept')

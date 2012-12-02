@@ -1,4 +1,4 @@
-.well.well-small.translation_box{ id: "translation_id_#{translation.id}" }
+.well.well-small.translation_box{ id: "translation_id_#{translation.id}", 'key-id' => translation.translation_key.id }
   
   %div.translation_info
     %span.pull-left
@@ -16,7 +16,7 @@
           = translation.user.email
         = t('.on')
         = I18n.localize(translation.created_at, format: '%b, %d %Y')
-  %div.translation_voting
+  %div.translat-ion_voting
     %a{href: '#'}
       - voted = current_user.voted_for?(translation)
       %span.badge.pull-left.translations_vote{ class: "#{voted ? 'badge-success' : ''}", 'translation-id' => translation.id,  voted: voted.to_s}
@@ -24,6 +24,8 @@
           = t('.unvote')
         - else
           = t('.vote')
+    - if current_user.respond_to?(:can_admin_translations?) && current_user.can_admin_translations?
+      = render 'translation_center/translations/accept_translation', translation: translation
     .votes_count.badge.badge-success
       %span.count{ 'translation-id' => translation.id }
         = translation.votes.count

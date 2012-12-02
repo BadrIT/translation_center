@@ -1,0 +1,6 @@
+$('#translation_id_' + "#{@translation.id}").fadeOut();
+var translated_count = parseInt($('#translated_keys_count').text().replace('(','').replace(')','')) + 1;
+$('#translated_keys_count').text('(' + translated_count + ')');
+var pending_count = parseInt($('#pending_keys_count').text().replace('(','').replace(')','')) - 1;
+$('#pending_keys_count').text('(' + pending_count + ')');
+moveToNextKey($('#translation_id_' + "#{@translation.id}").attr('key-id'));

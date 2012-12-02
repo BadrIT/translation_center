@@ -4,6 +4,21 @@
 $(document).ready(function() {
 
   editableTranslations();
+
+  $('.accept_translation').live('click', function(){
+    $.ajax({
+      type: 'POST',
+      url: root_url + '/translations/' + $(this).attr('translation-id') + '/accept.js'
+    });
+  });
+
+  $('.unaccept_translation').live('click', function(){
+    $.ajax({
+      type: 'POST',
+      url: root_url + '/translations/' + $(this).attr('translation-id') + '/unaccept.js'
+    });
+  });
+
   $('.sort_by_votes').live('click', function(){
     $.ajax({
       type: 'GET',
@@ -62,6 +77,17 @@ $(document).ready(function() {
 
 });
 
+function moveToNextKey(key_id){
+  var translation_key = $('li.translation_key[key-id=' + key_id + ']')
+  var translations_listing = $('.tab-pane#' + translation_key.attr('key-id'));
+  translations_listing.removeClass('active');
+  translation_key.fadeOut();
+  var next_key = translation_key.next();
+  next_key.addClass('active');
+  next_key.effect("highlight", {}, 3000);
+  $('.tab-pane#' + next_key.attr('key-id')).addClass('active');
+}
+
 function editableTranslations(){
 
   $.each($('.user_translation'), function(){
@@ -76,14 +102,7 @@ function editableTranslations(){
       callback : function(value, settings) {
         if(Filter.key() == 'untranslated')
         {
-          var translation_key = $('li.translation_key[key-id=' + $(this).attr('key-id') + ']')
-          var translations_listing = $('.tab-pane#' + translation_key.attr('key-id'));
-          translations_listing.removeClass('active');
-          translation_key.fadeOut();
-          var next_key = translation_key.next();
-          next_key.addClass('active');
-          next_key.effect("highlight", {}, 3000);
-          $('.tab-pane#' + next_key.attr('key-id')).addClass('active');
+          moveToNextKey($(this).attr('key-id'));
           var count = parseInt($('#untranslated_keys_count').text().replace('(', '').replace(')', '')) - 1;
           $('#untranslated_keys_count').text('(' + count +  ')');
           var count = parseInt($('#pending_keys_count').text().replace('(', '').replace(')', '')) + 1;

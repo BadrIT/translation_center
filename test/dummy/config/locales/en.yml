@@ -1,9 +1,42 @@
 --- 
 en: 
+  actions: 
+    are_you_sure: "Are you sure ?"
   activerecord: 
+    attributes: 
+      translation_center/translation_key: 
+        name: name
+      user: 
+        email: email
+        password: password
+        password_confirmation: "password confirmation"
+        remember_me: "remember me"
     errors: 
       messages: 
         record_invalid: "Validation failed: %{errors}"
         taken: "has already been taken"
-  actions:
-    are_you_sure: 'Are you sure ?'
+  translation_center: 
+    categories: 
+      category: 
+        keys: Keys
+        translation_keys: "123"
+        translations_keys: "Translations Keys"
+      index: 
+        Name: name
+        show: show
+      show: 
+        name: name
+        pending: Pending
+        translated: Translated
+        untranslated: Untranslated
+    translation_keys: 
+      show_keys: 
+        translated: Translated
+        untranslated: UnTranslated
+        waiting_acceptance: "Waiting Acceptance"
+      translation_keys: 
+        untranslated: Untranslated
+    translations: 
+      show: 
+        by: By
+        you: You

@@ -30,10 +30,22 @@ module TranslationCenter
       self.status == 'pending'
     end
 
+    # accept translation by changing its status and if there is an accepting translation
+    # make it pending
+    def accept
+      self.translation_key.accepted_translation_in(self.lang).try(:update_attribute, :status, 'pending')
+      self.update_attribute(:status, 'accepted')
+    end
+
+    # unaccept a translation
+    def unaccept
+      self.update_attribute(:status, 'pending')
+    end
+
     # make sure user has one translation per key per lang
     def one_translation_per_lang_per_key
-      same_count = Translation.where(lang: self.lang, user_id: self.user, translation_key_id: self.key).count
-      if same_count == 0
+      self_or_empty = Translation.where(lang: self.lang, user_id: self.user, translation_key_id: self.key)
+      if self_or_empty.size == 0 || self_or_empty.size == 1
         true
       else
         false

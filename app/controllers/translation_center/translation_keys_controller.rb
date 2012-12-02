@@ -8,7 +8,6 @@ module TranslationCenter
     # POST /translation_keys/1/update_translation.js
     def update_translation
       @translation = current_user.translation_for @translation_key, session[:lang_to]
-      
       respond_to do |format|
         if !@translation.accepted? && !params[:value].strip.blank?
           @translation.update_attributes(value: params[:value].strip, status: 'pending')
@@ -23,7 +22,6 @@ module TranslationCenter
     def translations
       @translations = @translation_key.translations.in(session[:lang_to]).order('created_at DESC')
       @translations = Translation.sort_by_votes(@translations) if params[:sort_by] == 'votes'
-      Rails.logger.debug @translations.inspect
 
       respond_to do |format|
         format.js
