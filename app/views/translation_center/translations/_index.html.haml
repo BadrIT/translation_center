@@ -1,7 +1,7 @@
 = t('.sort_by:')
-%a.sort_by_date{ href: '#', 'key-id' => translation_key.id }
+%a.sort_by_date{ href: '#', 'data-key-id' => translation_key.id }
   = t('.date')
-%a.sort_by_votes{ href: '#', 'key-id' => translation_key.id }
+%a.sort_by_votes{ href: '#', 'data-key-id' => translation_key.id }
   = t('.votes')
 %hr
 - translations.each do |translation|

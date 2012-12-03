@@ -1,3 +1,5 @@
 = TranslationCenter
 
 This project rocks and uses MIT-LICENSE.
+
+Translation admin must extend User model and implement a boolean method named can_admin_translations?

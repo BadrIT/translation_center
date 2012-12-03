@@ -19,11 +19,9 @@ en:
     categories: 
       category: 
         keys: Keys
-        translation_keys: "123"
         translations_keys: "Translations Keys"
       index: 
         Name: name
-        show: show
       show: 
         name: name
         pending: Pending
@@ -32,6 +30,8 @@ en:
     translation_keys: 
       show: 
         Add/Edit_Translation: "Add/Edit Translation"
+        Add_Translation: "Add Translation"
+        no_translations_available: "No Translations Available"
       show_keys: 
         translated: Translated
         untranslated: UnTranslated
@@ -42,3 +42,5 @@ en:
       show: 
         by: By
         you: You
+      vote: 
+        unvote: unvote

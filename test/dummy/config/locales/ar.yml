@@ -8,10 +8,12 @@ ar:
         Complete: مكتمل
       index: 
         Name: الاسم
+        categories: الأبواب
         show: اعرض
       show: 
         all: الكل
         name: الاسم
+        untranslated: "غير مترجم"
     translation_keys: 
       show: 
         Add_Translation: "اضف ترجمة"
@@ -25,6 +27,9 @@ ar:
         accept: اقبل
         accepted: مقبولة
         unaccept: "الغاء القبول"
+      index: 
+        date: التاريخ
+        votes: التصويتات
       show: 
         accept: اقبل
         accepted: مقبولة

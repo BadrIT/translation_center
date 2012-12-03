@@ -1,4 +1,4 @@
-%li{ class: "#{index == 0 ? 'well well-small active translation_key' : 'well well-small translation_key' }", 'key-id' => translation_key.id}
+%li{ class: "#{index == 0 ? 'well well-small active translation_key' : 'well well-small translation_key' }", 'data-key-id' => translation_key.id}
   - if translation_key.accepted_in?(to_lang)
     .translation_key_badge.badge-success{title: t('.translated')}
   - elsif translation_key.no_translations_in?(to_lang)
@@ -16,5 +16,5 @@
           = t(translation_key.name)
     
     %small
-      %div{ 'key-id' => translation_key.id, class: "#{translation_admin? ? 'key_editable' : '' }"}
+      %div{ 'data-key-id' => translation_key.id, class: "#{translation_admin? ? 'key_editable' : '' }"}
         = translation_key.name

@@ -9,21 +9,21 @@ $(document).ready(function() {
   $('.accept_translation').live('click', function(){
     $.ajax({
       type: 'POST',
-      url: root_url + '/translations/' + $(this).attr('translation-id') + '/accept.js'
+      url: root_url + '/translations/' + $(this).attr('data-translation-id') + '/accept.js'
     });
   });
 
   $('.unaccept_translation').live('click', function(){
     $.ajax({
       type: 'POST',
-      url: root_url + '/translations/' + $(this).attr('translation-id') + '/unaccept.js'
+      url: root_url + '/translations/' + $(this).attr('data-translation-id') + '/unaccept.js'
     });
   });
 
   $('.sort_by_votes').live('click', function(){
     $.ajax({
       type: 'GET',
-      url: root_url + '/translation_keys/' + $(this).attr('key-id') + '/translations.js',
+      url: root_url + '/translation_keys/' + $(this).attr('data-key-id') + '/translations.js',
       data: {sort_by: 'votes'}
     });
   });
@@ -31,7 +31,7 @@ $(document).ready(function() {
   $('.translations_tab, .sort_by_date').live('click', function(){
     $.ajax({
       type: 'GET',
-      url: root_url + '/translation_keys/' + $(this).attr('key-id') + '/translations.js'
+      url: root_url + '/translation_keys/' + $(this).attr('data-key-id') + '/translations.js'
     });
   });
   
@@ -57,7 +57,7 @@ $(document).ready(function() {
       $(this).text('Unvote');
       $.ajax({
         type: 'POST',
-        url: root_url + '/translations/' + $(this).attr('translation-id') + '/vote.js'
+        url: root_url + '/translations/' + $(this).attr('data-translation-id') + '/vote.js'
       });
      
 
@@ -71,7 +71,7 @@ $(document).ready(function() {
       $(this).text('Vote');
       $.ajax({
         type: 'POST',
-        url: root_url + '/translations/' + $(this).attr('translation-id') + '/unvote.js'
+        url: root_url + '/translations/' + $(this).attr('data-translation-id') + '/unvote.js'
       });
     }
   });
@@ -79,20 +79,20 @@ $(document).ready(function() {
 });
 
 function moveToNextKey(key_id){
-  var translation_key = $('li.translation_key[key-id=' + key_id + ']')
-  var translations_listing = $('.tab-pane#' + translation_key.attr('key-id'));
+  var translation_key = $('li.translation_key[data-key-id=' + key_id + ']')
+  var translations_listing = $('.tab-pane#' + translation_key.attr('data-key-id'));
   translations_listing.removeClass('active');
   translation_key.fadeOut();
   var next_key = translation_key.next();
   next_key.addClass('active');
   next_key.effect("highlight", {}, 3000);
-  $('.tab-pane#' + next_key.attr('key-id')).addClass('active');
+  $('.tab-pane#' + next_key.attr('data-key-id')).addClass('active');
 }
 
 function editableTranslations(){
 
   $.each($('.user_translation'), function(){
-    var key_id = $(this).attr('key-id');
+    var key_id = $(this).attr('data-key-id');
 
     $(this).editable(root_url + '/translation_keys/' + key_id + '/update_translation.json', {
       method: 'POST',
@@ -108,10 +108,10 @@ function editableTranslations(){
           $('#untranslated_keys_count').text('(' + count +  ')');
           var count = parseInt($('#pending_keys_count').text().replace('(', '').replace(')', '')) + 1;
           $('#pending_keys_count').text('(' + count +  ')');
-          moveToNextKey($(this).attr('key-id'));
+          moveToNextKey($(this).attr('data-key-id'));
         }else if(Filter.key() == 'all')
         {
-          $('li.translation_key[key-id=' + key_id + ']').children('div').removeClass('badge-important').addClass('badge-warning');
+          $('li.translation_key[data-key-id=' + key_id + ']').children('div').removeClass('badge-important').addClass('badge-warning');
         }
       }
 
@@ -125,7 +125,7 @@ function editableTranslations(){
 function editableKeyTranslations(){
 
   $.each($('.key_editable'), function(){
-    var key_id = $(this).attr('key-id');
+    var key_id = $(this).attr('data-key-id');
 
     $(this).editable(root_url + '/translation_keys/' + key_id + '.json', {
       method: 'PUT',
