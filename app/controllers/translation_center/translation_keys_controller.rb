@@ -4,11 +4,11 @@ module TranslationCenter
   class TranslationKeysController < ApplicationController
     before_filter :authenticate_user!
     before_filter :get_translation_key
+    before_filter :can_admin?, only: [ :destroy, :update ]
 
     # POST /translation_keys/1/update_translation.js
     def update_translation
       @translation = current_user.translation_for @translation_key, session[:lang_to]
-      
       respond_to do |format|
         if !@translation.accepted? && !params[:value].strip.blank?
           @translation.update_attributes(value: params[:value].strip, status: 'pending')
@@ -21,7 +21,11 @@ module TranslationCenter
 
     # GET /translation_keys/1
     def translations
-      @translations = @translation_key.translations
+      if params[:sort_by] == 'votes'
+        @translations = @translation_key.translations.in(session[:lang_to]).sorted_by_votes
+      else
+        @translations = @translation_key.translations.in(session[:lang_to]).order('created_at DESC')
+      end
       respond_to do |format|
         format.js
       end
@@ -86,14 +90,11 @@ module TranslationCenter
     # PUT /translation_keys/1
     # PUT /translation_keys/1.json
     def update
-      @translation_key = TranslationKey.find(params[:id])
-  
+      params[:value].strip!
       respond_to do |format|
-        if @translation_key.update_attributes(params[:translation_key])
-          format.html { redirect_to @translation_key, notice: 'Translation key was successfully updated.' }
-          format.json { head :no_content }
+        if !params[:value].blank? && @translation_key.update_attribute(:name, params[:value])
+          format.json { render json: @translation_key.name }
         else
-          format.html { render action: "edit" }
           format.json { render json: @translation_key.errors, status: :unprocessable_entity }
         end
       end
@@ -103,16 +104,17 @@ module TranslationCenter
     # DELETE /translation_keys/1.json
     def destroy
       @translation_key = TranslationKey.find(params[:id])
+      @translation_key_id = @translation_key.id
       @translation_key.destroy
   
       respond_to do |format|
-        format.html { redirect_to translation_keys_url }
-        format.json { head :no_content }
+        format.js
       end
     end
 
     def get_translation_key
-      @translation_key = TranslationKey.find(params[:translation_key_id])
+      id = params[:translation_key_id] || params[:id]
+      @translation_key = TranslationKey.find(id)
     end
   end
 end

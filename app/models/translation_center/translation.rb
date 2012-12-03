@@ -20,6 +20,10 @@ module TranslationCenter
     # returns translations in a certain language
     scope :in, lambda { |lang| where(lang: lang.to_s.strip) }
 
+    # sorts translations by number of votes
+    scope :sorted_by_votes, where('votable_type IS NULL OR votable_type = ?', 'TranslationCenter::Translation').select('translation_center_translations.*, count(votes.id) as votes_count').joins('LEFT OUTER JOIN votes on votes.votable_id = translation_center_translations.id').group('translation_center_translations.id').order('votes_count desc')
+
+
     # returns true if the status of the translation is accepted
     def accepted?
       self.status == 'accepted'
@@ -30,15 +34,39 @@ module TranslationCenter
       self.status == 'pending'
     end
 
+    # accept translation by changing its status and if there is an accepting translation
+    # make it pending
+    def accept
+      self.translation_key.accepted_translation_in(self.lang).try(:update_attribute, :status, 'pending')
+      self.update_attribute(:status, 'accepted')
+    end
+
+    # unaccept a translation
+    def unaccept
+      self.update_attribute(:status, 'pending')
+    end
+
     # make sure user has one translation per key per lang
     def one_translation_per_lang_per_key
-      same_count = Translation.where(lang: self.lang, user_id: self.user, translation_key_id: self.key).count
-      if same_count == 0
+      self_or_empty = Translation.where(lang: self.lang, user_id: self.user, translation_key_id: self.key)
+      if self_or_empty.size == 0 || self_or_empty.size == 1
         true
       else
         false
         self.errors.add(:lang, I18n.t('.one_translation_per_lang_per_key'))
       end
+    end
+
+    # sort descending by number of votes
+    def self.sort_by_votes(translations)
+      translations.sort do |a,b|
+                          if(a.votes.count > b.votes.count)
+                            -1
+                          elsif(b.votes.count > a.votes.count)
+                            1
+                          else 0
+                          end
+                        end
     end
 
   end

@@ -1,4 +1,10 @@
-- translation_key.translations.in(to_lang).each do |translation|
+= t('.sort_by:')
+%a.sort_by_date{ href: '#', 'data-key-id' => translation_key.id }
+  = t('.date')
+%a.sort_by_votes{ href: '#', 'data-key-id' => translation_key.id }
+  = t('.votes')
+%hr
+- translations.each do |translation|
   = render 'translation_center/translations/show', translation: translation
 - if translation_key.translations.in(to_lang).empty?
   .alert.alert-error

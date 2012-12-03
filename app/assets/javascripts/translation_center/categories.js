@@ -7,7 +7,7 @@ $(document).ready(function(){
   $('.keys_filter').click(function(){
     $('#current_filter').val($(this).attr('id'));
     $.ajax({
-      url: Category.path() + '.js',
+      url: Routes.translation_center_category_path(Category.key(), {format: 'js'}),
       data: { filter: Filter.key() }
     });
     $($('.keys_filter').parent()).removeClass('active');

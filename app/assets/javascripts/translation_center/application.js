@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= rquire jquery.editable.mini
+//= require js-routes
 //= require_tree .
 
 function Category() {
@@ -24,7 +25,7 @@ Category.key = function() {
 }
 
 Category.path = function() {
-  return root_url + '/categories/' + Category.key();
+  return Routes.translation_center_category_path(Category.key());
 }
 
 function Filter() {

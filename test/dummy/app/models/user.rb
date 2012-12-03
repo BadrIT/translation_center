@@ -16,4 +16,10 @@ class User < ActiveRecord::Base
   def translation_for(key, lang)
     self.translations.find_or_initialize_by_translation_key_id_and_lang(key.id, lang.to_s)
   end
+  # returns truy if the user can admin translations
+  def can_admin_translations?
+    self.email == 'khaled@badrit.com'
+  end
+
+
 end
