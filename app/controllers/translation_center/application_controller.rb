@@ -8,7 +8,13 @@ module TranslationCenter
       session[:current_filter] ||= 'untranslated'
       session[:lang_from] ||= :en
       session[:lang_to] ||= :en
+      I18n.locale = session[:lang_from] || I18n.default_locale
     end
+
+    protected
+      def can_admin?
+        current_user.respond_to?(:can_admin_translations?) && current_user.can_admin_translations?
+      end
 
   end
 end

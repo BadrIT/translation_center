@@ -19,6 +19,11 @@
       = t('.translated')
       %span#translated_keys_count
         = "(#{@translated_keys_count})"
+  %li{class: "#{current_filter_is?('all') ? 'active' : ''}"}
+    %a#all.keys_filter{:href => "#"}
+      = t('.all')
+      %span#all_keys_count
+        = "(#{@all_keys_count})"
   %li
     #loading
       = image_tag 'translation_center/loading.gif'

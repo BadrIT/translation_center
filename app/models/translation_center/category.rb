@@ -34,6 +34,10 @@ module TranslationCenter
       self.keys.reject{ |key| !key.pending_in?(lang) }
     end
 
+    def all_keys(lang)
+      self.keys
+    end
+
     # returns a name that is better for presentation
     def view_name
       self.name.titleize
