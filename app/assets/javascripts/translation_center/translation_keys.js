@@ -19,7 +19,7 @@ $(document).ready(function(){
       current_page++
       $.ajax({
         type: 'GET',
-        url: Category.path() + '/more_keys',
+        url: Routes.translation_center_category_more_keys_path(Category.key(), {format: 'js'}),
         data: { page : current_page },
         complete: (function(){ fetching = false })
       });

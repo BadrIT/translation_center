@@ -9,21 +9,21 @@ $(document).ready(function() {
   $('.accept_translation').live('click', function(){
     $.ajax({
       type: 'POST',
-      url: root_url + '/translations/' + $(this).attr('data-translation-id') + '/accept.js'
+      url: Routes.translation_center_translation_accept_path($(this).attr('data-translation-id'), {format: 'js'})
     });
   });
 
   $('.unaccept_translation').live('click', function(){
     $.ajax({
       type: 'POST',
-      url: root_url + '/translations/' + $(this).attr('data-translation-id') + '/unaccept.js'
+      url: Routes.translation_center_translation_unaccept_path($(this).attr('data-translation-id'), {format: 'js'})
     });
   });
 
   $('.sort_by_votes').live('click', function(){
     $.ajax({
       type: 'GET',
-      url: root_url + '/translation_keys/' + $(this).attr('data-key-id') + '/translations.js',
+      url: Routes.translation_center_translation_key_translations_path($(this).attr('data-key-id'), {format: 'js'}),
       data: {sort_by: 'votes'}
     });
   });
@@ -31,7 +31,7 @@ $(document).ready(function() {
   $('.translations_tab, .sort_by_date').live('click', function(){
     $.ajax({
       type: 'GET',
-      url: root_url + '/translation_keys/' + $(this).attr('data-key-id') + '/translations.js'
+      url: Routes.translation_center_translation_key_translations_path($(this).attr('data-key-id'), {format: 'js'})
     });
   });
   
@@ -57,7 +57,7 @@ $(document).ready(function() {
       $(this).text('Unvote');
       $.ajax({
         type: 'POST',
-        url: root_url + '/translations/' + $(this).attr('data-translation-id') + '/vote.js'
+        url: Routes.translation_center_translation_vote_path($(this).attr('data-translation-id'), {format: 'js'})
       });
      
 
@@ -71,7 +71,7 @@ $(document).ready(function() {
       $(this).text('Vote');
       $.ajax({
         type: 'POST',
-        url: root_url + '/translations/' + $(this).attr('data-translation-id') + '/unvote.js'
+        url: Routes.translation_center_translation_unvote_path($(this).attr('data-translation-id'), {format: 'js'})
       });
     }
   });
@@ -94,7 +94,7 @@ function editableTranslations(){
   $.each($('.user_translation'), function(){
     var key_id = $(this).attr('data-key-id');
 
-    $(this).editable(root_url + '/translation_keys/' + key_id + '/update_translation.json', {
+    $(this).editable(Routes.translation_center_translation_key_update_translation_path(key_id, {format: 'json'}), {
       method: 'POST',
       onblur : 'submit',
       // TODO use I18n.t for translations
@@ -127,7 +127,7 @@ function editableKeyTranslations(){
   $.each($('.key_editable'), function(){
     var key_id = $(this).attr('data-key-id');
 
-    $(this).editable(root_url + '/translation_keys/' + key_id + '.json', {
+    $(this).editable(Routes.translation_center_translation_key_path(key_id, {format: 'json'}), {
       method: 'PUT',
       onblur : 'submit',
       // TODO use I18n.t for translations
