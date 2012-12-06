@@ -2,6 +2,7 @@ module TranslationCenter
   class Translation < ActiveRecord::Base
 
     attr_accessible :value, :lang, :translation_key_id, :user_id, :status
+    cattr_accessor :translator
 
     belongs_to :translation_key
     belongs_to :user

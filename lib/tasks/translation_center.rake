@@ -16,6 +16,10 @@ namespace :translation_center do
       return full_keys
     end
 
+    # prepare translator
+    translator = TranslationCenter::Translation.translator.find_or_initialize_by_email(TranslationCenter::CONFIG['yaml_translator_email'])
+    translator.save(false) if translator.new_record?
+
     # Make sure we've loaded the translations
     I18n.backend.send(:init_translations)
     puts "#{I18n.available_locales.size} #{I18n.available_locales.size == 1 ? 'locale' : 'locales'} available: #{I18n.available_locales.to_sentence}"
@@ -41,10 +45,9 @@ namespace :translation_center do
       end
 
       I18n.available_locales.each do |locale|
-        puts "Translating keys to #{locale.to_s}"
         I18n.locale = locale
         begin
-          translation = TranslationCenter::Translation.find_or_initialize_by_translation_key_id_and_lang(translation_key.id, locale.to_s)
+          translation = TranslationCenter::Translation.find_or_initialize_by_translation_key_id_and_lang_and_user_id(translation_key.id, locale.to_s, translator.id)
           value = I18n.translate(key, :raise => true)
           translation.update_attribute(:value, value)
         rescue I18n::MissingInterpolationArgument

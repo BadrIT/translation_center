@@ -2,11 +2,6 @@ development:
   # what language to support and their display names
   lang:
     en: 'English'
+    de: 'German'
+  yaml_translator_email: 'coder@tc.com'
     
-test:
-  lang:
-    en: 'English'
-
-production:
-  lang:
-    en: 'English'

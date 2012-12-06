@@ -49,6 +49,14 @@ def can_admin_translations?
 end
 ```
 
+To define your website supported languages, you need to edit config/translation_center.yaml
+
+```ruby
+development:
+  lang:
+    en: 'English'
+    de: 'German'
+```
 
 ## How to use
 
@@ -62,4 +70,11 @@ To migrate translations from yaml files to TranslationCenter database
 
 ```ruby
 rake translation_center:yaml2db
+```
+
+But imported translations should have translator. You can edit translator email from translation_center.yml The rake task yaml2db will create this user if not exists
+
+```ruby
+development:
+  yaml_translator_email: 'coder@tc.com'
 ```
