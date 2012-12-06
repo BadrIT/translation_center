@@ -29,6 +29,12 @@ And run the migrations
 rake db:migrate
 ```
 
+In your User model or any other model that should acts as a translator add the following line:
+
+```ruby
+acts_as_translator
+```
+
 In routes file add 
 
 ```ruby

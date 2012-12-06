@@ -16,7 +16,7 @@ module TranslationCenter
   end
 
   # load tha translation config
-  CONFIG = YAML.load_file("#{Rails.root}/config/translation_center.yml")[Rails.env]
+  CONFIG = YAML.load_file("config/translation_center.yml")[Rails.env]
   I18n.available_locales = CONFIG['lang'].keys
 
 end
