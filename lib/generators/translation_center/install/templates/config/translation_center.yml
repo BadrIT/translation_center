@@ -2,14 +2,11 @@ development:
   # what language to support and their display names
   lang:
     en: 'English'
-    ar: 'عربى'
     
 test:
   lang:
     en: 'English'
-    ar: 'عربى'
 
 production:
   lang:
     en: 'English'
-    ar: 'عربى'

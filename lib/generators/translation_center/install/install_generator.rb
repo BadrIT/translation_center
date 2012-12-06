@@ -19,11 +19,10 @@ module TranslationCenter
         migration_template 'migrations/translation_center_acts_as_votable_migration.rb', 'db/migrate/translation_center_acts_as_votable_migration.rb'
       end
       
-      copy_file 'initializers/translation_center.rb', 'config/initializers/translation_center.rb'
       copy_file 'config/translation_center.yml', 'config/translation_center.yml'
 
       # user can replace this logo to change the logo
-      copy_file 'assets/translation_center_logo.png', 'assets/images/translation_center_logo.png'
+      copy_file 'assets/translation_center_logo.png', 'app/assets/images/translation_center_logo.png'
     end
 
   end
