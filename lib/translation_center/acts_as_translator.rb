@@ -12,9 +12,9 @@ module ActsAsTranslator
       self.translations.find_or_initialize_by_translation_key_id_and_lang(key.id, lang.to_s)
     end
 
-    # returns truy if the user can admin translations
+    # returns true if the user can admin translations
     def can_admin_translations?
-      self.email == 'khaled@translator.com'
+      true
     end
   end
 end

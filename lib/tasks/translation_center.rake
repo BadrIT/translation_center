@@ -26,7 +26,14 @@ namespace :translation_center do
     end.flatten.uniq
     puts "#{all_keys.size} #{all_keys.size == 1 ? 'unique key' : 'unique keys'} found."
 
+    new_keys = 0
+    missing_keys = I18n.available_locales.inject({}) do |memo, lang| ]
+      memo[lang] = 0
+      memo
+    end
+
     all_keys.each do |key|
+
       translation_key = TranslationCenter::TranslationKey.find_or_initialize_by_name(key)
       if translation_key.new_record?
         translation_key.update_attributes(name: key)
@@ -34,8 +41,6 @@ namespace :translation_center do
       end
 
       I18n.available_locales.each do |locale|
-        missing_count = 0
-        new_keys = 0
         puts "Translating keys to #{locale.to_s}"
         I18n.locale = locale
         begin
@@ -45,13 +50,15 @@ namespace :translation_center do
         rescue I18n::MissingInterpolationArgument
           # noop
         rescue I18n::MissingTranslationData
-          missing_count += 1
+          missing_keys[locale] += 1
         end
 
-        puts "found new #{new_keys} key(s)"
-        puts "missing #{missing_count} translation(s)"
       end
-      
+    end
+
+    puts "found new #{new_keys} key(s)"
+    missing_keys.each do |locale, count|
+      puts "missing #{count} translation(s) for #{locale}" if count > 0
     end
   end
 

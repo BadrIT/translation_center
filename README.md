@@ -40,3 +40,26 @@ In routes file add
 ```ruby
 mount TranslationCenter::Engine => "/translation_center"
 ```
+
+You know need to define who is the translation center admin. Admin can accept translations, manage translation keys and do more things. To define your admin, you need to override User#can_admin_translations? method like the following....
+
+```ruby
+def can_admin_translations?
+  self.email == 'admin@tc.com'
+end
+```
+
+
+## How to use
+
+To migrate translations from TranslationCenter database to yaml files
+
+```ruby
+rake translation_center:db2yaml
+```
+
+To migrate translations from yaml files to TranslationCenter database 
+
+```ruby
+rake translation_center:yaml2db
+```
