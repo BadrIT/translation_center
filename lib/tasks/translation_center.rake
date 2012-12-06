@@ -27,7 +27,7 @@ namespace :translation_center do
     puts "#{all_keys.size} #{all_keys.size == 1 ? 'unique key' : 'unique keys'} found."
 
     new_keys = 0
-    missing_keys = I18n.available_locales.inject({}) do |memo, lang| ]
+    missing_keys = I18n.available_locales.inject({}) do |memo, lang|
       memo[lang] = 0
       memo
     end
