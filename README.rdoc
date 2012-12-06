@@ -3,3 +3,34 @@
 This project rocks and uses MIT-LICENSE.
 
 Translation admin must extend User model and implement a boolean method named can_admin_translations?
+
+
+## Getting started
+
+TranslationCenter works with Rails 3.2 onwards. You can add it to your Gemfile with:
+
+```ruby
+gem 'translation_center', :git => 'git@github.com:mahkhaled/translation_center.git'
+```
+
+Run bundle install command.
+
+TranslationCenter depends on Devise, so make sure you installed it successfully https://github.com/plataformatec/devise#starting-with-rails
+
+After you install TranslationCenter and add it to your Gemfile, you need to run the generator:
+
+```ruby
+rails generate translation_center:install
+```
+
+And run the migrations
+
+```ruby
+rake db:migrate
+```
+
+In routes file add 
+
+```ruby
+mount TranslationCenter::Engine => "/translation_center"
+```

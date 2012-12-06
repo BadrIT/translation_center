@@ -4,5 +4,3 @@ Description:
 Example:
     rails generate translation_center:install
 
-    This will create:
-        what/will/it/create
