@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Flexible I18n translation center for Rails with web interface"
   s.description = "TranslationCenter is a web Rails interface for inserting and editing translations. Users can also suggest or vote translations for different languages and admin can accept translation."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "> 3.2.0"

@@ -78,3 +78,16 @@ But imported translations should have translator. You can edit translator email 
 development:
   yaml_translator_email: 'coder@tc.com'
 ```
+
+The imported translations status will be ACCEPTED by default. If you want to disable that, comment the following line in translation_center.yaml
+
+```ruby
+development:
+  yaml2db_translations_accepted: true
+```
+
+Any I18n.translate method will display translations from database ACCEPTED translations. If you want to skip database translations and set to use yaml translations, comment the following line in translation_center.yaml
+
+```ruby
+i18n_source: 'db' # can be db or yaml; default is yaml
+```

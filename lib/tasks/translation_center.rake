@@ -22,7 +22,7 @@ namespace :translation_center do
 
     # Make sure we've loaded the translations
     I18n.backend.send(:init_translations)
-    puts "#{I18n.available_locales.size} #{I18n.available_locales.size == 1 ? 'locale' : 'locales'} available: #{I18n.available_locales.to_sentence}"
+    puts "#{I18n.available_locales.size} #{I18n.available_locales.size == 1 ? 'locale' : 'locales'} available: #{I18n.available_locales.join(', ')}"
 
     # Get all keys from all locales
     all_keys = I18n.backend.send(:translations).collect do |check_locale, translations|
@@ -48,8 +48,12 @@ namespace :translation_center do
         I18n.locale = locale
         begin
           translation = TranslationCenter::Translation.find_or_initialize_by_translation_key_id_and_lang_and_user_id(translation_key.id, locale.to_s, translator.id)
-          value = I18n.translate(key, :raise => true)
+          value = I18n.translate(key, raise: true, yaml: true)
           translation.update_attribute(:value, value)
+          # accept this yaml translation
+          if config['yaml2db_translations_accepted']
+            translation.accept
+          end
         rescue I18n::MissingInterpolationArgument
           # noop
         rescue I18n::MissingTranslationData
