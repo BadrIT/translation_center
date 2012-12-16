@@ -1,7 +1,3 @@
-= TranslationCenter
-
-This project rocks and uses MIT-LICENSE.
-
 Translation admin must extend User model and implement a boolean method named can_admin_translations?
 
 
@@ -75,15 +71,13 @@ rake translation_center:yaml2db
 But imported translations should have translator. You can edit translator email from translation_center.yml The rake task yaml2db will create this user if not exists
 
 ```ruby
-development:
-  yaml_translator_email: 'coder@tc.com'
+yaml_translator_email: 'coder@tc.com'
 ```
 
 The imported translations status will be ACCEPTED by default. If you want to disable that, comment the following line in translation_center.yaml
 
 ```ruby
-development:
-  yaml2db_translations_accepted: true
+yaml2db_translations_accepted: true
 ```
 
 Any I18n.translate method will display translations from database ACCEPTED translations. If you want to skip database translations and set to use yaml translations, comment the following line in translation_center.yaml

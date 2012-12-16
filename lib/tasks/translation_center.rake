@@ -51,7 +51,7 @@ namespace :translation_center do
           value = I18n.translate(key, raise: true, yaml: true)
           translation.update_attribute(:value, value)
           # accept this yaml translation
-          if config['yaml2db_translations_accepted']
+          if TranslationCenter::CONFIG['yaml2db_translations_accepted']
             translation.accept
           end
         rescue I18n::MissingInterpolationArgument
