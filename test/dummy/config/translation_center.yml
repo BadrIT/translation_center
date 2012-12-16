@@ -2,14 +2,8 @@ development:
   # what language to support and their display names
   lang:
     en: 'English'
-    ar: 'عربى'
+    de: 'German'
+  yaml_translator_email: 'coder@tc.com'
+  i18n_source: 'db' # can be db or yaml; default is yaml
+  yaml2db_translations_accepted: true # when import translation from yaml to db set it to accepted by default; default is false
     
-test:
-  lang:
-    en: 'English'
-    ar: 'عربى'
-
-production:
-  lang:
-    en: 'English'
-    ar: 'عربى'
