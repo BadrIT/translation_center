@@ -14,6 +14,10 @@ module TranslationCenter
 
     PER_PAGE = 7
 
+    scope :translated, lambda { |lang| joins(:translations).where('translation_center_translations.status' => 'accepted', 'translation_center_translations.lang' => lang.to_s) }
+    scope :pending, lambda { |lang| joins(:translations).where('translation_center_translations.status' => 'pending', 'translation_center_translations.lang' => lang.to_s) }
+
+
     # add a category of this translation key
     def add_category
 

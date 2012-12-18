@@ -20,7 +20,7 @@ module TranslationCenter
 
     # gets the keys accepted in a certain language that belong to a category
     def accepted_keys(lang)
-      self.keys.reject{ |key| !key.accepted_in?(lang) }
+      self.keys.translated(lang)
     end
     alias_method :translated_keys, :accepted_keys
 
@@ -31,7 +31,7 @@ module TranslationCenter
 
     # gets the keys that have no translations in the language
     def pending_keys(lang)
-      self.keys.reject{ |key| !key.pending_in?(lang) }
+      self.keys.pending(lang)
     end
 
     def all_keys(lang)
