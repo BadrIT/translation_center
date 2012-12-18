@@ -104,7 +104,7 @@ function getKeyStatus(id){
 // decrements the filter
 function decrementFilter(filter){
   if(filter == 'untranslated')
-    decrementUnTranslated();
+    decrementUntranslated();
   else if(filter == 'translated')
     decrementTranslated();
   else
@@ -112,7 +112,7 @@ function decrementFilter(filter){
   decrementAll();
 }
 
-function decrementUnTranslated(){
+function decrementUntranslated(){
   var count = parseInt($('#untranslated_keys_count').text().replace('(', '').replace(')', '')) - 1;
   $('#untranslated_keys_count').text('(' + count +  ')');
 }
@@ -128,7 +128,7 @@ function decrementPending(){
   
 }
 
-function incrementUnTranslated(){
+function incrementUntranslated(){
   var count = parseInt($('#untranslated_keys_count').text().replace('(', '').replace(')', '')) + 1;
   $('#untranslated_keys_count').text('(' + count +  ')');
 }
@@ -171,7 +171,7 @@ function editableTranslations(){
         $(this).text(data.value);
         if(Filter.key() == 'untranslated')
         {
-          decrementUnTranslated();
+          decrementUntranslated();
           // if normal user then moved to pending
           if(data.status == 'pending')
             incrementPending();

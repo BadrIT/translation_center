@@ -1,5 +1,6 @@
 - if(current_filter_is?('all'))
   $('li.translation_key[data-key-id=' + "#{@translation.key.id}" + ']').children('div').removeClass('badge-success').addClass('badge-warning');
+  incrementPending();
 - else
   $('#translation_id_' + "#{@translation.id}").fadeOut();
   var translated_count = parseInt($('#translated_keys_count').text().replace('(','').replace(')','')) - 1;

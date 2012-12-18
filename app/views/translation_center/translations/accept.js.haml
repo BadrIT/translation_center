@@ -1,5 +1,6 @@
 - if(current_filter_is?('all'))
   $('li.translation_key[data-key-id=' + "#{@translation.key.id}" + ']').children('div').removeClass('badge-warning').addClass('badge-success');
+  decrementPending();
 - else
 
   $('#translation_id_' + "#{@translation.id}").fadeOut();

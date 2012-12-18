@@ -45,7 +45,11 @@ module TranslationCenter
     def destroy
       @translation = Translation.find(params[:id])
       @translation_id = @translation.id
-      @translation.destroy 
+      @translation_key_before_status = @translation.key.status session[:lang_to]
+      @translation_key_id = @translation.key.id
+      @translation.destroy
+      @translation_key_after_status = @translation.key.status session[:lang_to]
+
       respond_to do |format|
         format.js
       end

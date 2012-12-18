@@ -1,1 +1,11 @@
 $('#translation_id_' + "#{@translation_id}").fadeOut();
+var count = parseInt($('#translations_' + "#{@translation_key_id}" + '_count').text()) - 1;
+$('#translations_' + "#{@translation_key_id}" + '_count').text(count);
+decrement#{@translation_key_before_status.camelize}();
+increment#{@translation_key_after_status.camelize}();
+
+- if @translation_key_after_status != @translation_key_before_status
+  if(Filter.key() != 'all')
+  {
+  moveToNextKey("#{@translation_id}")
+  }
