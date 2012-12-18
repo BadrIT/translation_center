@@ -2,7 +2,6 @@ require_dependency "translation_center/application_controller"
 
 module TranslationCenter
   class TranslationsController < ApplicationController
-    before_filter :authenticate_user!
     before_filter :can_admin?, only: [ :destroy, :accept, :unaccept ]
 
     # POST /translations/1/vote
