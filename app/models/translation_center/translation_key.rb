@@ -15,7 +15,7 @@ module TranslationCenter
     PER_PAGE = 7
 
     scope :translated, lambda { |lang| joins(:translations).where('translation_center_translations.status' => 'accepted', 'translation_center_translations.lang' => lang.to_s) }
-    scope :pending, lambda { |lang| joins(:translations).where('translation_center_translations.status' => 'pending', 'translation_center_translations.lang' => lang.to_s) }
+    scope :pending, lambda { |lang| joins(:translations).where('translation_center_translations.status' => 'pending', 'translation_center_translations.lang' => lang.to_s).where(['translation_center_translation_keys.id not in (?)', translated(lang).map(&:id)]) }
 
 
     # add a category of this translation key
@@ -54,6 +54,17 @@ module TranslationCenter
     # returns true if the key has translations but none are accepted
     def pending_in?(lang)
       !accepted_in?(lang) && !untranslated_in?(lang)
+    end
+
+    # returns the status of the key in a language
+    def status(lang)
+      if accepted_in?(lang)
+        'translated'
+      elsif has_translations_in?(lang)
+        'pending'
+      else
+        'untranslated'
+      end
     end
 
     # adds a translation key with its translation to a translation yaml hash
