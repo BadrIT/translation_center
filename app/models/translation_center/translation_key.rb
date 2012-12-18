@@ -7,7 +7,7 @@ module TranslationCenter
 
     # validations
     validates :name, uniqueness: true
-    validates :category, :name, presence: true
+    validates :name, presence: true
 
     # called after key is created or updated
     before_save :add_category
@@ -16,12 +16,12 @@ module TranslationCenter
 
     # add a category of this translation key
     def add_category
+
       category_name = self.name.to_s.split('.').first
+
       # if one word then add to general category
-      category_name = 'general' if self.name.to_s.split('.').size == 1
-      category = Category.find_or_initialize_by_name(category_name)
-      category.save if category.new_record?
-      self.category_id = category.id
+      category_name = self.name.to_s.split('.').size == 1 ? 'general' : self.name.to_s.split('.').first
+      self.category = Category.find_or_create_by_name(category_name)
       self.last_accessed = Time.now
     end
 
