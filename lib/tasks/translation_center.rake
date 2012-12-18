@@ -37,10 +37,9 @@ namespace :translation_center do
     end
 
     all_keys.each do |key|
-
       translation_key = TranslationCenter::TranslationKey.find_or_initialize_by_name(key)
       if translation_key.new_record?
-        translation_key.update_attributes(name: key)
+        translation_key.save
         new_keys += 1
       end
 
@@ -51,9 +50,7 @@ namespace :translation_center do
           value = I18n.translate(key, raise: true, yaml: true)
           translation.update_attribute(:value, value)
           # accept this yaml translation
-          if TranslationCenter::CONFIG['yaml2db_translations_accepted']
-            translation.accept
-          end
+          translation.accept if TranslationCenter::CONFIG['yaml2db_translations_accepted']
         rescue I18n::MissingInterpolationArgument
           # noop
         rescue I18n::MissingTranslationData
