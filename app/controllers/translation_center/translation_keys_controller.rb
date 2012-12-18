@@ -30,45 +30,6 @@ module TranslationCenter
       end
     end
     
-    # GET /translation_keys
-    # GET /translation_keys.json
-    def index
-      @translation_keys = TranslationKey.all
-  
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @translation_keys }
-      end
-    end
-  
-    # GET /translation_keys/1
-    # GET /translation_keys/1.json
-    def show
-      @translation_key = TranslationKey.find(params[:id])
-  
-      respond_to do |format|
-        format.html # show.html.erb
-        format.json { render json: @translation_key }
-      end
-    end
-  
-    # GET /translation_keys/new
-    # GET /translation_keys/new.json
-    def new
-      @translation_key = TranslationKey.new
-  
-      respond_to do |format|
-        format.html # new.html.erb
-        format.json { render json: @translation_key }
-      end
-    end
-  
-    # GET /translation_keys/1/edit
-    def edit
-      @translation_key = TranslationKey.find(params[:id])
-      @category = @translation_key.category
-    end
-  
     # POST /translation_keys
     # POST /translation_keys.json
     def create
@@ -112,9 +73,12 @@ module TranslationCenter
       end
     end
 
+    protected
+
     def get_translation_key
       id = params[:translation_key_id] || params[:id]
       @translation_key = TranslationKey.find(id)
     end
+    
   end
 end
