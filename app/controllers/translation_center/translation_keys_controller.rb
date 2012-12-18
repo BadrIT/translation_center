@@ -90,9 +90,10 @@ module TranslationCenter
     # PUT /translation_keys/1.json
     def update
       params[:value].strip!
+      @old_value = @translation_key.category.name
       respond_to do |format|
         if !params[:value].blank? && @translation_key.update_attribute(:name, params[:value])
-          format.json { render json: @translation_key.name }
+          format.json { render json: {  new_value: @translation_key.name, new_category: @translation_key.category.name, old_category: @old_value, key_id: @translation_key.id } }
         else
           format.json { render json: @translation_key.errors, status: :unprocessable_entity }
         end

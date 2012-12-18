@@ -58,17 +58,5 @@ module TranslationCenter
       end
     end
 
-    # sort descending by number of votes
-    def self.sort_by_votes(translations)
-      translations.sort do |a,b|
-                          if(a.votes.count > b.votes.count)
-                            -1
-                          elsif(b.votes.count > a.votes.count)
-                            1
-                          else 0
-                          end
-                        end
-    end
-
   end
 end
