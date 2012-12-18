@@ -166,16 +166,38 @@ function editableTranslations(){
       // TODO use I18n.t for translations
       placeholder : 'click to add or edit your translation',
       tooltip     : 'click to add or edit your translation',
-      callback : function(value, settings) {
-        
+      callback : function(data, settings) {
+        data = $.parseJSON(data);
+        $(this).text(data.value);
         if(Filter.key() == 'untranslated')
         {
           decrementUnTranslated();
-          incrementPending();
+          // if normal user then moved to pending
+          if(data.status == 'pending')
+            incrementPending();
+          else
+            // admin then move to translated
+            incrementTranslated();
           moveToNextKey($(this).attr('data-key-id'));
-        }else if(Filter.key() == 'all')
+        }
+        else if(Filter.key() == 'pending')
         {
-          $('li.translation_key[data-key-id=' + key_id + ']').children('div').removeClass('badge-important').addClass('badge-warning');
+          // if you are an admin and your edits are considered accepted
+          if(data.status == 'accepted')
+          {
+            decrementPending();
+            incrementTranslated();
+          }
+          moveToNextKey($(this).attr('data-key-id')); 
+        }
+        else if(Filter.key() == 'all')
+        {
+          // if normal user then moved to pending
+          if(data.status == 'pending')
+            $('li.translation_key[data-key-id=' + key_id + ']').children('div').removeClass('badge-important').addClass('badge-warning');
+          else
+            // admin then move to translated
+            $('li.translation_key[data-key-id=' + key_id + ']').children('div').removeClass('badge-important').addClass('badge-success');
         }
       }
 
