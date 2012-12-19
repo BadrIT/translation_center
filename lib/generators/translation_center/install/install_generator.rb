@@ -3,6 +3,7 @@ module TranslationCenter
   class InstallGenerator < Rails::Generators::Base
     include Rails::Generators::Migration
     source_root File.expand_path('../templates', __FILE__)
+    argument :langs, type: :array, :default => ['en']
 
     def self.next_migration_number(path)
       @migration_number = Time.now.utc.strftime("%Y%m%d%H%M%S%6N").to_i.to_s
