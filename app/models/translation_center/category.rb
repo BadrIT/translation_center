@@ -26,7 +26,7 @@ module TranslationCenter
 
     # gets the keys that have no translations in the language
     def untranslated_keys(lang)
-      self.keys.reject{ |key| !key.untranslated_in?(lang) }
+      self.keys.untranslated(lang)
     end
 
     # gets the keys that have no translations in the language

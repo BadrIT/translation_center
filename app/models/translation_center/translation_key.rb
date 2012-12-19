@@ -14,8 +14,9 @@ module TranslationCenter
 
     PER_PAGE = 7
 
-    scope :translated, lambda { |lang| joins(:translations).where('translation_center_translations.status' => 'accepted', 'translation_center_translations.lang' => lang.to_s) }
-    scope :pending, lambda { |lang| joins(:translations).where('translation_center_translations.status' => 'pending', 'translation_center_translations.lang' => lang.to_s).where(['translation_center_translation_keys.id not in (?)', translated(lang).map(&:id)]).group('translation_center_translation_keys.id') }
+    scope :translated, lambda { |lang| where("#{lang.to_s}_status" => 'translated') }
+    scope :pending, lambda { |lang| where("#{lang.to_s}_status" => 'pending') }
+    scope :untranslated, lambda { |lang| where("#{lang.to_s}_status" => 'untranslated') }
 
 
     # add a category of this translation key
@@ -29,9 +30,9 @@ module TranslationCenter
       self.last_accessed = Time.now
     end
 
-    # returns true if the key has an accepted translation in this lang
+    # returns true if the key is translated (has accepted translation) in this lang
     def accepted_in?(lang)
-      !self.accepted_translation_in(lang).blank?
+      self.send("#{lang}_status") == 'translated'
     end
     alias_method :translated_in?, :accepted_in?
 
@@ -40,9 +41,9 @@ module TranslationCenter
       self.translations.accepted.in(lang).first
     end
 
-    # returns true if the translation key has no translations in the language
+    # returns true if the translation key is untranslated (has no translations) in the language
     def no_translations_in?(lang)
-      self.translations.in(lang).empty?
+      self.send("#{lang}_status") == 'untranslated'
     end
     alias_method :untranslated_in?, :no_translations_in?
 
@@ -51,16 +52,16 @@ module TranslationCenter
       !no_translations_in?(lang)
     end
 
-    # returns true if the key has translations but none are accepted
+    # returns true if the key is pending (has translations but none is accepted)
     def pending_in?(lang)
-      !accepted_in?(lang) && !untranslated_in?(lang)
+      self.send("#{lang}_status") == 'pending'
     end
 
     # returns the status of the key in a language
     def status(lang)
       if accepted_in?(lang)
         'translated'
-      elsif has_translations_in?(lang)
+      elsif pending_in?(lang)
         'pending'
       else
         'untranslated'
