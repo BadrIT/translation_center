@@ -3,6 +3,8 @@ module TranslationCenter
 
     attr_accessible :value, :lang, :translation_key_id, :user_id, :status
     cattr_accessor :translator
+    # serialize as we could store arrays
+    serialize :value
 
     belongs_to :translation_key
     belongs_to :user
@@ -52,8 +54,12 @@ module TranslationCenter
     # accept translation by changing its status and if there is an accepting translation
     # make it pending
     def accept
-      self.translation_key.accepted_translation_in(self.lang).try(:update_attribute, :status, 'pending')
-      self.update_attribute(:status, 'accepted')
+      # if translation is accepted do nothing
+      unless self.accepted?
+        self.translation_key.accepted_translation_in(self.lang).try(:update_attribute, :status, 'pending')
+        self.update_attribute(:status, 'accepted')
+      end
+      
     end
 
     # unaccept a translation

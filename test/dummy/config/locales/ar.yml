@@ -1,58 +1,10 @@
 --- 
-ar: 
+ar:
   actions: 
     are_you_sure: "هل أنت متأكد ؟"
-  datetime: 
-    distance_in_words: 
-      about_x_hours: 
-        one: "ساعة واحدة تقريبا"
-  post: 
-    title: عنوان
-  posts: 
-    index: 
-      Title: عنوان
   translation_center: 
     categories: 
       category: 
-        Complete: مكتمل
-        keys: Keys
-      index: 
-        Name: الاسم
-        categories: الأبواب
-        show: اعرض
+        complete: مكتمل
       show: 
-        all: الكل
-        name: الاسم
-        pending: منتظر
-        translated: مترجم
         untranslated: "غير مترجم"
-    translation_keys: 
-      show: 
-        Add/Edit_Translation: "اضف/عدل الترجمة"
-        Add_Translation: "اضف ترجمة"
-        Translations: ترجمات
-        no_translations_available: "لا توجد ترجمات"
-      show_keys: 
-        translated: مترجم
-        untranslated: "غير مترجم"
-      translation_keys: 
-        untranslated: "غير مترجم"
-    translations: 
-      accept_translation: 
-        accept: اقبل
-        accepted: مقبولة
-        unaccept: "الغاء القبول"
-      index: 
-        date: التاريخ
-        votes: التصويتات
-      show: 
-        accept: اقبل
-        accepted: مقبولة
-        unvote: "إلغاء التصويت"
-        vote: صوت
-        votes: تصويتات
-        you: أنت
-      unvote: 
-        vote: صوت
-      vote: 
-        unvote: "إلغاء التصويت"

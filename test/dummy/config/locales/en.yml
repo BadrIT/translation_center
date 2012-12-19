@@ -1,9 +1,106 @@
 --- 
 en: 
+  actions: 
+    are_you_sure: "Are you sure ?"
   activerecord: 
-    attributes: 
-      translation_center/translation_key: 
-        name: name
+    errors: 
+      messages: 
+        record_invalid: "Validation failed: %{errors}"
+        taken: "has already been taken"
+  date: 
+    abbr_day_names: 
+      - Sun
+      - Mon
+      - Tue
+      - Wed
+      - Thu
+      - Fri
+      - Sat
+    abbr_month_names: 
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    day_names: 
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+    formats: 
+      default: "%Y-%m-%d"
+      long: "%B %d, %Y"
+      short: "%b %d"
+    month_names: 
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+    order: 
+      - !ruby/symbol year
+      - !ruby/symbol month
+      - !ruby/symbol day
+  datetime: 
+    distance_in_words: 
+      about_x_hours: 
+        one: "about 1 hour"
+        other: "about %{count} hours"
+      about_x_months: 
+        one: "about 1 month"
+        other: "about %{count} months"
+      about_x_years: 
+        one: "about 1 year"
+        other: "about %{count} years"
+      almost_x_years: 
+        one: "almost 1 year"
+        other: "almost %{count} years"
+      half_a_minute: "half a minute"
+      less_than_x_minutes: 
+        one: "less than a minute"
+        other: "less than %{count} minutes"
+      less_than_x_seconds: 
+        one: "less than 1 second"
+        other: "less than %{count} seconds"
+      over_x_years: 
+        one: "over 1 year"
+        other: "over %{count} years"
+      x_days: 
+        one: "1 day"
+        other: "%{count} days"
+      x_minutes: 
+        one: "1 minute"
+        other: "%{count} minutes"
+      x_months: 
+        one: "1 month"
+        other: "%{count} months"
+      x_seconds: 
+        one: "1 second"
+        other: "%{count} seconds"
+    prompts: 
+      day: Day
+      hour: Hour
+      minute: Minute
+      month: Month
+      second: Seconds
+      year: Year
   devise: 
     confirmations: 
       confirmed: "Your account was successfully confirmed. You are now signed in."
@@ -117,17 +214,17 @@ en:
       format: 
         delimiter: ","
         format: "%u%n"
-        precision: "2"
+        precision: 2
         separator: "."
-        significant: "0"
-        strip_insignificant_zeros: "0"
+        significant: false
+        strip_insignificant_zeros: false
         unit: $
     format: 
       delimiter: ","
-      precision: "3"
+      precision: 3
       separator: "."
-      significant: "0"
-      strip_insignificant_zeros: "0"
+      significant: false
+      strip_insignificant_zeros: false
     human: 
       decimal_units: 
         format: "%n %u"
@@ -140,9 +237,9 @@ en:
           unit: ""
       format: 
         delimiter: ""
-        precision: "3"
-        significant: "1"
-        strip_insignificant_zeros: "1"
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
       storage_units: 
         format: "%n %u"
         units: 
@@ -174,32 +271,7 @@ en:
   translation_center: 
     categories: 
       category: 
-        keys: Keys
-        translations_keys: "Translations Keys"
-      index: 
-        Name: name
-      show: 
-        name: name
-        pending: Pending
-        translated: Translated
-        untranslated: Untranslated
-    translation_keys: 
-      show: 
-        Add/Edit_Translation: "Add/Edit Translation"
-        Add_Translation: "Add Translation"
-        no_translations_available: "No Translations Available"
-      show_keys: 
-        translated: Translated
-        untranslated: UnTranslated
-        waiting_acceptance: "Waiting Acceptance"
-      translation_keys: 
-        untranslated: Untranslated
-    translations: 
-      show: 
-        by: By
-        you: You
-      vote: 
-        unvote: unvote
+        complete: complete
   will_paginate: 
     next_label: "Next &#8594;"
     page_entries_info: 
