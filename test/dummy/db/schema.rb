@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(:version => 20121121122506627382) do
     t.datetime "last_accessed"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.string   "en_status"
+    t.string   "ar_status"
+    t.string   "de_status"
   end
 
   create_table "translation_center_translations", :force => true do |t|
