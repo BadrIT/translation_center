@@ -31,7 +31,6 @@ development:
 
 if you don't supply languages for the generator it will support only English.
 
-
 And run the migrations
 
 ```ruby
@@ -50,7 +49,7 @@ In routes file add
 mount TranslationCenter::Engine => "/translation_center"
 ```
 
-You know need to define who is the translation center admin. Admin can accept translations, manage translation keys and do more things. To define your admin, you need to override User#can_admin_translations? method like the following....
+You now need to define who is the translation center admin. Admin can accept translations, manage translation keys and do more things. To define your admin, you need to override User#can_admin_translations? method like the following....
 
 ```ruby
 def can_admin_translations?
@@ -88,4 +87,24 @@ Any I18n.translate method will display translations from database ACCEPTED trans
 
 ```ruby
 i18n_source: 'db' # can be db or yaml; default is yaml
+```
+
+#Add new language
+
+If you want to add a language to the translation center, you need to run the rake:
+
+```ruby
+rake translation_center:add_lang[es]
+rake db:migrate
+```
+
+You will also need to add the language to config/translation_center.yml
+
+```ruby
+development:
+  lang:
+    en: 'English'
+    ar: 'Arabic'
+    de: 'German'
+    es: 'Espaniol'
 ```
