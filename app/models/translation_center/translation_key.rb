@@ -21,13 +21,22 @@ module TranslationCenter
 
     # add a category of this translation key
     def add_category
-
       category_name = self.name.to_s.split('.').first
-
       # if one word then add to general category
       category_name = self.name.to_s.split('.').size == 1 ? 'general' : self.name.to_s.split('.').first
       self.category = Category.find_or_create_by_name(category_name)
       self.last_accessed = Time.now
+    end
+
+    # updates the status of the translation key depending on the translations
+    def update_status(lang)
+      if self.translations.in(lang).blank?
+        self.update_attribute("#{lang}_status", 'untranslated')
+      elsif !self.translations.in(lang).accepted.blank?
+        self.update_attribute("#{lang}_status", 'translated')
+      else
+        self.update_attribute("#{lang}_status", 'pending')
+      end
     end
 
     # returns true if the key is translated (has accepted translation) in this lang

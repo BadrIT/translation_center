@@ -24,6 +24,20 @@ module TranslationCenter
     # sorts translations by number of votes
     scope :sorted_by_votes, where('votable_type IS NULL OR votable_type = ?', 'TranslationCenter::Translation').select('translation_center_translations.*, count(votes.id) as votes_count').joins('LEFT OUTER JOIN votes on votes.votable_id = translation_center_translations.id').group('translation_center_translations.id').order('votes_count desc')
 
+    after_save :update_key_status
+    after_destroy :notify_key
+
+    # called after save to update the key status
+    def update_key_status
+      if status_changed?
+        self.key.update_status self.lang
+      end
+    end
+
+    # called before destory to update the key status
+    def notify_key
+      self.key.update_status self.lang
+    end
 
     # returns true if the status of the translation is accepted
     def accepted?
