@@ -9,7 +9,8 @@ module TranslationCenter
     def update_translation
       @translation = current_user.translation_for @translation_key, session[:lang_to]
       respond_to do |format|
-        if !@translation.accepted? && !params[:value].strip.blank?
+        # only admin can edit accepted translations
+        if (current_user.can_admin_translations? || !@translation.accepted?) && !params[:value].strip.blank?
           @translation.update_attributes(value: params[:value].strip, status: 'pending')
           # translation added by admin is considered the accepted one as it is trusted
           @translation.accept if current_user.can_admin_translations? && CONFIG['accept_admin_translations']
