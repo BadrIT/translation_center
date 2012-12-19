@@ -11,9 +11,8 @@ module TranslationCenter
       respond_to do |format|
         if !@translation.accepted? && !params[:value].strip.blank?
           @translation.update_attributes(value: params[:value].strip, status: 'pending')
-
           # translation added by admin is considered the accepted one as it is trusted
-          @translation.accept if current_user.can_admin_translations?
+          @translation.accept if current_user.can_admin_translations? && CONFIG['accept_admin_translations']
           format.json {render json: { value: @translation.value, status: @translation.status  } }
         else
           render nothing: true
