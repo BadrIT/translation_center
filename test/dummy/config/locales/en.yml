@@ -55,9 +55,9 @@ en:
       - November
       - December
     order: 
-      - !ruby/symbol year
-      - !ruby/symbol month
-      - !ruby/symbol day
+      - year
+      - month
+      - day
   datetime: 
     distance_in_words: 
       about_x_hours: 
