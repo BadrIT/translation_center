@@ -91,10 +91,10 @@ i18n_source: 'db' # can be db or yaml; default is yaml
 
 #Add new language
 
-If you want to add a language to the translation center, you need to run the rake:
+If you want to add a language to the translation center, you need to run the generator:
 
 ```ruby
-rake translation_center:add_lang[es]
+rails g migration translation_center:add_lang es fr
 rake db:migrate
 ```
 
@@ -107,4 +107,5 @@ development:
     ar: 'Arabic'
     de: 'German'
     es: 'Espaniol'
+    fr: 'French'
 ```

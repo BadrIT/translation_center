@@ -84,20 +84,4 @@ namespace :translation_center do
     
   end
 
-  desc "Add a new language to the system"
-  task :add_lang, [:lang] => :environment do |cmd, args|
-    lang = args[:lang]
-    if lang.blank?
-      puts 'Please provide a language to add to the translation center'
-      next
-    # check if language already supported
-    elsif(TranslationCenter::TranslationKey.respond_to? "#{lang}_status")
-      puts 'This language is already supported, just make sure it is listed in config/translation_center.yml'
-      next
-    end
-    `rails g migration "Add#{lang.upcase}StatusToTranslationCenterTranslationKeys" "#{lang}_status:string"`
-    puts "Language added, don't forget to add the language to config/translation_center.yml"
-  end
-
-  
 end
