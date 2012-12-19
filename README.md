@@ -16,8 +16,21 @@ TranslationCenter depends on Devise, so make sure you installed it successfully 
 After you install TranslationCenter and add it to your Gemfile, you need to run the generator:
 
 ```ruby
-rails generate translation_center:install
+rails generate translation_center:install en ar de
+ ```
+
+This will add three languages to the translation center, you need to add them in the config/translation_center.yaml
+
+```ruby
+development:
+  lang:
+    en: 'English'
+    ar: 'Arabic'
+    de: 'German'
 ```
+
+if you don't supply languages for the generator it will support only English.
+
 
 And run the migrations
 
@@ -43,15 +56,6 @@ You know need to define who is the translation center admin. Admin can accept tr
 def can_admin_translations?
   self.email == 'admin@tc.com'
 end
-```
-
-To define your website supported languages, you need to edit config/translation_center.yaml
-
-```ruby
-development:
-  lang:
-    en: 'English'
-    de: 'German'
 ```
 
 ## How to use
