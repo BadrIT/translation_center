@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121121122506627382) do
+ActiveRecord::Schema.define(:version => 20121219094037954653) do
 
   create_table "posts", :force => true do |t|
     t.string   "title"
@@ -30,11 +30,11 @@ ActiveRecord::Schema.define(:version => 20121121122506627382) do
     t.string   "name"
     t.integer  "category_id"
     t.datetime "last_accessed"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "en_status"
-    t.string   "ar_status"
-    t.string   "de_status"
+    t.string   "en_status",     :default => "untranslated"
+    t.string   "de_status",     :default => "untranslated"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "ar_status",     :default => "untranslated"
   end
 
   create_table "translation_center_translations", :force => true do |t|
@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(:version => 20121121122506627382) do
     t.string   "value"
     t.string   "lang"
     t.integer  "user_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.string   "status"
+    t.string   "status",             :default => "pending"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "users", :force => true do |t|
