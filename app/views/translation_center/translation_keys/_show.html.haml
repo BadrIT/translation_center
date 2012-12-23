@@ -3,22 +3,21 @@
     .tabbable
       %ul.nav.nav-tabs
         
-        - if translation_key.has_translations_in?(to_lang)
-          %li.active
-            %a.translations_tab{'data-key-id' => translation_key.id, "data-toggle" => "tab", :href => "#translations#{translation_key.id}"}
-              %span.badge.badge-info.pull-left.translations_count{ id: "translations_#{translation_key.id}_count"}
-                = translation_key.translations.in(to_lang).count
-              %span
-                = t('.Translations')
+        %li.active
+          %a.translations_tab{'data-key-id' => translation_key.id, "data-toggle" => "tab", :href => "#translations#{translation_key.id}"}
+            %span.badge.badge-info.pull-left.translations_count{ id: "translations_#{translation_key.id}_count"}
+              = translation_key.translations.in(to_lang).count
+            %span
+              = t('.Translations')
 
-        %li{ class: "#{translation_key.has_translations_in?(to_lang) ? '' : 'active'}" }
+        %li
           %a{"data-toggle" => "tab", :href => "#add_translations#{translation_key.id}"}
             = t('.Add/Edit_Translation')
       .tab-content
-        - if translation_key.has_translations_in?(to_lang)
-          .tab-pane.active{ id: "translations#{translation_key.id}" }
-            = render 'translation_center/translations/index', translations: translation_key.translations.order('created_at DESC').in(to_lang), translation_key: translation_key
-        .tab-pane{ class: "#{translation_key.has_translations_in?(to_lang) ? '' : 'active'}", id: "add_translations#{translation_key.id}" }
+        
+        .tab-pane.active{ id: "translations#{translation_key.id}" }
+          = render 'translation_center/translations/index', translations: translation_key.translations.order('created_at DESC').in(to_lang), translation_key: translation_key
+        .tab-pane{ id: "add_translations#{translation_key.id}" }
           
           %em
             %b

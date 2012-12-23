@@ -1,7 +1,14 @@
 --- 
-ar:
+ar: 
   actions: 
     are_you_sure: "هل أنت متأكد ؟"
+  activerecord: 
+    attributes: 
+      translation_center/translation_key: 
+        name: اسم
+    errors: 
+      messages: 
+        taken: محجوز
   translation_center: 
     categories: 
       category: 
