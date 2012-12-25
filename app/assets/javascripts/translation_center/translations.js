@@ -203,7 +203,7 @@ function editableTranslations(){
 
       
     });
-
+    $(this).text($.trim($(this).text()));
   });
 
 }
@@ -233,6 +233,7 @@ function editableKeyTranslations(){
 
 
     });
+    $(this).text($.trim($(this).text()));
 
   });
 
