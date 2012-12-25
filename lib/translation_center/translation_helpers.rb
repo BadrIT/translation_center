@@ -12,6 +12,16 @@ module TranslationCenter
     #  UNCOMMENT THIS LATER TO SET LAST ACCESSED AT
     # translation_key.update_attribute(:last_accessed, Time.now)
 
+    # if enabled save the default value (Which is the titleized key name
+    # as the translation)
+    if translation_key.translations.in(:en).empty? && TranslationCenter::CONFIG['save_default_translation']
+      translation = TranslationCenter::Translation.new(translation_key_id: translation_key.id,
+                                         value: translation_key.name.split('.').last.titleize,
+                                         lang: :en, status: 'accepted')
+      translation.user = User.find_by_email(TranslationCenter::CONFIG['yaml_translator_email'])
+      translation.save
+    end
+
     if options.delete(:yaml)
       # just return the normal I18n translation
       return translate_without_adding(locale, key, options)
