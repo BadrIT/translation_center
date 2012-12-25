@@ -6,7 +6,7 @@
 .translation_keys_listing {
   height: 410px;
   overflow: auto;
-  width: 40%;
+  width: 32%;
 }
 
 .translation_keys_listing small, .translation_keys_listing p {
