@@ -5,7 +5,8 @@ development:
     de: 'German'
     ar: 'عربى'
   yaml_translator_email: 'khaled@badrit.com'
-  # i18n_source: 'yaml' # can be db or yaml; default is yaml
+  i18n_source: 'yaml' # can be db or yaml; default is yaml
   yaml2db_translations_accepted: true # when import translation from yaml to db set it to accepted by default; default is false
   accept_admin_translations: true # when admins add/edit translations they are considered accepted directly
+  save_default_translation: true
     

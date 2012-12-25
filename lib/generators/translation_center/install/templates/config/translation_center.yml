@@ -6,4 +6,4 @@ development:
   i18n_source: 'db' # can be db or yaml; default is yaml
   yaml2db_translations_accepted: true # when import translation from yaml to db set it to accepted by default; default is false
   accept_admin_translations: true # when admins add/edit translations they are considered accepted directly
-    
+  save_default_translation: true
