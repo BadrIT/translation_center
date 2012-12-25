@@ -77,6 +77,14 @@ module TranslationCenter
       end
     end
 
+    # create default translation
+    def create_default_translation
+      translation = self.translations.build(value: self.name.to_s.split('.').last.titleize,
+                                            lang: :en, status: 'accepted')
+      translation.user = User.find_by_email(TranslationCenter::CONFIG['yaml_translator_email'])
+      translation.save
+    end
+
     # adds a translation key with its translation to a translation yaml hash
     # send the hash and the language as parameters
     def add_to_hash(all_translations, lang)

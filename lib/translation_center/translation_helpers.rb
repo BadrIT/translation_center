@@ -15,11 +15,7 @@ module TranslationCenter
     # if enabled save the default value (Which is the titleized key name
     # as the translation)
     if translation_key.translations.in(:en).empty? && TranslationCenter::CONFIG['save_default_translation']
-      translation = TranslationCenter::Translation.new(translation_key_id: translation_key.id,
-                                         value: translation_key.name.to_s.split('.').last.titleize,
-                                         lang: :en, status: 'accepted')
-      translation.user = User.find_by_email(TranslationCenter::CONFIG['yaml_translator_email'])
-      translation.save
+      translation_key.create_default_translation
     end
 
     if options.delete(:yaml)
