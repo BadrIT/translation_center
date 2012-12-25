@@ -70,6 +70,7 @@ module TranslationCenter
     def destroy
       @translation_key = TranslationKey.find(params[:id])
       @translation_key_id = @translation_key.id
+      @key_status = @translation_key.status(session[:lang_to])
       @translation_key.destroy
   
       respond_to do |format|
