@@ -57,6 +57,8 @@ module TranslationCenter
       # if translation is accepted do nothing
       unless self.accepted?
         self.translation_key.accepted_translation_in(self.lang).try(:update_attribute, :status, 'pending')
+        # reload the translation key as it has changed
+        self.translation_key.reload
         self.update_attribute(:status, 'accepted')
       end
       
