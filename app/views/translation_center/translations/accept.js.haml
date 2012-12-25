@@ -10,7 +10,9 @@
   moveToNextKey($('#translation_id_' + "#{@translation.id}").attr('data-key-id'));
 
 
-  
+// TODO USE i18n for text
+// changing existing unaccept to accept
+$('button.unaccept_translation').addClass('accept_translation').removeClass('unaccept_translation').text('Accept');
 
 // TODO USE i18n for text
-$('#translation_id_' + "#{@translation.id}").find('.accept_translation').removeClass('accept_translation').addClass('unaccept_translation').text('Unaccept')
+$('#translation_id_' + "#{@translation.id}").find('.accept_translation').removeClass('accept_translation').addClass('unaccept_translation').text('Unaccept');
