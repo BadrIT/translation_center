@@ -13,7 +13,7 @@ module TranslationCenter
 
     protected
       def can_admin?
-        current_user.respond_to?(:can_admin_translations?) && current_user.can_admin_translations?
+        current_user.can_admin_translations?
       end
 
   end

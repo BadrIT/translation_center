@@ -24,7 +24,7 @@ module TranslationCenter
       @keys = @category.send("#{session[:current_filter]}_keys", session[:lang_to]).paginate(:page => params[:page], :per_page => TranslationKey::PER_PAGE)
       @untranslated_keys_count = @category.untranslated_keys(session[:lang_to]).count
       @translated_keys_count = @category.translated_keys(session[:lang_to]).count
-      @pending_keys_count = @category.pending_keys(session[:lang_to]).length
+      @pending_keys_count = @category.pending_keys(session[:lang_to]).count
       @all_keys_count = @untranslated_keys_count + @translated_keys_count + @pending_keys_count
       respond_to do |format|
         format.html # show.html.erb

@@ -8,8 +8,15 @@ module TranslationCenter
 
   def translate_with_adding(locale, key, options = {})
     # add the new key or update it
-    translation_key = TranslationCenter::TranslationKey.find_or_initialize_by_name(key)
-    translation_key.update_attribute(:last_accessed, Time.now)
+    translation_key = TranslationCenter::TranslationKey.find_or_create_by_name(key)
+    #  UNCOMMENT THIS LATER TO SET LAST ACCESSED AT
+    # translation_key.update_attribute(:last_accessed, Time.now)
+
+    # if enabled save the default value (Which is the titleized key name
+    # as the translation)
+    if translation_key.translations.in(:en).empty? && TranslationCenter::CONFIG['save_default_translation']
+      translation_key.create_default_translation
+    end
 
     if options.delete(:yaml)
       # just return the normal I18n translation

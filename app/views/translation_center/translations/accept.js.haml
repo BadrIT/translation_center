@@ -1,13 +1,18 @@
 - if(current_filter_is?('all'))
   $('li.translation_key[data-key-id=' + "#{@translation.key.id}" + ']').children('div').removeClass('badge-warning').addClass('badge-success');
+  #{@translation_already_accepted}
+  - if(!@translation_already_accepted)
+    decrementPending();
+    incrementTranslated();
+- elsif(current_filter_is?('pending'))
+  incrementTranslated();
   decrementPending();
-- else
-
-  $('#translation_id_' + "#{@translation.id}").fadeOut();
-  var translated_count = parseInt($('#translated_keys_count').text().replace('(','').replace(')','')) + 1;
-  $('#translated_keys_count').text('(' + translated_count + ')');
-  var pending_count = parseInt($('#pending_keys_count').text().replace('(','').replace(')','')) - 1;
-  $('#pending_keys_count').text('(' + pending_count + ')');
   moveToNextKey($('#translation_id_' + "#{@translation.id}").attr('data-key-id'));
 
-$('#translation_id_' + "#{@translation.id}").find('.accept_translation').removeClass('accept_translation').addClass('unaccept_translation').text('Unaccept')
+
+// TODO USE i18n for text
+// changing existing unaccept to accept
+$('button.unaccept_translation').addClass('accept_translation').removeClass('unaccept_translation').text('Accept');
+
+// TODO USE i18n for text
+$('#translation_id_' + "#{@translation.id}").find('.accept_translation').removeClass('accept_translation').addClass('unaccept_translation').text('Unaccept');

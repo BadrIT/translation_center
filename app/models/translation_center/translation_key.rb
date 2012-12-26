@@ -14,24 +14,34 @@ module TranslationCenter
 
     PER_PAGE = 7
 
-    scope :translated, lambda { |lang| joins(:translations).where('translation_center_translations.status' => 'accepted', 'translation_center_translations.lang' => lang.to_s) }
-    scope :pending, lambda { |lang| joins(:translations).where('translation_center_translations.status' => 'pending', 'translation_center_translations.lang' => lang.to_s).where(['translation_center_translation_keys.id not in (?)', translated(lang).map(&:id)]).group('translation_center_translation_keys.id') }
+    scope :translated, lambda { |lang| where("#{lang.to_s}_status" => 'translated') }
+    scope :pending, lambda { |lang| where("#{lang.to_s}_status" => 'pending') }
+    scope :untranslated, lambda { |lang| where("#{lang.to_s}_status" => 'untranslated') }
 
 
     # add a category of this translation key
     def add_category
-
       category_name = self.name.to_s.split('.').first
-
       # if one word then add to general category
       category_name = self.name.to_s.split('.').size == 1 ? 'general' : self.name.to_s.split('.').first
       self.category = Category.find_or_create_by_name(category_name)
       self.last_accessed = Time.now
     end
 
-    # returns true if the key has an accepted translation in this lang
+    # updates the status of the translation key depending on the translations
+    def update_status(lang)
+      if self.translations.in(lang).blank?
+        self.update_attribute("#{lang}_status", 'untranslated')
+      elsif !self.translations.in(lang).accepted.blank?
+        self.update_attribute("#{lang}_status", 'translated')
+      else
+        self.update_attribute("#{lang}_status", 'pending')
+      end
+    end
+
+    # returns true if the key is translated (has accepted translation) in this lang
     def accepted_in?(lang)
-      !self.accepted_translation_in(lang).blank?
+      self.send("#{lang}_status") == 'translated'
     end
     alias_method :translated_in?, :accepted_in?
 
@@ -40,9 +50,9 @@ module TranslationCenter
       self.translations.accepted.in(lang).first
     end
 
-    # returns true if the translation key has no translations in the language
+    # returns true if the translation key is untranslated (has no translations) in the language
     def no_translations_in?(lang)
-      self.translations.in(lang).empty?
+      self.send("#{lang}_status") == 'untranslated'
     end
     alias_method :untranslated_in?, :no_translations_in?
 
@@ -51,20 +61,28 @@ module TranslationCenter
       !no_translations_in?(lang)
     end
 
-    # returns true if the key has translations but none are accepted
+    # returns true if the key is pending (has translations but none is accepted)
     def pending_in?(lang)
-      !accepted_in?(lang) && !untranslated_in?(lang)
+      self.send("#{lang}_status") == 'pending'
     end
 
     # returns the status of the key in a language
     def status(lang)
       if accepted_in?(lang)
         'translated'
-      elsif has_translations_in?(lang)
+      elsif pending_in?(lang)
         'pending'
       else
         'untranslated'
       end
+    end
+
+    # create default translation
+    def create_default_translation
+      translation = self.translations.build(value: self.name.to_s.split('.').last.titleize,
+                                            lang: :en, status: 'accepted')
+      translation.user = User.find_by_email(TranslationCenter::CONFIG['yaml_translator_email'])
+      translation.save
     end
 
     # adds a translation key with its translation to a translation yaml hash
@@ -80,7 +98,10 @@ module TranslationCenter
         # if we are at the bottom level just return the translation
         if(levels.count == 1)
           translation = self.accepted_translation_in(lang)
-          {current_level => translation.value}
+          formatted = translation.value
+          # in case of arrays remove the unneeded header
+          formatted.to_yaml.gsub!("---\n" , '') if formatted.is_a?(Array)
+          {current_level => formatted}
         else
           levels.shift
           # if the translation key doesn't exist at current level then create it

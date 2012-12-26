@@ -5,6 +5,7 @@ class CreateTranslationCenterTranslations < ActiveRecord::Migration
       t.string :value
       t.string :lang
       t.integer :user_id
+      t.string :status, default: 'pending'
 
       t.timestamps
     end
