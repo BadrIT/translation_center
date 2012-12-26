@@ -16,6 +16,16 @@ namespace :translation_center do
       return full_keys
     end
 
+    # needed for interpolated translations in I18n
+    def get_translation_from_hash(key, hash)
+      path = key.split('.')
+      last_step = hash
+      path.each do |step|
+        last_step = last_step[step.to_sym]
+      end
+      last_step
+    end
+
     # prepare translator
     translator = TranslationCenter::Translation.translator.find_or_initialize_by_email(TranslationCenter::CONFIG['yaml_translator_email'])
     translator.save(validate: false) if translator.new_record?
@@ -25,7 +35,8 @@ namespace :translation_center do
     puts "#{I18n.available_locales.size} #{I18n.available_locales.size == 1 ? 'locale' : 'locales'} available: #{I18n.available_locales.join(', ')}"
 
     # Get all keys from all locales
-    all_keys = I18n.backend.send(:translations).collect do |check_locale, translations|
+    all_yamls = I18n.backend.send(:translations)
+    all_keys = all_yamls.collect do |check_locale, translations|
       collect_keys([], translations).sort
     end.flatten.uniq
     puts "#{all_keys.size} #{all_keys.size == 1 ? 'unique key' : 'unique keys'} found."
@@ -47,12 +58,17 @@ namespace :translation_center do
         I18n.locale = locale
         begin
           translation = TranslationCenter::Translation.find_or_initialize_by_translation_key_id_and_lang_and_user_id(translation_key.id, locale.to_s, translator.id)
+          # no_default option to prevent the default translation from being created
           value = I18n.translate(key, raise: true, yaml: true, no_default: true)
           translation.update_attribute(:value, value)
           # accept this yaml translation
           translation.accept if TranslationCenter::CONFIG['yaml2db_translations_accepted']
         rescue I18n::MissingInterpolationArgument
-          # noop
+          # if translation needs parameters for interpolation then get the value
+          # as a string from the translations hash          
+          value = get_translation_from_hash(translation_key.name, all_yamls[locale])
+          translation.update_attribute(:value, value)
+          translation.accept if TranslationCenter::CONFIG['yaml2db_translations_accepted']
         rescue I18n::MissingTranslationData
           missing_keys[locale] += 1
         end
