@@ -4,7 +4,9 @@ development:
     en: 'English'
     de: 'German'
     ar: 'عربى'
-  yaml_translator_email: 'coder@tc.com'
+  yaml_translator_email: 'khaled@badrit.com'
   i18n_source: 'yaml' # can be db or yaml; default is yaml
   yaml2db_translations_accepted: true # when import translation from yaml to db set it to accepted by default; default is false
+  accept_admin_translations: true # when admins add/edit translations they are considered accepted directly
+  save_default_translation: true # when a new key is added to db, the value of the key is added as the default translation in English
     

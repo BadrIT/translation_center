@@ -35,6 +35,11 @@ Filter.key = function() {
   return $('#current_filter').val();
 }
 
+function capitaliseFirstLetter(string)
+{
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 $(document).ready(function(){
 
   $('.dropdown-toggle').dropdown()

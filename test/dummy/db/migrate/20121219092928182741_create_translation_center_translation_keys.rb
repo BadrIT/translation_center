@@ -3,8 +3,12 @@ class CreateTranslationCenterTranslationKeys < ActiveRecord::Migration
     create_table :translation_center_translation_keys do |t|
       t.string :name
       t.integer :category_id
-      t.integer :accepted_translation_id
-      t.date :last_accessed
+      t.datetime :last_accessed
+      
+      t.string :en_status, default: 'untranslated'
+      
+      t.string :de_status, default: 'untranslated'
+      
 
       t.timestamps
     end
