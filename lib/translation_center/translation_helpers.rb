@@ -14,7 +14,7 @@ module TranslationCenter
 
     # if enabled save the default value (Which is the titleized key name
     # as the translation)
-    if translation_key.translations.in(:en).empty? && TranslationCenter::CONFIG['save_default_translation']
+    if !options[:no_default] && translation_key.translations.in(:en).empty? && TranslationCenter::CONFIG['save_default_translation']
       translation_key.create_default_translation
     end
 

@@ -15,7 +15,7 @@ module TranslationCenter
 
     # validations
     validates :translation_key_id, :lang, :status, :value, presence: true
-    validate :one_translation_per_lang_per_key
+    validate :one_translation_per_lang_per_key, on: :create
 
     # returns accepted transations
     scope :accepted, where(status: 'accepted')
@@ -71,8 +71,7 @@ module TranslationCenter
 
     # make sure user has one translation per key per lang
     def one_translation_per_lang_per_key
-      self_or_empty = Translation.where(lang: self.lang, user_id: self.user, translation_key_id: self.key)
-      if self_or_empty.size == 0 || self_or_empty.size == 1
+      if Translation.where(lang: self.lang, user_id: self.user, translation_key_id: self.key.id).empty?
         true
       else
         false
