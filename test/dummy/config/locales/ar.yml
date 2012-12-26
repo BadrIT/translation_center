@@ -9,9 +9,23 @@ ar:
     errors: 
       messages: 
         taken: محجوز
+  posts: 
+    index: 
+      Title: عنوان
   translation_center: 
     categories: 
       category: 
         complete: مكتمل
+        keys: مفاتيح
+      index: 
+        categories: التقسيمات
       show: 
+        all: الكل
+        pending: منتظر
+        translated: مترجم
+        untranslated: "غير مترجم"
+    translation_keys: 
+      show: 
+        Add/Edit_Translation: "عدل/اضف ترجمة"
+      show_keys: 
         untranslated: "غير مترجم"

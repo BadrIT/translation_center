@@ -3,10 +3,19 @@ en:
   actions: 
     are_you_sure: "Are you sure ?"
   activerecord: 
+    attributes: 
+      user: 
+        email: Email
+        password: Password
+        remember_me: "Remember Me"
     errors: 
       messages: 
         record_invalid: "Validation failed: %{errors}"
         taken: "has already been taken"
+  attributes: 
+    email: Email
+    password: Password
+    remember_me: "Remember Me"
   date: 
     abbr_day_names: 
       - Sun
@@ -186,6 +195,12 @@ en:
       create: "Create %{model}"
       submit: "Save %{model}"
       update: "Update %{model}"
+  layouts: 
+    translation_center: 
+      application: 
+        Translation_Center: "Translation Center"
+        from: From
+        to: To
   meta_search: 
     or: or
     predicates: 
@@ -256,6 +271,12 @@ en:
     precision: 
       format: 
         delimiter: ""
+  posts: 
+    index: 
+      Content: Content
+      Listing_posts: "Listing Posts"
+      Title: Title
+      testing_new_keys: "Testing New Keys"
   support: 
     array: 
       last_word_connector: ", and "
@@ -272,6 +293,53 @@ en:
     categories: 
       category: 
         complete: complete
+        keys: Keys
+        translations_keys: "Translations Keys"
+      index: 
+        Name: Name
+        categories: Categories
+      show: 
+        all: All
+        name: Name
+        pending: Pending
+        translated: Translated
+        untranslated: Untranslated
+    translation_keys: 
+      show: 
+        Add/Edit_Translation: "Add/Edit Translation"
+        Add_Translation: "Add Translation"
+        Translations: Translations
+        no_translations_available: "No Translations Available"
+      show_keys: 
+        translated: Translated
+        untranslated: Untranslated
+        waiting_acceptance: "Waiting Acceptance"
+      translation_keys: 
+        no_translation_keys: "No Translation Keys"
+        untranslated: Untranslated
+    translations: 
+      accept_translation: 
+        accept: Accept
+        unaccept: Unaccept
+      index: 
+        date: Date
+        no_translations_available: "No Translations Available"
+        ? "sort_by:"
+        : "Sort By:"
+        votes: Votes
+      show: 
+        by: By
+        ? "on"
+        : "On"
+        vote: Vote
+        votes: Votes
+        you: You
+  user: 
+    email: Email
+    invalid: Invalid
+    password: Password
+    remember_me: "Remember Me"
+    signed_in: "Signed In"
   will_paginate: 
     next_label: "Next &#8594;"
     page_entries_info: 

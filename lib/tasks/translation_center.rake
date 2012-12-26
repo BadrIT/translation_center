@@ -47,7 +47,7 @@ namespace :translation_center do
         I18n.locale = locale
         begin
           translation = TranslationCenter::Translation.find_or_initialize_by_translation_key_id_and_lang_and_user_id(translation_key.id, locale.to_s, translator.id)
-          value = I18n.translate(key, raise: true, yaml: true, :no_default true)
+          value = I18n.translate(key, raise: true, yaml: true, no_default: true)
           translation.update_attribute(:value, value)
           # accept this yaml translation
           translation.accept if TranslationCenter::CONFIG['yaml2db_translations_accepted']
