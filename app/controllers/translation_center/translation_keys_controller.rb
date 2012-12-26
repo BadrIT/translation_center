@@ -8,6 +8,7 @@ module TranslationCenter
     # POST /translation_keys/1/update_translation.js
     def update_translation
       @translation = current_user.translation_for @translation_key, session[:lang_to]
+      @key_before_status = @translation_key.status(session[:lang_to])
       respond_to do |format|
         # only admin can edit accepted translations
         if (current_user.can_admin_translations? || !@translation.accepted?) && !params[:value].strip.blank?
@@ -15,7 +16,7 @@ module TranslationCenter
           @translation.update_attributes(value: YAML.load(params[:value].strip), status: 'pending')
           # translation added by admin is considered the accepted one as it is trusted
           @translation.accept if current_user.can_admin_translations? && CONFIG['accept_admin_translations']
-          format.json {render json: { value: @translation.value, status: @translation.status  } }
+          format.json {render json: { value: @translation.value, status: @translation.key.status(@translation.lang), key_before_status: @key_before_status  } }
         else
           render nothing: true
         end 

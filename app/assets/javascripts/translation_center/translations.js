@@ -192,12 +192,17 @@ function editableTranslations(){
         }
         else if(Filter.key() == 'all')
         {
-          // if normal user then moved to pending
+          eval('increment' + capitaliseFirstLetter(data.status))()
+          eval('decrement' + capitaliseFirstLetter(data.key_before_status))()
+          // change status of translation
           if(data.status == 'pending')
+          {
             $('li.translation_key[data-key-id=' + key_id + ']').children('div').removeClass('badge-important').addClass('badge-warning');
+          }
           else
-            // admin then move to translated
+          {
             $('li.translation_key[data-key-id=' + key_id + ']').children('div').removeClass('badge-important').addClass('badge-success');
+          }
         }
       }
 
