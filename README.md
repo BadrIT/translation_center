@@ -109,3 +109,31 @@ development:
     es: 'Espaniol'
     fr: 'French'
 ```
+
+#Without Devise
+
+If your application doesn't use devise for authentication then you have to
+provide helper named `current_user` that returns the current user in the session and a before_filter named `authenticate_user!` that redirects a user
+to login page if not already signed in.
+
+You need to add these methods in an initialize, for example `translation_authentication.rb` :
+```ruby
+module TranslationCenter
+  class ApplicationController < ActionController::Base
+
+    # current_user is needed in views
+    helper_method :current_user
+
+    def authenticate_user!
+      # redirect to login if user not signed in
+    end
+
+    def current_user
+      # write code that returns the current user in session
+    end
+
+  end
+end  
+```
+
+Also notice that your user must have an email attribute.
