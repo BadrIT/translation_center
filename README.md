@@ -115,7 +115,7 @@ module TranslationCenter
 end  
 ```
 
-*Note:* Also notice that your user must have an email attribute.
+**Note:** Also notice that your user must have an email attribute.
 
 
 
