@@ -7,6 +7,11 @@ module TranslationCenter
   end
 
   def translate_with_adding(locale, key, options = {})
+    # handle calling translation with a blank key
+    if key.blank?
+      return translate_without_adding(locale, key, options)
+    end
+
     # add the new key or update it
     translation_key = TranslationCenter::TranslationKey.find_or_create_by_name(key)
     #  UNCOMMENT THIS LATER TO SET LAST ACCESSED AT

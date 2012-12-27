@@ -21,6 +21,7 @@ namespace :translation_center do
       path = key.split('.')
       last_step = hash
       path.each do |step|
+        break if last_step.blank?
         last_step = last_step[step.to_sym]
       end
       last_step
@@ -67,8 +68,13 @@ namespace :translation_center do
           # if translation needs parameters for interpolation then get the value
           # as a string from the translations hash          
           value = get_translation_from_hash(translation_key.name, all_yamls[locale])
-          translation.update_attribute(:value, value)
-          translation.accept if TranslationCenter::CONFIG['yaml2db_translations_accepted']
+          # key may not be available in has of this locale so just dont add translation
+          unless value.blank?
+            translation.update_attribute(:value, value)
+            translation.accept if TranslationCenter::CONFIG['yaml2db_translations_accepted']
+          else
+            missing_keys[locale] += 1
+          end
         rescue I18n::MissingTranslationData
           missing_keys[locale] += 1
         end
