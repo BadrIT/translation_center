@@ -89,28 +89,7 @@ Any I18n.translate method will display translations from database ACCEPTED trans
 i18n_source: 'db' # can be db or yaml; default is yaml
 ```
 
-#Add new language
-
-If you want to add a language to the translation center, you need to run the generator:
-
-```ruby
-rails g migration translation_center:add_lang es fr
-rake db:migrate
-```
-
-You will also need to add the language to config/translation_center.yml
-
-```ruby
-development:
-  lang:
-    en: 'English'
-    ar: 'Arabic'
-    de: 'German'
-    es: 'Espaniol'
-    fr: 'French'
-```
-
-#Without Devise
+##Without Devise
 
 If your application doesn't use devise for authentication then you have to
 provide helper named `current_user` that returns the current user in the session and a before_filter named `authenticate_user!` that redirects a user
@@ -136,4 +115,27 @@ module TranslationCenter
 end  
 ```
 
-Also notice that your user must have an email attribute.
+*Note:* Also notice that your user must have an email attribute.
+
+
+
+##Add new language
+
+If you want to add a language to the translation center, you need to run the generator:
+
+```ruby
+rails g migration translation_center:add_lang es fr
+rake db:migrate
+```
+
+You will also need to add the language to config/translation_center.yml
+
+```ruby
+development:
+  lang:
+    en: 'English'
+    ar: 'Arabic'
+    de: 'German'
+    es: 'Espaniol'
+    fr: 'French'
+```
