@@ -31,11 +31,10 @@
             /       %li
             /         %a.language_from{ href: '#', lang_sym: locale}
             /           = language_name(locale)
+            
             .pull-left.nav_text
               = t('.translate_to')
             %li.dropdown.pull-left
-
-              
               %a.dropdown-toggle{"data-toggle" => "dropdown", href: '#'}
                 = language_name(to_lang)
                 %b.caret
@@ -44,6 +43,10 @@
                   %li
                     %a.language_to{ href: '#', lang_sym: locale}
                       = language_name(locale)
+
+            %ul.nav.pull-right.back_to_app
+              %li
+                = link_to t('.back_to_app'), main_app.root_path
 
     .container
       .row
