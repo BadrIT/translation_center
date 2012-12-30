@@ -21,8 +21,8 @@ namespace :translation_center do
       path = key.split('.')
       last_step = hash
       path.each do |step|
-        break if last_step.blank?
-        last_step = last_step[step.to_sym]
+        break if last_step.blank? || !last_step.is_a?(Hash)
+        last_step = last_step[step.to_s.to_sym]
       end
       last_step
     end
@@ -57,25 +57,15 @@ namespace :translation_center do
 
       I18n.available_locales.each do |locale|
         I18n.locale = locale
-        begin
-          translation = TranslationCenter::Translation.find_or_initialize_by_translation_key_id_and_lang_and_user_id(translation_key.id, locale.to_s, translator.id)
-          # no_default option to prevent the default translation from being created
-          value = I18n.translate(key, raise: true, yaml: true, no_default: true)
+        translation = TranslationCenter::Translation.find_or_initialize_by_translation_key_id_and_lang_and_user_id(translation_key.id, locale.to_s, translator.id)
+        # no_default option to prevent the default translation from being created
+        # value = I18n.translate(key, raise: true, yaml: true, no_default: true)
+        value = get_translation_from_hash(translation_key.name, all_yamls[locale])
+        unless value.blank?
           translation.update_attribute(:value, value)
           # accept this yaml translation
           translation.accept if TranslationCenter::CONFIG['yaml2db_translations_accepted']
-        rescue I18n::MissingInterpolationArgument
-          # if translation needs parameters for interpolation then get the value
-          # as a string from the translations hash          
-          value = get_translation_from_hash(translation_key.name, all_yamls[locale])
-          # key may not be available in has of this locale so just dont add translation
-          unless value.blank?
-            translation.update_attribute(:value, value)
-            translation.accept if TranslationCenter::CONFIG['yaml2db_translations_accepted']
-          else
-            missing_keys[locale] += 1
-          end
-        rescue I18n::MissingTranslationData
+        else
           missing_keys[locale] += 1
         end
 
