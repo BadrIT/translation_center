@@ -19,20 +19,20 @@
               = t('.Translation_Center')
           %ul.nav
             %li.divider-vertical
-            .pull-left.nav_text
-              = t('.from')
-            %li.dropdown.pull-left
+            / .pull-left.nav_text
+            /   = t('.from')
+            / %li.dropdown.pull-left
               
-              %a.dropdown-toggle{"data-toggle" => "dropdown", href: '#'}
-                = language_name(from_lang)
-                %b.caret
-              %ul.dropdown-menu
-                - I18n.available_locales.each do |locale|
-                  %li
-                    %a.language_from{ href: '#', lang_sym: locale}
-                      = language_name(locale)
+            /   %a.dropdown-toggle{"data-toggle" => "dropdown", href: '#'}
+            /     = language_name(from_lang)
+            /     %b.caret
+            /   %ul.dropdown-menu
+            /     - I18n.available_locales.each do |locale|
+            /       %li
+            /         %a.language_from{ href: '#', lang_sym: locale}
+            /           = language_name(locale)
             .pull-left.nav_text
-              = t('.to')
+              = t('.translate_to')
             %li.dropdown.pull-left
 
               
