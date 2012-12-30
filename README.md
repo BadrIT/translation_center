@@ -139,3 +139,9 @@ development:
     es: 'Espaniol'
     fr: 'French'
 ```
+
+##Screen Shots
+
+[Alt text](https://raw.github.com/mahkhaled/translation_center/master/app/assets/images/translation_center/translation_center_1.png "Translation Center")
+![Alt text](https://raw.github.com/mahkhaled/translation_center/master/app/assets/images/translation_center/translation_center_2.png "Translation Center")
+![Alt text](https://raw.github.com/mahkhaled/translation_center/master/app/assets/images/translation_center/translation_center_3.png "Translation Center")
