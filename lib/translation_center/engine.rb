@@ -8,6 +8,7 @@ require 'will_paginate'
 require 'devise'
 require 'meta_search'
 require 'js-routes'
+require 'font-awesome-rails'
 
 module TranslationCenter
   class Engine < ::Rails::Engine
