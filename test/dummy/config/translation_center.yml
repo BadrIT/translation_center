@@ -1,6 +1,6 @@
 development:
   enabled: true
-  inspector: true
+  inspector: 'missing'
   # what language to support and their display names
   lang:
     en: 'English'
