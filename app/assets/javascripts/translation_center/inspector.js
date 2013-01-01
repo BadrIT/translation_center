@@ -8,7 +8,7 @@ $(document).ready(function() {
     var top = $(this).offset().top - 20;
     var left = $(this).offset().left - 10;
     var id = $(this).data('id');
-    $('#inplace_editing').append($('<a>').text('Edit').attr('target', '_blank').attr('href', Routes.translation_center_translation_key_path(id)).attr('data-id', id).attr('style', 'left:' + left + 'px;top:' + top + 'px' ).attr('class', 'badge badge-success inplace_edit_button'));
+    $('#inplace_editing').append($('<a>').attr('target', '_blank').attr('href', Routes.translation_center_translation_key_path(id)).attr('data-id', id).attr('style', 'left:' + left + 'px;top:' + top + 'px' ).attr('class', 'icon-edit badge badge-info inplace_edit_button'));
 
   });
 
