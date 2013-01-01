@@ -23,7 +23,7 @@ module TranslationCenter
       end
     end
 
-    # GET /translation_keys/1
+    # GET /translation_keys/translations
     def translations
       if params[:sort_by] == 'votes'
         @translations = @translation_key.translations.in(session[:lang_to]).sorted_by_votes
@@ -33,6 +33,10 @@ module TranslationCenter
       respond_to do |format|
         format.js
       end
+    end
+
+    # GET /translation_keys/1
+    def show
     end
     
     # POST /translation_keys

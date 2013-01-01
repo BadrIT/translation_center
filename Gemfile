@@ -27,6 +27,7 @@ gem 'will_paginate'
 gem 'devise'
 gem 'meta_search'
 gem 'js-routes'
+gem 'font-awesome-rails'
 
 group :development do
   gem 'ruby-debug-base19x', '~> 0.11.30.pre4'

@@ -4,6 +4,7 @@ PATH
     translation_center (0.0.1)
       acts_as_votable
       devise
+      font-awesome-rails
       haml
       haml-rails
       jquery-rails
@@ -64,6 +65,8 @@ GEM
       railties (~> 3.1)
       warden (~> 1.2.1)
     erubis (2.7.0)
+    font-awesome-rails (0.4.1)
+      railties (~> 3.1)
     haml (3.1.7)
     haml-rails (0.3.5)
       actionpack (>= 3.1, < 4.1)
@@ -161,6 +164,7 @@ DEPENDENCIES
   acts_as_votable
   debugger
   devise
+  font-awesome-rails
   haml
   haml-rails
   jquery-rails
