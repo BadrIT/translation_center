@@ -52,6 +52,20 @@ module TranslationCenter
 
 end
 
+# override html_message to add a class to the returned span
+module I18n
+  class MissingTranslation
+    module Base
+      # added another class to be used
+      def html_message
+        key = keys.last.to_s.gsub('_', ' ').gsub(/\b('?[a-z])/) { $1.capitalize }
+        %(<span class="translation_missing inplace_key" title="translation missing: #{keys.join('.')}">#{key}</span>)
+      end
+
+    end
+  end
+end
+
 I18n::Backend::Base.send :include, TranslationCenter
 
 
