@@ -143,7 +143,8 @@ development:
 ##Screen Shots
 
 When you visit `/translation_center` you will see the list of all categories and how many keys they have.
-![Alt text](https://raw.github.com/mahkhaled/translation_center/master/app/samples/categories_screen.png "Translation Center")
+https://raw.github.com/mahkhaled/translation_center/master/samples/categories_screen.png
+![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/categories_screen.png "Translation Center")
 
 Click on category to view all the keys, keys are divided into untranslated (has no translations), pending (has translations but not approved yet), translated (has accepted translations)
-![Alt text](https://raw.github.com/mahkhaled/translation_center/master/app/samples/many_translations.png "Translation Center")
+![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/many_translations.png "Translation Center")
