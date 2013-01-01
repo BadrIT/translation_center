@@ -1,6 +1,3 @@
-Translation admin must extend User model and implement a boolean method named can_admin_translations?
-
-
 ## Getting started
 
 TranslationCenter works with Rails 3.2 onwards. You can add it to your Gemfile with:
@@ -49,7 +46,7 @@ In routes file add
 mount TranslationCenter::Engine => "/translation_center"
 ```
 
-You now need to define who is the translation center admin. Admin can accept translations, manage translation keys and do more things. To define your admin, you need to override User#can_admin_translations? method like the following....
+By default, all users are admins, you need to define who is the translation center admin. Admin can accept translations, manage translation keys and do more things. To define your admin, you need to override User#can_admin_translations? method like the following....
 
 ```ruby
 def can_admin_translations?
@@ -158,3 +155,11 @@ Click on a key to view all translations for that key, then you can add or edit y
 As an admin you can accept pending translations that have been added by other users, you can also edit and remove keys.
 
 ![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/accept_pending.png "Translation Center")
+
+
+##Demo
+
+We have added translation_center to the Tracks app, you can play with the demo here
+http://translation-center.herokuapp.com/translation_center/
+and visit the main app at
+http://translation-center.herokuapp.com
