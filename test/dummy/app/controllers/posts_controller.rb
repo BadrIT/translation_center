@@ -4,7 +4,6 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
-    I18n.locale = :ar
 
     respond_to do |format|
       format.html # index.html.erb
