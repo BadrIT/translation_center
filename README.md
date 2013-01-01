@@ -115,6 +115,27 @@ end
 **Note:** Also notice that your user must have an email attribute.
 
 
+##Inspector
+
+Another nice option is the inspector that allows the users to go directly to the key from your application view.
+Just set `inspector` option in `translation_center.yml` to `true`, and then add this line to your `application.css`
+
+```ruby
+*= require translation_center/inspector
+```
+
+and this line to your `application.js`
+
+```ruby
+//= require translation_center/inspector
+```
+
+if you are not using bootstrap then you need to add this line to your `application.css`
+
+```ruby
+*= require translation_center/bootstrap
+```
+
 
 ##Add new language
 
