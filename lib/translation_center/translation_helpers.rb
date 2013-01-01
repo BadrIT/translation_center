@@ -6,6 +6,15 @@ module TranslationCenter
     end
   end
 
+  # wraps a span if inspector option is set
+  def wrap_span(translation, translation_key)
+    if TranslationCenter::CONFIG['inspector'] 
+      "<span class='inplace_key' data-id='#{translation_key.id}'> #{translation} </span>".html_safe
+    else
+      translation
+    end
+  end
+
   def translate_with_adding(locale, key, options = {})
     # handle calling translation with a blank key
     if key.blank?
@@ -25,17 +34,17 @@ module TranslationCenter
 
     if options.delete(:yaml)
       # just return the normal I18n translation
-      return translate_without_adding(locale, key, options)
+      return wrap_span(translate_without_adding(locale, key, options), translation_key)
     end
 
     i18n_source = TranslationCenter::CONFIG['i18n_source'] 
     if i18n_source == 'db'
       val = translation_key.accepted_translation_in(locale).try(:value) || options[:default]
       throw(:exception, I18n::MissingTranslation.new(locale, key, options)) unless val
-      val
+      wrap_span(val, translation_key)
     else
       # just return the normal I18n translation
-      translate_without_adding(locale, key, options)
+      wrap_span(translate_without_adding(locale, key, options), translation_key)
     end
   end
 
@@ -45,7 +54,7 @@ module TranslationCenter
     TranslationCenter::CONFIG = YAML.load_file("config/translation_center.yml")[Rails.env]
   else
     puts "WARNING: translation_center will be using default options if config/translation_center.yml doesn't exists"
-    TranslationCenter::CONFIG = {'enabled' => true, 'lang' => {'en' => 'English'}, 'yaml_translator_email' => 'coder@tc.com', 'i18n_source' => 'db', 'yaml2db_translations_accepted' => true,
+    TranslationCenter::CONFIG = {'enabled' => true, 'inspector' => false, 'lang' => {'en' => 'English'}, 'yaml_translator_email' => 'coder@tc.com', 'i18n_source' => 'db', 'yaml2db_translations_accepted' => true,
                                 'accept_admin_translations' => true,  'save_default_translation' => true }
   end
   I18n.available_locales = TranslationCenter::CONFIG['lang'].keys

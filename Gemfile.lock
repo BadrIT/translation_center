@@ -4,6 +4,7 @@ PATH
     translation_center (0.0.1)
       acts_as_votable
       devise
+      font-awesome-rails
       haml
       haml-rails
       jquery-rails
