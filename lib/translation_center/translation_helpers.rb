@@ -59,7 +59,9 @@ module I18n
       # added another class to be used
       def html_message
         key = keys.last.to_s.gsub('_', ' ').gsub(/\b('?[a-z])/) { $1.capitalize }
-        %(<span class="translation_missing inplace_key" title="translation missing: #{keys.join('.')}">#{key}</span>)
+        translation_key = keys
+        translation_key.shift
+        %(<span class="translation_missing inplace_key" data-id="#{TranslationCenter::TranslationKey.find_by_name(translation_key.join('.')).id}" title="translation missing: #{keys.join('.')}">#{key}</span>)
       end
 
     end
