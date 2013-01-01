@@ -118,7 +118,7 @@ end
 ##Inspector
 
 Another nice option is the inspector that allows the users to go directly to the key from your application view.
-Just set `inspector` option in `translation_center.yml` to `true`, and then add this line to your `application.css`
+Just set `inspector` option in `translation_center.yml` to `all` if you want to inspect all keys otherwise set it to `missing` to inspect only untranslated keys, and then add this line to your `application.css`
 
 ```ruby
 *= require translation_center/inspector
