@@ -148,6 +148,9 @@ When you visit `/translation_center` you will see the list of all categories and
 
 Click on category to view all the keys, keys are divided into untranslated (has no translations), pending (has translations but not approved yet), translated (has accepted translations)
 
+![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/view_keys.png "Translation Center")
+
+
 Click on a key to view all translations for that key, then you can add or edit your translation for that key, users can also vote for votes.
 
 ![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/many_translations.png "Translation Center")
