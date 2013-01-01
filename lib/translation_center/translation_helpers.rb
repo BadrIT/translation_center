@@ -8,7 +8,7 @@ module TranslationCenter
 
   # wraps a span if inspector option is set
   def wrap_span(translation, translation_key)
-    if TranslationCenter::CONFIG['inspector'] 
+    if TranslationCenter::CONFIG['inspector'] && translation_key.category.name != 'translation_center'
       "<span class='inplace_key' data-id='#{translation_key.id}'> #{translation} </span>".html_safe
     else
       translation
@@ -69,8 +69,16 @@ module I18n
       def html_message
         key = keys.last.to_s.gsub('_', ' ').gsub(/\b('?[a-z])/) { $1.capitalize }
         translation_key = keys
+        # remove locale
         translation_key.shift
-        %(<span class="translation_missing inplace_key" data-id="#{TranslationCenter::TranslationKey.find_by_name(translation_key.join('.')).id}" title="translation missing: #{keys.join('.')}">#{key}</span>)
+        translation_key = TranslationCenter::TranslationKey.find_by_name(translation_key.join('.'))
+
+        # don't change the keys that come from translation center
+        if translation_key.category.name == 'translation_center' || !TranslationCenter::CONFIG['inspector'] 
+          %(<span class="translation_missing" title="translation missing: #{keys.join('.')}">#{key}</span>)
+        else
+          %(<span class="translation_missing inplace_key" data-id="#{translation_key.id}" title="translation missing: #{keys.join('.')}">#{key}</span>)
+        end
       end
 
     end
