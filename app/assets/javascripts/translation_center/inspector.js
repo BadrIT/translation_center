@@ -6,7 +6,9 @@ $(document).ready(function() {
 
   $(window).scroll(function() {
     $('.tc-inspector-key').each(function(){
-      $(this).offset().top = $(this).offset().top - $(window).scrollTop()
+      var id = $(this).data('id');
+      $(this).offset().top = $('span[data-id=' + id + ']').offset().top - $(window).scrollTop()
+      // $(this).offset().top = $(this).offset().top - $(window).scrollTop()
     })
   });
     
