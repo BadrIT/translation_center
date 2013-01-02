@@ -16,7 +16,7 @@
             = favicon_link_tag
             = Rails.application.class.parent_name
             %em.center_title
-              = t('.Translation_Center')
+              = t('translation_center.translation_center')
           %ul.nav
             %li.divider-vertical
             / .pull-left.nav_text
@@ -33,7 +33,7 @@
             /           = language_name(locale)
             
             .pull-left.nav_text
-              = t('.translate_to')
+              = t('translation_center.translate_to')
             %li.dropdown.pull-left
               %a.dropdown-toggle{"data-toggle" => "dropdown", href: '#'}
                 = language_name(to_lang)
@@ -46,7 +46,7 @@
 
             %ul.nav.pull-right.back_to_app
               %li
-                = link_to t('.back_to_app'), main_app.root_path
+                = link_to t('translation_center.back_to_app'), main_app.root_path
 
     .container
       .row
