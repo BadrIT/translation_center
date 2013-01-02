@@ -1,7 +1,7 @@
 development:
   # what language to support and their display names
   enabled: true # set false to just ignore translation center overriding of i18n.translate
-  inspector: 'off' #set all to enable inspector for translated and untranslated keys, or set to 'missing' to inspect only untranslated keys
+  inspector: 'missing' #set all to enable inspector for translated and untranslated keys, or set to 'missing' to inspect only untranslated keys, or 'off' to turn off inspector.
   lang:
     en: 'English'
   yaml_translator_email: 'coder@tc.com'
