@@ -46,7 +46,7 @@
 
             %ul.nav.pull-right.back_to_app
               %li
-                = link_to t('translation_center.back_to_app'), main_app.root_path
+                = link_to t('translation_center.back_to_app'), main_app.root_path, target: Rails.application.class.parent_name
 
     .container
       .row
