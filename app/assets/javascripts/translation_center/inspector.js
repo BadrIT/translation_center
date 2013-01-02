@@ -10,7 +10,7 @@ $(document).ready(function() {
     var left = $(this).offset().left - 10;
     var id = $(this).data('id');
     // missing translation will be in red while translated will be in green
-    var badgeClass = $(this).hasClass('translation_missing') ? 'badge-important' : 'badge-success'
+    var badgeClass = getBadge($(this).data('type'));
     $('#inplace_editing').append($('<a>').attr('target', '_blank').attr('href', Routes.translation_center_translation_key_path(id)).attr('data-id', id).attr('style', 'left:' + left + 'px;top:' + top + 'px' ).attr('class', 'icon-edit badge ' + badgeClass  + ' inplace_edit_button'));
 
   });
@@ -18,12 +18,31 @@ $(document).ready(function() {
   // highlight the key when user hovers over it
   $(".inplace_edit_button").mouseover(function() {
     var id = $(this).data('id');
-    var key = $('.inplace_key[data-id=' + id + ']')
-    var color = key.hasClass('translation_missing') ? 'red' : 'green'
+    var key = $('.inplace_key[data-id=' + id + ']');
+    var color = getColor(key.data('type'));
     key.css('color', color);
   }).mouseout(function(){
     var id = $(this).data('id');
     $('.inplace_key[data-id=' + id + ']').css('color', '');
   });
+
+  function getBadge(status) {
+    if(status == 'untranslated')
+      return 'badge-important'
+    else if(status == 'pending')
+      return 'badge-warning'
+    else
+      return 'badge-success'
+  }
+
+  function getColor(status) {
+    if(status == 'untranslated')
+      return 'red'
+    else if(status == 'pending')
+      return 'orange'
+    else
+      return 'green'
+  }
+
 
 });
