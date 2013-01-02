@@ -77,7 +77,6 @@ t('posts.index.title')
 ```
 
 When you visit the page where this key is rendered, a new translation key will be stored with name 'index.title' under category 'posts'.
-
 You then visit the TranslationCenter and translate the key (by default translations added by admins are considered accepted).
 
 To migrate translations from TranslationCenter database to yaml files
@@ -92,15 +91,19 @@ To migrate translations from yaml files to TranslationCenter database
 rake translation_center:yaml2db
 ```
 
-The `yaml2db` and `db2yaml` rakes take optional attribute locale if you want to export or import just one locale, otherwise they use `I18n.available_locales`.
+If you want to export or import just one locale, provide the locale as an attribute to the rakes, for example:
 
-But imported translations should have translator. You can edit translator email from `translation_center.yml` The rake task `yaml2db` will create this user if not exists.
+```ruby
+rake translation_center:yaml2db[:ar]
+```
+
+Imported translations should have a translator. You can edit translator email from `translation_center.yml` The rake task `yaml2db` will create this user if it doesn't exist.
 
 ```ruby
 yaml_translator_email: 'coder@tc.com'
 ```
 
-The imported translations status will be accepted by default. If you want to disable that, comment the following line in `translation_center.yaml`
+The imported translations status will be accepted by default. If you want to disable this, comment the following line in `translation_center.yaml`
 
 ```ruby
 yaml2db_translations_accepted: true
