@@ -130,11 +130,16 @@ and this line to your `application.js`
 //= require translation_center/inspector
 ```
 
-if you are not using bootstrap then you need to add this line to your `application.css`
+###Screen Shots
 
-```ruby
-*= require translation_center/bootstrap
-```
+You will see a small icon beside each key
+
+![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/inspector_shot.png "Translation Center")
+
+If we click on the icon of 'Betrachten', we will be directed to the key page, where we can add/edit translations directly.
+
+![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/inspector_visit_key.png "Translation Center")
+
 
 
 ##Add new language
@@ -169,7 +174,7 @@ Click on category to view all the keys, keys are divided into untranslated (has 
 ![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/view_keys.png "Translation Center")
 
 
-Click on a key to view all translations for that key, then you can add or edit your translation for that key, users can also vote for votes.
+Click on a key to view all translations for that key, then you can add or edit your translation for that key, users can also vote for translations.
 
 ![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/many_translations.png "Translation Center")
 
@@ -180,8 +185,11 @@ As an admin you can accept pending translations that have been added by other us
 
 ##Demo
 
-We have added translation_center to the Tracks app, you can play with the demo here
-http://translation-center.herokuapp.com/translation_center/
+We have added translation_center to the [Tracks][1] app:
 
-and visit the main app at
-http://translation-center.herokuapp.com
+  * You can play with the demo here: http://translation-center.herokuapp.com/translation_center/
+
+  * Visit the Tracks app at http://translation-center.herokuapp.com
+
+
+  [1]: https://github.com/TracksApp/tracks
