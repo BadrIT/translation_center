@@ -1,3 +1,16 @@
+## Introduction
+
+Translation Center is an engine that can be easily integerated into your rails app, it allows users of your system to easily add translations for your site.
+
+###Features
+  * Detect new keys in code and store them in db for users to translate
+  * Different roles: users and admins
+  * Add new locales easily
+  * Inspect keys from your application view directly
+  * Translate from db(live) or yaml
+  * Users can vote up translations
+  * Default translation in English for keys
+
 ## Getting started
 
 TranslationCenter works with Rails 3.2 onwards. You can add it to your Gemfile with:
