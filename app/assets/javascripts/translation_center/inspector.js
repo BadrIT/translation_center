@@ -4,14 +4,6 @@ $(document).ready(function() {
   if($('body').children('#tc-inspector-links').length == 0 && $('#tc_no_inspector').length == 0 )
     $('body').append('<div id="tc-inspector-links"></div>');
 
-  $(window).scroll(function() {
-    $('.tc-inspector-key').each(function(){
-      var id = $(this).data('id');
-      $(this).offset().top = $('span[data-id=' + id + ']').offset().top - $(window).scrollTop()
-      // $(this).offset().top = $(this).offset().top - $(window).scrollTop()
-    })
-  });
-    
   // for each key add a link that goes to the key page
   $('.tc-inspector-key').each(function(){
     var top = $(this).offset().top - 20;
