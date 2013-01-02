@@ -136,7 +136,7 @@ You will see a small icon beside each key
 
 ![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/inspector_shot.png "Translation Center")
 
-If we click on the icon of 'Betrachten', we will be directed to the key page, where we can add/edit translations directly.
+If you click on the icon of 'Betrachten', you will be directed to the key page, where you can add/edit translations directly.
 
 ![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/inspector_visit_key.png "Translation Center")
 
