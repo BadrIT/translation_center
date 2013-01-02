@@ -11,6 +11,7 @@ ar:
         taken: محجوز
   posts: 
     index: 
+      Content: المحتوى
       Title: عنوان
   translation_center: 
     categories: 

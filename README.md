@@ -1,13 +1,14 @@
 ## Introduction
 
-Translation Center is an engine that can be easily integerated into your rails app, it allows users of your system to easily add translations for your site.
+Translation Center is an engine that can be easily integerated into your rails app, it allows users of your system to easily translate your site.
 
 ###Features
-  * Detect new keys in code and store them in db for users to translate
-  * Different roles: users and admins
+  * Different roles: translators and admins
   * Add new locales easily
-  * Inspect keys from your application view directly
-  * Translate from db(live) or yaml
+  * Detect new translation keys in code and store them in DB for users to translate
+  * Inspect translation keys from your application view directly
+  * Import and Export translations in yaml format
+  * Switch translations backend between DB and yaml
   * Users can vote up translations
   * Default translation in English for keys
 
@@ -69,6 +70,16 @@ end
 
 ## How to use
 
+Add new key to your views, for example:
+
+```ruby
+t('posts.index.title')
+```
+
+When you visit the page where this key is rendered, a new translation key will be stored with name 'index.title' under category 'posts'.
+
+You then visit the TranslationCenter and translate the key (by default translations added by admins are considered accepted).
+
 To migrate translations from TranslationCenter database to yaml files
 
 ```ruby
@@ -81,22 +92,24 @@ To migrate translations from yaml files to TranslationCenter database
 rake translation_center:yaml2db
 ```
 
-But imported translations should have translator. You can edit translator email from translation_center.yml The rake task yaml2db will create this user if not exists
+The `yaml2db` and `db2yaml` rakes take optional attribute locale if you want to export or import just one locale, otherwise they use `I18n.available_locales`.
+
+But imported translations should have translator. You can edit translator email from `translation_center.yml` The rake task `yaml2db` will create this user if not exists.
 
 ```ruby
 yaml_translator_email: 'coder@tc.com'
 ```
 
-The imported translations status will be ACCEPTED by default. If you want to disable that, comment the following line in translation_center.yaml
+The imported translations status will be accepted by default. If you want to disable that, comment the following line in `translation_center.yaml`
 
 ```ruby
 yaml2db_translations_accepted: true
 ```
 
-Any I18n.translate method will display translations from database ACCEPTED translations. If you want to skip database translations and set to use yaml translations, comment the following line in translation_center.yaml
+You can control the translations source by changing the value of `i18n_source` in `translation_center.yaml`
 
 ```ruby
-i18n_source: 'db' # can be db or yaml; default is yaml
+i18n_source: 'yaml' # can be db or yaml; default is yaml
 ```
 
 ##Without Devise
@@ -143,16 +156,13 @@ and this line to your `application.js`
 //= require translation_center/inspector
 ```
 
-###Screen Shots
+Now when you reload your page you will see a small icon beside your translated keys.
 
-You will see a small icon beside each key
+![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/inspector_shot.png "Inspected keys")
 
-![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/inspector_shot.png "Translation Center")
+In the previous image, if you click on the icon of 'Betrachten', you will be directed to the key page, where you can add/edit translations directly.
 
-If you click on the icon of 'Betrachten', you will be directed to the key page, where you can add/edit translations directly.
-
-![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/inspector_visit_key.png "Translation Center")
-
+![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/inspector_visit_key.png "Visit a key from inspector")
 
 
 ##Add new language
@@ -180,20 +190,20 @@ development:
 
 When you visit `/translation_center` you will see the list of all categories and how many keys they have.
 
-![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/categories_screen.png "Translation Center")
+![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/categories_screen.png "Listing Categories")
 
 Click on category to view all the keys, keys are divided into untranslated (has no translations), pending (has translations but not approved yet), translated (has accepted translations)
 
-![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/view_keys.png "Translation Center")
+![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/view_keys.png "View a category")
 
 
 Click on a key to view all translations for that key, then you can add or edit your translation for that key, users can also vote for translations.
 
-![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/many_translations.png "Translation Center")
+![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/many_translations.png "View a translation key")
 
 As an admin you can accept pending translations that have been added by other users, you can also edit and remove keys.
 
-![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/accept_pending.png "Translation Center")
+![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/accept_pending.png "Accept pending")
 
 
 ##Demo

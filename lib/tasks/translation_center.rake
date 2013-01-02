@@ -1,7 +1,7 @@
 namespace :translation_center do
 
   desc "Insert yaml translations in db"
-  task :yaml2db => :environment do
+  task :yaml2db, [:locale ] => :environment do |t, args|
 
     def collect_keys(scope, translations)
       full_keys = []
@@ -42,8 +42,10 @@ namespace :translation_center do
     end.flatten.uniq
     puts "#{all_keys.size} #{all_keys.size == 1 ? 'unique key' : 'unique keys'} found."
 
+    locales = args[:locale].blank? ? I18n.available_locales : [args[:locale]]
+
     new_keys = 0
-    missing_keys = I18n.available_locales.inject({}) do |memo, lang|
+    missing_keys = locales.inject({}) do |memo, lang|
       memo[lang] = 0
       memo
     end
@@ -55,7 +57,7 @@ namespace :translation_center do
         new_keys += 1
       end
 
-      I18n.available_locales.each do |locale|
+      locales.each do |locale|
         I18n.locale = locale
         translation = TranslationCenter::Translation.find_or_initialize_by_translation_key_id_and_lang_and_user_id(translation_key.id, locale.to_s, translator.id)
         # no_default option to prevent the default translation from being created
@@ -79,9 +81,11 @@ namespace :translation_center do
   end
 
   desc "Export translations from db to yaml"
-  task :db2yaml => :environment do
+  task :db2yaml, [:locale ] => :environment do |t, args|
+    locales = args[:locale].blank? ? I18n.available_locales : [args[:locale]]
+
     # for each locale build a hash for the translations and write to file
-    I18n.available_locales.each do |locale|
+    locales.each do |locale|
       result = {}
       I18n.locale = locale
       puts "Started exporting translations in #{locale}"

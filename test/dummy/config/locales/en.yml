@@ -4,6 +4,11 @@ en:
     are_you_sure: "Are you sure ?"
   activerecord: 
     attributes: 
+      post: 
+        content: Content
+        title: Title
+      translation_center/translation_key: 
+        name: Name
       user: 
         email: Email
         password: Password
@@ -13,9 +18,11 @@ en:
         record_invalid: "Validation failed: %{errors}"
         taken: "has already been taken"
   attributes: 
+    content: Content
     email: Email
     password: Password
     remember_me: "Remember Me"
+    title: Title
   date: 
     abbr_day_names: 
       - Sun
@@ -199,8 +206,10 @@ en:
     translation_center: 
       application: 
         Translation_Center: "Translation Center"
+        back_to_app: "Back To App"
         from: From
         to: To
+        translate_to: "Translate To"
   meta_search: 
     or: or
     predicates: 
@@ -271,6 +280,9 @@ en:
     precision: 
       format: 
         delimiter: ""
+  post: 
+    content: Content
+    title: Title
   posts: 
     index: 
       Content: Content
@@ -290,6 +302,7 @@ en:
       short: "%d %b %H:%M"
     pm: pm
   translation_center: 
+    back_to_app: "Back To App"
     categories: 
       category: 
         complete: complete
@@ -298,12 +311,15 @@ en:
       index: 
         Name: Name
         categories: Categories
+        show: Show
       show: 
         all: All
         name: Name
         pending: Pending
         translated: Translated
         untranslated: Untranslated
+    translate_to: "Translate To"
+    translation_center: "Translation Center"
     translation_keys: 
       show: 
         Add/Edit_Translation: "Add/Edit Translation"
@@ -320,6 +336,7 @@ en:
     translations: 
       accept_translation: 
         accept: Accept
+        accepted: Accepted
         unaccept: Unaccept
       index: 
         date: Date
@@ -328,12 +345,19 @@ en:
         : "Sort By:"
         votes: Votes
       show: 
+        accept: Accept
+        accepted: Accepted
         by: By
         ? "on"
         : "On"
+        unvote: Unvote
         vote: Vote
         votes: Votes
         you: You
+      unvote: 
+        vote: Vote
+      vote: 
+        unvote: Unvote
   user: 
     email: Email
     invalid: Invalid
