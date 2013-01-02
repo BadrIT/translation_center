@@ -97,14 +97,14 @@ a.badge:hover {
   top: 0;
 }
 
-.inplace_edit_button{
+.tc-inspector-link{
   z-index:9999999;
   opacity:0.5;
   color:white !important;
   position:absolute;
 }
 
-.inplace_edit_button:hover
+.tc-inspector-link:hover
 { 
   opacity:1;
 }

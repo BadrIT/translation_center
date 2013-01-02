@@ -9,7 +9,7 @@ module TranslationCenter
   # wraps a span if inspector option is set to all
   def wrap_span(translation, translation_key)
     if TranslationCenter::CONFIG['inspector'] == 'all' && translation_key.category.name != 'translation_center'
-      "<span class='inplace_key' data-type='translated' data-id='#{translation_key.id}'> #{translation} </span>".html_safe
+      "<span class='tc-inspector-key' data-type='translated' data-id='#{translation_key.id}'> #{translation} </span>".html_safe
     else
       translation
     end
@@ -77,7 +77,7 @@ module I18n
         if translation_key.category.name == 'translation_center' || TranslationCenter::CONFIG['inspector'] == 'off'
           %(<span class="translation_missing" title="translation missing: #{keys.join('.')}">#{key}</span>)
         else
-          %(<span class="translation_missing inplace_key" data-type="#{translation_key.status(I18n.locale)}" data-id="#{translation_key.id}" title="translation missing: #{keys.join('.')}">#{key}</span>)
+          %(<span class="translation_missing tc-inspector-key" data-type="#{translation_key.status(I18n.locale)}" data-id="#{translation_key.id}" title="translation missing: #{keys.join('.')}">#{key}</span>)
         end
       end
 
