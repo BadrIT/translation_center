@@ -1,7 +1,7 @@
 //= require js-routes
 
 $(document).ready(function() {
-  if($('body').children('#tc-inspector-links').length == 0)
+  if($('body').children('#tc-inspector-links').length == 0 && $('#tc_no_inspector').length == 0 )
     $('body').append('<div id="tc-inspector-links"></div>');
 
   $(window).scroll(function() {
