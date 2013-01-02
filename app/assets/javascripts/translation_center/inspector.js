@@ -11,7 +11,7 @@ $(document).ready(function() {
     var id = $(this).data('id');
     // missing translation will be in red while translated will be in green
     var badgeClass = getBadge($(this).data('type'));
-    $('#tc-inspector-links').append($('<a>').attr('title', 'Click to visit key').attr('target', '_blank').attr('href', Routes.translation_center_translation_key_path(id)).attr('data-id', id).attr('style', 'left:' + left + 'px;top:' + top + 'px' ).attr('class', 'icon-edit badge ' + badgeClass  + ' tc-inspector-link'));
+    $('#tc-inspector-links').append($('<a>').attr('title', 'Click to visit key').attr('target', '_blank').attr('href', Routes.translation_center_translation_key_path(id)).attr('data-id', id).attr('style', 'left:' + left + 'px;top:' + top + 'px' ).attr('class', 'icon-edit tc-badge ' + badgeClass  + ' tc-inspector-link'));
 
   });
 
@@ -28,11 +28,11 @@ $(document).ready(function() {
 
   function getBadge(status) {
     if(status == 'untranslated')
-      return 'badge-important'
+      return 'tc-badge-important'
     else if(status == 'pending')
-      return 'badge-warning'
+      return 'tc-badge-warning'
     else
-      return 'badge-success'
+      return 'tc-badge-success'
   }
 
   function getColor(status) {

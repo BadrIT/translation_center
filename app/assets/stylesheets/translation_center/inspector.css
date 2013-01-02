@@ -2,7 +2,7 @@
 *= require font-awesome
 */
 
-.badge {
+.tc-badge {
   display: inline-block;
   padding: 2px 4px;
   font-size: 11.844px;
@@ -21,7 +21,7 @@
           border-radius: 3px;
 }
 
-.badge {
+.tc-badge {
   padding-right: 9px;
   padding-left: 9px;
   -webkit-border-radius: 9px;
@@ -30,70 +30,70 @@
 }
 
 a.label:hover,
-a.badge:hover {
+a.tc-badge:hover {
   color: #ffffff;
   text-decoration: none;
   cursor: pointer;
 }
 
 .label-important,
-.badge-important {
+.tc-badge-important {
   background-color: #b94a48;
 }
 
 .label-important[href],
-.badge-important[href] {
+.tc-badge-important[href] {
   background-color: #953b39;
 }
 
 .label-warning,
-.badge-warning {
+.tc-badge-warning {
   background-color: #f89406;
 }
 
 .label-warning[href],
-.badge-warning[href] {
+.tc-badge-warning[href] {
   background-color: #c67605;
 }
 
 .label-success,
-.badge-success {
+.tc-badge-success {
   background-color: #468847;
 }
 
 .label-success[href],
-.badge-success[href] {
+.tc-badge-success[href] {
   background-color: #356635;
 }
 
 .label-info,
-.badge-info {
+.tc-badge-info {
   background-color: #3a87ad;
 }
 
 .label-info[href],
-.badge-info[href] {
+.tc-badge-info[href] {
   background-color: #2d6987;
 }
 
 .label-inverse,
-.badge-inverse {
+.tc-badge-inverse {
   background-color: #333333;
 }
 
 .label-inverse[href],
-.badge-inverse[href] {
+.tc-badge-inverse[href] {
   background-color: #1a1a1a;
 }
 
 .btn .label,
-.btn .badge {
+.btn .tc-badge {
   position: relative;
   top: -1px;
 }
 
 .btn-mini .label,
-.btn-mini .badge {
+.btn-mini .tc-badge {
   top: 0;
 }
 
