@@ -3,6 +3,8 @@ require_dependency "translation_center/application_controller"
 module TranslationCenter
   class CenterController < ApplicationController
 
+    before_filter :can_admin?, only: [ :dashboard ]
+
     # set language user translating from
     def set_language_from
       session[:lang_from] = params[:lang].to_sym
@@ -22,6 +24,7 @@ module TranslationCenter
     def dashboard
       @stats = TranslationKey.langs_stats
       @langs = @stats.keys
+      @translations_changes = Translation.recent_changes
     end
 
   end

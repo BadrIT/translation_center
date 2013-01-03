@@ -89,26 +89,50 @@ module TranslationCenter
       TranslationKey.all.count
     end
 
+    # returns the count of translated keys in lang
+    def self.translated_count(lang)
+      TranslationKey.translated(lang).count
+    end
+
+    # returns the count of pending keys in lang
+    def self.pending_count(lang)
+      TranslationKey.pending(lang).count
+    end
+
+    # returns the count of untranslated keys in lang
+    def self.untranslated_count(lang)
+      TranslationKey.untranslated(lang).count
+    end
+
+    # returns the percentage of translated keys in lang
     def self.translated_percentage(lang)
-      keys_count != 0 ? 100.0 * TranslationKey.translated(lang).count / keys_count : 100
+      (keys_count != 0 ? 100.0 * TranslationKey.translated(lang).count / keys_count : 100).round(2)
     end
 
+    # returns the percentage of pending keys in lang
     def self.pending_percentage(lang)
-      keys_count != 0 ? 100.0 * TranslationKey.pending(lang).count / keys_count : 100
+      (keys_count != 0 ? 100.0 * TranslationKey.pending(lang).count / keys_count : 100).round(2)
     end
 
+    # returns the percentage of untranslated keys in lang
     def self.untranslated_percentage(lang)
-      keys_count != 0 ? 100.0 * TranslationKey.untranslated(lang).count / keys_count : 100
+      (keys_count != 0 ? 100.0 * TranslationKey.untranslated(lang).count / keys_count : 100).round(2)
     end
 
+    # builds hash of stats about the langs supported by translation center
     def self.langs_stats
       stats = {}
       I18n.available_locales.each do |locale|
         stats[locale] = {}
         stats[locale]['name'] = TranslationCenter::CONFIG['lang'][locale.to_s]
-        stats[locale]['translated'] = translated_percentage(locale)
-        stats[locale]['untranslated'] = untranslated_percentage(locale)
-        stats[locale]['pending'] = pending_percentage(locale)
+
+        stats[locale]['translated_percentage'] = translated_percentage(locale)
+        stats[locale]['pending_percentage'] = pending_percentage(locale)
+        stats[locale]['untranslated_percentage'] = untranslated_percentage(locale)
+
+        stats[locale]['translated_count'] = translated_count(locale)
+        stats[locale]['pending_count'] = pending_count(locale)
+        stats[locale]['untranslated_count'] = untranslated_count(locale)
       end
       stats
     end

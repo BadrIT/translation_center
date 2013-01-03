@@ -12,9 +12,10 @@ module TranslationCenter
     end
 
     protected
-      def can_admin?
-        current_user.can_admin_translations?
-      end
+    
+    def can_admin?
+      current_user.can_admin_translations?
+    end
 
   end
 end

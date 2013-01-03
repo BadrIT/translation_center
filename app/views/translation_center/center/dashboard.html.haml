@@ -1,4 +1,7 @@
-.span6
+%h1
+  = t('.dashboard')
+
+.span12
   %table.table.table-striped
     %thead
       %tr
@@ -6,6 +9,13 @@
           = t('.language')
         %th
           = t('.progress')
+        %th
+          = t('.translated')
+        %th
+          = t('.pending')
+        %th
+          = t('.untranslated')
+
 
     %tbody
       - @langs.each do |lang|
@@ -14,10 +24,49 @@
             = link_to @stats[lang]['name'], set_lang_to_path(lang: lang.to_s)
           %td
             .progress
-              .bar.bar-success{ style: "width: #{@stats[lang]['translated']}%;" }
-              .bar.bar-warning{ style: "width: #{@stats[lang]['pending']}%;" }
-              .bar.bar-danger{ style: "width: #{@stats[lang]['untranslated']}%;" }
+              .bar.bar-success{ style: "width: #{@stats[lang]['translated_percentage']}%;" }
+              .bar.bar-warning{ style: "width: #{@stats[lang]['pending_percentage']}%;" }
+              .bar.bar-danger{ style: "width: #{@stats[lang]['untranslated_percentage']}%;" }
           %td
+            = "#{@stats[lang]['translated_count']}(#{@stats[lang]['translated_percentage']}%)"
+          %td
+            = "#{@stats[lang]['pending_count']}(#{@stats[lang]['pending_percentage']}%)"
+          %td
+            = "#{@stats[lang]['untranslated_count']}(#{@stats[lang]['untranslated_percentage']}%)"
+
+
+.span12
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+          = t('.key')
+        %th
+          = t('.locale')
+        %th
+          = t('.user')
+        %th
+          = t('.date')
+
+    %tbody
+      - @translations_changes.each do |change|
+        %tr
+          %td
+            = link_to change.auditable.key.name, change.auditable.key
+          %td
+            = change.auditable.lang
+          %td
+            = change.auditable.user.email
+          %td
+            %ul
+              - change.audited_changes.each do |change, value|
+                %li
+                  = format_change(change, value)
+          %td
+            = change.created_at
+
+      
+
 
   
   
