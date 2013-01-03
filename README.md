@@ -17,7 +17,7 @@ Translation Center is an engine that can be easily integerated into your rails a
 TranslationCenter works with Rails 3.2 onwards. You can add it to your Gemfile with:
 
 ```ruby
-gem 'translation_center', :git => 'git@github.com:mahkhaled/translation_center.git'
+gem 'translation_center', :git => 'git@github.com:BadrIT/translation_center.git'
 ```
 
 Run bundle install command.
@@ -161,11 +161,11 @@ and this line to your `application.js`
 
 Now when you reload your page you will see a small icon beside your translated keys.
 
-![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/inspector_shot.png "Inspected keys")
+![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/inspector_shot.png "Inspected keys")
 
 In the previous image, if you click on the icon of 'Betrachten', you will be directed to the key page, where you can add/edit translations directly.
 
-![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/inspector_visit_key.png "Visit a key from inspector")
+![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/inspector_visit_key.png "Visit a key from inspector")
 
 
 ##Add new language
@@ -193,20 +193,20 @@ development:
 
 When you visit `/translation_center` you will see the list of all categories and how many keys they have.
 
-![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/categories_screen.png "Listing Categories")
+![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/categories_screen.png "Listing Categories")
 
 Click on category to view all the keys, keys are divided into untranslated (has no translations), pending (has translations but not approved yet), translated (has accepted translations)
 
-![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/view_keys.png "View a category")
+![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/view_keys.png "View a category")
 
 
 Click on a key to view all translations for that key, then you can add or edit your translation for that key, users can also vote for translations.
 
-![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/many_translations.png "View a translation key")
+![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/many_translations.png "View a translation key")
 
 As an admin you can accept pending translations that have been added by other users, you can also edit and remove keys.
 
-![Alt text](https://raw.github.com/mahkhaled/translation_center/master/samples/accept_pending.png "Accept pending")
+![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/accept_pending.png "Accept pending")
 
 
 ##Demo
