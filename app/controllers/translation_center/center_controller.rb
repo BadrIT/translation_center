@@ -24,7 +24,7 @@ module TranslationCenter
     def dashboard
       @stats = TranslationKey.langs_stats
       @langs = @stats.keys
-      @translations_changes = Translation.recent_changes
+      @translations_changes = Translation.recent_changes.paginate(:page => params[:page], :per_page => 5)
     end
 
   end
