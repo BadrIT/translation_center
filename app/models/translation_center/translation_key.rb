@@ -90,15 +90,15 @@ module TranslationCenter
     end
 
     def self.translated_percentage(lang)
-      keys_count != 0 ? 100 * TranslationKey.translated(lang).count / keys_count : 100
+      keys_count != 0 ? 100.0 * TranslationKey.translated(lang).count / keys_count : 100
     end
 
     def self.pending_percentage(lang)
-      keys_count != 0 ? 100 * TranslationKey.pending(lang).count / keys_count : 100
+      keys_count != 0 ? 100.0 * TranslationKey.pending(lang).count / keys_count : 100
     end
 
     def self.untranslated_percentage(lang)
-      keys_count != 0 ? 100 * TranslationKey.untranslated(lang).count / keys_count : 100
+      keys_count != 0 ? 100.0 * TranslationKey.untranslated(lang).count / keys_count : 100
     end
 
     def self.langs_stats
