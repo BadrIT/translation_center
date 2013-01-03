@@ -42,7 +42,7 @@ namespace :translation_center do
     end.flatten.uniq
     puts "#{all_keys.size} #{all_keys.size == 1 ? 'unique key' : 'unique keys'} found."
 
-    locales = args[:locale].blank? ? I18n.available_locales : [args[:locale]]
+    locales = args[:locale].blank? ? I18n.available_locales : [args[:locale].to_sym]
 
     new_keys = 0
     missing_keys = locales.inject({}) do |memo, lang|
@@ -82,7 +82,7 @@ namespace :translation_center do
 
   desc "Export translations from db to yaml"
   task :db2yaml, [:locale ] => :environment do |t, args|
-    locales = args[:locale].blank? ? I18n.available_locales : [args[:locale]]
+    locales = args[:locale].blank? ? I18n.available_locales : [args[:locale].to_sym]
 
     # for each locale build a hash for the translations and write to file
     locales.each do |locale|
@@ -90,7 +90,11 @@ namespace :translation_center do
       I18n.locale = locale
       puts "Started exporting translations in #{locale}"
       TranslationCenter::TranslationKey.translated(locale).each do |key|
-        key.add_to_hash(result, locale)
+        begin
+          key.add_to_hash(result, locale)  
+        rescue Exception => e
+          puts "Error exporting key '#{key.name}'"
+        end
       end
       File.open("config/locales/#{locale.to_s}.yml", 'w') do |file|
         file.write({locale.to_s => result}.ya2yaml)
