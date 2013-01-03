@@ -2,7 +2,7 @@
   = t('.dashboard')
 
 .span12
-  %table.table.table-striped
+  %table.table.table-striped.table-bordered
     %thead
       %tr
         %th
@@ -33,10 +33,11 @@
             = "#{@stats[lang]['pending_count']}(#{@stats[lang]['pending_percentage']}%)"
           %td
             = "#{@stats[lang]['untranslated_count']}(#{@stats[lang]['untranslated_percentage']}%)"
-
-
+%hr
+%h1
+  = t('.activity')
 .span12
-  %table.table.table-striped
+  %table.table.table-striped.table-bordered
     %thead
       %tr
         %th
