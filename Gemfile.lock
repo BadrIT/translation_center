@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/rweng/jquery-datatables-rails.git
+  revision: 2024c99b26f94a036629ac04bd158c70d2f4f11b
+  specs:
+    jquery-datatables-rails (1.11.1)
+      jquery-rails
+
 PATH
   remote: .
   specs:
@@ -167,6 +174,7 @@ DEPENDENCIES
   font-awesome-rails
   haml
   haml-rails
+  jquery-datatables-rails!
   jquery-rails
   js-routes
   meta_search

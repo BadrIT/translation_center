@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'js-routes'
   s.add_dependency 'will_paginate'
   s.add_dependency 'font-awesome-rails'
+  s.add_dependency 'jquery-datatables-rails'
 
   s.add_development_dependency "sqlite3"
 end
