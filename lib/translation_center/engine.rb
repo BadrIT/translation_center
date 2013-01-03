@@ -9,6 +9,7 @@ require 'devise'
 require 'meta_search'
 require 'js-routes'
 require 'font-awesome-rails'
+require 'audited-activerecord'
 
 module TranslationCenter
   class Engine < ::Rails::Engine
