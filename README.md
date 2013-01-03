@@ -94,7 +94,7 @@ rake translation_center:yaml2db
 If you want to export or import just one locale, provide the locale as an attribute to the rakes, for example:
 
 ```ruby
-rake translation_center:yaml2db[:ar]
+rake translation_center:yaml2db[ar]
 ```
 
 Imported translations should have a translator. You can edit translator email from `translation_center.yml` The rake task `yaml2db` will create this user if it doesn't exist.
