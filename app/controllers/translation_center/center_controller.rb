@@ -13,7 +13,10 @@ module TranslationCenter
     # set language user translating to
     def set_language_to
       session[:lang_to] = params[:lang].to_sym
-      render nothing: true
+      respond_to do |format|
+        format.html { redirect_to root_url } 
+        format.js { render nothing: true }
+      end
     end
 
   end

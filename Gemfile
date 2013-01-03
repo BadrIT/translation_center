@@ -29,10 +29,6 @@ gem 'meta_search'
 gem 'js-routes'
 gem 'font-awesome-rails'
 
-group :assets do
-  gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
-end
-
 group :development do
   gem 'ruby-debug-base19x', '~> 0.11.30.pre4'
   gem 'ruby-debug19'

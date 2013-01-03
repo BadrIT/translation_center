@@ -9,7 +9,6 @@ require 'devise'
 require 'meta_search'
 require 'js-routes'
 require 'font-awesome-rails'
-require 'jquery-datatables-rails'
 
 module TranslationCenter
   class Engine < ::Rails::Engine

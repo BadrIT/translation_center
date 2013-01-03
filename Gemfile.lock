@@ -14,6 +14,7 @@ PATH
       font-awesome-rails
       haml
       haml-rails
+      jquery-datatables-rails
       jquery-rails
       js-routes
       meta_search

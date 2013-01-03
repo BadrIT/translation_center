@@ -1,0 +1,23 @@
+.span6
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+          = t('.language')
+        %th
+          = t('.progress')
+
+    %tbody
+      - @langs.each do |lang|
+        %tr
+          %td
+            = link_to @stats[lang]['name'], set_lang_to_path(lang: lang.to_s)
+          %td
+            .progress
+              .bar.bar-success{ style: "width: #{@stats[lang]['translated']}%;" }
+              .bar.bar-warning{ style: "width: #{@stats[lang]['pending']}%;" }
+              .bar.bar-danger{ style: "width: #{@stats[lang]['untranslated']}%;" }
+          %td
+
+  
+  

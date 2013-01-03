@@ -85,6 +85,34 @@ module TranslationCenter
       translation.save
     end
 
+    def self.keys_count
+      TranslationKey.all.count
+    end
+
+    def self.translated_percentage(lang)
+      keys_count != 0 ? 100 * TranslationKey.translated(lang).count / keys_count : 100
+    end
+
+    def self.pending_percentage(lang)
+      keys_count != 0 ? 100 * TranslationKey.pending(lang).count / keys_count : 100
+    end
+
+    def self.untranslated_percentage(lang)
+      keys_count != 0 ? 100 * TranslationKey.untranslated(lang).count / keys_count : 100
+    end
+
+    def self.langs_stats
+      stats = {}
+      I18n.available_locales.each do |locale|
+        stats[locale] = {}
+        stats[locale]['name'] = TranslationCenter::CONFIG['lang'][locale.to_s]
+        stats[locale]['translated'] = translated_percentage(locale)
+        stats[locale]['untranslated'] = untranslated_percentage(locale)
+        stats[locale]['pending'] = pending_percentage(locale)
+      end
+      stats
+    end
+
     # adds a translation key with its translation to a translation yaml hash
     # send the hash and the language as parameters
     def add_to_hash(all_translations, lang)
