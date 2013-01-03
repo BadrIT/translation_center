@@ -1,8 +1,21 @@
 ## Introduction
 
-Translation Center is an engine that can be easily integerated into your rails app, it allows users of your system to easily translate your site.
+Translation Center is a multi lingual web engine for Rails 3 apps. It builds a translation center community with translators and admins from your system users.
 
-###Features
+Translation Center can be used by:
+
+###App Users
+Contribute in translating your app in different locales using easy web interface.
+
+###Rails Developers
+Avoid updating many yaml files as you will just use the easy web interface to manage translations.
+
+###Site Admin
+Manage all app translations; collect stats, accept, add, edit, remove translations...etc
+
+
+## Features
+
   * Different roles: translators and admins
   * Add new locales easily
   * Detect new translation keys in code and store them in DB for users to translate

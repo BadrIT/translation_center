@@ -54,7 +54,7 @@ module TranslationCenter
     TranslationCenter::CONFIG = YAML.load_file("config/translation_center.yml")[Rails.env]
   else
     puts "WARNING: translation_center will be using default options if config/translation_center.yml doesn't exists"
-    TranslationCenter::CONFIG = {'enabled' => true, 'inspector' => false, 'lang' => {'en' => 'English'}, 'yaml_translator_email' => 'coder@tc.com', 'i18n_source' => 'db', 'yaml2db_translations_accepted' => true,
+    TranslationCenter::CONFIG = {'enabled' => false, 'inspector' => 'missing', 'lang' => {'en' => 'English'}, 'yaml_translator_email' => 'coder@tc.com', 'i18n_source' => 'yaml', 'yaml2db_translations_accepted' => true,
                                 'accept_admin_translations' => true,  'save_default_translation' => true }
   end
   I18n.available_locales = TranslationCenter::CONFIG['lang'].keys
