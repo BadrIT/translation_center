@@ -49,13 +49,13 @@
         %th
           = t('.changes')
         %th
-          = t('.date')
+          = t('.time')
 
     %tbody
       - @translations_changes.each do |change|
         %tr
           %td
-            = link_to change.auditable.key.name, change.auditable.key
+            = link_to change.auditable.key.name, change.auditable.key, target: '_blank'
           %td
             = change.auditable.lang
           %td
