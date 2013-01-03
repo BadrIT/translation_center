@@ -16,7 +16,7 @@ TranslationCenter::Engine.routes.draw do
     get :more_keys
   end
 
-  get 'dashboard/languages' => 'dashboard#languages', as: :dashboard_languages
+  get '/dashboard' => 'center#dashboard', as: :dashboard
 
   root to: 'categories#index'
 

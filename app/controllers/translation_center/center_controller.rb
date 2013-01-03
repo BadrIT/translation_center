@@ -19,5 +19,10 @@ module TranslationCenter
       end
     end
 
+    def dashboard
+      @stats = TranslationKey.langs_stats
+      @langs = @stats.keys
+    end
+
   end
 end
