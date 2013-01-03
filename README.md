@@ -2,7 +2,9 @@
 
 Translation Center is a multi lingual web engine for Rails 3 apps. It builds a translation center community with translators and admins from your system users.
 
-Translation Center can be used by:
+![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/view_keys.png "View category translations")
+
+## Translation Center can be used by:
 
 ###App Users
 Contribute in translating your app in different locales using easy web interface.
@@ -232,3 +234,10 @@ We have added translation_center to the [Tracks][1] app:
 
 
   [1]: https://github.com/TracksApp/tracks
+  
+
+## Credits
+
+![BadrIT](http://www.badrit.com/images/logo-main.png)
+
+Translation Center is maintained and founded by [BadrIT](http://badrit.com/)
