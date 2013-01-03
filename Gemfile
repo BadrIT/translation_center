@@ -28,6 +28,7 @@ gem 'devise'
 gem 'meta_search'
 gem 'js-routes'
 gem 'font-awesome-rails'
+gem "audited-activerecord", "~> 3.0"
 
 group :development do
   gem 'ruby-debug-base19x', '~> 0.11.30.pre4'

@@ -24,6 +24,11 @@ module TranslationCenter
 
       # user can replace this logo to change the logo
       copy_file 'assets/translation_center_logo.png', 'app/assets/images/translation_center_logo.png'
+
+      unless ActiveRecord::Base.connection.table_exists? 'audits'
+        # we use audited for tracking activity
+        migration_template 'migrations/translation_center_audits.rb', 'db/migrate/translation_center_audits.rb'
+      end
     end
 
   end

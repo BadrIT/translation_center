@@ -12,6 +12,7 @@ module TranslationCenter
     alias_method :key, :translation_key
     alias_method :voter, :user
     acts_as_votable
+    audited
 
     # validations
     validates :translation_key_id, :lang, :status, :value, presence: true
