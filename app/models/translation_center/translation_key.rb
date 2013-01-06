@@ -106,33 +106,38 @@ module TranslationCenter
 
     # returns the percentage of translated keys in lang
     def self.translated_percentage(lang)
-      (keys_count != 0 ? 100.0 * TranslationKey.translated(lang).count / keys_count : 100).round(2)
+      (100.0 * TranslationKey.translated(lang).count / keys_count).round(2)
     end
 
     # returns the percentage of pending keys in lang
     def self.pending_percentage(lang)
-      (keys_count != 0 ? 100.0 * TranslationKey.pending(lang).count / keys_count : 100).round(2)
+      (100.0 * TranslationKey.pending(lang).count / keys_count).round(2)
     end
 
     # returns the percentage of untranslated keys in lang
     def self.untranslated_percentage(lang)
-      (keys_count != 0 ? 100.0 * TranslationKey.untranslated(lang).count / keys_count : 100).round(2)
+      (100.0 * TranslationKey.untranslated(lang).count / keys_count).round(2)
     end
 
     # builds hash of stats about the langs supported by translation center
     def self.langs_stats
       stats = {}
+      all_count = keys_count
       I18n.available_locales.each do |locale|
         stats[locale] = {}
         stats[locale]['name'] = TranslationCenter::CONFIG['lang'][locale.to_s]
 
-        stats[locale]['translated_percentage'] = translated_percentage(locale)
-        stats[locale]['pending_percentage'] = pending_percentage(locale)
-        stats[locale]['untranslated_percentage'] = untranslated_percentage(locale)
+        translated = translated_count(locale)
+        pending = pending_count(locale)
+        untranslated = untranslated_count(locale)
 
-        stats[locale]['translated_count'] = translated_count(locale)
-        stats[locale]['pending_count'] = pending_count(locale)
-        stats[locale]['untranslated_count'] = untranslated_count(locale)
+        stats[locale]['translated_percentage'] = (100.0 * translated / all_count).round(2)
+        stats[locale]['pending_percentage'] = (100.0 * pending / all_count).round(2)
+        stats[locale]['untranslated_percentage'] = (100.0 * untranslated / all_count).round(2)
+
+        stats[locale]['translated_count'] = translated
+        stats[locale]['pending_count'] = pending
+        stats[locale]['untranslated_count'] = untranslated
       end
       stats
     end
