@@ -1,33 +1,37 @@
-%table.table.table-striped.table-bordered
-  %thead
-    %tr
-      %th
-        = t('.key')
-      %th
-        = t('.locale')
-      %th
-        = t('.user')
-      %th
-        = t('.changes')
-      %th
-        = t('.time')
-
-  %tbody
-    - translations_changes.each do |change|
+- if translations_changes.empty?
+  .alert.alert-info
+    = t('.no_matches')
+- else
+  %table.table.table-striped.table-bordered
+    %thead
       %tr
-        %td
-          = link_to change.auditable.key.name, change.auditable.key, target: '_blank'
-        %td
-          = change.auditable.lang
-        %td
-          = change.user.email
-        %td
-          %ul
-            - change.audited_changes.each do |change, value|
-              %li
-                = format_change(change, value)
-        %td
-          = time_ago_in_words change.created_at
-          = t('.ago')
+        %th
+          = t('.key')
+        %th
+          = t('.locale')
+        %th
+          = t('.user')
+        %th
+          = t('.changes')
+        %th
+          = t('.time')
 
-= will_paginate translations_changes
+    %tbody
+      - translations_changes.each do |change|
+        %tr
+          %td
+            = link_to change.auditable.key.name, change.auditable.key, target: '_blank'
+          %td
+            = change.auditable.lang
+          %td
+            = change.user.email
+          %td
+            %ul
+              - change.audited_changes.each do |change, value|
+                %li
+                  = format_change(change, value)
+          %td
+            = time_ago_in_words change.created_at
+            = t('.ago')
+
+  = will_paginate translations_changes
