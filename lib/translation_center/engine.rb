@@ -10,6 +10,8 @@ require 'meta_search'
 require 'js-routes'
 require 'font-awesome-rails'
 require 'audited-activerecord'
+require 'bootstrap-datepicker-rails'
+require 'meta_search'
 
 module TranslationCenter
   class Engine < ::Rails::Engine

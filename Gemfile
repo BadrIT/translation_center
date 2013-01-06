@@ -29,7 +29,6 @@ gem 'meta_search'
 gem 'js-routes'
 gem 'font-awesome-rails'
 gem 'audited-activerecord', '~> 3.0'
-
 gem 'bootstrap-datepicker-rails'
 gem 'meta_search'
 
