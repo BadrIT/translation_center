@@ -37,17 +37,17 @@
   = t('.activity')
 .span12
   %form.pull-left.form-search#search_form
-    %input.search_field.input-medium.search-query#activity_key{ name: :key_query, type: :text, placeholder: 'KEY' }
-    %select.search_field{ name: :locale_query }
+    %input.search_field.input-medium.search-query#activity_key{ name: 'search[auditable_TranslationCenter::Translation_type_translation_key_name_matches]', type: :text, placeholder: 'KEY' }
+    %select.search_field{ name: 'search[auditable_TranslationCenter::Translation_type_lang_equals]' }
       %option{name: locale, value: ''}
         = t('.select_locale')
       - I18n.available_locales.each do |locale|
         %option{name: locale, value: locale}
           = locale
     
-    %input.search_field.input-medium.search-query#activity_user{ name: :user_query, type: :text, placeholder: 'USER' }
-    %input.search_field.datepicker.input-medium.search-query#activity_from{ name: :from_date, type: :text, placeholder: 'FROM' }
-    %input.search_field.datepicker.input-medium.search-query#activity_to{ name: :to_date, type: :text, placeholder: 'TO' }
+    %input.search_field.input-medium.search-query#activity_user{ name: 'search[created_at_gteq]', type: :text, placeholder: 'USER' }
+    %input.search_field.datepicker.input-medium.search-query#activity_from{ name: 'search[created_at_lteq]', type: :text, placeholder: 'FROM' }
+    %input.search_field.datepicker.input-medium.search-query#activity_to{ name: 'search[user_user_type_email_matches]', type: :text, placeholder: 'TO' }
 
     %button.btn#search_activity{ type: :button }
       = t('.search')

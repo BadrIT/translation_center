@@ -72,10 +72,7 @@ module TranslationCenter
 
     # gets recent changes on translations
     def self.recent_changes(params = {})
-      Audited::Adapters::ActiveRecord::Audit.search(:auditable_id_in => Translation.search(:translation_key_name_matches => params[:key_query],
-                                                                                           :lang_equals => params[:locale_query]).to_a.map(&:id),
-                                                    :created_at_gteq => params[:from_date],
-                                                    :created_at_lteq => params[:to_date], :user_user_type_email_matches => params[:user_query]).relation.reorder('created_at DESC')
+      Audited::Adapters::ActiveRecord::Audit.search(params).relation.reorder('created_at DESC')
     end
 
     # make sure user has one translation per key per lang
