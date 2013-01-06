@@ -42,6 +42,7 @@ $(document).ready(function(){
     $('#search_form').children('input').each(function(){
       $(this).val('')  
     })
+    $('#search_form').children('select').val('');
     $('#search_activity').click();
   });
 
