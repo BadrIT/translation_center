@@ -24,6 +24,7 @@ module TranslationCenter
     def dashboard
       @stats = TranslationKey.langs_stats
       @langs = @stats.keys
+      @search = Audited::Adapters::ActiveRecord::Audit.search(params[:search])
       #TODO perpage constant should be put somewhere else
       @translations_changes = Translation.recent_changes.paginate(:page => params[:page], :per_page => 5)
       respond_to do |format|
