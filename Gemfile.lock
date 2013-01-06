@@ -3,6 +3,7 @@ PATH
   specs:
     translation_center (0.0.1)
       acts_as_votable
+      audited-activerecord
       devise
       font-awesome-rails
       haml
