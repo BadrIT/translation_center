@@ -73,7 +73,7 @@ module TranslationCenter
     # gets recent changes on translations
     def self.recent_changes(filter = nil, query = nil)
       # with no filter just supply all activity
-      if filter.blank?
+      if filter.blank? || filter == 'all'
         return Audited::Adapters::ActiveRecord::Audit.where(auditable_type: 'TranslationCenter::Translation').order('created_at DESC')
       end
 

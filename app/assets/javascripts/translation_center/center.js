@@ -36,6 +36,12 @@ $(document).ready(function(){
     return false;
   });
 
+  $('#search_reset').click(function(){
+    $('#activity_filter').val('all')
+    $('#activity_query').val('')
+    $('#search_activity').click();
+  });
+
   $(".pagination a").live('click', function() {
     $.ajax({
       type: "GET",

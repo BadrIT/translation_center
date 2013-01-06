@@ -36,8 +36,11 @@
 %h1
   = t('.activity')
 .span12
-  %form.pull-right.form-search
+  %form.pull-left.form-search
+    = t('.filter_by')
     %select#activity_filter{ name: :filter }
+      %option{name: 'all', value: 'all'}
+        = t('.all')
       %option{name: 'key', value: 'key'}
         = t('.key')
       %option{name: 'user', value: 'user'}
@@ -47,6 +50,8 @@
     %input.input-medium.search-query#activity_query{ name: :query, type: :text }
     %button.btn#search_activity{ type: :button }
       = t('.search')
+    %button.btn#search_reset{ type: :button }
+      = t('.reset')
     
   #activity
     = render 'activity', translations_changes: @translations_changes
