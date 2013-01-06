@@ -30,7 +30,7 @@ $(document).ready(function(){
   $('#search_activity').click(function(){
     $.ajax({
       type: 'GET',
-      url: Routes.translation_center_search_activity_path(),
+      url: Routes.translation_center_search_activity_path({format: 'js'}),
       data: { filter : $('#activity_filter').val(), query : $('#activity_query').val() }
     });
     return false;

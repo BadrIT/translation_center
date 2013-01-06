@@ -74,7 +74,7 @@ module TranslationCenter
     def self.recent_changes(filter = nil, query = nil)
       # with no filter just supply all activity
       if filter.blank? || filter == 'all'
-        return Audited::Adapters::ActiveRecord::Audit.where(auditable_type: 'TranslationCenter::Translation').order('created_at DESC')
+        return Audited::Adapters::ActiveRecord::Audit.where(auditable_type: 'TranslationCenter::Translation').reorder('created_at DESC')
       end
 
       translations = 
@@ -86,7 +86,7 @@ module TranslationCenter
         when 'user'
           Translation.joins(:user).where('users.email LIKE ? ', "%#{query}%")
       end
-      Audited::Adapters::ActiveRecord::Audit.where(auditable_id: translations.map(&:id), auditable_type: 'TranslationCenter::Translation').order('created_at DESC')
+      Audited::Adapters::ActiveRecord::Audit.where(auditable_id: translations.map(&:id), auditable_type: 'TranslationCenter::Translation').reorder('created_at DESC')
     end
 
     # make sure user has one translation per key per lang
