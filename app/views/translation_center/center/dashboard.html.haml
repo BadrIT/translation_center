@@ -36,39 +36,22 @@
 %h1
   = t('.activity')
 .span12
-  %table.table.table-striped.table-bordered
-    %thead
-      %tr
-        %th
-          = t('.key')
-        %th
-          = t('.locale')
-        %th
-          = t('.user')
-        %th
-          = t('.changes')
-        %th
-          = t('.time')
+  %form.pull-right.form-search
+    %select#activity_filter{ name: :filter }
+      %option{name: 'key', value: 'key'}
+        = t('.key')
+      %option{name: 'user', value: 'user'}
+        = t('.user')
+      %option{name: 'locale', value: 'locale'}
+        = t('.locale')
+    %input.input-medium.search-query#activity_query{ name: :query, type: :text }
+    %button.btn#search_activity{ type: :button }
+      = t('.search')
+    
+  #activity
+    = render 'activity', translations_changes: @translations_changes
 
-    %tbody
-      - @translations_changes.each do |change|
-        %tr
-          %td
-            = link_to change.auditable.key.name, change.auditable.key, target: '_blank'
-          %td
-            = change.auditable.lang
-          %td
-            = change.auditable.user.email
-          %td
-            %ul
-              - change.audited_changes.each do |change, value|
-                %li
-                  = format_change(change, value)
-          %td
-            = time_ago_in_words change.created_at
-            = t('.ago')
-
-  = will_paginate @translations_changes
+  
 
       
 

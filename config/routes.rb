@@ -17,6 +17,7 @@ TranslationCenter::Engine.routes.draw do
   end
 
   get '/dashboard' => 'center#dashboard', as: :dashboard
+  get '/search_activity' => 'center#search_activity', as: :search_activity
 
   root to: 'categories#index'
 

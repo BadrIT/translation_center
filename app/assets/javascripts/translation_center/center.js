@@ -25,7 +25,24 @@ $(document).ready(function(){
         location.reload();
       }
     });
+  });
 
+  $('#search_activity').click(function(){
+    $.ajax({
+      type: 'GET',
+      url: '/translation_center/search_activity.js',
+      data: { filter : $('#activity_filter').val(), query : $('#activity_query').val() }
+    });
+    return false;
+  });
+
+  $(".pagination a").live('click', function() {
+    $.ajax({
+      type: "GET",
+      url: $(this).attr("href"),
+      dataType: "script"
+    });
+    return false;
   });
 
   $("body").on({

@@ -24,7 +24,19 @@ module TranslationCenter
     def dashboard
       @stats = TranslationKey.langs_stats
       @langs = @stats.keys
+      #TODO perpage constant should be put somewhere else
       @translations_changes = Translation.recent_changes.paginate(:page => params[:page], :per_page => 5)
+      respond_to do |format|
+        format.html
+        format.js { render 'search_activity' }
+      end
+    end
+
+    def search_activity
+      @translations_changes = Translation.recent_changes(params[:filter], params[:query]).paginate(:page => params[:page], :per_page => 5)
+      respond_to do |format|
+        format.js
+      end
     end
 
   end

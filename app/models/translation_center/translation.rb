@@ -70,9 +70,23 @@ module TranslationCenter
       self.update_attribute(:status, 'pending')
     end
 
-    # gets recent changes on translations sorted by date
-    def self.recent_changes
-      Audited::Adapters::ActiveRecord::Audit.where(auditable_type: 'TranslationCenter::Translation').order('created_at DESC')
+    # gets recent changes on translations
+    def self.recent_changes(filter = nil, query = nil)
+      # with no filter just supply all activity
+      if filter.blank?
+        return Audited::Adapters::ActiveRecord::Audit.where(auditable_type: 'TranslationCenter::Translation').order('created_at DESC')
+      end
+
+      translations = 
+      case filter
+        when 'key'
+          Translation.joins(:translation_key).where('translation_center_translation_keys.name LIKE ? ', "%#{query}%")
+        when 'locale'
+          Translation.where(lang: query)
+        when 'user'
+          Translation.joins(:user).where('users.email LIKE ? ', "%#{query}%")
+      end
+      Audited::Adapters::ActiveRecord::Audit.where(auditable_id: translations.map(&:id), auditable_type: 'TranslationCenter::Translation').order('created_at DESC')
     end
 
     # make sure user has one translation per key per lang
