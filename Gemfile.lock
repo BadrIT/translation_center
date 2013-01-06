@@ -55,6 +55,8 @@ GEM
       activerecord (~> 3.0)
       audited (= 3.0.0)
     bcrypt-ruby (3.0.1)
+    bootstrap-datepicker-rails (0.6.35)
+      railties (>= 3.0)
     builder (3.0.4)
     columnize (0.3.6)
     debugger (1.2.2)
@@ -168,6 +170,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_votable
   audited-activerecord (~> 3.0)
+  bootstrap-datepicker-rails
   debugger
   devise
   font-awesome-rails

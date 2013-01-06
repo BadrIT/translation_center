@@ -71,22 +71,11 @@ module TranslationCenter
     end
 
     # gets recent changes on translations
-    def self.recent_changes(filter = nil, query = nil)
-      # with no filter just supply all activity
-      if filter.blank? || filter == 'all'
-        return Audited::Adapters::ActiveRecord::Audit.where(auditable_type: 'TranslationCenter::Translation').reorder('created_at DESC')
-      end
-
-      translations = 
-      case filter
-        when 'key'
-          Translation.joins(:translation_key).where('translation_center_translation_keys.name LIKE ? ', "%#{query}%")
-        when 'locale'
-          Translation.where(lang: query)
-        when 'user'
-          Translation.joins(:user).where('users.email LIKE ? ', "%#{query}%")
-      end
-      Audited::Adapters::ActiveRecord::Audit.where(auditable_id: translations.map(&:id), auditable_type: 'TranslationCenter::Translation').reorder('created_at DESC')
+    def self.recent_changes(key_query = nil, locale_query = nil, user_query = nil, from_date = nil, to_date = nil)
+      Audited::Adapters::ActiveRecord::Audit.search(:auditable_id_in => Translation.search(:translation_key_name_matches => key_query,
+                                                                                           :lang_equals => locale_query).to_a.map(&:id),
+                                                    :created_at_gteq => from_date,
+                                                    :created_at_lteq => to_date, :user_user_type_email_matches => user_query).relation.reorder('created_at DESC')
     end
 
     # make sure user has one translation per key per lang

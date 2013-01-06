@@ -36,16 +36,13 @@
 %h1
   = t('.activity')
 .span12
-  %form.pull-left.form-search
-    = t('.search_by')
-    %select#activity_filter{ name: :filter }
-      %option{name: 'key', value: 'key'}
-        = t('.key')
-      %option{name: 'user', value: 'user'}
-        = t('.user')
-      %option{name: 'locale', value: 'locale'}
-        = t('.locale')
-    %input.input-medium.search-query#activity_query{ name: :query, type: :text }
+  %form.pull-left.form-search#search_form
+    %input.search_field.input-medium.search-query#activity_key{ name: :key_query, type: :text, placeholder: 'KEY' }
+    %input.search_field.input-medium.search-query#activity_locale{ name: :locale_query, type: :text, placeholder: 'LOCALE' }
+    %input.search_field.input-medium.search-query#activity_user{ name: :user_query, type: :text, placeholder: 'USER' }
+    %input.search_field.datepicker.input-medium.search-query#activity_from{ name: :from_date, type: :text, placeholder: 'FROM' }
+    %input.search_field.datepicker.input-medium.search-query#activity_to{ name: :to_date, type: :text, placeholder: 'TO' }
+
     %button.btn#search_activity{ type: :button }
       = t('.search')
     %button.btn#search_reset{ type: :button }

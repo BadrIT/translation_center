@@ -10,3 +10,7 @@
 .center_title {
   font-size: 60%;
 }
+
+.search_field {
+  width: 120px !important;
+}

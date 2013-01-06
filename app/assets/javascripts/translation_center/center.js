@@ -3,6 +3,8 @@
 
 $(document).ready(function(){
 
+  $('.datepicker').datepicker({"format": "dd/mm/yyyy", "weekStart": 1, "autoclose": true});
+
   $('.language_to').click(function(){
     var language_to = $.trim($(this).attr('lang_sym'));
     $.ajax({
@@ -31,14 +33,15 @@ $(document).ready(function(){
     $.ajax({
       type: 'GET',
       url: Routes.translation_center_search_activity_path({format: 'js'}),
-      data: { filter : $('#activity_filter').val(), query : $('#activity_query').val() }
+      data: $('#search_form').serialize()
     });
     return false;
   });
 
   $('#search_reset').click(function(){
-    $('#activity_filter').val('all')
-    $('#activity_query').val('')
+    $('#search_form').children('input').each(function(){
+      $(this).val('')  
+    })
     $('#search_activity').click();
   });
 

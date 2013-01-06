@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require js-routes
+//= require bootstrap-datepicker
 //= require_tree .
 
 function Category() {

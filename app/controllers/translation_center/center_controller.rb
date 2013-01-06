@@ -33,7 +33,7 @@ module TranslationCenter
     end
 
     def search_activity
-      @translations_changes = Translation.recent_changes(params[:filter], params[:query]).paginate(:page => params[:page], :per_page => 5)
+      @translations_changes = Translation.recent_changes(params[:key_query], params[:locale_query], params[:user_query], params[:from_date], params[:to_date]).paginate(:page => params[:page], :per_page => 5)
       respond_to do |format|
         format.js
       end
