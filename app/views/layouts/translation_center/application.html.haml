@@ -12,42 +12,46 @@
       .navbar-inner
         .container
           %a.btn.btn-navbar{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
           %a.brand{:href => root_url}
             = favicon_link_tag
             = Rails.application.class.parent_name
             %em.center_title
               = t('translation_center.translation_center')
-          %ul.nav
-            %li.divider-vertical
-            / .pull-left.nav_text
-            /   = t('.from')
-            / %li.dropdown.pull-left
+          .nav-collapse.collapse.navbar-responsive-collapse
+            %ul.nav
+              %li.divider-vertical
+              / .pull-left.nav_text
+              /   = t('.from')
+              / %li.dropdown.pull-left
+                
+              /   %a.dropdown-toggle{"data-toggle" => "dropdown", href: '#'}
+              /     = language_name(from_lang)
+              /     %b.caret
+              /   %ul.dropdown-menu
+              /     - I18n.available_locales.each do |locale|
+              /       %li
+              /         %a.language_from{ href: '#', lang_sym: locale}
+              /           = language_name(locale)
               
-            /   %a.dropdown-toggle{"data-toggle" => "dropdown", href: '#'}
-            /     = language_name(from_lang)
-            /     %b.caret
-            /   %ul.dropdown-menu
-            /     - I18n.available_locales.each do |locale|
-            /       %li
-            /         %a.language_from{ href: '#', lang_sym: locale}
-            /           = language_name(locale)
-            
-            .pull-left.nav_text
-              = t('translation_center.translate_to')
-            %li.dropdown.pull-left
-              %a.dropdown-toggle{"data-toggle" => "dropdown", href: '#'}
-                = language_name(to_lang)
-                %b.caret
-              %ul.dropdown-menu
-                - I18n.available_locales.each do |locale|
-                  %li
-                    %a.language_to{ href: '#', lang_sym: locale}
-                      = language_name(locale)
-            - if translation_admin?
               .pull-left.nav_text
-                = link_to t('translation_center.dashboard'), dashboard_path
+                = t('translation_center.translate_to')
+              %li.dropdown.pull-left
+                %a.dropdown-toggle{"data-toggle" => "dropdown", href: '#'}
+                  = language_name(to_lang)
+                  %b.caret
+                %ul.dropdown-menu
+                  - I18n.available_locales.each do |locale|
+                    %li
+                      %a.language_to{ href: '#', lang_sym: locale}
+                        = language_name(locale)
+              - if translation_admin?
+                .pull-left.nav_text
+                  = link_to t('translation_center.dashboard'), dashboard_path
 
-            %ul.nav.pull-right.back_to_app
+            %ul.nav.pull-right
               %li
                 = link_to t('translation_center.back_to_app'), main_app.root_path, target: Rails.application.class.parent_name
 
