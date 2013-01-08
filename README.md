@@ -240,4 +240,4 @@ We have added translation_center to the [Tracks][1] app:
 
 ![BadrIT](http://www.badrit.com/images/logo-main.png)
 
-Translation Center is maintained and founded by [BadrIT](http://badrit.com/)
+Translation Center is maintained and developed by [BadrIT](http://badrit.com/)
