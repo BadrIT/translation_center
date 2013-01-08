@@ -24,6 +24,7 @@ Manage all app translations; collect stats, accept, add, edit, remove translatio
   * Inspect translation keys from your application view directly
   * Import and Export translations in yaml format
   * Switch translations backend between DB and yaml
+  * Admin dashboard for languages status and activity
   * Users can vote up translations
   * Default translation in English for keys
 
@@ -223,6 +224,13 @@ As an admin you can accept pending translations that have been added by other us
 
 ![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/accept_pending.png "Accept pending")
 
+Admin also can view the dashboard to know the status of every language
+
+![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/dashboard.png "Dashboard")
+
+or monitor activity of changes to translations.
+
+![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/activity.png "Activity")
 
 ##Demo
 
