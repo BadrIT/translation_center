@@ -4,12 +4,14 @@ PATH
     translation_center (0.0.1)
       acts_as_votable
       audited-activerecord
+      bootstrap-datepicker-rails
       devise
       font-awesome-rails
       haml
       haml-rails
       jquery-rails
       js-routes
+      meta_search
       meta_search
       mysql2
       rails (> 3.2.0)
