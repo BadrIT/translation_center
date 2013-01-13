@@ -7,11 +7,11 @@ require "translation_center/version"
 Gem::Specification.new do |s|
   s.name        = "translation_center"
   s.version     = TranslationCenter::VERSION
-  s.authors     = ["Mahmoud Khaled"]
+  s.authors     = ["Mahmoud Khaled", "Khaled Abdelhady"]
   s.email       = ["mahmoud.khaled@badrit.com"]
-  s.homepage    = "http://www.badrit.com"
-  s.summary     = "Flexible I18n translation center for Rails with web interface"
-  s.description = "TranslationCenter is a web Rails interface for inserting and editing translations. Users can also suggest or vote translations for different languages and admin can accept translation."
+  s.homepage    = "http://github.com/BadrIT/translation_center"
+  s.summary     = "Multi lingual web Translation Center community for Rails 3 apps"
+  s.description = "Translation Center is a multi lingual web engine for Rails 3 apps. It builds a translation center community with translators and admins from your system users."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
