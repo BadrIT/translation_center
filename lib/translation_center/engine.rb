@@ -1,5 +1,4 @@
 require "jquery-rails"
-require 'mysql2'
 require 'haml'
 require 'haml-rails'
 require 'acts_as_votable'
