@@ -7,7 +7,7 @@ require "translation_center/version"
 Gem::Specification.new do |s|
   s.name        = "translation_center"
   s.version     = TranslationCenter::VERSION
-  s.authors     = ["Mahmoud Khaled", "Khaled Abdelhady"]
+  s.authors     = ["BadrIT", "Mahmoud Khaled", "Khaled Abdelhady"]
   s.email       = ["mahmoud.khaled@badrit.com"]
   s.homepage    = "http://github.com/BadrIT/translation_center"
   s.summary     = "Multi lingual web Translation Center community for Rails 3 apps"
@@ -23,14 +23,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'haml-rails'
   s.add_dependency 'acts_as_votable'
   s.add_dependency 'ya2yaml'
-  s.add_dependency 'devise'
   s.add_dependency 'meta_search'
   s.add_dependency 'js-routes'
   s.add_dependency 'will_paginate'
   s.add_dependency 'font-awesome-rails'
   s.add_dependency 'audited-activerecord'
   s.add_dependency 'bootstrap-datepicker-rails'
-  s.add_dependency 'meta_search'
 
-  s.add_development_dependency "sqlite3"
 end
