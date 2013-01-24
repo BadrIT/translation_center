@@ -33,7 +33,7 @@ Manage all app translations; collect stats, accept, add, edit, remove translatio
 TranslationCenter works with Rails 3.2 onwards. You can add it to your Gemfile with:
 
 ```ruby
-gem 'translation_center', :git => 'git@github.com:BadrIT/translation_center.git'
+gem 'translation_center'
 ```
 
 Run bundle install command.
