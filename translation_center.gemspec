@@ -20,13 +20,13 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails"
   s.add_dependency 'haml'
   s.add_dependency 'haml-rails'
-  s.add_dependency 'acts_as_votable'
+  s.add_dependency 'acts_as_votable', '0.4.0'
   s.add_dependency 'ya2yaml'
   s.add_dependency 'meta_search'
-  s.add_dependency 'js-routes'
+  s.add_dependency 'js-routes', '0.8.4'
   s.add_dependency 'will_paginate'
   s.add_dependency 'font-awesome-rails'
-  s.add_dependency 'audited-activerecord'
+  s.add_dependency 'audited-activerecord', '3.0.0'
   s.add_dependency 'bootstrap-datepicker-rails'
 
 end
