@@ -42,7 +42,8 @@
               /           = language_name(locale)
               
               .pull-left.nav_text
-                = t('translation_center.translate_to')
+                %span
+                  = t('translation_center.translate_to')
               %li.dropdown.pull-left
                 %a.dropdown-toggle{"data-toggle" => "dropdown", href: '#'}
                   = language_name(to_lang)
