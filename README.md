@@ -175,6 +175,18 @@ and this line to your `application.js`
 //= require translation_center/inspector
 ```
 
+and to your application layout
+
+```ruby
+translation_center_root = "<%= translation_center_path %>
+```
+
+if you are using haml then it should be
+
+```ruby
+translation_center_root = #{translation_center_path}
+```
+
 Now when you reload your page you will see a small icon beside your translated keys.
 
 ![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/inspector_shot.png "Inspected keys")
