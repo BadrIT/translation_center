@@ -2,12 +2,17 @@
 %html
   %head
     %title TranslationCenter
+    / get the root route of the translation center
+    :javascript
+      translation_center_root = #{root_path}
     = stylesheet_link_tag    "translation_center/application", :media => "all"
     = stylesheet_link_tag    "translation_center/bootstrap"
     = javascript_include_tag "translation_center/application"
     = javascript_include_tag "translation_center/bootstrap"
     = csrf_meta_tags
   %body
+
+
     .navbar.navbar-fixed-top
       .navbar-inner
         .container

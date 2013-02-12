@@ -6,48 +6,48 @@ $(document).ready(function() {
   editableTranslations();
   editableKeyTranslations();
 
-  $('.accept_translation').live('click', function(){
+  $(document).on('click', '.accept_translation', function(){
     $.ajax({
       type: 'POST',
-      url: Routes.translation_center_translation_accept_path($(this).attr('data-translation-id'), {format: 'js'})
+      url: Routes.translation_center_translation_accept_path($(this).attr('data-translation-id')) + '.js'
     });
   });
 
-  $('.unaccept_translation').live('click', function(){
+  $(document).on('click', '.unaccept_translation', function(){
     $.ajax({
       type: 'POST',
-      url: Routes.translation_center_translation_unaccept_path($(this).attr('data-translation-id'), {format: 'js'})
+      url: Routes.translation_center_translation_unaccept_path($(this).attr('data-translation-id')) + '.js'
     });
   });
 
-  $('.sort_by_votes').live('click', function(){
+  $(document).on('click', '.sort_by_votes', function(){
     $.ajax({
       type: 'GET',
-      url: Routes.translation_center_translation_key_translations_path($(this).attr('data-key-id'), {format: 'js'}),
+      url: Routes.translation_center_translation_key_translations_path($(this).attr('data-key-id')) + '.js',
       data: {sort_by: 'votes'}
     });
   });
 
-  $('.translations_tab, .sort_by_date').live('click', function(){
+  $(document).on('click', '.translations_tab .sort_by_date', function(){
     $.ajax({
       type: 'GET',
-      url: Routes.translation_center_translation_key_translations_path($(this).attr('data-key-id'), {format: 'js'})
+      url: Routes.translation_center_translation_key_translations_path($(this).attr('data-key-id')) + '.js'
     });
   });
   
-  $('.translations_vote').live('mouseover',
+  $(document).on('mouseover', '.translations_vote',
     function() {
       $(this).addClass('badge-success');
   });
 
-  $('.translations_vote').live('mouseout',
+  $(document).on('mouseout', '.translations_vote',
     function() {
       if($(this).attr('voted') == 'false')
         $(this).removeClass('badge-success');
     }
   );
 
-  $('.translations_vote').live('click', function() {
+  $(document).on('click', '.translations_vote', function() {
     // vote
     if($(this).attr('voted') == 'false')
     {
@@ -57,7 +57,7 @@ $(document).ready(function() {
       $(this).text('Unvote');
       $.ajax({
         type: 'POST',
-        url: Routes.translation_center_translation_vote_path($(this).attr('data-translation-id'), {format: 'js'})
+        url: Routes.translation_center_translation_vote_path($(this).attr('data-translation-id')) + '.js'
       });
      
 
@@ -71,7 +71,7 @@ $(document).ready(function() {
       $(this).text('Vote');
       $.ajax({
         type: 'POST',
-        url: Routes.translation_center_translation_unvote_path($(this).attr('data-translation-id'), {format: 'js'})
+        url: Routes.translation_center_translation_unvote_path($(this).attr('data-translation-id')) + '.js'
       });
     }
   });

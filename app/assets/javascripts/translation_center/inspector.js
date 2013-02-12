@@ -1,4 +1,4 @@
-//= require js-routes
+translation_center_translation_key_path = function(id) { return translation_center_root + '/translation_keys/' + id }
 
 $(document).ready(function() {
   if($('body').children('#tc-inspector-links').length == 0 && $('#tc_no_inspector').length == 0 )
@@ -11,7 +11,7 @@ $(document).ready(function() {
     var id = $(this).data('id');
     // missing translation will be in red while translated will be in green
     var badgeClass = getBadge($(this).data('type'));
-    $('#tc-inspector-links').append($('<a>').attr('title', 'Click to visit key').attr('target', 'key_inspect').attr('href', Routes.translation_center_translation_key_path(id)).attr('data-id', id).attr('style', 'left:' + left + 'px;top:' + top + 'px' ).attr('class', 'icon-edit tc-badge ' + badgeClass  + ' tc-inspector-link'));
+    $('#tc-inspector-links').append($('<a>').attr('title', 'Click to visit key').attr('target', 'key_inspect').attr('href', translation_center_translation_key_path(id)).attr('data-id', id).attr('style', 'left:' + left + 'px;top:' + top + 'px' ).attr('class', 'icon-edit tc-badge ' + badgeClass  + ' tc-inspector-link'));
 
   });
 

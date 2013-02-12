@@ -13,19 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require js-routes
 //= require bootstrap-datepicker
 //= require_tree .
+
 
 function Category() {
 }
 
 Category.key = function() {
   return $('#category_key').val();
-}
-
-Category.path = function() {
-  return Routes.translation_center_category_path(Category.key());
 }
 
 function Filter() {

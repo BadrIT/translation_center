@@ -9,7 +9,7 @@ $(document).ready(function(){
     var language_to = $.trim($(this).attr('lang_sym'));
     $.ajax({
       type: 'POST',
-      url: Routes.translation_center_set_lang_to_path(),
+      url: Routes.translation_center_set_lang_to_path,
       data: { lang : language_to },
       success: function(){
         location.reload();
@@ -21,7 +21,7 @@ $(document).ready(function(){
     var language_from = $.trim($(this).attr('lang_sym'));
     $.ajax({
       type: 'POST',
-      url: Routes.translation_center_set_lang_from_path(),
+      url: Routes.translation_center_set_lang_from_path,
       data: { lang : language_from },
       success: function(){
         location.reload();
@@ -32,7 +32,7 @@ $(document).ready(function(){
   $('#search_activity').click(function(){
     $.ajax({
       type: 'GET',
-      url: Routes.translation_center_search_activity_path({format: 'js'}),
+      url: Routes.translation_center_search_activity_path + '.js',
       data: $('#search_form').serialize()
     });
     return false;
@@ -46,7 +46,7 @@ $(document).ready(function(){
     $('#search_activity').click();
   });
 
-  $(".pagination a").live('click', function() {
+  $(".pagination a").on('click', function() {
     $.ajax({
       type: "GET",
       url: $(this).attr("href"),

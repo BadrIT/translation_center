@@ -18,7 +18,7 @@
         = I18n.localize(translation.created_at, format: '%b, %d %Y')
   %div.translation_voting
     %a{href: '#'}
-      - voted = current_user.voted_for?(translation)
+      - voted = current_user.voted_on?(translation)
       %span.badge.pull-left.translations_vote{ class: "#{voted ? 'badge-success' : ''}", 'data-translation-id' => translation.id,  voted: voted.to_s}
         - if voted
           = t('.unvote')
