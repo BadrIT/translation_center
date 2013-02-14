@@ -38,15 +38,15 @@
 .span12
 
   = form_for @search, url: :search_activity, html: { method: :get, id: :search_form, class: 'pull-left form-search' } do |f|
-    = f.text_field 'auditable_TranslationCenter::Translation_type_translation_key_name_matches', class: 'search_field input-medium search-query',  placeholder: 'KEY'
+    = f.text_field 'auditable_TranslationCenter::Translation_type_translation_key_name_matches', class: 'search_field input-medium',  placeholder: 'KEY'
 
     = f.select 'auditable_TranslationCenter::Translation_type_lang_equals', I18n.available_locales.collect { |locale| [locale.to_s, locale.to_s] }, {:include_blank => t('.select_locale')}, class: 'search_field'
 
-    = f.text_field 'user_user_type_email_matches', class: 'search_field input-medium search-query',  placeholder: 'USER'
+    = f.text_field 'user_user_type_email_matches', class: 'search_field input-medium',  placeholder: 'USER'
 
-    = f.text_field :created_at_gteq, class: 'search_field datepicker input-medium search-query',  placeholder: 'FROM DATE'
+    = f.text_field :created_at_gteq, class: 'search_field datepicker input-medium',  placeholder: 'FROM DATE'
 
-    = f.text_field :created_at_lteq, class: 'search_field datepicker input-medium search-query', placeholder: 'TO DATE'
+    = f.text_field :created_at_lteq, class: 'search_field datepicker input-medium', placeholder: 'TO DATE'
 
     %button.btn#search_activity{ type: :button }
       = t('.search')
