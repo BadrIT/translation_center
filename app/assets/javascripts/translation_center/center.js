@@ -46,7 +46,7 @@ $(document).ready(function(){
     $('#search_activity').click();
   });
 
-  $(".pagination a").on('click', function() {
+  $(document).on('click', '.pagination a', function(){
     $.ajax({
       type: "GET",
       url: $(this).attr("href"),
