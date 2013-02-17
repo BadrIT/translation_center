@@ -137,8 +137,6 @@ If your application doesn't use devise for authentication then you have to
 provide helper named `current_user` that returns the current user in the session and a before_filter named `authenticate_user!` that redirects a user
 to login page if not already signed in.
 
-You must have an `email` attribute in your `User` model.
-
 You also need to add these methods in an initialize, for example `translation_authentication.rb` :
 ```ruby
 module TranslationCenter
@@ -159,7 +157,21 @@ module TranslationCenter
 end  
 ```
 
-**Note:** Also notice that your user must have an email attribute.
+**Email attribute:** 
+
+Translation Center assumes that the translator model (for example `User`) has an `email` attribute, this attribute is used when showing translations, activity log in dashboard and updating existing translations.
+
+If your `User` model has no `email` attribute add one or define a method named `email` like the following:
+
+```ruby
+def email
+  "translator_#{self.id}@myapp.com"
+end
+```
+
+
+
+
 
 
 ##Inspector
