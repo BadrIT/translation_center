@@ -17,7 +17,7 @@ module TranslationCenter
 
       # generate votes if it doesn't already exist
       unless ActiveRecord::Base.connection.table_exists? 'votes'
-        migration_template 'migrations/translation_center_acts_as_votable_migration.rb', 'db/migrate/translation_center_acts_as_votable_migration.rb'
+        Rails::Generators.invoke('acts_as_votable:migration')
       end
       
       copy_file 'config/translation_center.yml', 'config/translation_center.yml'
@@ -27,7 +27,7 @@ module TranslationCenter
 
       unless ActiveRecord::Base.connection.table_exists? 'audits'
         # we use audited for tracking activity
-        migration_template 'migrations/translation_center_audits.rb', 'db/migrate/translation_center_audits.rb'
+        Rails::Generators.invoke('audited:install')
       end
     end
 

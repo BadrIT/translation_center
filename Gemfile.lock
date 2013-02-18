@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    translation_center (0.0.7)
+    translation_center (0.0.8)
       acts_as_votable
       audited-activerecord
       bootstrap-datepicker-rails
