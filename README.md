@@ -198,7 +198,7 @@ In the previous image, if you click on the icon of 'Betrachten', you will be dir
 If you want to add a language to the translation center, you need to run the generator:
 
 ```ruby
-rails g migration translation_center:add_lang es fr
+rails g translation_center:add_lang es fr
 rake db:migrate
 ```
 
