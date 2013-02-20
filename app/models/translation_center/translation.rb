@@ -32,9 +32,7 @@ module TranslationCenter
 
     # called after save to update the key status
     def update_key_status
-      if status_changed?
-        self.key.update_status self.lang
-      end
+      self.key.update_status self.lang
     end
 
     # called before destory to update the key status

@@ -12,5 +12,9 @@ class User < ActiveRecord::Base
   acts_as_voter
   acts_as_translator
 
+  def can_admin_translations?
+    self.email != 'khaled@ok.com'
+  end
+
 
 end
