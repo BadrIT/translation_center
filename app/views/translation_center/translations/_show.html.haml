@@ -13,7 +13,7 @@
         - if translation.user == current_user
           = t('.you')
         - else
-          = translation.user.email
+          = translation.user.send(TranslationCenter::CONFIG['identifier_type'])
         = t('.on')
         = I18n.localize(translation.created_at, format: '%b, %d %Y')
   %div.translation_voting

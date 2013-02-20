@@ -113,10 +113,10 @@ If you want to export or import just one locale, provide the locale as an attrib
 rake translation_center:yaml2db[ar]
 ```
 
-Imported translations should have a translator. You can edit translator email from `translation_center.yml` The rake task `yaml2db` will create this user if it doesn't exist.
+Imported translations should have a translator. You can edit translator identifier (usually email address) in `translation_center.yml` The rake task `yaml2db` will create this user if it doesn't exist.
 
 ```ruby
-yaml_translator_email: 'coder@tc.com'
+yaml_translator_identifier: 'coder@tc.com'
 ```
 
 The imported translations status will be accepted by default. If you want to disable this, comment the following line in `translation_center.yaml`
@@ -161,16 +161,11 @@ end
 
 Translation Center assumes that the translator model (for example `User`) has an `email` attribute, this attribute is used when showing translations, activity log in dashboard and updating existing translations.
 
-If your `User` model has no `email` attribute add one or define a method named `email` like the following:
+If your `User` model has no `email` attribute then change the `identifier_type` in your `translation_center.yml` to a unique attribute of your translator model (`User`), for example to use username instead of email:
 
 ```ruby
-def email
-  "translator_#{self.id}@myapp.com"
-end
+  identifier_type: 'username' # Uncomment and change the identifier if your User model has no email attribute
 ```
-
-
-
 
 
 

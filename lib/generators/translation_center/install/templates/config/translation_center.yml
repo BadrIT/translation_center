@@ -15,8 +15,8 @@ development:
   # I18n.translate source
   i18n_source: 'db' # can be db or yaml; default is yaml
 
-  # yaml imported translations created by translator email
-  yaml_translator_email: 'coder@tc.com'
+  # yaml imported translations created by translator email, usually User email 
+  yaml_translator_identifier: 'coder@tc.com'
 
   # when import translation from yaml to db set it to accepted by default
   yaml2db_translations_accepted: true # default is false
@@ -26,6 +26,8 @@ development:
 
   # when a new key is added to db, the value of the key is added as the default translation in English
   save_default_translation: true 
+
+  # identifier_type: 'email' # Uncomment and change the identifier if your User model has no email attribute
 
 production:
   enabled: true # default false
@@ -44,8 +46,8 @@ production:
   # I18n.translate source
   i18n_source: 'yaml' # can be db or yaml; default is yaml
 
-  # yaml imported translations created by translator email
-  yaml_translator_email: 'coder@tc.com'
+  # # yaml imported translations created by translator email, usually User email 
+  yaml_translator_identifier: 'coder@tc.com'
 
   # when import translation from yaml to db set it to accepted by default
   yaml2db_translations_accepted: true # default is false
@@ -55,3 +57,5 @@ production:
 
   # when a new key is added to db, the value of the key is added as the default translation in English
   save_default_translation: false 
+
+  # identifier_type: 'email' # Uncomment and change the identifier if your User model has no email attribute

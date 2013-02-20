@@ -81,7 +81,7 @@ module TranslationCenter
     def create_default_translation
       translation = self.translations.build(value: self.name.to_s.split('.').last.titleize,
                                             lang: :en, status: 'accepted')
-      translation.user = User.find_by_email(TranslationCenter::CONFIG['yaml_translator_email'])
+      translation.user = TranslationCenter::Translation.translator.where(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier']).first
       translation.save
     end
 

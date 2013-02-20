@@ -28,8 +28,8 @@ namespace :translation_center do
     end
 
     # prepare translator
-    translator = TranslationCenter::Translation.translator.find_or_initialize_by_email(TranslationCenter::CONFIG['yaml_translator_email'])
-    translator.save(validate: false) if translator.new_record?
+    translator = TranslationCenter::Translation.translator.where(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier']).first
+    TranslationCenter::Translation.translator.create(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier'], validate: false) if translator.blank?
 
     # Make sure we've loaded the translations
     I18n.backend.send(:init_translations)
