@@ -28,7 +28,7 @@ $(document).ready(function() {
     });
   });
 
-  $(document).on('click', '.translations_tab .sort_by_date', function(){
+  $(document).on('click', '.translations_tab, .sort_by_date', function(){
     $.ajax({
       type: 'GET',
       url: Routes.translation_center_translation_key_translations_path($(this).attr('data-key-id')) + '.js'
