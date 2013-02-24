@@ -81,8 +81,8 @@ module TranslationCenter
     def create_default_translation
       translation = self.translations.build(value: self.name.to_s.split('.').last.titleize,
                                             lang: :en, status: 'accepted')
-      # User model is not loaded yet so can't use TranslationCenter::Translation.translator :(
-      translation.user = User.where(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier']).first
+      translation.user = TranslationCenter.prepare_translator
+
       translation.save
     end
 

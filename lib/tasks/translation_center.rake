@@ -1,3 +1,5 @@
+
+
 namespace :translation_center do
 
   desc "Insert yaml translations in db"
@@ -27,9 +29,8 @@ namespace :translation_center do
       last_step
     end
 
-    # prepare translator
-    translator = TranslationCenter::Translation.translator.where(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier']).first
-    TranslationCenter::Translation.translator.create(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier'], validate: false) if translator.blank?
+    # prepare translator by creating the translator if he doesn't exist
+    translator = TranslationCenter.prepare_translator 
 
     # Make sure we've loaded the translations
     I18n.backend.send(:init_translations)

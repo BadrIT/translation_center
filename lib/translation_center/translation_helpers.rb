@@ -1,5 +1,19 @@
 module TranslationCenter
 
+  # includes models from the models folder
+  # this method is needed to make sure that acts_as_translator is loaded
+  # in the translator class
+  def self.prepare_translator
+    if TranslationCenter::Translation.translator.present?
+      Dir.glob(File.expand_path("app/models/*.rb", Rails.root)).each do |model_file|
+        require model_file
+      end
+    end
+    translator = TranslationCenter::Translation.translator.where(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier']).first
+    TranslationCenter::Translation.translator.create(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier'], validate: false) if translator.blank?
+    translator
+  end
+
   def self.included(base)
     base.class_eval do
       alias_method_chain :translate, :adding if(TranslationCenter::CONFIG['enabled'])
