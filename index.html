@@ -73,7 +73,7 @@
 			<img src="img/main_img.png" style="background-color: #1f3b52; padding: 5px; border-radius: 5px; box-shadow: 1px 1px 15px #000;">
             
             <div class="download-box">
-				<a href="#" style="width:211%;" class="btn btn-warning btn-large"><i class="icon-cat"></i>
+				<a href="https://github.com/BadrIT/translation_center" style="width:211%;" class="btn btn-warning btn-large"><i class="icon-cat"></i>
                 <span style="margin-top: 10px; position: relative; top: 3px; left: 7px; font-size: 20px;"><strong>TranslationCenter</strong> on github.com</span>
                 </a>
 			</div>
@@ -290,30 +290,31 @@ Manage all app translations; collect stats, accept, add, edit, remove translatio
 		
 		<!-- CONTACT FORM -->
 		<div class="span7" id="contact-form">
-			<form class="form-horizontal">
+			<form action="http://translation-center.herokuapp.com/translation_center_feedbacks" method="POST" class="form-horizontal">
+
 				<fieldset>
 					<div class="control-group">
 						<label class="control-label" for="name">Name</label>
 						<div class="controls">
-							<input class="input-xlarge" type="text" id="name" placeholder="">
+							<input class="input-xlarge" name="translation_center_feedback[name]" type="text" id="name" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="email">Email</label>
 						<div class="controls">
-							<input class="input-xlarge" type="text" id="email" placeholder=" ">
+							<input class="input-xlarge"  name="translation_center_feedback[email]" type="text" id="email" placeholder=" ">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="subject">Subject</label>
 						<div class="controls">
-							<input class="input-xlarge" type="text" id="subject" placeholder="">
+							<input class="input-xlarge"  name="translation_center_feedback[subject]" type="text" id="subject" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="message">Message</label>
 						<div class="controls">
-							<textarea class="input-xlarge" rows="3" id="message" placeholder="Your message..."></textarea>
+							<textarea class="input-xlarge"  name="translation_center_feedback[message]" rows="3" id="message" placeholder="Your message..."></textarea>
 						</div>
 					</div>
 					<div class="form-actions">
