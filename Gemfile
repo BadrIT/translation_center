@@ -15,8 +15,8 @@ source "http://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-# jquery-rails is used by the dummy application
-gem "jquery-rails"
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'mysql2'
 gem 'haml'
 gem 'haml-rails'
@@ -28,7 +28,6 @@ gem 'devise'
 gem 'meta_search'
 gem 'font-awesome-rails'
 gem 'audited-activerecord'
-gem 'bootstrap-datepicker-rails'
 gem 'meta_search'
 
 group :development do
