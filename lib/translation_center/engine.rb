@@ -1,4 +1,5 @@
-require "jquery-rails"
+require 'jquery-rails'
+require 'jquery-ui-rails'
 require 'haml'
 require 'haml-rails'
 require 'acts_as_votable'
@@ -7,7 +8,6 @@ require 'will_paginate'
 require 'meta_search'
 require 'font-awesome-rails'
 require 'audited-activerecord'
-require 'bootstrap-datepicker-rails'
 
 module TranslationCenter
   class Engine < ::Rails::Engine
