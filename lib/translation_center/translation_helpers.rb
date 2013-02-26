@@ -4,13 +4,18 @@ module TranslationCenter
   # this method is needed to make sure that acts_as_translator is loaded
   # in the translator class
   def self.prepare_translator
-    if TranslationCenter::Translation.translator.present?
+    # if translator is not defined then load the models
+    if TranslationCenter::Translation.translator.blank?
       Dir.glob(File.expand_path("app/models/*.rb", Rails.root)).each do |model_file|
         require model_file
       end
     end
     translator = TranslationCenter::Translation.translator.where(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier']).first
-    TranslationCenter::Translation.translator.create(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier'], validate: false) if translator.blank?
+    # if translator doesn't exist then create him
+    if translator.blank?
+      translator = TranslationCenter::Translation.translator.new(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier'])
+      translator.save(validate: false)
+    end
     translator
   end
 
