@@ -1,0 +1,228 @@
+
+ 
+ 
+ /***** STRUCTURE *****/
+ 
+body { 
+	background: url('../img/bg.png') repeat-x;
+	background-color: #fff;
+	}
+	
+a, a:hover{
+	color:#a57124;
+	}
+	
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: white 0.02em 0.02em;
+	font-family: 'QlassikBold', sans-serif;
+	}
+	
+h2 {
+	font-size: 2.3em;
+}
+ 
+ .content {
+	padding-top:100px;
+	font-size: 1.1em;
+	line-height: 1.8em;
+	}
+	
+.content p {
+	font-size: 1.0em;
+	line-height: 1.8em;
+	margin-bottom: 1.1em;
+	}
+	
+
+/***** BODY *****/
+	
+.page-title {
+	padding: 40px 0 30px 0;
+	}
+	
+.arrow-top img {
+	margin: -7px 0 0 15px;
+	}
+.icon-cat{
+	background-position: -1px -163px;
+	width: 33px;
+	height: 33px;
+	margin-top:-7px !important;
+	}
+
+	
+/***** NAVIGATION BAR *****/
+
+
+.navbar-inner {
+background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1f3b52), color-stop(100%, #1f3b52)) !important;
+}
+
+.navbar .brand {
+	font-weight: bold;
+	color: #FFF;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
+}
+.navbar .nav .active > a, .navbar .nav .active > a:hover {
+color: #000;
+text-decoration: none;
+background-color: #ffab2e;
+}
+
+.navbar .nav > li > a {
+float: none;
+padding: 9px 10px 11px;
+line-height: 19px;
+color: #fff;
+text-decoration: none;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+}
+
+/***** HOMEPAGE *****/
+	
+#details {
+	position: relative;
+	float: right;
+	width: 527px;
+	margin-top: 80px;
+	padding-left: 20px;
+}
+
+#icon {
+	position: relative;
+	float: left;
+	margin-right: 20px;
+}
+
+#app-name {
+	position: relative;
+	float: left;
+	margin-top: 20px;
+	margin-right: 20px;
+}
+
+#app-name h1 {
+	font-size: 3.5em;
+	color: #fff;
+	text-shadow: 1px 1px 1px #000;
+	}
+	
+#version {
+	top: 30px;
+	position: relative;
+	float: left;
+}
+
+#tagline {
+	font-size: 1.4em;
+	margin-top: 5em;
+	clear: both;
+	color:#fff;
+}
+
+#description {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	color:#fff;
+}
+
+#features li {
+	background: url('../img/check.png') no-repeat left;
+	list-style: none;
+	padding-left: 25px;
+	margin-left: -23px;
+	line-height: 1.7em;
+	color:#FFF;
+}
+
+.download-box {
+	width: 45%;
+	float: left;
+	padding-top: 20px;
+	padding-right: 5%;
+	font-size: 0.9em;
+	line-height: 1.3em;
+	color:#FFF;
+	}
+	
+	
+	
+/***** ABOUT PAGE *****/
+
+.updates ul {
+	list-style: none;
+	padding-top: 10px;
+	clear: both;
+	margin: 0 0 25px 0;
+	}
+	
+.updates ul li {
+	margin-bottom: 10px;
+	}
+	
+.updates hr {
+	border-top: 1px solid #CCC;
+	}
+	
+.updates .label {
+	display: block;
+	float: left;
+	margin-right: 10px;
+}
+
+.version {
+	float:left;
+	}
+
+.release-date {
+	float:right;
+	margin-top: 4px;
+	color: #999;
+	font-size: 0.85em;
+	}
+	
+.new {
+  background-color: #3a87ad;
+}
+
+.fix {
+	background-color: #468847;
+	padding: 1px 8px 2px;
+	}
+	
+
+	
+/***** CONTACT *****/
+
+#contact-form {
+	border-left: 1px solid #cccccc;
+	}
+	
+#contact-info {
+	padding-bottom:20px;
+	}
+	
+	
+.logo{
+	position: relative;
+	float: right;
+	margin-top: -70px;
+	}
+	
+	
+/***** FOOTER *****/
+
+.footer {
+	font-size: 0.85em;
+	line-height: 1.5em;
+	padding: 15px 0;
+	border-top: 1px solid #CCC;
+}
+
+#copyright {
+	float:left;
+	}
+	
+#credits {
+	float:right;
+	}

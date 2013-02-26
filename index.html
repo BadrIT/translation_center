@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!-- CHANGE THIS TITLE TAG -->
+<title>TranslationCenter</title>
+
+<!-- media-queries.js -->
+<!--[if lt IE 9]>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+<!-- html5.js -->
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<link href="font/stylesheet.css" rel="stylesheet" type="text/css" />	
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+<link href="css/styles.css" rel="stylesheet" type="text/css" />
+<link href="css/media-queries.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+
+<meta name="viewport" content="width=device-width" />
+<link href='http://fonts.googleapis.com/css?family=Exo:400,800' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body data-spy="scroll">
+
+<!-- TOP MENU NAVIGATION -->
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+	
+			<a class="brand pull-left" href="#">
+			TranslationCenter
+			</a>
+	
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+		
+			<div class="nav-collapse collapse">
+				<ul id="nav-list" class="nav pull-right">
+					<li><a href="#home">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#updates">Updates</a></li>
+					<li><a href="#screenshots">Screenshots</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</div>
+		
+		</div>
+	</div>
+</div>
+
+
+<!-- MAIN CONTENT -->
+<div class="container content container-fluid" id="home">
+
+
+
+	<!-- HOME -->
+	<div class="row-fluid">
+  
+		<!--IMAGE FOR DESKTOP MEDIA QUERY -->
+		<div class="span5 visible-desktop">
+			<img src="img/main_img.png" style="background-color: #1f3b52; padding: 5px; border-radius: 5px; box-shadow: 1px 1px 15px #000;">
+            
+            <div class="download-box">
+				<a href="#" style="width:211%;" class="btn btn-warning btn-large"><i class="icon-cat"></i>
+                <span style="margin-top: 10px; position: relative; top: 3px; left: 7px; font-size: 20px;"><strong>TranslationCenter</strong> on github.com</span>
+                </a>
+			</div>
+            <img style="margin-top:17px;" src="img/Rails_logo.png" />
+			<div></div>
+			
+		</div>
+	
+		<!-- APP DETAILS -->
+		<div class="span7">
+	
+			<!-- ICON -->
+			<div class="visible-desktop" id="icon">
+				<img src="img/app_icon.png" />
+			</div>
+			
+			<!-- APP NAME -->
+			<div id="app-name">
+				<h1>TranslationCenter</h1>
+			</div>
+			
+			<!-- VERSION -->
+			<div id="version">
+				<span class="version-top label label-inverse">Version 1.0</span>
+			</div>
+            
+			<!-- TAGLINE -->
+			<div id="tagline">
+				Multi lingual web Translation Center community for Rails 3 apps
+			</div>
+		
+			<!-- IMAGE FOR TABLET MEDIA QUERY -->
+			<div class="hidden-desktop">
+				<img src="img/main_img.png">
+			</div>
+            
+			<!-- DESCRIPTION -->
+			<div id="description">
+				Translation Center is a multi lingual web engine for Rails 3 apps. It builds a translation center community with translators and admins from your system users.
+			</div>
+            
+			<!-- FEATURES -->
+			<ul id="features">
+                <li>Different roles: translators and admins</li>
+                <li>Add new locales easily</li>
+                <li>Detect new translation keys in code and store them in DB for users to translate</li>
+                <li>Inspect translation keys from your application view directly</li>
+                <li>Import and Export translations in yaml format</li>
+                <li>Switch translations backend between DB and yaml</li>
+                <li>Admin dashboard for languages status and activity</li>
+                <li>Users can vote up translations</li>
+                <li>Default translation in English for keys</li>
+			</ul>
+		
+			<!-- DOWNLOAD & REQUIREMENT BOX -->
+		</div>
+	</div>
+	
+	
+	
+	<!-- ABOUT & UPDATES -->
+	<div class="row-fluid" >
+	
+		<div class="span6" id="about">
+			<h2 class="page-title" id="scroll_up">
+				About
+				<a href="#home" class="arrow-top">
+				<img src="img/arrow-top.png">
+				</a>
+			</h2>
+			
+<p><h3>App Users</h3>
+
+Contribute in translating your app in different locales using easy web interface.</p>
+
+<p><h3>Rails Developers</h3>
+
+Avoid updating many yaml files as you will just use the easy web interface to manage translations.</p>
+
+<p><h3>Site Admin</h3>
+
+Manage all app translations; collect stats, accept, add, edit, remove translations...etc</p>
+			
+			
+		</div>
+	
+		<div class="span6 updates" id="updates">
+			<h2 class="page-title" id="scroll_up">
+				Updates
+				<a href="#home" class="arrow-top">
+				<img src="img/arrow-top.png">
+				</a>
+			</h2>
+			
+			<!-- UPDATES & RELEASE NOTES -->
+			
+			<h3 class="version">Version 1.2</h3>
+			<span class="release-date">Released on January 29th, 2013</span>
+			<ul>
+				<li><span class="label new">NEW</span>Challenge a Friend</li>
+				<li><span class="label fix">FIX</span>Fixed Bug</li>
+                <li><span class="label new">NEW</span>Integration</li>
+				<li><span class="label fix">FIX</span>Bug Fixes</li>
+				<li><span class="label new">NEW</span>Graphics</li>
+			</ul>
+			<hr>
+			
+			<h3 class="version">Version 1.1</h3>
+			<span class="release-date">Released on January 28th, 2013</span>
+			<ul>
+				<li><span class="label new">NEW</span>Integration</li>
+			</ul>
+			<hr>
+		
+			<h3 class="version">Version 1.0</h3>
+			<span class="release-date">Released on January 27th, 2013</span>
+			<ul>
+				<li><span class="label label-info">NEW</span>Release</li>
+			</ul>
+			
+		</div>
+	
+	</div>
+	
+	
+	
+	<!-- SCREENSHOTS -->
+	<div class="row-fluid" id="screenshots">
+		
+		<h2 class="page-title" id="scroll_up">
+				Screenshots
+				<a href="#home" class="arrow-top">
+				<img src="img/arrow-top.png">
+				</a>
+			</h2>
+		
+		<!-- SCREENSHOT IMAGES ROW 1-->
+		<ul class="thumbnails">
+			<li class="span3">
+				<a href="img/0.png" rel="gallery" class="thumbnail">
+				<img src="img/0.png" alt="">
+				</a>
+			</li>
+		
+			<li class="span3">
+				<a href="img/1.png" rel="gallery" class="thumbnail">
+				<img src="img/1.png" alt="">
+				</a>
+			</li>
+			
+			<li class="span3">
+				<a href="img/2.png" rel="gallery" class="thumbnail">
+				<img src="img/2.png" alt="">
+				</a>
+			</li>
+ 
+			<li class="span3">
+				<a href="img/3.png" rel="gallery" class="thumbnail">
+				<img src="img/3.png" alt="">
+				</a>
+			</li>
+		</ul>	
+		
+		<!-- SCREENSHOT IMAGES ROW 2-->		
+		<ul class="thumbnails">
+			<li class="span3">
+				<a href="img/4.png" rel="gallery" class="thumbnail">
+				<img src="img/4.png" alt="">
+				</a>
+			</li>
+			
+			<li class="span3">
+				<a href="img/5.png" rel="gallery" class="thumbnail">
+				<img src="img/5.png" alt="">
+				</a>
+			</li>
+			
+			<li class="span3">
+				<a href="img/6.png" rel="gallery" class="thumbnail">
+				<img src="img/6.png" alt="">
+				</a>
+			</li>
+			
+			<li class="span3">
+				<a href="img/7.png" rel="gallery" class="thumbnail">
+				<img src="img/7.png" alt="">
+				</a>
+			</li>
+		</ul>
+	</div>
+	
+	
+	
+	<!-- CONTACT -->
+	<div class="row-fluid" id="contact">
+	
+		<h2 class="page-title" id="scroll_up">
+				Contact
+				<a href="#home" class="arrow-top">
+				<img src="img/arrow-top.png">
+				</a>
+			</h2>
+		
+		<!-- CONTACT INFO -->
+		<div class="span4" id="contact-info">
+			<h3>About BadrIT</h3>
+			<p>We love developing quality software! With an extreme knowledge of the latest technologies and agile methodology, we are qualified to achieve that.</p>
+            
+			<p><a href="mailto:info@badrit.com">info at badrit.com</a></p>
+            
+            <div class="logo"><a href="http://www.badrit.com" target="_blank"><img src="img/logo.png" /></a></div>
+            
+		</div>
+		
+		<!-- CONTACT FORM -->
+		<div class="span7" id="contact-form">
+			<form class="form-horizontal">
+				<fieldset>
+					<div class="control-group">
+						<label class="control-label" for="name">Name</label>
+						<div class="controls">
+							<input class="input-xlarge" type="text" id="name" placeholder="">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="email">Email</label>
+						<div class="controls">
+							<input class="input-xlarge" type="text" id="email" placeholder=" ">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="subject">Subject</label>
+						<div class="controls">
+							<input class="input-xlarge" type="text" id="subject" placeholder="">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="message">Message</label>
+						<div class="controls">
+							<textarea class="input-xlarge" rows="3" id="message" placeholder="Your message..."></textarea>
+						</div>
+					</div>
+					<div class="form-actions">
+						<button type="submit" class="btn btn-warning btn-large">SEND</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		
+	</div>
+	
+</div>
+
+
+<!-- FOOTER -->
+<div class="footer container container-fluid">
+
+	<!-- COPYRIGHT - EDIT HOWEVER YOU WANT! -->
+	<div id="copyright">
+		Copyright &copy; 2013 <a href="http://www.badrit.com" target="_blank">BadrIT</a>
+	</div>
+	
+	<!-- CREDIT - PLEASE LEAVE THIS LINK! -->
+	<div id="credits">
+		
+	</div>
+
+</div>
+
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-collapse.js"></script>
+<script src="js/bootstrap-scrollspy.js"></script>
+<script src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script src="fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script src="js/init.js"></script>
+
+</body>
+</html>

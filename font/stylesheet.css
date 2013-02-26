@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'QlassikBold';
+    src: url('qlassikbold_tb-webfont.eot');
+    src: url('qlassikbold_tb-webfont.eot?#iefix') format('embedded-opentype'),
+         url('qlassikbold_tb-webfont.woff') format('woff'),
+         url('qlassikbold_tb-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
