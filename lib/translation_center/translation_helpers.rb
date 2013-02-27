@@ -14,7 +14,11 @@ module TranslationCenter
     # if translator doesn't exist then create him
     if translator.blank?
       translator = TranslationCenter::Translation.translator.new(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier'])
-      translator.save(validate: false)
+      begin
+        translator.save(validate: false)
+      rescue
+        translator = nil
+      end
     end
     translator
   end

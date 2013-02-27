@@ -30,7 +30,14 @@ namespace :translation_center do
     end
 
     # prepare translator by creating the translator if he doesn't exist
-    translator = TranslationCenter.prepare_translator 
+    translator = TranslationCenter.prepare_translator
+
+    # if couldn't create translator then print error msg and quit
+    if translator.blank?
+      puts "ERROR: Unable to create default translator with #{TranslationCenter::CONFIG['identifier_type']} = #{TranslationCenter::CONFIG['yaml_translator_identifier']}"
+      puts "Create this user manually and run the rake again"
+      next
+    end
 
     # Make sure we've loaded the translations
     I18n.backend.send(:init_translations)
