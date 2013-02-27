@@ -14,7 +14,7 @@
 <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 
 <link href="font/stylesheet.css" rel="stylesheet" type="text/css" />	
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -290,6 +290,8 @@ Manage all app translations; collect stats, accept, add, edit, remove translatio
 		
 		<!-- CONTACT FORM -->
 		<div class="span7" id="contact-form">
+			<div id="error" class="alert alert-error" style="display:none">
+			</div>
 			<form action="http://translation-center.herokuapp.com/translation_center_feedbacks" method="POST" class="form-horizontal">
 
 				<fieldset>
@@ -317,6 +319,21 @@ Manage all app translations; collect stats, accept, add, edit, remove translatio
 							<textarea class="input-xlarge"  name="translation_center_feedback[message]" rows="3" id="message" placeholder="Your message..."></textarea>
 						</div>
 					</div>
+					<div class="control-group">
+						<div class="controls">
+							<script type="text/javascript"
+						     src="http://www.google.com/recaptcha/api/challenge?k=6Leng90SAAAAAM9pUoRPnx-DO-qQI5XPkqqRTttl">
+						  </script>
+						  <noscript>
+						     <iframe src="http://www.google.com/recaptcha/api/noscript?k=6Leng90SAAAAAM9pUoRPnx-DO-qQI5XPkqqRTttl"
+						         height="300" width="500" frameborder="0"></iframe><br>
+						     <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+						     </textarea>
+						     <input type="hidden" name="recaptcha_response_field"
+						         value="manual_challenge">
+						  </noscript>
+						</div>
+					</div>
 					<div class="form-actions">
 						<button type="submit" class="btn btn-warning btn-large">SEND</button>
 					</div>
@@ -328,6 +345,14 @@ Manage all app translations; collect stats, accept, add, edit, remove translatio
 	
 </div>
 
+<script>
+	if(location.href.indexOf('failed') >= 0)
+	{
+		$('#error').html('Please insert the correct reCAPTHA and a message')
+		$('#error').show()
+	}
+
+</script>
 
 <!-- FOOTER -->
 <div class="footer container container-fluid">
@@ -344,7 +369,7 @@ Manage all app translations; collect stats, accept, add, edit, remove translatio
 
 </div>
 
-<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-collapse.js"></script>
 <script src="js/bootstrap-scrollspy.js"></script>
