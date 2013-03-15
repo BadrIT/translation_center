@@ -5,7 +5,7 @@ class CreateTranslationCenterTranslationKeys < ActiveRecord::Migration
       t.integer :category_id
       t.datetime :last_accessed
       <% langs.each do |lang| %>
-      t.string :<%= lang %>_status, default: 'untranslated'
+      t.string :'<%= lang %>_status', default: "untranslated"
       <% end %>
 
       t.timestamps

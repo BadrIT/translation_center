@@ -23,7 +23,7 @@ module TranslationCenter
           return
         end
         # Generate migration templates for the models needed
-        migration_template 'migrations/add_lang_status_translation_keys.rb', "db/migrate/add_#{lang}_status_translation_center_translation_keys.rb"
+        migration_template 'migrations/add_lang_status_translation_keys.rb', "db/migrate/add_#{lang.downcase.gsub("-","_")}_status_translation_center_translation_keys.rb"
       end
       puts "Language(s) added, don't forget to add the language(s) to config/translation_center.yml"
     end
