@@ -24,7 +24,7 @@
           %td
             = change.auditable.lang
           %td
-            = change.user.try "TranslationCenter::CONFIG['identifier_type'])"
+            = change.user.try TranslationCenter::CONFIG['identifier_type']
           %td
             %ul
               - change.audited_changes.each do |change, value|
