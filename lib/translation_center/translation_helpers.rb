@@ -49,7 +49,7 @@ module TranslationCenter
     # translation_key.update_attribute(:last_accessed, Time.now)
 
     # save the default value (Which is the titleized key name as the translation)
-    translation_key.create_default_translation
+    translation_key.create_default_translation if translation_key.translations.in(:en).empty? && TranslationCenter::CONFIG['save_default_translation']
 
     # if i18n_source is set to db and not overriden by options then fetch from db
     if TranslationCenter::CONFIG['i18n_source']  == 'db' && options.delete(:yaml).blank?
