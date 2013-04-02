@@ -1,3 +1,6 @@
+## Code Status
+[![Code Climate](https://codeclimate.com/github/BadrIT/translation_center.png)](https://codeclimate.com/github/BadrIT/translation_center)
+
 ## Introduction
 
 Translation Center is a multi lingual web engine for Rails 3 apps. It builds a translation center community with translators and admins from your system users.
