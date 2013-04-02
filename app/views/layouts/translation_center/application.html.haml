@@ -51,7 +51,10 @@
                         = language_name(locale)
               - if translation_admin?
                 .pull-left.nav_text
-                  = link_to t('translation_center.dashboard'), dashboard_path
+                  %span
+                    = link_to t('translation_center.dashboard'), dashboard_path
+              %form.navbar-search
+                %input.search-query{:placeholder => t('translation_center.search_keys'), :type => "text"}
 
             %ul.nav.pull-right
               %li

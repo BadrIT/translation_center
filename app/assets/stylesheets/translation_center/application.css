@@ -23,7 +23,7 @@
 .navbar span {
   margin-left: 5px;
 }
-.navbar .brand,.navbar span, .navbar .nav > li > a {
+.navbar .brand,.navbar span, .navbar .nav > li > a, .navbar a {
   color: white !important;
 }
 
