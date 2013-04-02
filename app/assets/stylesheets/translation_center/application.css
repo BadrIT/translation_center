@@ -27,6 +27,10 @@
   color: white !important;
 }
 
+.navbar li.dropdown ul.dropdown-menu a.language_to {
+  color: black !important;
+}
+
 .navbar-inner {
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #009ED2), color-stop(100%, #008CBA)) !important;
 }
