@@ -55,8 +55,15 @@ GEM
       activerecord (~> 3.0)
       audited (= 3.0.0)
     bcrypt-ruby (3.0.1)
+    better_errors (0.7.2)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.1)
+      debug_inspector (>= 0.0.1)
     builder (3.0.4)
+    coderay (1.0.9)
     columnize (0.3.6)
+    debug_inspector (0.0.2)
     debugger (1.3.3)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.1.1)
@@ -169,6 +176,8 @@ PLATFORMS
 DEPENDENCIES
   acts_as_votable
   audited-activerecord
+  better_errors
+  binding_of_caller
   debugger
   devise
   font-awesome-rails

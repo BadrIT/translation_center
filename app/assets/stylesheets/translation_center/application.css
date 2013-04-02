@@ -23,8 +23,12 @@
 .navbar span {
   margin-left: 5px;
 }
-.navbar .brand,.navbar span, .navbar .nav > li > a {
+.navbar .brand,.navbar span, .navbar .nav > li > a, .navbar a, .navbar .nav_text {
   color: white !important;
+}
+
+.navbar li.dropdown ul.dropdown-menu a.language_to {
+  color: black !important;
 }
 
 .navbar-inner {

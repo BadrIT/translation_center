@@ -51,12 +51,27 @@
                         = language_name(locale)
               - if translation_admin?
                 .pull-left.nav_text
-                  = link_to t('translation_center.dashboard'), dashboard_path
+                  %span
+                    = link_to t('translation_center.dashboard'), dashboard_path
+              %li.divider-vertical
+              %form.navbar-search
+                %input#search_keys.search-query{placeholder: t('translation_center.search_keys'), type: "text", autocomplete: :off}
 
             %ul.nav.pull-right
               %li
                 = link_to t('translation_center.back_to_app'), main_app.root_path, target: Rails.application.class.parent_name
+    - if flash[:alert] 
+      .alert.alert-error
+        %button{ type: 'button', class: 'close', 'data-dismiss' => 'alert' }
+          ×
+        = flash[:alert]
 
+    - if flash[:notice]
+      .alert.alert-success
+        %button{ type: 'button', class: 'close', 'data-dismiss' => 'alert' }
+          ×
+        = flash[:notice]
+        
     .container
       .row
         .span12

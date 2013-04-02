@@ -39,4 +39,19 @@ $(document).ready(function(){
 
   $('.dropdown-toggle').dropdown()
 
+  // search for key with that name and jump to it when clicked
+  $('#search_keys').typeahead({
+    // note that "value" is the default setting for the property option
+    source: function (query, process) {
+      return $.get(Routes['translation_center_search_translation_keys_path'] + '.json', { query: query }, function (data) {
+        return process(data);
+      });
+    },
+    updater: function(item) {
+      document.location = Routes['translation_center_search_translation_keys_path'] + '?search_key_name=' + item
+    }
+
+  });
+    
+
 });
