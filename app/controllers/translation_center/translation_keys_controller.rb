@@ -73,13 +73,14 @@ module TranslationCenter
     # DELETE /translation_keys/1
     # DELETE /translation_keys/1.json
     def destroy
-      @translation_key = TranslationKey.find(params[:id])
+      @category = @translation_key.category
       @translation_key_id = @translation_key.id
       @key_status = @translation_key.status(session[:lang_to])
       @translation_key.destroy
   
       respond_to do |format|
         format.js
+        format.html {redirect_to @category, notice: I18n.t('translation_center.translation_keys.destroyed_successfully')}
       end
     end
 

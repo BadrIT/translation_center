@@ -282,13 +282,10 @@ en:
         delimiter: ""
   post: 
     content: Content
-    title: Title
   posts: 
     index: 
       Content: Content
-      Listing_posts: "Listing Posts"
       Title: Title
-      test: Test
       testing_new_keys: "Testing New Keys"
   search: 
     created_at_gteq: "Created At Gteq"
@@ -359,11 +356,13 @@ en:
     translate_to: "Translate To"
     translation_center: "Translation Center"
     translation_keys: 
+      destroyed_successfully: "Translation key was destroyed successfully"
       show: 
         Add/Edit_Translation: "Add/Edit Translation"
         Add_Translation: "Add Translation"
         Translations: Translations
         back_to_category: "Back To Category"
+        destroy: Destroy
         no_translations_available: "No Translations Available"
       show_keys: 
         translated: Translated
