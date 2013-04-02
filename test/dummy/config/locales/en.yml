@@ -3,20 +3,12 @@ en:
   actions: 
     are_you_sure: "Are you sure ?"
   activerecord: 
-    attributes: 
-      post: 
-        content: Content
-        title: Title
-      translation_center/translation_key: 
-        name: Name
-      user: 
-        email: Email
-        password: Password
-        remember_me: "Remember Me"
+    attributes: Attributes
     errors: 
       messages: 
         record_invalid: "Validation failed: %{errors}"
         taken: "has already been taken"
+    models: Models
   attributes: 
     content: Content
     email: Email
@@ -128,6 +120,7 @@ en:
       invalid: "Invalid email or password."
       invalid_token: "Invalid authentication token."
       locked: "Your account is locked."
+      not_found_in_database: "Invalid email or password."
       timeout: "Your session expired, please sign in again to continue."
       unauthenticated: "You need to sign in or sign up before continuing."
       unconfirmed: "You have to confirm your account before continuing."
@@ -169,6 +162,7 @@ en:
       already_confirmed: "was already confirmed, please try signing in"
       blank: "can't be blank"
       confirmation: "doesn't match confirmation"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
       empty: "can't be empty"
       equal_to: "must be equal to %{count}"
       even: "must be even"
@@ -196,6 +190,11 @@ en:
       create: "Create %{model}"
       submit: "Save %{model}"
       update: "Update %{model}"
+    label: 
+      user: 
+        email: Email
+        password: Password
+        remember_me: "Remember Me"
     select: 
       prompt: "Please select"
     submit: 
@@ -211,6 +210,7 @@ en:
         to: To
         translate_to: "Translate To"
   meta_search: 
+    created_at_gteq: "Created At Gteq"
     or: or
     predicates: 
       contains: "%{attribute} contains"
@@ -282,13 +282,13 @@ en:
         delimiter: ""
   post: 
     content: Content
-    title: Title
   posts: 
     index: 
       Content: Content
-      Listing_posts: "Listing Posts"
       Title: Title
       testing_new_keys: "Testing New Keys"
+  search: 
+    created_at_gteq: "Created At Gteq"
   support: 
     array: 
       last_word_connector: ", and "
@@ -318,13 +318,51 @@ en:
         pending: Pending
         translated: Translated
         untranslated: Untranslated
+    center: 
+      activity: 
+        ago: Ago
+        changes: Changes
+        key: Key
+        locale: Locale
+        no_matches: "No Matches"
+        time: Time
+        user: User
+      dashboard: 
+        activity: Activity
+        ago: Ago
+        all: All
+        changes: Changes
+        choose_filter: "Choose Filter"
+        dashboard: Dashboard
+        date: Date
+        filter: Filter
+        filter_by: "Filter By"
+        key: Key
+        language: Language
+        locale: Locale
+        pending: Pending
+        progress: Progress
+        reset: Reset
+        search: Search
+        search_by: "Search By"
+        select_locale: "Select Locale"
+        time: Time
+        to: To
+        translated: Translated
+        untranslated: Untranslated
+        user: User
+    dashboard: Dashboard
+    search_keys: "Search Keys"
     translate_to: "Translate To"
     translation_center: "Translation Center"
     translation_keys: 
+      destroyed_successfully: "Translation key was destroyed successfully"
       show: 
         Add/Edit_Translation: "Add/Edit Translation"
         Add_Translation: "Add Translation"
         Translations: Translations
+        back_to_category: "Back To"
+        destroy: Destroy
         no_translations_available: "No Translations Available"
       show_keys: 
         translated: Translated
@@ -364,6 +402,7 @@ en:
     password: Password
     remember_me: "Remember Me"
     signed_in: "Signed In"
+    unauthenticated: Unauthenticated
   will_paginate: 
     next_label: "Next &#8594;"
     page_entries_info: 

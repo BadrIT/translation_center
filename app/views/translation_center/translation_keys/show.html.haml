@@ -1,4 +1,8 @@
-= link_to t('.back_to_category'), @translation_key.category
+= link_to "#{t('.back_to_category')} #{@translation_key.category.name.titleize}", @translation_key.category, class: 'btn btn-primary'
+
 %h1
   = @translation_key.name
+  - if translation_admin?
+    = link_to t('.destroy'), @translation_key, method: :delete, data: { confirm: t('actions.are_you_sure', :default => 'Are you sure?') }, class: 'btn btn-danger'
+
 = render 'translation_center/translation_keys/show', translation_key: @translation_key, index: 0
