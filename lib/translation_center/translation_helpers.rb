@@ -41,28 +41,18 @@ module TranslationCenter
 
   def translate_with_adding(locale, key, options = {})
     # handle calling translation with a blank key
-    if key.blank?
-      return translate_without_adding(locale, key, options)
-    end
+    return translate_without_adding(locale, key, options) if key.blank?
 
     # add the new key or update it
     translation_key = TranslationCenter::TranslationKey.find_or_create_by_name(key)
     #  UNCOMMENT THIS LATER TO SET LAST ACCESSED AT
     # translation_key.update_attribute(:last_accessed, Time.now)
 
-    # save the default value (Which is the titleized key name
-    # as the translation)
-    if translation_key.translations.in(:en).empty? && TranslationCenter::CONFIG['save_default_translation']
-      translation_key.create_default_translation
-    end
+    # save the default value (Which is the titleized key name as the translation)
+    translation_key.create_default_translation
 
-    if options.delete(:yaml)
-      # just return the normal I18n translation
-      return wrap_span(translate_without_adding(locale, key, options), translation_key)
-    end
-
-    i18n_source = TranslationCenter::CONFIG['i18n_source'] 
-    if i18n_source == 'db'
+    # if i18n_source is set to db and not overriden by options then fetch from db
+    if TranslationCenter::CONFIG['i18n_source']  == 'db' && options.delete(:yaml).blank?
       val = translation_key.accepted_translation_in(locale).try(:value) || options[:default]
       throw(:exception, I18n::MissingTranslation.new(locale, key, options)) unless val
       wrap_span(val, translation_key)

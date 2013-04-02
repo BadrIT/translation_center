@@ -79,6 +79,10 @@ module TranslationCenter
 
     # create default translation
     def create_default_translation
+
+      # return if the key already has translation in English
+      return if self.translations.in(:en).empty? && TranslationCenter::CONFIG['save_default_translation']
+      
       translation = self.translations.build(value: self.name.to_s.split('.').last.titleize,
                                             lang: :en, status: 'accepted')
       translation.user = TranslationCenter.prepare_translator
