@@ -9,6 +9,16 @@ ar:
     errors: 
       messages: 
         taken: محجوز
+  attributes: 
+    email: "البريد الالكترونى"
+    password: "كلمة السر"
+    title: عنوان
+  layouts: 
+    translation_center: 
+      application: 
+        back_to_app: "العودة إلى الموق"
+        to: إلى
+        translate_to: "ترجم إلى"
   posts: 
     index: 
       Content: المحتوى

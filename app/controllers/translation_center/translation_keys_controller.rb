@@ -2,7 +2,7 @@ require_dependency "translation_center/application_controller"
 
 module TranslationCenter
   class TranslationKeysController < ApplicationController
-    before_filter :get_translation_key
+    before_filter :get_translation_key, except: [ :search ]
     before_filter :can_admin?, only: [ :destroy, :update ]
 
     # POST /translation_keys/1/update_translation.js
@@ -80,6 +80,21 @@ module TranslationCenter
   
       respond_to do |format|
         format.js
+      end
+    end
+
+    # GET /translation_keys/search.json
+    def search
+      # if full name provided then get the key and redirect to it, otherwise return similar in json
+      if params[:search_key_name].present?
+        @translation_key = TranslationKey.find_by_name(params[:search_key_name])
+      else
+        @key_names = TranslationKey.where('name LIKE ?', "%#{params[:query]}%")
+      end
+
+      respond_to do |format|
+        format.html { redirect_to @translation_key}
+        format.json { render json: @key_names.map(&:name) }
       end
     end
 

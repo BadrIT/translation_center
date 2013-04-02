@@ -34,6 +34,8 @@ group :development do
   gem 'ruby-debug-base19x', '~> 0.11.30.pre4'
   gem 'ruby-debug19'
   gem 'debugger'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # Declare any dependencies that are still in development here instead of in

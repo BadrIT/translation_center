@@ -53,8 +53,9 @@
                 .pull-left.nav_text
                   %span
                     = link_to t('translation_center.dashboard'), dashboard_path
+              %li.divider-vertical
               %form.navbar-search
-                %input.search-query{:placeholder => t('translation_center.search_keys'), :type => "text"}
+                %input#search_keys.search-query{placeholder: t('translation_center.search_keys'), type: "text", autocomplete: :off}
 
             %ul.nav.pull-right
               %li
