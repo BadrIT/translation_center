@@ -3,7 +3,7 @@ require_dependency "translation_center/application_controller"
 module TranslationCenter
   class CenterController < ApplicationController
 
-    before_filter :can_admin?, only: [ :dashboard, :search_activity ]
+    before_filter :can_admin?, only: [ :dashboard, :search_activity, :manage ]
 
     # set language user translating from
     def set_language_from
@@ -15,6 +15,7 @@ module TranslationCenter
     # set language user translating to
     def set_language_to
       session[:lang_to] = params[:lang].to_sym
+      
       respond_to do |format|
         format.html { redirect_to root_url } 
         format.js { render nothing: true }
@@ -28,6 +29,7 @@ module TranslationCenter
       @search = Audited::Adapters::ActiveRecord::Audit.search(params[:search])
       #TODO perpage constant should be put somewhere else
       @translations_changes = Translation.recent_changes.paginate(:page => params[:page], :per_page => 5)
+      
       respond_to do |format|
         format.html
         format.js { render 'search_activity' }
@@ -36,6 +38,17 @@ module TranslationCenter
 
     def search_activity
       @translations_changes = Translation.recent_changes(params[:search]).paginate(:page => params[:page], :per_page => 5)
+      
+      respond_to do |format|
+        format.js
+      end
+    end
+
+    def manage
+      # if locale is all then send no locale
+      locale = params[:locale] == 'all' ? nil : params[:locale]
+      TranslationCenter.send params[:manage_action], locale
+
       respond_to do |format|
         format.js
       end

@@ -21,6 +21,7 @@ TranslationCenter::Engine.routes.draw do
 
   get '/dashboard' => 'center#dashboard', as: :dashboard
   get '/search_activity' => 'center#search_activity', as: :search_activity
+  post '/manage_translations' => 'center#manage', as: :manage_translations
 
   root to: 'categories#index'
 
