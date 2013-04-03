@@ -1,4 +1,18 @@
 %h1
+  = t('.controls')
+
+.well
+  .alert#operation_progress
+    %button.close{"data-dismiss" => "alert", :type => "button"} ×
+    %strong
+      = t('.these_actions_will_affect_existing_data')
+  = form_tag manage_translations_path, remote: true, id: 'manage_form', class: 'form-search' do
+    = select_tag 'locale', options_for_select(I18n.available_locales.collect{ |locale| [language_name(locale), locale.to_s] }.insert(0, [t('.all'), 'all'])), {:prompt => t('.select_locale')}
+    = hidden_field_tag :manage_action
+    = link_to 'yaml2db', '#', class: 'manage-button btn btn-primary', 'data-action' => 'yaml2db'
+    = link_to 'db2yaml', '#', class: 'manage-button btn btn-primary', 'data-action' => 'db2yaml'
+
+%h1
   = t('.dashboard')
 
 .span12
@@ -56,7 +70,19 @@
   #activity
     = render 'activity', translations_changes: @translations_changes
 
-  
+
+:javascript
+  $('.manage-button').click(function(){
+    if(confirm('Are you sure you want to perform this operation ?'))
+    {
+      $('#manage_action').val($(this).data('action'))
+      $('#operation_progress').removeClass('alert-success')
+      var msg = $(this).data('action') == 'yaml2db' ? 'Transfering yaml translations to db' : 'Transfering db translations to yaml files'
+      $('#operation_progress strong').text(msg)
+      $('#manage_form').submit()
+    }
+    return false;
+  })
 
       
 
