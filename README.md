@@ -116,6 +116,10 @@ If you want to export or import just one locale, provide the locale as an attrib
 rake translation_center:yaml2db[ar]
 ```
 
+Or you could use the Controls section in the Dashboard page to run these rakes
+
+![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/controls_shot.png "View category translations")
+
 Imported translations should have a translator. You can edit translator identifier (usually email address) in `translation_center.yml` The rake task `yaml2db` will create this user if it doesn't exist.
 
 ```ruby
