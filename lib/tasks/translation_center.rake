@@ -1,5 +1,3 @@
-
-
 namespace :translation_center do
 
   desc "Insert yaml translations in db"
