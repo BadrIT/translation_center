@@ -40,3 +40,8 @@
   background: url(/assets/translation_center_logo.png) no-repeat 20px 7px
 }
 
+.spinner {
+  left: 420px !important;
+  top: -14px !important;
+}
+
