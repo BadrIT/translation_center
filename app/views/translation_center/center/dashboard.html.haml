@@ -11,6 +11,7 @@
     = hidden_field_tag :manage_action
     = link_to 'yaml2db', '#', class: 'manage-button btn btn-primary', 'data-action' => 'yaml2db'
     = link_to 'db2yaml', '#', class: 'manage-button btn btn-primary', 'data-action' => 'db2yaml'
+    #spinner
 
 %h1
   = t('.dashboard')
@@ -75,6 +76,9 @@
   $('.manage-button').click(function(){
     if(confirm('Are you sure you want to perform this operation ?'))
     {
+      $('#spinner').show();
+      var target = document.getElementById('spinner');
+      var spinner = new Spinner(spinner_params).spin(target);
       $('#manage_action').val($(this).data('action'))
       $('#operation_progress').removeClass('alert-success')
       var msg = $(this).data('action') == 'yaml2db' ? 'Transfering yaml translations to db' : 'Transfering db translations to yaml files'
