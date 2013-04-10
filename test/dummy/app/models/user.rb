@@ -7,4 +7,10 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+
+  acts_as_translator
+
+  def can_admin_translations?
+    self.id == User.first.id
+  end
 end
