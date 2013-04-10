@@ -2,7 +2,7 @@ common_atts: &common_atts
   # what language to support and their display names
   lang:
     en: 'English'
-    # de: 'Deutch'
+    de: 'Deutch'
 
   # yaml imported translations created by translator email, usually User email 
   yaml_translator_identifier: 'khaled@badrit.com'

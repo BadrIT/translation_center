@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410084711235602) do
+ActiveRecord::Schema.define(:version => 20130410113111070575) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20130410084711235602) do
     t.string   "en_status",     :default => "untranslated"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "de_status",     :default => "untranslated"
   end
 
   create_table "translation_center_translations", :force => true do |t|
