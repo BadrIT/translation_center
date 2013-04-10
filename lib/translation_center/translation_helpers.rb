@@ -41,7 +41,8 @@ module TranslationCenter
 
   def translate_with_adding(locale, key, options = {})
     # handle calling translation with a blank key
-    return translate_without_adding(locale, key, options) if key.blank?
+    # or translation center tables don't exist
+    return translate_without_adding(locale, key, options) if key.blank? || !ActiveRecord::Base.connection.table_exists?('translation_center_translation_keys')
 
     # add the new key or update it
     translation_key = TranslationCenter::TranslationKey.find_or_create_by_name(key)
