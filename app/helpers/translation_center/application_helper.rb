@@ -33,7 +33,7 @@ module TranslationCenter
 
     # returns formated date
     def format_date(date)
-      date.strftime('%e %m %Y')
+      date.strftime('%e %b %Y')
     end
 
   end
