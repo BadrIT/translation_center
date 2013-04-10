@@ -5,6 +5,7 @@
     .translation_key_badge.badge-important{title: t('.untranslated')}
   - else
     .translation_key_badge.badge-warning{title: t('.waiting_acceptance')}
+
   - if translation_admin?
     %div
       = link_to '×', translation_key_path(translation_key), method: :delete, data: { confirm: t('actions.are_you_sure', :default => 'Are you sure?') }, class: 'close', remote: true
@@ -14,6 +15,10 @@
       %b
         %em
           = t(translation_key.name)
+      %span
+        %em.created_time
+          = t('.created_at')
+          = format_date(translation_key.created_at)
     
     %small
       %div{ 'data-key-id' => translation_key.id, class: "#{translation_admin? ? 'key_editable' : '' }"}

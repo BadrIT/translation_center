@@ -41,3 +41,8 @@
 .key_editable {
   cursor: pointer;
 }
+
+.created_time {
+  font-size: 10px;
+  color: black;
+}
