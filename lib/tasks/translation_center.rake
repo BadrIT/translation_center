@@ -10,4 +10,10 @@ namespace :translation_center do
     TranslationCenter.db2yaml(args[:locale])
   end
 
+  desc "Calls yaml2db then db2yaml"
+  task :synch, [:locale ] => :environment do |t, args|
+    TranslationCenter.yaml2db(args[:locale])
+    TranslationCenter.db2yaml(args[:locale])
+  end
+
 end

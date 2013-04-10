@@ -68,6 +68,11 @@ And run the migrations
 rake db:migrate
 ```
 
+And then run this rake to get all current translations to the db
+```ruby
+rake translation_center:synch
+```
+
 In your User model or any other model that should acts as a translator add the following line:
 
 ```ruby
