@@ -22,7 +22,7 @@ development:
   # "missing" to inspect only untranslated keys
   # "all" to enable inspector for translated and untranslated keys
   # "off" to turn off keys inspector
-  inspector: 'all' # default missing
+  inspector: 'missing' # default missing
 
   # I18n.translate source
   i18n_source: 'db' # can be db or yaml; default is yaml
