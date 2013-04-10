@@ -84,6 +84,7 @@ module I18n
     module Base
       # added another class to be used
       def html_message
+        category = keys.first
         key = keys.last.to_s.gsub('_', ' ').gsub(/\b('?[a-z])/) { $1.capitalize }
         translation_key = keys
         # remove locale
@@ -91,7 +92,7 @@ module I18n
 
         translation_key = TranslationCenter::TranslationKey.find_by_name(translation_key.join('.'))
         # don't put the inspector class if inspector is off or the key belongs to translation_center
-        if TranslationCenter::CONFIG['inspector'] == 'off' || translation_key.name.to_s.split('.').first == 'translation_center'
+        if TranslationCenter::CONFIG['inspector'] == 'off' || category == 'translation_center'
           %(<span class="translation_missing" title="translation missing: #{keys.join('.')}">#{key}</span>)
         else
           %(<span class="translation_missing tc-inspector-key" data-type="#{translation_key.status(I18n.locale)}" data-id="#{translation_key.id}" title="translation missing: #{keys.join('.')}">#{key}</span>)
