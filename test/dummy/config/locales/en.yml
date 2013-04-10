@@ -1,16 +1,1 @@
---- 
 en: 
-  actions: 
-    are_you_sure: "Are You Sure"
-  activerecord: 
-    attributes: Attributes
-    models: Models
-  date: 
-    abbr_month_names: "Abbr Month Names"
-  posts: 
-    index: 
-      Content: Content
-      Listing_posts: "Listing Posts"
-      Title: Title
-      testing_new_keys: "Testing New Keys"
-  
