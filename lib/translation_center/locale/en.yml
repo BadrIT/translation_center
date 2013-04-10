@@ -41,8 +41,8 @@ en:
         translation_keys: 
             destroyed_successfully: "Destroyed Successfully"
             show: 
-                Translations: Translations
-                add_edit_Translation: "Add/Edit Translation"
+                translations: Translations
+                add_edit_translation: "Add/Edit Translation"
                 back_to_category: "Back To Category"
                 destroy: Destroy
             show_keys: 

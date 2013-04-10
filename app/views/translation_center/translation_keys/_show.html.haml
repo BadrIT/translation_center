@@ -8,11 +8,11 @@
             %span.badge.badge-info.pull-left.translations_count{ id: "translations_#{translation_key.id}_count"}
               = translation_key.translations.in(to_lang).count
             %span
-              = t('.Translations')
+              = t('.translations')
 
         %li
           %a{"data-toggle" => "tab", :href => "#add_translations#{translation_key.id}"}
-            = t('.add_edit_Translation')
+            = t('.add_edit_translation')
       .tab-content
         
         .tab-pane.active{ id: "translations#{translation_key.id}" }
