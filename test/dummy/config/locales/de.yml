@@ -1,12 +1,2 @@
 --- 
-de: 
-  layouts: 
-    translation_center: 
-      application: 
-        Translation_Center: "Translation Center 1"
-        from: von
-  posts: 
-    index: 
-      Content: Content2
-      Title: Title
-      testing_new_keys: "new keys"
+de: {}

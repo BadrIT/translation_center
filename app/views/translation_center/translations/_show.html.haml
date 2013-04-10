@@ -14,7 +14,7 @@
           = t('.you')
         - else
           = translation.user.send(TranslationCenter::CONFIG['identifier_type'])
-        = t('.on')
+        = t('.on_date')
         = format_date(translation.created_at)
   %div.translation_voting
     - if translation_admin?

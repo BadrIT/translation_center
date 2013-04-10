@@ -1,0 +1,65 @@
+en:
+    translation_center: 
+        back_to_app: "Back To App"
+        categories: 
+            category: 
+                complete: Complete
+                keys: Keys
+            index: 
+                categories: Categories
+            show: 
+                all: All
+                pending: Pending
+                translated: Translated
+                untranslated: Untranslated
+        center: 
+            activity: 
+                ago: Ago
+                changes: Changes
+                key: Key
+                locale: Locale
+                time: Time
+                user: User
+            dashboard: 
+                activity: Activity
+                all: All
+                controls: Controls
+                dashboard: Dashboard
+                language: Language
+                pending: Pending
+                progress: Progress
+                reset: Reset
+                search: Search
+                select_locale: "Select Locale"
+                these_actions_will_affect_existing_data: "These actions will affect existing data"
+                translated: Translated
+                untranslated: Untranslated
+        dashboard: Dashboard
+        search_keys: "Search Keys"
+        translate_to: "Translate To"
+        translation_center: "Translation Center"
+        translation_keys: 
+            destroyed_successfully: "Destroyed Successfully"
+            show: 
+                Translations: Translations
+                add_edit_Translation: "Add/Edit Translation"
+                back_to_category: "Back To Category"
+                destroy: Destroy
+            show_keys: 
+                created_at: "created at"
+                translated: Translated
+            translation_keys: 
+                no_translation_keys: "No Translation Keys"
+        translations: 
+            accept_translation: 
+                unaccept: Unaccept
+            index: 
+                date: Date
+                sort_by: "Sort by"
+                votes: Votes
+            show: 
+                by: by
+                on_date: "on date"
+                vote: Vote
+                votes: Votes
+                you: You
