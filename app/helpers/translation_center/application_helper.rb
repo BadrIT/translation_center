@@ -31,5 +31,10 @@ module TranslationCenter
       current_user.respond_to?(:can_admin_translations?) && current_user.can_admin_translations?
     end
 
+    # returns formated date
+    def format_date(date)
+      date.strftime('%e %m %Y')
+    end
+
   end
 end

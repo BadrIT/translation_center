@@ -15,20 +15,20 @@
         - else
           = translation.user.send(TranslationCenter::CONFIG['identifier_type'])
         = t('.on')
-        = I18n.localize(translation.created_at, format: '%b, %d %Y')
+        = format_date(translation.created_at)
   %div.translation_voting
-    %a{href: '#'}
+    - if translation_admin?
+      = render 'translation_center/translations/accept_translation', translation: translation
+    .votes_count.badge.badge-success.pull-right
+      %span.count{ 'data-translation-id' => translation.id }
+        = translation.votes.count
+      = t('.votes')
+    %a.pull-right{href: '#'}
       - voted = current_user.voted_on?(translation)
       %span.badge.pull-left.translations_vote{ class: "#{voted ? 'badge-success' : ''}", 'data-translation-id' => translation.id,  voted: voted.to_s}
         - if voted
           = t('.unvote')
         - else
           = t('.vote')
-    - if translation_admin?
-      = render 'translation_center/translations/accept_translation', translation: translation
-    .votes_count.badge.badge-success
-      %span.count{ 'data-translation-id' => translation.id }
-        = translation.votes.count
-      = t('.votes')
 
 
