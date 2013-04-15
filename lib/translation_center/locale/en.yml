@@ -1,5 +1,7 @@
 en:
-    translation_center: 
+    translation_center:
+        actions:
+            are_you_sure: "Are you sure ?"
         back_to_app: "Back To App"
         categories: 
             category: 
@@ -14,7 +16,7 @@ en:
                 untranslated: Untranslated
         center: 
             activity: 
-                ago: Ago
+                ago: ago
                 changes: Changes
                 key: Key
                 locale: Locale
@@ -46,7 +48,7 @@ en:
                 back_to_category: "Back To Category"
                 destroy: Destroy
             show_keys: 
-                created_at: "created at"
+                created_on: "created on"
                 translated: Translated
             translation_keys: 
                 no_translation_keys: "No Translation Keys"
@@ -59,7 +61,7 @@ en:
                 votes: Votes
             show: 
                 by: by
-                on_date: "on date"
+                on_date: "on"
                 vote: Vote
                 votes: Votes
                 you: You

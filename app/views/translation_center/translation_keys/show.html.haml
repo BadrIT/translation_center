@@ -3,6 +3,6 @@
 %h1
   = @translation_key.name
   - if translation_admin?
-    = link_to t('.destroy'), @translation_key, method: :delete, data: { confirm: t('actions.are_you_sure', :default => 'Are you sure?') }, class: 'btn btn-danger'
+    = link_to t('.destroy'), @translation_key, method: :delete, data: { confirm: t('translation_center.actions.are_you_sure', :default => 'Are you sure?') }, class: 'btn btn-danger'
 
 = render 'translation_center/translation_keys/show', translation_key: @translation_key, index: 0

@@ -39,23 +39,43 @@ module TranslationCenter
     end
   end
 
+  # make sure the complete key is build using the options such as scope and count
+  def prepare_key(key, options)
+    complete_key  = key
+
+    # if a scope is passed in options then build the full key
+    complete_key = options[:scope].present? ? "#{options[:scope].to_s}.#{complete_key}" : complete_key
+
+    # add the correct count suffix
+    if options[:count].present? && options[:count] == 1
+      complete_key = "#{complete_key}.one"
+    elsif options[:count].present? && options[:count] != 1
+      complete_key = "#{complete_key}.other"
+    end
+    complete_key
+  end
+
   def translate_with_adding(locale, key, options = {})
     # handle calling translation with a blank key
     # or translation center tables don't exist
     return translate_without_adding(locale, key, options) if key.blank? || !ActiveRecord::Base.connection.table_exists?('translation_center_translation_keys')
 
+    complete_key = prepare_key(key, options) # prepare complete key
+
     # add the new key or update it
-    translation_key = TranslationCenter::TranslationKey.find_or_create_by_name(key)
+    translation_key = TranslationCenter::TranslationKey.find_or_create_by_name(complete_key)
     #  UNCOMMENT THIS LATER TO SET LAST ACCESSED AT
     # translation_key.update_attribute(:last_accessed, Time.now)
 
-    # save the default value (Which is the titleized key name as the translation)
-    translation_key.create_default_translation if translation_key.translations.in(:en).empty? && TranslationCenter::CONFIG['save_default_translation']
+    # save the default value (Which is the titleized key name as the translation) if the option is enabled and no translation exists for that key in the db
+    translation_key.create_default_translation if TranslationCenter::CONFIG['save_default_translation'] && translation_key.translations.in(:en).empty?
 
     # if i18n_source is set to db and not overriden by options then fetch from db
     if TranslationCenter::CONFIG['i18n_source']  == 'db' && options.delete(:yaml).blank?
       val = translation_key.accepted_translation_in(locale).try(:value) || options[:default]
-      throw(:exception, I18n::MissingTranslation.new(locale, key, options)) unless val
+      # replace variables in a translation with passed values
+      options.each_pair{ |key, value| val.gsub!("%{#{key.to_s}}", value.to_s) }
+      throw(:exception, I18n::MissingTranslation.new(locale, complete_key, options)) unless val
       wrap_span(val, translation_key)
     else
       # just return the normal I18n translation

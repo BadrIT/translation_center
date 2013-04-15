@@ -31,7 +31,7 @@
                 %li
                   = format_change(change, value)
           %td
-            = time_ago_in_words change.created_at
+            = distance_of_time_in_words_to_now change.created_at
             = t('.ago')
 
   = will_paginate translations_changes

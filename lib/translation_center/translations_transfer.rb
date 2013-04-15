@@ -1,32 +1,30 @@
 module TranslationCenter
 
-  
+  # needed for interpolated translations in I18n
+  def self.get_translation_from_hash(key, hash)
+    path = key.split('.')
+    last_step = hash
+    path.each do |step|
+      break if last_step.blank? || !last_step.is_a?(Hash)
+      last_step = last_step[step.to_s.to_sym]
+    end
+    last_step
+  end
+
+  def self.collect_keys(scope, translations)
+      full_keys = []
+      translations.to_a.each do |key, translations|
+        new_scope = scope.dup << key
+        if translations.is_a?(Hash)
+          full_keys += collect_keys(new_scope, translations)
+        else
+          full_keys << new_scope.join('.')
+        end
+      end
+      return full_keys
+    end
 
   def self.yaml2db(locale)
-
-    def self.collect_keys(scope, translations)
-    full_keys = []
-    translations.to_a.each do |key, translations|
-      new_scope = scope.dup << key
-      if translations.is_a?(Hash)
-        full_keys += collect_keys(new_scope, translations)
-      else
-        full_keys << new_scope.join('.')
-      end
-    end
-    return full_keys
-    end
-
-    # needed for interpolated translations in I18n
-    def self.get_translation_from_hash(key, hash)
-      path = key.split('.')
-      last_step = hash
-      path.each do |step|
-        break if last_step.blank? || !last_step.is_a?(Hash)
-        last_step = last_step[step.to_s.to_sym]
-      end
-      last_step
-    end
 
     # prepare translator by creating the translator if he doesn't exist
     translator = TranslationCenter.prepare_translator

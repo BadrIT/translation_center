@@ -5,7 +5,7 @@
       = translation.value
     
     - if translation_admin?
-      = link_to '×', translation_path(translation), method: :delete, data: { confirm: t('actions.are_you_sure', :default => 'Are you sure?') }, class: 'close', remote: true
+      = link_to '×', translation_path(translation), method: :delete, data: { confirm: t('translation_center.actions.are_you_sure', :default => 'Are you sure?') }, class: 'close', remote: true
     %br
     %small.pull-right
       %em

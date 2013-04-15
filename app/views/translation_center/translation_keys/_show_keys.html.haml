@@ -8,7 +8,7 @@
 
   - if translation_admin?
     %div
-      = link_to '×', translation_key_path(translation_key), method: :delete, data: { confirm: t('actions.are_you_sure', :default => 'Are you sure?') }, class: 'close', remote: true
+      = link_to '×', translation_key_path(translation_key), method: :delete, data: { confirm: t('translation_center.actions.are_you_sure', :default => 'Are you sure?') }, class: 'close', remote: true
 
   %a{ href: "##{translation_key.id}", 'data-toggle' => "tab"}
     %p
@@ -17,7 +17,7 @@
           = t(translation_key.name)
       %span
         %em.created_time
-          = t('.created_at')
+          = t('.created_on')
           = format_date(translation_key.created_at)
     
     %small
