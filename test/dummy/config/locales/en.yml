@@ -301,7 +301,7 @@ en:
       destroyed_successfully: "Destroyed Successfully"
       show: 
         add_edit_translation: "Add/Edit Translation"
-        back_to_category: "Back To Category"
+        back_to_category: "Back to"
         destroy: Destroy
         translations: Translations
       show_keys: 
