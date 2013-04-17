@@ -264,10 +264,17 @@ We have added translation_center to the [Tracks][1] app:
 
 
   [1]: https://github.com/TracksApp/tracks
-  
+
 
 ## Credits
 
 ![BadrIT](http://www.badrit.com/images/logo-main.png)
 
 Translation Center is maintained and developed by [BadrIT](http://badrit.com/)
+
+## Support
+
+Help us make this engine better by submitting any bugs or enhancments in the issues page for this project.
+We also added an error page that will appear to you if any error goes with translation_center.
+
+![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/support.png "Support")

@@ -3,6 +3,18 @@ module TranslationCenter
     before_filter :translation_langs_filters
     before_filter :authenticate_user!
 
+    if Rails.env.development?
+
+      # if an exception happens show the error page
+      rescue_from Exception do |exception|
+        @exception = exception
+        @path = request.path
+
+        render "translation_center/errors/exception"
+      end
+      
+    end
+
     # defaults
     def translation_langs_filters
       session[:current_filter] ||= 'untranslated'
