@@ -5,10 +5,7 @@
    An error has occurred with
    %a{href: "http://badrit.github.io/translation_center/"}
       translation_center
-   , please help us fix this problem by hitting the send button below which will send the exception trace to us in
-   %a{href: "http://www.badrit.com/"}
-      BadrIT
-   or you can open an issue on
+   , please help us fix this problem by hitting the send button below which will send the exception trace to us or you can open an issue on
    %a{href: "https://github.com/BadrIT/translation_center/issues?state=open"}
       github page of translation_center.
    %br
@@ -17,17 +14,21 @@
    %form{:action => "http://translation-center.herokuapp.com/translation_center_feedbacks", :method => "POST"}
       %fieldset
          .control-group
-            %label.control-label{:for => "name"} Name:
+            %label.control-label{:for => "name"} Name (optional):
             .controls
                %input#name.input-xlarge{:name => "translation_center_feedback[name]", :placeholder => "", :type => "text"}/
          .control-group
-            %label.control-label{:for => "email"} Email:
+            %label.control-label{:for => "email"} Email (optional):
             .controls
                %input#email.input-xlarge{:name => "translation_center_feedback[email]", :placeholder => " ", :type => "text"}/
          .control-group
-            %label.control-label{:for => "subject"} Subject:
+            %label.control-label{:for => "subject"} Subject (optional):
             .controls
                %input#subject.input-xlarge{:name => "translation_center_feedback[subject]", :placeholder => "", :type => "text", value: "Translation Center Exception (version #{Gem.loaded_specs["translation_center"].version})"}/
+         .control-group
+            %label.control-label{:for => "subject"} Comments (optional):
+            .controls
+               %textarea#comments.input-xlarge{:name => "translation_center_feedback[comments]", :placeholder => "", :type => "text"}
          .control-group
             %label.control-label{:for => "message"} Message:
             .controls
@@ -47,12 +48,3 @@
          
       .form-actions
          %button.btn.btn-warning.btn-large{:type => "submit"} SEND
-
-   %a{href: "http://badrit.com/"}
-      = image_tag 'translation_center/badr_it.png'
-   %br
-   %br
-   %p
-      %a{href: "http://badrit.github.io/translation_center/"} 
-         Translation Center
-      is maintained and developed by BadrIT
