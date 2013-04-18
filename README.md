@@ -1,6 +1,7 @@
 ## Translation Center Status
 [![Code Climate](https://codeclimate.com/github/BadrIT/translation_center.png)](https://codeclimate.com/github/BadrIT/translation_center)
 [![Gem Version](https://badge.fury.io/rb/translation_center.png)](http://badge.fury.io/rb/translation_center)
+[![Dependency Status](https://gemnasium.com/BadrIT/translation_center.png)](https://gemnasium.com/BadrIT/translation_center)
 
 ## Introduction
 
