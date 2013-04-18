@@ -7,7 +7,7 @@ TranslationCenter::Engine.routes.draw do
     post :unaccept
   end
 
-  resources :translation_keys do
+  resources :translation_keys, except: :create do
     post :update_translation
     get :translations
     collection do 
