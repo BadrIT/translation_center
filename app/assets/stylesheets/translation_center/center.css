@@ -18,3 +18,11 @@
 #activity {
   padding-top: 50px;
 }
+
+.ltr {
+  direction: ltr;
+}
+
+.rtl {
+  direction: rtl;
+}
