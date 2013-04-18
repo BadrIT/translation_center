@@ -1,11 +1,12 @@
 .well.well-small.translation_box{ id: "translation_id_#{translation.id}", 'data-key-id' => translation.translation_key.id }
   
-  %div.translation_info
-    %span.pull-left
+  %div{class: "translation_info #{language_direction(to_lang)}"}
+    %span
       = translation.value
     
     - if translation_admin?
       = link_to '×', translation_path(translation), method: :delete, data: { confirm: t('translation_center.actions.are_you_sure', :default => 'Are you sure?') }, class: 'close', remote: true
+    %br
     %br
     %small.pull-right
       %em
