@@ -112,7 +112,11 @@ module TranslationCenter
       I18n.locale = locale
       puts "Started exporting translations in #{locale}"
       TranslationCenter::TranslationKey.translated(locale).each do |key|
-        key.add_to_hash(result, locale)  
+        begin
+          key.add_to_hash(result, locale)  
+        rescue
+          puts "Error writing key: #{key.name} to yaml for #{locale}"
+        end
       end
       File.open("config/locales/#{locale.to_s}.yml", 'w') do |file|
         file.write({locale.to_s => result}.ya2yaml)
