@@ -1,0 +1,6 @@
+--- 
+ar: 
+  activerecord: 
+    errors: 
+      messages: 
+        taken: محجوز

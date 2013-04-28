@@ -25,6 +25,7 @@ Manage all app translations; collect stats, accept, add, edit, remove translatio
 
   * Different roles: translators and admins
   * Add new locales easily
+  * Support right-to-left and left-to-right translations
   * Detect new translation keys in code and store them in DB for users to translate
   * Inspect translation keys from your application view directly
   * Import and Export translations in yaml format
@@ -56,9 +57,15 @@ This will add three languages to the translation center, you need to add them in
 ```ruby
 development:
   lang:
-    en: 'English'
-    ar: 'Arabic'
-    de: 'German'
+    en: 
+      name: 'English'
+      direction: 'ltr'
+    ar:
+      name: 'Arabic'
+      direction: 'rtl'
+    de:
+      name: 'German'
+      direction: 'ltr'
 ```
 
 if you don't supply languages for the generator it will support only English.

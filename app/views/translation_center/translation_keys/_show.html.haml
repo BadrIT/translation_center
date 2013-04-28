@@ -23,5 +23,5 @@
             %b
               = t(translation_key.name)
           %hr
-          .user_translation.well.well-small{ 'data-key-id' => translation_key.id }
+          %div{ class: "user_translation well well-small #{language_direction(to_lang)}", 'data-key-id' => translation_key.id }
             = current_user.translation_for(translation_key, to_lang).value
