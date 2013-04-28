@@ -1,0 +1,6 @@
+== 1.5.0
+
+* Enhancments:
+  * Added customization for views for RTL languages
+
+Please check the doc for the updated format of `translation_center.yml`
