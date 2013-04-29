@@ -74,7 +74,7 @@ module TranslationCenter
     if TranslationCenter::CONFIG['i18n_source']  == 'db' && options.delete(:yaml).blank?
       val = translation_key.accepted_translation_in(locale).try(:value) || options[:default]
       # replace variables in a translation with passed values
-      options.each_pair{ |key, value| val.gsub!("%{#{key.to_s}}", value.to_s) }
+      options.each_pair{ |key, value| val.gsub!("%{#{key.to_s}}", value.to_s) } if val.is_a?(String)
       throw(:exception, I18n::MissingTranslation.new(locale, complete_key, options)) unless val
       wrap_span(val, translation_key)
     else
