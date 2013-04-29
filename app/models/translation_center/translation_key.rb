@@ -126,7 +126,7 @@ module TranslationCenter
       all_count = keys_count
       I18n.available_locales.each do |locale|
         stats[locale] = {}
-        stats[locale]['name'] = TranslationCenter::CONFIG['lang'][locale.to_s]
+        stats[locale]['name'] = TranslationCenter::CONFIG['lang'][locale.to_s]['name']
 
         translated = translated_count(locale)
         pending = pending_count(locale)
