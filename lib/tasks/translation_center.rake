@@ -18,7 +18,6 @@ namespace :translation_center do
   desc "Insert yaml translations in db"
   task :yaml2db, [:locale ] => :environment do |t, args|
     begin
-      1/0
       TranslationCenter.yaml2db(args[:locale])
     rescue Exception => e
       send_exception(e)
