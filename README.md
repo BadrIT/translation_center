@@ -50,7 +50,7 @@ After you install TranslationCenter and add it to your Gemfile, you need to run 
 
 ```ruby
 rails generate translation_center:install en ar de
- ```
+```
 
 This will add three languages to the translation center, you need to add them in the config/translation_center.yaml
 

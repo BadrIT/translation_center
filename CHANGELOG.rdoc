@@ -1,3 +1,11 @@
+== 1.5.2
+
+* Fixes:
+  * Fixed relation between translation and translator to be polymorphic
+
+Please build migration for existing data, it should be similar to the migration under: "test/dummy/db/migrate/20130506103956_fix_translation_user_relation.rb"
+
+
 == 1.5.0
 
 * Enhancments:
