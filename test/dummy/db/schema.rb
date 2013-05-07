@@ -62,10 +62,11 @@ ActiveRecord::Schema.define(:version => 20130417134539377014) do
     t.integer  "translation_key_id"
     t.string   "value"
     t.string   "lang"
-    t.integer  "user_id"
+    t.integer  "translator_id"
     t.string   "status",             :default => "pending"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "translator_type"
   end
 
   create_table "users", :force => true do |t|

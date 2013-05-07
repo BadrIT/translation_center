@@ -11,10 +11,10 @@
     %small.pull-right
       %em
         = t('.by')
-        - if translation.user == current_user
+        - if translation.translator == current_user
           = t('.you')
         - else
-          = translation.user.send(TranslationCenter::CONFIG['identifier_type'])
+          = translation.translator.send(TranslationCenter::CONFIG['identifier_type'])
         = t('.on_date')
         = format_date(translation.created_at)
   %div.translation_voting

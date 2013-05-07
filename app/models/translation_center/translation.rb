@@ -7,10 +7,9 @@ module TranslationCenter
     serialize :value
 
     belongs_to :translation_key
-    belongs_to :user
+    belongs_to :translator, polymorphic: true
 
     alias_method :key, :translation_key
-    alias_method :voter, :user
     acts_as_votable
     audited
 
@@ -76,7 +75,7 @@ module TranslationCenter
 
     # make sure user has one translation per key per lang
     def one_translation_per_lang_per_key
-      if Translation.where(lang: self.lang, user_id: self.user, translation_key_id: self.key.id).empty?
+      if Translation.where(lang: self.lang, translator_id: self.translator.id, translator_type: self.translator.class.name, translation_key_id: self.key.id).empty?
         true
       else
         false

@@ -4,7 +4,7 @@ class CreateTranslationCenterTranslations < ActiveRecord::Migration
       t.integer :translation_key_id
       t.string :value
       t.string :lang
-      t.integer :user_id
+      t.references :translator, polymorphic: true
       t.string :status, default: 'pending'
 
       t.timestamps
