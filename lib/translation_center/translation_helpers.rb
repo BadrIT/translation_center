@@ -1,19 +1,13 @@
 module TranslationCenter
 
-  # includes models from the models folder
-  # this method is needed to make sure that acts_as_translator is loaded
-  # in the translator class
+  # Return the default translator by building and returning the translator object
   def self.prepare_translator
-    # if translator is not defined then load the models
-    if TranslationCenter::Translation.translator.blank?
-      Dir.glob(File.expand_path("app/models/*.rb", Rails.root)).each do |model_file|
-        require model_file
-      end
-    end
-    translator = TranslationCenter::Translation.translator.where(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier']).first
+
+    translator = TranslationCenter::CONFIG['translator_type'].camelize.constantize.where(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier']).first
+    
     # if translator doesn't exist then create him
     if translator.blank?
-      translator = TranslationCenter::Translation.translator.new(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier'])
+      translator = TranslationCenter::CONFIG['translator_type'].camelize.constantize.new(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier'])
       begin
         translator.save(validate: false)
       rescue
@@ -89,10 +83,11 @@ module TranslationCenter
     TranslationCenter::CONFIG = YAML.load_file("config/translation_center.yml")[Rails.env]
     # identifier is by default email
     TranslationCenter::CONFIG['identifier_type'] ||= 'email'
+    TranslationCenter::CONFIG['translator_type'] ||= 'User'
   else
     puts "WARNING: translation_center will be using default options if config/translation_center.yml doesn't exists"
     TranslationCenter::CONFIG = {'enabled' => false, 'inspector' => 'missing', 'lang' => {'en' => {'name' => 'English', 'direction' => 'ltr'}}, 'yaml_translator_identifier' => 'coder@tc.com', 'i18n_source' => 'yaml', 'yaml2db_translations_accepted' => true,
-                                'accept_admin_translations' => true,  'save_default_translation' => true, 'identifier_type' => 'email' }
+                                'accept_admin_translations' => true,  'save_default_translation' => true, 'identifier_type' => 'email', 'translator_type' => 'User' }
   end
   I18n.available_locales = TranslationCenter::CONFIG['lang'].keys
 

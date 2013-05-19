@@ -3,8 +3,6 @@ module ActsAsTranslator
     has_many :translations, foreign_key: :translator_id, class_name: 'TranslationCenter::Translation'
     acts_as_voter
 
-    TranslationCenter::Translation.translator = self
-
     include InstanceMethods
   end
 

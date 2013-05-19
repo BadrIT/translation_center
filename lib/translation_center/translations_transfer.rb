@@ -29,6 +29,7 @@ module TranslationCenter
   def self.yaml2db_key(locale, translation_key, translator, all_yamls)
     I18n.locale = locale
     translation = TranslationCenter::Translation.find_or_initialize_by_translation_key_id_and_lang_and_translator_id(translation_key.id, locale.to_s, translator.id)
+    translation.translator_type = TranslationCenter::CONFIG['translator_type']
     
     # get the translation for this key from the yamls
     value = get_translation_from_hash(translation_key.name, all_yamls[locale])

@@ -18,6 +18,7 @@ common_atts: &common_atts
   accept_admin_translations: true 
 
   # identifier_type: 'email' # Uncomment and change the identifier if your User model has no email attribute
+  # translator_type: 'User' # Uncomment and change if you want to change the translator type
 
 development:
   enabled: true # default false

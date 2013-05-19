@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    translation_center (1.5.1)
+    translation_center (1.5.2)
       acts_as_votable
       audited-activerecord
       font-awesome-rails
