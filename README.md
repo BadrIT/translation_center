@@ -81,10 +81,16 @@ And then run this rake to get all current translations to the db
 rake translation_center:synch
 ```
 
-In your User model or any other model that should acts as a translator add the following line:
+Add this line to the translator model (typically `User`)
 
 ```ruby
 acts_as_translator
+```
+
+and change the `translator_type` in `translation_center.yml` to the translator model name (if it is `User` keep it commented)
+
+```ruby
+# tranlator_type: 'User'
 ```
 
 In routes file add 
