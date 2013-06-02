@@ -7,10 +7,6 @@ en:
         record_invalid: "Validation failed: %{errors}"
         taken: "has already been taken"
     models: Models
-  articles: 
-    index: 
-      content: Content
-      title: Title
   date: 
     abbr_day_names: 
       - Sun

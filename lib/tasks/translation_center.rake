@@ -13,6 +13,10 @@ namespace :translation_center do
       Net::HTTP.post_form(URI.parse('http://translation-center.herokuapp.com/translation_center_feedbacks/create_rake'), params)
       puts 'We have received your feedback. Thanks!'
     end
+
+    # show the exception message
+    puts exception.message
+    puts exception.backtrace.join("\n")
   end
 
   desc "Insert yaml translations in db"
