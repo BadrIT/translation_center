@@ -25,6 +25,8 @@ module TranslationCenter
       # user can replace this logo to change the logo
       copy_file 'assets/translation_center_logo.png', 'app/assets/images/translation_center_logo.png'
 
+      sleep(1) # to avoid duplicate migrations between acts_as_votable and auditable
+
       unless ActiveRecord::Base.connection.table_exists? 'audits'
         # we use audited for tracking activity
         Rails::Generators.invoke('audited:install')
