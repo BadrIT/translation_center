@@ -28,8 +28,11 @@ module TranslationCenter
       # to be used for meta search
       @search = Audited::Adapters::ActiveRecord::Audit.search(params[:search])
       #TODO perpage constant should be put somewhere else
-      @translations_changes = Translation.recent_changes.paginate(:page => params[:page], :per_page => 5)
-      
+      @translations_changes = Translation.recent_changes.page(params[:page]).limit(5)
+      params[:page] ||= 1
+      @page = params[:page].to_i
+      @total_pages = Translation.recent_changes.count / 5
+
       respond_to do |format|
         format.html
         format.js { render 'search_activity' }
@@ -37,7 +40,10 @@ module TranslationCenter
     end
 
     def search_activity
-      @translations_changes = Translation.recent_changes(params[:search]).paginate(:page => params[:page], :per_page => 5)
+      @translations_changes = Translation.recent_changes(params[:search]).page(params[:page]).limit(5)
+      params[:page] ||= 1
+      @page = params[:page].to_i
+      @total_pages =  Translation.recent_changes(params[:search]).count / 5
       
       respond_to do |format|
         format.js

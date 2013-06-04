@@ -33,5 +33,16 @@
           %td
             = distance_of_time_in_words_to_now change.created_at
             = t('.ago')
-
-  = will_paginate translations_changes
+  .pagination
+    = link_to t('.first'), dashboard_path(page: 1)
+    - if @page != 1
+      |
+      = link_to t('.prev'), dashboard_path(page: @page - 1)
+    |
+    = link_to t('.next'), dashboard_path(page: @page + 1)
+    - if @page != @total_pages
+      |
+      = link_to t('.last'), dashboard_path(page: @total_pages)
+    = @page
+    = t('.of')
+    = @total_pages

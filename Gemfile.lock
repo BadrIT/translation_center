@@ -11,7 +11,6 @@ PATH
       jquery-ui-rails
       meta_search
       rails (>= 3.1.0)
-      will_paginate
       ya2yaml
 
 GEM
@@ -167,7 +166,6 @@ GEM
     tzinfo (0.3.35)
     warden (1.2.1)
       rack (>= 1.0)
-    will_paginate (3.0.4)
     ya2yaml (0.31)
 
 PLATFORMS
@@ -190,5 +188,4 @@ DEPENDENCIES
   ruby-debug-base19x (~> 0.11.30.pre4)
   ruby-debug19
   translation_center!
-  will_paginate
   ya2yaml
