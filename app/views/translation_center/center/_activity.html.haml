@@ -34,15 +34,15 @@
             = distance_of_time_in_words_to_now change.created_at
             = t('.ago')
   .pagination
-    = link_to t('.first'), dashboard_path(page: 1)
+    = link_to t('.first'), "#{request.protocol}#{request.host_with_port}#{request.fullpath.gsub('&page=' + @page.to_s, '')}?&page=1"
     - if @page != 1
       |
-      = link_to t('.prev'), dashboard_path(page: @page - 1)
+      = link_to t('.prev'), "#{request.protocol}#{request.host_with_port}#{request.fullpath.gsub('&page=' + @page.to_s, '')}?&page=#{@page - 1}"
     |
-    = link_to t('.next'), dashboard_path(page: @page + 1)
+    = link_to t('.next'), "#{request.protocol}#{request.host_with_port}#{request.fullpath.gsub('&page=' + @page.to_s, '')}?&page=#{@page + 1}"
     - if @page != @total_pages
       |
-      = link_to t('.last'), dashboard_path(page: @total_pages)
+      = link_to t('.last'), "#{request.protocol}#{request.host_with_port}#{request.fullpath.gsub('&page=' + @page.to_s, '')}?&page=#{@total_pages}"
     = @page
     = t('.of')
     = @total_pages

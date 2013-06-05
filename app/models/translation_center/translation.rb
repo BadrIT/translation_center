@@ -6,6 +6,8 @@ module TranslationCenter
     # serialize as we could store arrays
     serialize :value
 
+    CHANGES_PER_PAGE = 5
+
     belongs_to :translation_key
     belongs_to :translator, polymorphic: true
 

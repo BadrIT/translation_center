@@ -51,7 +51,7 @@
 %h1
   = t('.activity')
 .span12
-
+  
   = form_for @search, url: :search_activity, html: { method: :get, id: :search_form, class: 'pull-left form-search' } do |f|
     = f.text_field 'auditable_TranslationCenter::Translation_type_translation_key_name_matches', class: 'search_field input-medium',  placeholder: 'KEY'
 
