@@ -1,3 +1,8 @@
+== 1.5.6
+
+* Fixes:
+  * Remove dependency on will_paginate to avoid conflict between will_paginate and Kaminari
+
 == 1.5.5
 
 * Fixes:
