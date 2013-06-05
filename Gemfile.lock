@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    translation_center (1.5.5)
+    translation_center (1.5.6)
       acts_as_votable
       audited-activerecord
       font-awesome-rails
@@ -183,7 +183,6 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   jquery-ui-rails
-  meta_search
   mysql2
   ruby-debug-base19x (~> 0.11.30.pre4)
   ruby-debug19

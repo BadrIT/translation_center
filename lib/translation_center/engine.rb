@@ -4,11 +4,12 @@ require 'haml'
 require 'haml-rails'
 require 'acts_as_votable'
 require 'ya2yaml'
-require 'meta_search'
 require 'font-awesome-rails'
 require 'audited-activerecord'
 
 module TranslationCenter
+  require 'meta_search'
+
   class Engine < ::Rails::Engine
     isolate_namespace TranslationCenter
   end

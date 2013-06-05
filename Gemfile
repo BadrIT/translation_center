@@ -24,10 +24,8 @@ gem 'acts_as_votable'
 gem 'ya2yaml'
 # gem 'linecache19', :git => 'git://github.com/mark-moseley/linecache'
 gem 'devise'
-gem 'meta_search'
 gem 'font-awesome-rails'
 gem 'audited-activerecord'
-gem 'meta_search'
 
 group :development do
   gem 'ruby-debug-base19x', '~> 0.11.30.pre4'
