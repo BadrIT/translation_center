@@ -268,6 +268,11 @@ or monitor activity of changes to translations.
 
 ![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/activity.png "Activity")
 
+##Video
+
+Watch it on YouTube.
+http://www.youtube.com/watch?v=BTy6ZI31JmU
+
 ##Demo
 
 We have added translation_center to the [Tracks][1] app:
