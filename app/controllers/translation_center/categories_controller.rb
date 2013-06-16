@@ -3,6 +3,7 @@ require_dependency "translation_center/application_controller"
 module TranslationCenter
   class CategoriesController < ApplicationController
     before_filter :can_admin?, only: [ :destroy ]
+    before_filter :set_page_number, except: :destroy
 
     # GET /categories
     # GET /categories.json
@@ -20,7 +21,7 @@ module TranslationCenter
     def show
       @category = Category.find(params[:id])
       session[:current_filter] = params[:filter] || session[:current_filter]
-      @keys = @category.send("#{session[:current_filter]}_keys", session[:lang_to]).page(params[:page]).limit(TranslationKey::PER_PAGE)
+      @keys = @category.send("#{session[:current_filter]}_keys", session[:lang_to]).offset(@page - 1).limit(TranslationKey::PER_PAGE)
       @untranslated_keys_count = @category.untranslated_keys(session[:lang_to]).count
       @translated_keys_count = @category.translated_keys(session[:lang_to]).count
       @pending_keys_count = @category.pending_keys(session[:lang_to]).count
@@ -34,7 +35,7 @@ module TranslationCenter
     # GET /categories/1/more_keys.js
     def more_keys
       @category = Category.find(params[:category_id])
-      @keys = @category.send("#{session[:current_filter]}_keys", session[:lang_to]).page(params[:page]).limit(TranslationKey::PER_PAGE)
+      @keys = @category.send("#{session[:current_filter]}_keys", session[:lang_to]).offset(@page - 1).limit(TranslationKey::PER_PAGE)
       respond_to do |format|
         format.js { render 'keys' }
       end

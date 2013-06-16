@@ -29,5 +29,10 @@ module TranslationCenter
       current_user.can_admin_translations?
     end
 
+    def set_page_number
+      params[:page] ||= 1
+      @page = params[:page].to_i
+    end
+
   end
 end

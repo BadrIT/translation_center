@@ -4,6 +4,7 @@ module TranslationCenter
   class CenterController < ApplicationController
 
     before_filter :can_admin?, only: [ :dashboard, :search_activity, :manage ]
+    before_filter :set_page_number, only: [ :dashboard, :search_activity ]
 
     # set language user translating from
     def set_language_from
@@ -23,8 +24,6 @@ module TranslationCenter
     end
 
     def dashboard
-      params[:page] ||= 1
-      @page = params[:page].to_i
       @stats = TranslationKey.langs_stats
       @langs = @stats.keys
       # to be used for meta search
@@ -40,9 +39,6 @@ module TranslationCenter
     end
 
     def search_activity
-      params[:page] ||= 1
-      @page = params[:page].to_i
-
       @translations_changes = Translation.recent_changes(params[:search]).offset(Translation::CHANGES_PER_PAGE * (@page - 1)).limit(Translation::CHANGES_PER_PAGE)
       @total_pages =  (Translation.recent_changes(params[:search]).count / (Translation::CHANGES_PER_PAGE * 1.0)).ceil
       
