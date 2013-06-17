@@ -234,11 +234,15 @@ You will also need to add the language to config/translation_center.yml
 ```ruby
 development:
   lang:
-    en: 'English'
-    ar: 'Arabic'
-    de: 'German'
-    es: 'Espaniol'
-    fr: 'French'
+    en:
+      name: 'English'
+      direction: 'ltr'
+    ar:
+      name: 'Arabic'
+      direction: 'rtl'
+    de:
+      name: 'German'
+      direction: 'ltr'
 ```
 
 ##Screen Shots

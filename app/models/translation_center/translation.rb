@@ -2,7 +2,6 @@ module TranslationCenter
   class Translation < ActiveRecord::Base
 
     attr_accessible :value, :lang, :translation_key_id, :user_id, :status
-    cattr_accessor :translator
     # serialize as we could store arrays
     serialize :value
 
