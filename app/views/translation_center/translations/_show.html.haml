@@ -23,7 +23,7 @@
     .votes_count.badge.badge-success.pull-right
       %span.count{ 'data-translation-id' => translation.id }
         = translation.votes.count
-      = t('.votes')
+      = t('.votings')
     %a.pull-right{href: '#'}
       - voted = current_user.voted_on?(translation)
       %span.badge.pull-left.translations_vote{ class: "#{voted ? 'badge-success' : ''}", 'data-translation-id' => translation.id,  voted: voted.to_s}

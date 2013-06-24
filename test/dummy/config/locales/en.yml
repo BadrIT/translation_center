@@ -1,12 +1,10 @@
 --- 
 en: 
   activerecord: 
-    attributes: Attributes
     errors: 
       messages: 
         record_invalid: "Validation failed: %{errors}"
         taken: "has already been taken"
-    models: Models
   date: 
     abbr_day_names: 
       - Sun
@@ -180,6 +178,10 @@ en:
       too_short: "is too short (minimum is %{count} characters)"
       wrong_length: "is the wrong length (should be %{count} characters)"
   helpers: 
+    button: 
+      create: "Create %{model}"
+      submit: "Save %{model}"
+      update: "Update %{model}"
     select: 
       prompt: "Please select"
     submit: 
@@ -315,25 +317,10 @@ en:
       index: 
         date: Date
         sort_by: "Sort by"
-        votes: Votes
+        votings: Votes
       show: 
         by: by
         on_date: "on"
         vote: Vote
-        votes: Votes
+        votings: Votes
         you: You
-  will_paginate: 
-    next_label: "Next &#8594;"
-    page_entries_info: 
-      multi_page: "Displaying %{model} %{from} - %{to} of %{count} in total"
-      multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
-      single_page: 
-        one: "Displaying 1 %{model}"
-        other: "Displaying all %{count} %{model}"
-        zero: "No %{model} found"
-      single_page_html: 
-        one: "Displaying <b>1</b> %{model}"
-        other: "Displaying <b>all&nbsp;%{count}</b> %{model}"
-        zero: "No %{model} found"
-    page_gap: "&hellip;"
-    previous_label: "&#8592; Previous"

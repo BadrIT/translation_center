@@ -143,6 +143,17 @@ module TranslationCenter
       stats
     end
 
+    def children_translations(locale)
+      TranslationKey.where('name LIKE ?', "#{self.name}%").inject({}) do |translations, child|
+        translations[child.name.to_sym] = child.accepted_translation_in(locale).try(:value)
+        translations
+      end
+    end
+
+    def has_children?
+      TranslationKey.where('name LIKE ?', "#{self.name}%").count > 1
+    end
+
     # adds a translation key with its translation to a translation yaml hash
     # send the hash and the language as parameters
     def add_to_hash(all_translations, lang)

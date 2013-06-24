@@ -69,7 +69,13 @@ module TranslationCenter
       val = translation_key.accepted_translation_in(locale).try(:value) || options[:default]
       # replace variables in a translation with passed values
       options.each_pair{ |key, value| val.gsub!("%{#{key.to_s}}", value.to_s) } if val.is_a?(String)
-      throw(:exception, I18n::MissingTranslation.new(locale, complete_key, options)) unless val
+
+      if val.blank? && !translation_key.has_children?
+        throw(:exception, I18n::MissingTranslation.new(locale, complete_key, options))
+      elsif translation_key.has_children?
+        # TODO should use ancestors for keys
+        return translation_key.children_translations(locale)
+      end
       wrap_span(val, translation_key)
     else
       # just return the normal I18n translation

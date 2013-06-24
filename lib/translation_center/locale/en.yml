@@ -58,10 +58,10 @@ en:
             index: 
                 date: Date
                 sort_by: "Sort by"
-                votes: Votes
+                votings: Votes
             show: 
                 by: by
                 on_date: "on"
                 vote: Vote
-                votes: Votes
+                votings: Votes
                 you: You
