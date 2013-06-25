@@ -21,3 +21,12 @@
 %br
 
 = link_to 'New Article', new_article_path
+
+#test_content
+  test ajax content
+= link_to 'test ajax', '#', id: :test_ajax
+
+:javascript
+  $('#test_ajax').click(function(){
+    $('#test_content').load('/')
+  })

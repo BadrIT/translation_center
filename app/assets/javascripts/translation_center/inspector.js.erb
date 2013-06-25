@@ -4,6 +4,15 @@ translation_center_root = "<%= Rails.application.routes.url_helpers.translation_
 translation_center_translation_key_path = function(id) { return translation_center_root + '/translation_keys/' + id }
 
 $(document).ready(function() {
+  attachInspectorLinks();
+});
+
+// after any ajax request attach the inspector links
+$(document).ajaxComplete(function() {
+  attachInspectorLinks();
+});
+
+function attachInspectorLinks(){
   if($('body').children('#tc-inspector-links').length == 0 && $('#tc_no_inspector').length == 0 )
     $('body').append('<div id="tc-inspector-links"></div>');
 
@@ -29,23 +38,22 @@ $(document).ready(function() {
     $('.tc-inspector-key[data-id=' + id + ']').css('color', '');
   });
 
-  function getBadge(status) {
-    if(status == 'untranslated')
-      return 'tc-badge-important'
-    else if(status == 'pending')
-      return 'tc-badge-warning'
-    else
-      return 'tc-badge-success'
-  }
+}
 
-  function getColor(status) {
-    if(status == 'untranslated')
-      return 'red'
-    else if(status == 'pending')
-      return 'orange'
-    else
-      return 'green'
-  }
+function getBadge(status) {
+  if(status == 'untranslated')
+    return 'tc-badge-important'
+  else if(status == 'pending')
+    return 'tc-badge-warning'
+  else
+    return 'tc-badge-success'
+}
 
-
-});
+function getColor(status) {
+  if(status == 'untranslated')
+    return 'red'
+  else if(status == 'pending')
+    return 'orange'
+  else
+    return 'green'
+}
