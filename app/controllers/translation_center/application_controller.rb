@@ -19,7 +19,7 @@ module TranslationCenter
     def translation_langs_filters
       session[:current_filter] ||= 'untranslated'
       session[:lang_from] ||= :en
-      session[:lang_to] ||= :en
+      session[:lang_to] = params[:lang_to] || session[:lang_to] || :en
       I18n.locale = session[:lang_from] || I18n.default_locale
     end
 
