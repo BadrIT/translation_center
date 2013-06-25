@@ -10,6 +10,8 @@ module TranslationCenter
       translator = TranslationCenter::CONFIG['translator_type'].camelize.constantize.new(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier'])
       begin
         translator.save(validate: false)
+        # needed if the user is using confirmable with devise
+        translator.update_attribute(:confirmed_at, Time.now) if translator.attributes.has_key?('confirmed_at')
       rescue
         translator = nil
       end
