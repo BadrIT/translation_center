@@ -27,5 +27,7 @@ class CreateTranslationCenterTranslations < ActiveRecord::Migration
       end      
 
     end
+
+    add_index :translation_center_translations, :translation_key_id
   end
 end

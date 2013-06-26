@@ -10,5 +10,7 @@ class CreateTranslationCenterTranslationKeys < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :translation_center_translation_keys, :name
   end
 end
