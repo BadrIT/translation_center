@@ -40,6 +40,17 @@ namespace :translation_center do
   desc "Calls yaml2db then db2yaml"
   task :synch, [:locale ] => :environment do |t, args|
     begin
+      if TranslationCenter::Category.any?
+        puts "WARNING: You already have translations stored in the db, this action will destroy them. Insert 'y' to confirm"
+        confirm = $stdin.gets.chomp
+    
+        if confirm.blank? || confirm == 'y' || confirm == 'yes'
+          TranslationCenter::Category.destroy_all
+        else
+          next
+        end
+
+      end
       TranslationCenter.yaml2db(args[:locale])
       TranslationCenter.db2yaml(args[:locale])
     rescue Exception => e
