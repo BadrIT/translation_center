@@ -5,6 +5,107 @@ en:
       messages: 
         record_invalid: "Validation failed: %{errors}"
         taken: "has already been taken"
+  authentications: 
+    edit: 
+      add_info: "Please Add your Email, country and telephone number to complete your signup"
+      city: City
+      country: Country
+      email: Email
+      mobile: "Mobile Number"
+      name: Name
+      select_city: "Select Your City"
+      select_country: "Select Your Country"
+      signup: "Sign Up"
+      step_2_join_888: "Step Two: Join Waddat"
+    failed: "Authentication Failed"
+  classifieds: 
+    controller: 
+      missing_classified: "This classified cann't be found "
+    form: 
+      add_map: "Add a Map"
+      add_photo: "Add a Photo"
+      add_photos: "Add Photos"
+      address: Address
+      auto_share_my_post_on: "Auto Share my post on"
+      category*: Category*
+      city: City
+      country*: Country*
+      create_new_classified: "Create New Classified"
+      currency_not_blank: "should be selected"
+      description: Description
+      drag_and_drop_your_photos_here: "Drag and drop your photo(s) here"
+      edit_classified: "Editing Classified"
+      email: Email
+      hide: Hide
+      offered: Offered
+      offf: "Off"
+      onn: "On"
+      or: Or
+      post: Post
+      price: Price
+      select_categories: "Select a category"
+      select_city: "Select a city"
+      select_country: "Select a country"
+      select_currency: "Select a currency"
+      select_sub_categories: "Select a subcategory"
+      show: Show
+      sub_category*: "Sub Category*"
+      tel: Tel.
+      title: Title
+      type: Type
+      upload_photos: "Upload Photos"
+      wanted: Wanted
+    index: 
+      all_categories: "All Categories"
+      all_countries: "All Countries"
+      all_sub_countries: "All Sup-Categories"
+      filter: Filter
+      max: max
+      min: min
+      post_date: "Posted on or After"
+      price_range: "Price Range"
+      reset_filter: "Reset Filters"
+      search_for: "Search for..."
+      search_form: Search
+      sub_cat: "Sub Categories"
+    show: 
+      classified_open: "Mark as Open"
+      classified_unsold: "Mark as Unsold"
+      delete: Delete
+      edit: Edit
+      email: "Your Email"
+      full_name: "Your Name"
+      history: "Back to search resaults"
+      mark_closed: "Mark as Closed"
+      mark_open: "Mark as open"
+      mark_sold: "Mark as Sold"
+      mark_unsold: "Mark as Unsold"
+      message: Message
+      mobile_number: "Mobile Number"
+      send: Send
+      send_email: "Send Email"
+      send_email_title: "Send Email to Advertiser"
+      share: Share
+      success_creation: "Congrate!! your classified pubblished successfully."
+      tel: Tel
+    single_classified: 
+      classified_open: "Mark as Open"
+      classified_unsold: "Mark as Unsold"
+      closed: Closed
+      delete: Delete
+      edit: Edit
+      mark_closed: "Mark as Closed"
+      mark_open: "Mark as open"
+      mark_sold: "Mark as Sold"
+      mark_unsold: "Mark as Unsold"
+      offered: Offered
+      share: Share
+      sold: Sold
+      wanted: Wanted
+  custom_errors: 
+    confirmation_not_match: "doesn't match confirmation"
+    max_5_photos: "Only five photos are allowed"
+    profile_pic_fail: "Profile picture update has failed "
   date: 
     abbr_day_names: 
       - Sun
@@ -59,6 +160,8 @@ en:
       - !ruby/symbol month
       - !ruby/symbol day
   datetime: 
+    ago: ago
+    day: day
     distance_in_words: 
       about_x_hours: 
         one: "about 1 hour"
@@ -104,6 +207,10 @@ en:
   devise: 
     confirmations: 
       confirmed: "Your account was successfully confirmed. You are now signed in."
+      new: 
+        add_info: "Send me confirmation instructions"
+        resend_confirmation: "Resend confirmation instructions"
+        submit_confirmation: "Send instructions"
       send_instructions: "You will receive an email with instructions about how to confirm your account in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes."
     failure: 
@@ -127,6 +234,16 @@ en:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
     passwords: 
+      edit: 
+        change_password: "Change Your Password"
+        confirm_new_pass: "Confirm New Password:"
+        new_password: "New Password:"
+        submit_new_password: "Submit new password"
+      new: 
+        add_info: "Send me reset password instructions"
+        email: Email
+        forgot_password: "Forgot your password?"
+        submit_password: "Send instructions"
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
       send_instructions: "You will receive an email with instructions about how to reset your password in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
@@ -134,6 +251,26 @@ en:
       updated_not_active: "Your password was changed successfully."
     registrations: 
       destroyed: "Bye! Your account was successfully cancelled. We hope to see you again soon."
+      edit: 
+        cancel: Cancel
+        change: Change
+        change_password: "Change Your Password"
+        confirm_new_pass: "Confirm new Password"
+        current_passwd: "Current Password"
+        new_password: "New Password"
+      new: 
+        confirm_password: "Confirm Password"
+        email: Email
+        email_signup: "Sign Up with your Email"
+        facebook_signup: "Sign up with Facebook"
+        full_name: "Full Name"
+        google_signup: "Sign up with Google"
+        mobile: Mobile
+        or: Or
+        password: Password
+        select_country: "Select Country"
+        signup: "Sign Up"
+        twitter_signup: "Sign up with Twitter"
       signed_up: "Welcome! You have signed up successfully."
       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
       signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
@@ -141,12 +278,36 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address."
       updated: "You updated your account successfully."
     sessions: 
+      new: 
+        create_account: "Create New Account"
+        email: Email
+        email_signup: "Sign Up with your Email"
+        facebook_signin: "Sign in with Facebook"
+        forgot_password: "Forgot Password"
+        google_signin: "Sign in with Google"
+        login: "Sign In"
+        or: Or
+        password: Password
+        twitter_signin: "Sign in with Twitter"
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
+    shared: 
+      links: 
+        confirmations_instruction: "Didn't receive confirmation instructions?"
+        forget_password: "Forgot your password?"
+        unlock: "Didn't receive unlock instructions?"
     unlocks: 
       send_instructions: "You will receive an email with instructions about how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions about how to unlock it in a few minutes."
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+  email_messages: 
+    errors_title: 
+      one: "1 error prohibited this email from being sent:"
+      other: "%{count} errors prohibited this email from being sent:"
+    invalid_email: "Invalid email"
+    missing_email: "email can't be blank"
+    missing_name: "name can't be blank"
+    sent_successfully: "sent successfully"
   errors: 
     format: "%{attribute} %{message}"
     messages: 
@@ -162,6 +323,7 @@ en:
       expired: "has expired, please request a new one"
       greater_than: "must be greater than %{count}"
       greater_than_or_equal_to: "must be greater than or equal to %{count}"
+      in_between: "must be in between %{min} and %{max}"
       inclusion: "is not included in the list"
       invalid: "is invalid"
       less_than: "must be less than %{count}"
@@ -177,17 +339,135 @@ en:
       too_long: "is too long (maximum is %{count} characters)"
       too_short: "is too short (minimum is %{count} characters)"
       wrong_length: "is the wrong length (should be %{count} characters)"
+  flash: 
+    message: 
+      account_deleted: "Your account has been deleted"
+      classified_created: "Congrate!! your classified published successfully. Now Share it to your social networks."
+      email_sent: "Email sent successfully"
+      insufficient_priviledge: "You don't have sufficient priviledges, redirect to home page"
+      signed_up_but_unconfirmed: "Awaiting email confirmation. Check your email first!!."
+      signed_up_but_unconfirmed_email: "Awaiting email confirmation. Check your email first!!. %{email}"
+      user_email_change_update: "A message with a confirmation link has been sent to your new email address. Please open the link to confirm your new email address."
+      user_profile_info_update: "Your profile info has been updated"
+      user_profile_pic_update: "Your profile picture has been updated"
+      user_subscriptions_update: "Your subscription has been updated"
   helpers: 
     button: 
       create: "Create %{model}"
       submit: "Save %{model}"
       update: "Update %{model}"
+    page_entries_info: 
+      more_pages: 
+        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
+      one_page: 
+        display_entries: 
+          one: "Displaying <b>1</b> %{entry_name}"
+          other: "Displaying <b>all %{count}</b> %{entry_name}"
+          zero: "No %{entry_name} found"
     select: 
       prompt: "Please select"
     submit: 
       create: "Create %{model}"
       submit: "Save %{model}"
       update: "Update %{model}"
+  home: 
+    home_bottom: 
+      recent_watched_10: "Latest Posts"
+      recent_watched_3: "Recently viewed items"
+    home_category_filter: 
+      all: All
+    home_classifieds: 
+      no_result: "No result found"
+    home_filter: 
+      all: All
+      search_for: "Search for... "
+      search_form: Search
+  layouts: 
+    add_photo: 
+      cancel: Cancel
+      choose_from_gallery: "Choose from gallery"
+      take_new_photo: "Take a New photo"
+    application: 
+      about_us: "About Us"
+      all_categories: "All Categories"
+      arabic: Arabic
+      browse_categories: "Browse Categories"
+      cancel: Cancel
+      cancle: Cancle
+      classified: Classifieds
+      classified_closed: "Mark as Closed"
+      classified_closed_msg: "Confirm Classified has Closed!"
+      classified_open: "Mark as Open"
+      classified_open_msg: "Confirm Classified is open!"
+      classified_sold: "Mark as Sold"
+      classified_sold_msg: "Confirm Classified has sold!"
+      classified_unsold: "Mark as Unsold"
+      classified_unsold_msg: "Confirm Classified is unsold!"
+      classifieds: Classifieds
+      confirm: "Confirm "
+      contact_us: "Contact Us"
+      delete: Delete
+      delete_classified: "Delete Classified"
+      delete_classified_msg: "Are you sure you want to delete this Classified?"
+      english: English
+      home: Home
+      left: Left
+      middle: Middle
+      post: Post
+      post_classified: "Post a Classified"
+      privacy_policy: "privacy policy"
+      profile: Profile
+      right: Right
+      search: Search
+      share_text_end: " on #waddat"
+      share_text_intro: "I just found "
+      signin: "Sign in"
+      signout: "Sign Out"
+      signup: "Sign up"
+      subscriptions: Subscriptions
+      switch_lang: عربي
+      terms_conditions: "Terms and Conditions"
+      title: "888"
+    error_messages: 
+      title: 
+        one: "1 error prohibited this %{model} from being saved:"
+        other: "%{count} errors prohibited this %{model} from being saved:"
+    footer: 
+      about_us: "About Us"
+      contact_us: "Contact Us"
+      home: Home
+      privacy_policy: "Privacy Policy"
+      signout: Signout
+      terms_conditions: "Term of Use"
+    home_layout: 
+      admin: "Admin page"
+      all_countires: "All Countries"
+      cancel: Cancel
+      change: Change
+      change_country: "Change Country"
+      classified: Classified
+      classifieds: Classifieds
+      home_eader_text: "Sell and Find Faster With The Help of Your Community"
+      login: "Sign In "
+      profile: Profile
+      search_classified: "Search Classified in "
+      select_country: "Select Country "
+      sign_out: "Sign Out"
+      sign_up: "Sign Up"
+      subscriptions: Subscriptions
+    ma_options: 
+      add_current_location: "Add current location"
+      cancel: Cancel
+      use_google_map: "Use Google map"
+    mobile_luncher_footer: 
+      classified: Classified
+      profile: Profile
+      subscriptions: Subscriptions
+    static_side_luncher: 
+      about_us: "About Us"
+      contact_us: "Contact Us"
+      privacy_policy: "Privacy Policy"
+      terms_conditions: "Term of Use"
   meta_search: 
     or: or
     predicates: 
@@ -211,6 +491,26 @@ en:
       less_than_or_equal_to: "%{attribute} less than or equal to"
       not_in: "%{attribute} isn't one of"
       starts_with: "%{attribute} starts with"
+  models: 
+    classified: 
+      offered: Offered
+      wanted: Wanted
+    subscriptions: 
+      daily: Daily
+      weekly: Weekly
+      when_posted: "When Posted"
+  notifier: 
+    newsletter_classified: 
+      notification_settings: "notification settings"
+      unsubscribe: unsubscribe
+    send_email: 
+      body_footer: "Thanks, 08-08-08 Team."
+      body_header: "%{name} sent you the following message while viewing '%{classified_title}' %{classified_url} :"
+      email: Email
+      message: Message
+      name: Name
+      phone: Phone
+      subject: "New message from 08-08-08"
   number: 
     currency: 
       format: 
@@ -246,6 +546,39 @@ en:
           kb: KB
           mb: MB
           tb: TB
+  photos: 
+    gallery: 
+      upload_photos: "Upload Photos"
+    list_image: 
+      confirm_deletion: "Delete this image? (undoable)"
+  search: 
+    classifieds_result: 
+      all: "All "
+      for: " for "
+      for_all: " for All"
+      in: " in "
+      initial_search_text: "Search All Categories in All Countries"
+      no_result: "No result found"
+      search_all: "Search "
+    index: 
+      all_categories: "All Categories"
+      all_countries: "All Countries"
+      all_sub_countries: "All Sup-Categories"
+      filter: Filter
+      max: max
+      min: min
+      post_date: "Posted on or After"
+      price_range: "Price Range"
+      refine_result: "Refine Result"
+      reset_filter: "Reset Filters"
+      search_for: "Search for..."
+      search_form: Search
+      select_a_category: "Select a Category"
+      select_a_sub_category: "Select a subcategory"
+      sub_cat: "Sub Categories"
+    single_classified: 
+      offered: Offered
+      wanted: Wanted
   support: 
     array: 
       last_word_connector: ", and "
@@ -309,6 +642,7 @@ en:
       show_keys: 
         created_on: "created on"
         translated: Translated
+        untranslated: Untranslated
       translation_keys: 
         no_translation_keys: "No Translation Keys"
     translations: 
@@ -316,11 +650,119 @@ en:
         unaccept: Unaccept
       index: 
         date: Date
+        no_translations_available: "No Translations Available"
         sort_by: "Sort by"
+        votes: Votes
         votings: Votes
       show: 
         by: by
         on_date: "on"
         vote: Vote
+        votes: Votes
         votings: Votes
         you: You
+  user: 
+    show: 
+      undefined: Undefined
+  users: 
+    profile: 
+      browse_categories: "Browse Category"
+      cancel: Cancel
+      change: Change
+      change_passwd: "Change password"
+      confirm_new_pass: "Confirm New Password:"
+      current_passwd: "Current Password:"
+      edit_photo: "Edit photo"
+      new_password: "New Password:"
+      profile: Profile
+      remove_account: "Remove Account"
+      save: Save
+      sign_out: "Sign Out"
+    profile_form: 
+      cancel: Cancel
+      change: change
+      change_passwd: "Change password"
+      city: City
+      classified: Classifieds
+      country: Country
+      delete_account: "Delete your account"
+      email: "Email: "
+      full_name: "Full name"
+      location: Location
+      mobile: Mobile
+      remove_account_msg: "Are you sure you want to Delete your account?"
+      save: Save
+      select_city: "Select city"
+      select_country: "Select country"
+      tel: "Tel: "
+      undefined: Undefined
+      user_name: "Name: "
+    profile_side_luncher: 
+      classified: Classifieds
+      profile: Profile
+      subscriptions: Subscriptions
+    subscription: 
+      subscriptions: Subscriptions
+    subscriptions_form: 
+      and: and
+      another_category: "Add another interest category"
+      another_locations: "Add another location"
+      auto_share: "Auto Share my post on"
+      cancel: Cancel
+      intersted_in: "Interested in :"
+      newsletter: "Receive newsletter over emails: "
+      newsletter_period: "Receive newsletter each: "
+      polocy: "privacy policy"
+      privacy_policy: "privacy policy"
+      read_888: "Read 08-08-08"
+      save: Save
+      share_options: "Sharing option"
+      terms: "terms and Conditions"
+      terms_conditions: "terms and conditions"
+    user_category_fields: 
+      remove: Remove
+      select_main: "Select Category"
+      select_sub: "Select Sub-Category"
+    user_classifieds: 
+      no_classified: "You don't have classifieds yet"
+    user_location_fields: 
+      city: City
+      country: Country
+      remove: Remove
+      select_city: "Select a city"
+      select_country: "Select Country"
+    user_photo: 
+      edit_photo: "Edit photo"
+    user_single_classified: 
+      classified_open: "Mark as Open"
+      classified_unsold: "Mark as Unsold"
+      delete: Delete
+      edit: Edit
+      mark_closed: "Mark as Closed"
+      mark_open: "Mark as open"
+      mark_sold: "Mark as Sold"
+      mark_unsold: "Mark as Unsold"
+      offered: Offered
+      wanted: Wanted
+  views: 
+    pagination: 
+      first: «
+      last: »
+      next: "&rsaquo;"
+      previous: "&lsaquo;"
+      truncate: "&hellip;"
+  will_paginate: 
+    next_label: "Next &#8594;"
+    page_entries_info: 
+      multi_page: "Displaying %{model} %{from} - %{to} of %{count} in total"
+      multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
+      single_page: 
+        one: "Displaying 1 %{model}"
+        other: "Displaying all %{count} %{model}"
+        zero: "No %{model} found"
+      single_page_html: 
+        one: "Displaying <b>1</b> %{model}"
+        other: "Displaying <b>all&nbsp;%{count}</b> %{model}"
+        zero: "No %{model} found"
+    page_gap: "&hellip;"
+    previous_label: "&#8592; Previous"
