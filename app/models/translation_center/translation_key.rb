@@ -151,7 +151,7 @@ module TranslationCenter
     end
 
     def has_children?
-      TranslationKey.where('name LIKE ?', "#{self.name}%").count > 1
+      TranslationKey.where('name LIKE ?', "#{self.name}.%").count > 1
     end
 
     # adds a translation key with its translation to a translation yaml hash
