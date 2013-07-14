@@ -64,7 +64,7 @@ module TranslationCenter
     # translation_key.update_attribute(:last_accessed, Time.now)
 
     # save the default value (Which is the titleized key name as the translation) if the option is enabled and no translation exists for that key in the db
-    translation_key.create_default_translation if TranslationCenter::CONFIG['save_default_translation'] && translation_key.translations.in(:en).empty?
+    translation_key.create_default_translation if TranslationCenter::CONFIG['save_default_translation'] && translation_key.translations.in(:en).empty? && !translation_key.has_children?
 
     # if i18n_source is set to db and not overriden by options then fetch from db
     if TranslationCenter::CONFIG['i18n_source']  == 'db' && options.delete(:yaml).blank?
