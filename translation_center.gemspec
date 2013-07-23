@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/BadrIT/translation_center"
   s.summary     = "Multi lingual web Translation Center community for Rails 3 apps"
   s.description = "Translation Center is a multi lingual web engine for Rails 3 apps. It builds a translation center community with translators and admins from your system users."
+  s.license = 'MIT'
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
