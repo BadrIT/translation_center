@@ -80,8 +80,8 @@ module TranslationCenter
       end
       wrap_span(val, translation_key)
     else
-      # just return the normal I18n translation
-      wrap_span(translate_without_adding(locale, key, options), translation_key)
+      translation_value = translate_without_adding(locale, key, options)
+      translation_value.class == Hash ? translation_value : wrap_span(translation_value, translation_key)
     end
   end
 
