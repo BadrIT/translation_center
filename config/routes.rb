@@ -5,6 +5,9 @@ TranslationCenter::Engine.routes.draw do
     post :unvote
     post :accept
     post :unaccept
+    collection do
+      get :search
+    end
   end
 
   resources :translation_keys, except: :create do

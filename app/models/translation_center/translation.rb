@@ -6,6 +6,7 @@ module TranslationCenter
     serialize :value
 
     CHANGES_PER_PAGE = 5
+    NUMBER_PER_PAGE = 15
 
     belongs_to :translation_key
     belongs_to :translator, polymorphic: true

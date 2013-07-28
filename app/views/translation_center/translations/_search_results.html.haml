@@ -1,0 +1,27 @@
+%h2= t('translation_center.center.search.title', value: params[:translation_value])
+
+.pagination
+  
+  - if @page != 1
+    = link_to t('pagination.first'), "#{request.protocol}#{request.host_with_port}#{request.fullpath.gsub('&page=' + @page.to_s, '')}?&page=1"
+    |
+    = link_to t('pagination.prev'), "#{request.protocol}#{request.host_with_port}#{request.fullpath.gsub('&page=' + @page.to_s, '')}&page=#{@page - 1}"
+    |
+  
+  - if @total_pages != 1 && @page != @total_pages
+    
+    = link_to t('pagination.next'), "#{request.protocol}#{request.host_with_port}#{request.fullpath.gsub('&page=' + @page.to_s, '')}&page=#{@page + 1}"
+  - if @page != @total_pages
+    |
+    = link_to t('pagination.last'), "#{request.protocol}#{request.host_with_port}#{request.fullpath.gsub('&page=' + @page.to_s, '')}?&page=#{@total_pages}"
+  = @page
+  = t('.of')
+  = @total_pages
+
+
+%div
+  - translations.each do |translation|
+    %a.category{ href: translation_key_path(id: translation.key, lang_to: translation.lang), title: translation.key.name }
+      .category_name
+        = truncate(translation.key.name, length: 35)
+

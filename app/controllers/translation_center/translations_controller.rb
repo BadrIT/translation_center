@@ -3,6 +3,7 @@ require_dependency "translation_center/application_controller"
 module TranslationCenter
   class TranslationsController < ApplicationController
     before_filter :can_admin?, only: [ :destroy, :accept, :unaccept ]
+    before_filter :set_page_number, only: [:search]
 
     # POST /translations/1/vote
     def vote
@@ -52,6 +53,17 @@ module TranslationCenter
       @translation_key_after_status = @translation.key.status session[:lang_to]
 
       respond_to do |format|
+        format.js
+      end
+    end
+
+    def search
+      @result = Translation.where('value LIKE ?', "%#{params[:translation_value]}%")
+      @translations = @result.offset(Translation::NUMBER_PER_PAGE * (@page - 1)).limit(Translation::NUMBER_PER_PAGE)
+      @total_pages =  (@result.count / (Translation::NUMBER_PER_PAGE * 1.0)).ceil
+
+      respond_to do |format|
+        format.html
         format.js
       end
     end

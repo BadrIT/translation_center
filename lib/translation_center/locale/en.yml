@@ -1,5 +1,10 @@
 en:
     translation_center:
+        pagination:
+            next: Next
+            first: First
+            prev: Prev.
+            last: Last
         actions:
             are_you_sure: "Are you sure ?"
         back_to_app: "Back To App"
@@ -36,8 +41,11 @@ en:
                 these_actions_will_affect_existing_data: "These actions will affect existing data"
                 translated: Translated
                 untranslated: Untranslated
+            search:
+                title: "Keys with translations that contain '%{value}'"
         dashboard: Dashboard
-        search_keys: "Search Keys"
+        search_keys: "Keys"
+        search_translations: "Translations"
         translate_to: "Translate To"
         translation_center: "Translation Center"
         translation_keys: 

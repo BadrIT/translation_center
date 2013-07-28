@@ -56,6 +56,8 @@
               %li.divider-vertical
               %form.navbar-search
                 %input#search_keys.search-query{placeholder: t('translation_center.search_keys'), type: "text", autocomplete: :off}
+              %form.navbar-search{action: search_translations_path}
+                %input#translations.search-query{placeholder: t('translation_center.search_translations'), type: "text", autocomplete: :off, name: :translation_value, value: params[:translation_value]}
             
             %ul.nav.pull-right
               %li
