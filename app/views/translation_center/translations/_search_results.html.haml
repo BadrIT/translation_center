@@ -24,4 +24,7 @@
     %a.category{ href: translation_key_path(id: translation.key, lang_to: translation.lang), title: translation.key.name }
       .category_name
         = truncate(translation.key.name, length: 35)
+      %div
+        %span.label.label-success
+          = truncate(translation.value.to_s, length: 35)
 
