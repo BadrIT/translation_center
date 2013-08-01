@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20130417134539377014) do
     t.string   "ar_status",     :default => "untranslated"
   end
 
+  add_index "translation_center_translation_keys", ["name"], :name => "index_translation_center_translation_keys_on_name"
+
   create_table "translation_center_translations", :force => true do |t|
     t.integer  "translation_key_id"
     t.string   "value"
@@ -68,6 +70,8 @@ ActiveRecord::Schema.define(:version => 20130417134539377014) do
     t.datetime "updated_at"
     t.string   "translator_type"
   end
+
+  add_index "translation_center_translations", ["translation_key_id"], :name => "index_translation_center_translations_on_translation_key_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

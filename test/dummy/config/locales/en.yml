@@ -5,6 +5,10 @@ en:
       messages: 
         record_invalid: "Validation failed: %{errors}"
         taken: "has already been taken"
+  articles: 
+    index: 
+      content: Content
+      title: Title
   date: 
     abbr_day_names: 
       - Sun
@@ -216,6 +220,7 @@ en:
       format: 
         delimiter: ","
         format: "%u%n"
+        negative_format: "-%u%n"
         precision: 2
         separator: "."
         unit: $
@@ -246,6 +251,11 @@ en:
           kb: KB
           mb: MB
           tb: TB
+  pagination: 
+    first: First
+    last: Last
+    next: Next
+    prev: Prev
   support: 
     array: 
       last_word_connector: ", and "
@@ -279,6 +289,7 @@ en:
         changes: Changes
         key: Key
         locale: Locale
+        of: Of
         time: Time
         user: User
       dashboard: 
@@ -295,8 +306,18 @@ en:
         these_actions_will_affect_existing_data: "These actions will affect existing data"
         translated: Translated
         untranslated: Untranslated
+      pagination_links: 
+        of: Of
+      search: 
+        title: "Keys with translations that contain '%{value}'"
     dashboard: Dashboard
-    search_keys: "Keys"
+    pagination: 
+      first: First
+      last: Last
+      next: Next
+      prev: Prev.
+    search_keys: Keys
+    search_translations: Translations
     translate_to: "Translate To"
     translation_center: "Translation Center"
     translation_keys: 
@@ -317,7 +338,20 @@ en:
       index: 
         date: Date
         sort_by: "Sort by"
+        votes: Votes
         votings: Votes
+      search: 
+        first: First
+        last: Last
+        next: Next
+        of: Of
+        prev: Prev
+      search_results: 
+        first: First
+        last: Last
+        next: Next
+        of: Of
+        prev: Prev
       show: 
         by: by
         on_date: "on"
