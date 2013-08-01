@@ -5,18 +5,6 @@ $(document).ready(function(){
 
   $('.datepicker').datepicker({"format": "dd/mm/yyyy", "weekStart": 1, "autoclose": true});
 
-  $('.language_to').click(function(){
-    var language_to = $.trim($(this).attr('lang_sym'));
-    $.ajax({
-      type: 'POST',
-      url: Routes.translation_center_set_lang_to_path,
-      data: { lang : language_to },
-      success: function(){
-        location.reload();
-      }
-    });
-  });
-
   $('.language_from').click(function(){
     var language_from = $.trim($(this).attr('lang_sym'));
     $.ajax({

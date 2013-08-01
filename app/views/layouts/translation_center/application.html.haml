@@ -47,7 +47,7 @@
                 %ul.dropdown-menu
                   - I18n.available_locales.each do |locale|
                     %li
-                      %a.language_to{ href: '#', lang_sym: locale}
+                      %a.language_to{ href: change_locale_url(locale), lang_sym: locale}
                         = language_name(locale)
               - if translation_admin?
                 .pull-left.nav_text

@@ -41,5 +41,18 @@ module TranslationCenter
       date.strftime('%e %b %Y')
     end
 
+    # returns path that changes the locale
+    def change_locale_url(locale)
+      current_path = "#{request.protocol}#{request.host_with_port}#{request.fullpath}"
+      if current_path.include?('lang_to=')
+        current_path.gsub("lang_to=#{session[:lang_to]}", "lang_to=#{locale.to_s}")
+      elsif current_path.include?('?')
+        "#{current_path}&lang_to=#{locale.to_s}"
+      else
+        "#{current_path}?lang_to=#{locale.to_s}"
+      end
+        
+    end
+
   end
 end
