@@ -8,6 +8,7 @@ en:
   articles: 
     index: 
       content: Content
+      name: Name
       title: Title
   date: 
     abbr_day_names: 
