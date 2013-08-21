@@ -76,15 +76,15 @@ And run the migrations
 rake db:migrate
 ```
 
-And then run this rake to get all current translations to the db
-```ruby
-rake translation_center:synch
-```
-
 Add this line to the translator model (typically `User`)
 
 ```ruby
 acts_as_translator
+```
+
+And then run this rake to get all current translations to the db
+```ruby
+rake translation_center:synch
 ```
 
 and change the `translator_type` in `translation_center.yml` to the translator model name (if it is `User` keep it commented)
