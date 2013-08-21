@@ -5,7 +5,7 @@ class CreateTranslationCenterTranslations < ActiveRecord::Migration
       
       create_table :translation_center_translations, options: 'CHARACTER SET=utf8' do |t|
         t.integer :translation_key_id
-        t.string :value
+        t.text :value
         t.string :lang
         t.references :translator, polymorphic: true
         t.string :status, default: 'pending'
@@ -17,7 +17,7 @@ class CreateTranslationCenterTranslations < ActiveRecord::Migration
 
       create_table :translation_center_translations do |t|
         t.integer :translation_key_id
-        t.string :value
+        t.text :value
         t.string :lang
         t.references :translator, polymorphic: true
         t.string :status, default: 'pending'
