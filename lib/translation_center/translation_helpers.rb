@@ -7,7 +7,8 @@ module TranslationCenter
     
     # if translator doesn't exist then create him
     if translator.blank?
-      translator = TranslationCenter::CONFIG['translator_type'].camelize.constantize.new(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier'])
+      translator = TranslationCenter::CONFIG['translator_type'].camelize.constantize.new
+      translator.send TranslationCenter::CONFIG['identifier_type'], TranslationCenter::CONFIG['yaml_translator_identifier']
       begin
         translator.save(validate: false)
         # needed if the user is using confirmable with devise
