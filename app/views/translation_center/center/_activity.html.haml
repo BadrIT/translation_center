@@ -34,15 +34,16 @@
             = distance_of_time_in_words_to_now change.created_at
             = t('.ago')
   .pagination
-    = link_to t('pagination.first'), "#{request.protocol}#{request.host_with_port}#{request.fullpath.gsub('&page=' + @page.to_s, '')}?&page=1"
+    - query_without_page_param = request.query_string.gsub(/&?page=\d*/, '')
+    = link_to t('pagination.first'), "#{request.protocol}#{request.host_with_port}#{request.path}?#{query_without_page_param}&page=1"
     - if @page != 1
       |
-      = link_to t('pagination.prev'), "#{request.protocol}#{request.host_with_port}#{request.fullpath.gsub('&page=' + @page.to_s, '')}?&page=#{@page - 1}"
+      = link_to t('pagination.prev'), "#{request.protocol}#{request.host_with_port}#{request.path}?#{query_without_page_param}&page=#{@page - 1}"
     |
-    = link_to t('pagination.next'), "#{request.protocol}#{request.host_with_port}#{request.fullpath.gsub('&page=' + @page.to_s, '')}?&page=#{@page + 1}"
+    = link_to t('pagination.next'), "#{request.protocol}#{request.host_with_port}#{request.path}?#{query_without_page_param}&page=#{@page + 1}"
     - if @page != @total_pages
       |
-      = link_to t('pagination.last'), "#{request.protocol}#{request.host_with_port}#{request.fullpath.gsub('&page=' + @page.to_s, '')}?&page=#{@total_pages}"
+      = link_to t('pagination.last'), "#{request.protocol}#{request.host_with_port}#{request.path}?#{query_without_page_param}&page=#{@total_pages}"
     = @page
     = t('.of')
     = @total_pages
