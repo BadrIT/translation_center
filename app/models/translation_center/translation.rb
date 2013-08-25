@@ -71,7 +71,8 @@ module TranslationCenter
     end
 
     # gets recent changes on translations
-    def self.recent_changes(params = {})
+    # TODO: remove this method as it is not being used elsewhere
+    def self.recent_changes
       Audited::Adapters::ActiveRecord::Audit.where('auditable_type = ?', 'TranslationCenter::Translation').search(params).relation.reorder('created_at DESC')
     end
 

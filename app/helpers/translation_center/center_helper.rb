@@ -11,5 +11,9 @@ module TranslationCenter
         "<span class=\"label label-info\">#{attribute}</span> has new value <span class=\"label label-success\">#{value}</span>".html_safe
       end
     end
+
+    def translator_identifier_placeholder
+      "#{TranslationCenter::CONFIG['translator_type']} #{TranslationCenter::CONFIG['identifier_type']}".upcase
+    end
   end
 end

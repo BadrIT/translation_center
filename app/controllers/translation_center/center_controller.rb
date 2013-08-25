@@ -26,11 +26,13 @@ module TranslationCenter
     def dashboard
       @stats = TranslationKey.langs_stats
       @langs = @stats.keys
-      # to be used for meta search
-      @search = Audited::Adapters::ActiveRecord::Audit.search(params[:search])
+
+      # build an empty activity query
+      @activity_query = ActivityQuery.new(params[:activity_query])
+
       #TODO perpage constant should be put somewhere else
-      @translations_changes = Translation.recent_changes.offset(Translation::CHANGES_PER_PAGE * (@page - 1)).limit(Translation::CHANGES_PER_PAGE)
-      @total_pages = (Translation.recent_changes.count / (Translation::CHANGES_PER_PAGE * 1.0)).ceil
+      @translations_changes = @activity_query.activities.offset(Translation::CHANGES_PER_PAGE * (@page - 1)).limit(Translation::CHANGES_PER_PAGE)
+      @total_pages = (@activity_query.activities.count / (Translation::CHANGES_PER_PAGE * 1.0)).ceil
 
       respond_to do |format|
         format.html
@@ -39,8 +41,8 @@ module TranslationCenter
     end
 
     def search_activity
-      @translations_changes = Translation.recent_changes(params[:search]).offset(Translation::CHANGES_PER_PAGE * (@page - 1)).limit(Translation::CHANGES_PER_PAGE)
-      @total_pages =  (Translation.recent_changes(params[:search]).count / (Translation::CHANGES_PER_PAGE * 1.0)).ceil
+      @translations_changes = ActivityQuery.new(params[:activity_query]).activities.offset(Translation::CHANGES_PER_PAGE * (@page - 1)).limit(Translation::CHANGES_PER_PAGE)
+      @total_pages =  (ActivityQuery.new(params[:activity_query]).activities.count / (Translation::CHANGES_PER_PAGE * 1.0)).ceil
       
       respond_to do |format|
         format.js

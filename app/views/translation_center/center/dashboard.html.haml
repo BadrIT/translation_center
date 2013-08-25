@@ -51,13 +51,13 @@
 %h1
   = t('.activity')
 .span12
-  
-  = form_for @search, url: :search_activity, html: { method: :get, id: :search_form, class: 'pull-left form-search' } do |f|
-    = f.text_field 'auditable_TranslationCenter::Translation_type_translation_key_name_matches', class: 'search_field input-medium',  placeholder: 'KEY'
 
-    = f.select 'auditable_TranslationCenter::Translation_type_lang_equals', I18n.available_locales.collect { |locale| [locale.to_s, locale.to_s] }, {:include_blank => t('.select_locale')}, class: 'search_field'
+  = form_for @activity_query, url: :search_activity, html: { method: :get, id: :search_form, class: 'pull-left form-search' } do |f|
+    = f.text_field :translation_key_name, class: 'search_field input-medium',  placeholder: 'KEY'
 
-    = f.text_field 'user_user_type_email_matches', class: 'search_field input-medium',  placeholder: 'USER'
+    = f.select :lang, I18n.available_locales.collect { |locale| [locale.to_s, locale.to_s] }, {:include_blank => t('.select_locale')}, class: 'search_field'
+
+    = f.text_field :translator_identifier, class: 'search_field input-medium',  placeholder: translator_identifier_placeholder
 
     = f.text_field :created_at_gteq, class: 'search_field datepicker input-medium',  placeholder: 'FROM DATE'
 
@@ -87,6 +87,13 @@
     }
     return false;
   })
+
+  // hit search directly when pressing enter
+  $(".search_field").keyup(function(event){
+    if(event.keyCode == 13){
+        $('#search_activity').click();
+    }
+  });
 
       
 
