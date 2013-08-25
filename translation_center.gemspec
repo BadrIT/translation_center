@@ -23,7 +23,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'haml-rails'
   s.add_dependency 'acts_as_votable'
   s.add_dependency 'ya2yaml'
-  s.add_dependency 'meta_search'
   s.add_dependency 'font-awesome-rails'
   s.add_dependency 'audited-activerecord'
   s.add_dependency 'jquery-ui-rails'
