@@ -5,12 +5,17 @@ module TranslationCenter
     belongs_to :category
     has_many :translations, dependent: :destroy
 
+    belongs_to :parent, class_name: "TranslationKey"
+    has_many :children, foreign_key: "parent_id", dependent: :destroy, class_name: "TranslationKey"
+
     # validations
     validates :name, uniqueness: true
     validates :name, presence: true
 
     # called after key is created or updated
-    before_save :add_category
+    # before_save :add_category
+
+    after_save :build_hierarchy
 
     PER_PAGE = 7
 
@@ -18,6 +23,17 @@ module TranslationCenter
     scope :pending, lambda { |lang| where("#{lang.to_s}_status" => 'pending') }
     scope :untranslated, lambda { |lang| where("#{lang.to_s}_status" => 'untranslated') }
 
+    def build_hierarchy
+      self.update_column(:parent_id, TranslationKey.find_or_create_by_name(self.parent_path).id) unless self.parent_path.empty?
+    end
+
+    def parent_path
+      self.parent.present? ? self.parent.name : self.name.split('.')[0...-1].join('.')
+    end
+
+    def display_name
+      self.name.split('.').last
+    end
 
     # add a category of this translation key
     def add_category

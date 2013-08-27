@@ -41,8 +41,8 @@ namespace :translation_center do
   task :synch, [:locale ] => :environment do |t, args|
     begin
       if TranslationCenter::Category.any?
-        puts "WARNING: You already have translations stored in the db, do you want to destroy them? press [Y|n]"
-        confirm = $stdin.gets.chomp
+        print "WARNING: You already have translations stored in the db, do you want to destroy them? press [Y|n]: "
+        confirm = $stdin.gets.chomp.downcase
     
         TranslationCenter::Category.destroy_all if confirm.blank? || confirm == 'y' || confirm == 'yes'
       end
