@@ -44,14 +44,49 @@ module TranslationCenter
       self.last_accessed = Time.now
     end
 
-    # updates the status of the translation key depending on the translations
+    # this function recalculates the status of the key from its translations or from the status of the children
+    # then it calls the same function on the parent to maintain the status of the whole path
     def update_status(lang)
-      if self.translations.in(lang).blank?
-        self.update_attribute("#{lang}_status", 'untranslated')
-      elsif !self.translations.in(lang).accepted.blank?
-        self.update_attribute("#{lang}_status", 'translated')
+      self.update_attribute "#{lang}_status", translations_status(lang)
+      self.parent.update_status(lang) if self.parent
+    end
+
+    # returns the status of the key according to its translations or the staus of its children
+    def translations_status(lang)
+      if self.children.empty?
+        # it's a leaf node
+        translation_status_for_leaf(lang)
       else
-        self.update_attribute("#{lang}_status", 'pending')
+        # intermediage or leaf node
+        translation_status_for_intermediate(lang)
+      end
+    end
+
+    # leaf nodes have three cases:
+    # the status will be 'translated' when translations are accepted,
+    # or 'untranslated' when there are no translations exist,
+    # or 'pinding' whern there are some translations exists but not accepted by the admin.
+    def translation_status_for_leaf(lang)
+      if self.translations.in(lang).blank?
+        'untranslated'
+      elsif !self.translations.in(lang).accepted.blank?
+        'translated'
+      else
+        'pending'
+      end
+    end
+
+    # Intermediate nodes have three cases:
+    # the status will be 'translated' when all children are transalted,
+    # or 'untranslated' when at least one key is untranslated,
+    # or 'pinding' when children statuses are translated and pinding but not untranslated.
+    def translation_status_for_intermediate(lang)
+      if self.children.exists?("#{lang}_status" => 'untranslated')
+        'untranslated'
+      elsif self.children.exists?("#{lang}_status" => 'pinding')
+        'pinding'
+      else
+        'translated'
       end
     end
 
