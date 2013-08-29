@@ -114,7 +114,7 @@ module TranslationCenter
       result = {}
       I18n.locale = locale
       puts "Started exporting translations in #{locale}"
-      TranslationCenter::TranslationKey.translated(locale).each do |key|
+      TranslationCenter::TranslationKey.translated(locale).leaf.each do |key|
         begin
           key.add_to_hash(result, locale)  
         rescue

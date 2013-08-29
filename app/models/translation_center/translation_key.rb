@@ -16,12 +16,17 @@ module TranslationCenter
     # before_save :add_category
 
     after_save :build_hierarchy
+    after_destroy :notify_parent
 
     PER_PAGE = 7
 
     scope :translated, lambda { |lang| where("#{lang.to_s}_status" => 'translated') }
     scope :pending, lambda { |lang| where("#{lang.to_s}_status" => 'pending') }
     scope :untranslated, lambda { |lang| where("#{lang.to_s}_status" => 'untranslated') }
+    scope :leaf, ->{
+      parents_ids = TranslationKey.where('parent_id is NOT NULL').group(:parent_id).pluck(:parent_id)
+      where 'id not in(?)', parents_ids
+    }
 
     def build_hierarchy
       self.update_column(:parent_id, TranslationKey.find_or_create_by_name(self.parent_path).id) unless self.parent_path.empty?
@@ -87,6 +92,12 @@ module TranslationCenter
         'pinding'
       else
         'translated'
+      end
+    end
+
+    def notify_parent
+      if self.parent
+        TranslationCenter::CONFIG['lang'].keys.map { |lang| update_status(lang) }
       end
     end
 
