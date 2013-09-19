@@ -46,3 +46,37 @@
   font-size: 10px;
   color: black;
 }
+
+#keys-list .status-translated {
+  border-left-color: green;
+  border-left-width: 5px;
+}
+
+#keys-list .status-pending {
+  border-left-color: yellow;
+  border-left-width: 5px;
+}
+
+#keys-list .status-untranslated {
+  border-left-color: red;
+  border-left-width: 5px;
+}
+
+#filters .translated-filter{
+  border-right-color: green;
+  border-right-width: 5px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+#filters .untranslated-filter{
+  border-right-color: red;
+  border-right-width: 5px; 
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+#filters .pending-filter{
+  border-right-color: yellow;
+  border-right-width: 5px; 
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
