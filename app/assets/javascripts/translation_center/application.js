@@ -71,6 +71,21 @@ $(document).ready(function(){
     }
 
   });
-    
-
+  
+  //turn to inline mode
+  $.fn.editable.defaults.mode = 'inline';
+  
+  $('.editable_translation').editable({
+    rows: 2,
+    success: function(response, newValue) {
+      console.log();
+      if(response.status == 'error') return response.msg;
+      
+      // check to update acceoted translation flag
+      if($(this).data('accept')){
+        $('.accept_action').removeClass('badge-success');
+        $('.accept_action[data-translation-id='+$(this).data('pk')+']').addClass('badge-success');
+      }
+    }
+  });
 });
