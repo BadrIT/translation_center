@@ -32,12 +32,37 @@ module TranslationCenter
       self.update_column(:parent_id, TranslationKey.find_or_create_by_name(self.parent_path).id) unless self.parent_path.empty?
     end
 
+    def self.root
+      TranslationKey.find_or_create_by_name "*"
+    end
+
+    def leaf?
+      self.children.empty?
+    end
+
+    def path_to_root
+      path = []
+      node = self
+
+      while node do
+        path << node
+        node = node.parent
+      end
+
+      path.reverse
+    end
+
     def parent_path
       self.parent.present? ? self.parent.name : self.name.split('.')[0...-1].join('.')
     end
 
     def display_name
       self.name.split('.').last
+    end
+
+    def filtered_children(status, lang)
+      return self.children unless status
+      self.children.send(status, lang)
     end
 
     # add a category of this translation key
@@ -70,7 +95,7 @@ module TranslationCenter
     # leaf nodes have three cases:
     # the status will be 'translated' when translations are accepted,
     # or 'untranslated' when there are no translations exist,
-    # or 'pinding' whern there are some translations exists but not accepted by the admin.
+    # or 'pending' whern there are some translations exists but not accepted by the admin.
     def translation_status_for_leaf(lang)
       if self.translations.in(lang).blank?
         'untranslated'
@@ -84,12 +109,12 @@ module TranslationCenter
     # Intermediate nodes have three cases:
     # the status will be 'translated' when all children are transalted,
     # or 'untranslated' when at least one key is untranslated,
-    # or 'pinding' when children statuses are translated and pinding but not untranslated.
+    # or 'pending' when children statuses are translated and pending but not untranslated.
     def translation_status_for_intermediate(lang)
       if self.children.exists?("#{lang}_status" => 'untranslated')
         'untranslated'
-      elsif self.children.exists?("#{lang}_status" => 'pinding')
-        'pinding'
+      elsif self.children.exists?("#{lang}_status" => 'pending')
+        'pending'
       else
         'translated'
       end
@@ -130,13 +155,14 @@ module TranslationCenter
 
     # returns the status of the key in a language
     def status(lang)
-      if accepted_in?(lang)
-        'translated'
-      elsif pending_in?(lang)
-        'pending'
-      else
-        'untranslated'
-      end
+      self.send("#{lang}_status")
+      # if accepted_in?(lang)
+        # 'translated'
+      # elsif pending_in?(lang)
+        # 'pending'
+      # else
+        # 'untranslated'
+      # end
     end
 
     # create default translation
