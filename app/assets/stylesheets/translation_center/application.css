@@ -13,7 +13,10 @@
  *= require_tree .
   */
 
- body { padding-top: 60px; }
+ body { 
+  padding-top: 60px;
+  padding-bottom: 50px;
+}
 
 .nav_text {
   margin-top: 10px !important;
