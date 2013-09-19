@@ -1,0 +1,11 @@
+.span14
+  .span
+    - path = @translation_key.path_to_root
+
+    - path[0...-1].each_with_index do |key|
+      = link_to key.display_name, translation_key_path(key)
+      = " . "
+
+    %b= path.last.display_name
+
+%hr

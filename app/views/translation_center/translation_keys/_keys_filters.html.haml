@@ -1,0 +1,13 @@
+.tabs-right{id: 'filters'}
+  %ul.nav.nav-tabs.span2
+    %li{class: ('active' unless params[:status])}
+      %a{"data-toggle" => "tab", :href => "#", onclick: "window.location='#{translation_key_path(@translation_key)}';"} All
+    
+    %li{class: ('active' if params[:status] == 'translated')}
+      %a.translated-filter{"data-toggle" => "tab", href: "#", onclick: "window.location='#{translation_key_path(@translation_key, status: 'translated')}';" } Translated
+    
+    %li{class: ('active' if params[:status] == 'pending')}
+      %a.pending-filter{"data-toggle" => "tab", :href => "#", onclick: "window.location='#{translation_key_path(@translation_key, status: 'pending')}';"} Pending
+    
+    %li{class: ('active' if params[:status] == 'untranslated')}
+      %a.untranslated-filter{"data-toggle" => "tab", :href => "#", onclick: "window.location='#{translation_key_path(@translation_key, status: 'untranslated')}';"} Unranslated
