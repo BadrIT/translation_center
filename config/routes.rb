@@ -26,7 +26,7 @@ TranslationCenter::Engine.routes.draw do
   get '/search_activity' => 'center#search_activity', as: :search_activity
   post '/manage_translations' => 'center#manage', as: :manage_translations
 
-  root to: 'categories#index'
+  root to: 'translation_keys#index'
 
   # set the language from and to for the user
   match "/set_language_from" => 'center#set_language_from', as: :set_lang_from

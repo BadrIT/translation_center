@@ -1,0 +1,14 @@
+= render 'key_name'
+= render 'keys_filters'
+
+%ul.nav.nav-stacked.nav-tabs.span10{id: 'keys-list'}
+  - children = @translation_key.filtered_children(params[:status], session[:lang_to])
+  - if children.empty?
+    %li
+      %div{style: "text-align: center;"}
+        empty!
+  - else
+    - children.each do |key|
+      %li
+        %a{href: translation_key_path(key), class: "status-#{key.status(session[:lang_to])}"}
+          = key.display_name

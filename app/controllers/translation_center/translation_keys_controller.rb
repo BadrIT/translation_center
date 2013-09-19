@@ -2,8 +2,12 @@ require_dependency "translation_center/application_controller"
 
 module TranslationCenter
   class TranslationKeysController < ApplicationController
-    before_filter :get_translation_key, except: [ :search ]
+    before_filter :get_translation_key, except: [ :search, :index]
     before_filter :can_admin?, only: [ :destroy, :update ]
+
+    def index
+      @translation_key = TranslationKey.root
+    end
 
     # POST /translation_keys/1/update_translation.js
     def update_translation
@@ -37,6 +41,11 @@ module TranslationCenter
 
     # GET /translation_keys/1
     def show
+      if @translation_key.leaf?
+        render :show
+      else
+        render :index
+      end
     end
     
     # PUT /translation_keys/1
