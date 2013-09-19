@@ -104,6 +104,10 @@ module TranslationCenter
 
     # create records for all keys that exist in the yaml
     yaml2db_keys(all_keys, translator, locales, all_yamls)
+
+    # add root node for the tree
+    TranslationKey.update_all({parent_id: TranslationKey.root.id}, {parent_id: nil})
+    TranslationKey.root.update_attribute(:parent_id, nil)
   end
 
   def self.db2yaml(locale=nil)
