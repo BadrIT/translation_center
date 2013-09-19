@@ -3,17 +3,17 @@
 
 $(document).ready(function() {
 
-  editableTranslations();
-  editableKeyTranslations();
+  // editableTranslations();
+  // editableKeyTranslations();
 
-  $(document).on('click', '.accept_translation', function(){
+  $(document).on('click', '.accept_action', function(){
     $.ajax({
       type: 'POST',
       url: Routes.translation_center_translation_accept_path($(this).attr('data-translation-id')) + '.js'
     });
   });
 
-  $(document).on('click', '.unaccept_translation', function(){
+  $(document).on('click', '.accept_action.badge-success', function(){
     $.ajax({
       type: 'POST',
       url: Routes.translation_center_translation_unaccept_path($(this).attr('data-translation-id')) + '.js'
@@ -53,8 +53,6 @@ $(document).ready(function() {
     {
       $(this).addClass('badge-success');
       $(this).attr('voted', 'true')
-      // TODO use I18n.t
-      $(this).text('Unvote');
       $.ajax({
         type: 'POST',
         url: Routes.translation_center_translation_vote_path($(this).attr('data-translation-id')) + '.js'
@@ -67,8 +65,6 @@ $(document).ready(function() {
     {
       $(this).removeClass('badge-success');
       $(this).attr('voted', 'false') 
-      // TODO use I18n.t
-      $(this).text('Vote');
       $.ajax({
         type: 'POST',
         url: Routes.translation_center_translation_unvote_path($(this).attr('data-translation-id')) + '.js'
