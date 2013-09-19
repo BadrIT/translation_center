@@ -1,8 +1,16 @@
-= link_to "#{t('.back_to_category')} #{@translation_key.category.name.titleize}", @translation_key.category, class: 'btn btn-primary'
+= render 'key_name'
+/ = render 'translation_center/translation_keys/show', translation_key: @translation_key, index: 0
 
-%h1
-  = @translation_key.name
-  - if translation_admin?
-    = link_to t('.destroy'), @translation_key, method: :delete, data: { confirm: t('translation_center.actions.are_you_sure', :default => 'Are you sure?') }, class: 'btn btn-danger'
+.row
+  .span12
+    / .span8{ class: "row user_translation #{language_direction(to_lang)}", 'data-key-id' => translation_key.id }
+    /   = current_user.translation_for(translation_key, to_lang).value
 
-= render 'translation_center/translation_keys/show', translation_key: @translation_key, index: 0
+    .span12{ id: "translations#{@translation_key.id}" }
+      = render 'translation_center/translations/index', translations: @translation_key.translations.order('created_at DESC').in(to_lang), translation_key: @translation_key
+/ %h1
+/   = @translation_key.name
+/   - if translation_admin?
+/     = link_to t('.destroy'), @translation_key, method: :delete, data: { confirm: t('translation_center.actions.are_you_sure', :default => 'Are you sure?') }, class: 'btn btn-danger'
+
+/ = render 'translation_center/translation_keys/show', translation_key: @translation_key, index: 0
