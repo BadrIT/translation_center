@@ -277,16 +277,6 @@ or monitor activity of changes to translations.
 Watch it on YouTube.
 http://www.youtube.com/watch?v=BTy6ZI31JmU
 
-##Demo
-
-We have added translation_center to the [Tracks][1] app:
-
-  * You can play with the demo here: http://translation-center.herokuapp.com/translation_center/
-
-  * Visit the Tracks app at http://translation-center.herokuapp.com
-
-
-  [1]: https://github.com/TracksApp/tracks
 
 
 ## Credits
