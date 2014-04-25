@@ -17,14 +17,29 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", ">= 3.1.0", "<= 3.2.12"
-  s.add_dependency "jquery-rails"
+
+  # Development dependencies
+  s.add_development_dependency 'sqlite3'
+
+  s.add_development_dependency 'debugger', '~> 1.6.5'
+  s.add_development_dependency 'better_errors'
+  s.add_development_dependency 'binding_of_caller'
+
+  # Dependencies
+  s.add_dependency 'rails', '>= 3.1.0', '<= 3.2.12'
+
+  s.add_dependency 'acts_as_votable'
+
+  s.add_dependency 'ya2yaml'
+
+  s.add_dependency 'devise'
+
+  s.add_dependency 'audited-activerecord'
+
+  s.add_dependency 'jquery-rails'
+  s.add_dependency 'jquery-ui-rails'
+  s.add_dependency 'font-awesome-rails'
+
   s.add_dependency 'haml'
   s.add_dependency 'haml-rails'
-  s.add_dependency 'acts_as_votable'
-  s.add_dependency 'ya2yaml'
-  s.add_dependency 'font-awesome-rails'
-  s.add_dependency 'audited-activerecord'
-  s.add_dependency 'jquery-ui-rails'
-
 end
