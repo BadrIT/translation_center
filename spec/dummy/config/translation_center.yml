@@ -1,0 +1,75 @@
+common_atts: &common_atts
+  # what language to support and their display names
+  lang:
+    en:
+      name: 'English'
+      direction: 'ltr'
+    de:
+      name: 'Deutch'
+      direction: 'ltr'
+    ar:
+      name: 'Arabic'
+      direction: 'rtl'
+
+  # yaml imported translations created by translator email, usually User email
+  yaml_translator_identifier: 'user@example.com'
+
+  # when import translation from yaml to db set it to accepted by default
+  yaml2db_translations_accepted: true # default is false
+
+  # when admins add/edit translations they are considered accepted directly
+  accept_admin_translations: true
+
+  # identifier_type: 'email' # Uncomment and change the identifier if your User model has no email attribute
+  # translator_type: 'User' # Uncomment and change if you want to change the translator type
+
+development:
+  enabled: true # default false
+
+  # Keys inspector allowed values:
+  # "missing" to inspect only untranslated keys
+  # "all" to enable inspector for translated and untranslated keys
+  # "off" to turn off keys inspector
+  inspector: 'all' # default missing
+
+  # I18n.translate source
+  i18n_source: 'yaml' # can be db or yaml; default is db
+
+  # when a new key is added to db, the value of the key is added as the default translation in English
+  save_default_translation: true
+
+  <<: *common_atts
+
+test:
+  enabled: true # default false
+
+  # Keys inspector allowed values:
+  # "missing" to inspect only untranslated keys
+  # "all" to enable inspector for translated and untranslated keys
+  # "off" to turn off keys inspector
+  inspector: 'all' # default missing
+
+  # I18n.translate source
+  i18n_source: 'yaml' # can be db or yaml; default is db
+
+  # when a new key is added to db, the value of the key is added as the default translation in English
+  save_default_translation: true
+
+  <<: *common_atts
+
+production:
+  enabled: true # default false
+
+  # Keys inspector allowed values:
+  # "missing" to inspect only untranslated keys
+  # "all" to enable inspector for translated and untranslated keys
+  # "off" to turn off keys inspector
+  inspector: 'off' # default missing
+
+  # I18n.translate source
+  i18n_source: 'yaml' # can be db or yaml; default is yaml
+
+  # when a new key is added to db, the value of the key is added as the default translation in English
+  save_default_translation: false
+
+  <<: *common_atts
