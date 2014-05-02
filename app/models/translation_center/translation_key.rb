@@ -1,6 +1,12 @@
 module TranslationCenter
 
   class TranslationKey < ActiveRecord::Base
+    # Constants
+    ACCEPTED = "accepted"
+    PENDING = "pending"
+    TRANSLATED = "translated"
+    UNTRANSLATED = "untranslated"
+
     attr_accessible :name, :last_accessed, :category_id
     belongs_to :category
     has_many :translations, dependent: :destroy
@@ -31,11 +37,11 @@ module TranslationCenter
     # updates the status of the translation key depending on the translations
     def update_status(lang)
       if self.translations.in(lang).blank?
-        self.update_attribute("#{lang}_status", 'untranslated')
+        self.update_attribute("#{lang}_status", UNTRANSLATED)
       elsif !self.translations.in(lang).accepted.blank?
-        self.update_attribute("#{lang}_status", 'translated')
+        self.update_attribute("#{lang}_status", TRANSLATED)
       else
-        self.update_attribute("#{lang}_status", 'pending')
+        self.update_attribute("#{lang}_status", PENDING)
       end
     end
 
@@ -69,11 +75,11 @@ module TranslationCenter
     # returns the status of the key in a language
     def status(lang)
       if accepted_in?(lang)
-        'translated'
+        TRANSLATED
       elsif pending_in?(lang)
-        'pending'
+        PENDING
       else
-        'untranslated'
+        UNTRANSLATED
       end
     end
 

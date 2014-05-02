@@ -4,6 +4,24 @@ module TranslationCenter
   describe Translation do
   	let(:translation_key) { FactoryGirl.create(:translation_key, name: "whatever") }
 
+    let(:en_translation) do
+      FactoryGirl.create(
+        :translation,
+        value: "Whatever",
+        translation_key: translation_key,
+        lang: "en"
+      )
+    end
+
+    let(:de_translation) do
+      FactoryGirl.create(
+        :translation,
+        value: "Egal",
+        translation_key: translation_key,
+        lang: "de"
+      )
+    end
+
   	it "should sort by votes" do
   		# Creating translations
   		high_voted_translation = FactoryGirl.create(
@@ -31,20 +49,6 @@ module TranslationCenter
   	end
 
   	it "should return translations of certain lang" do
-  		en_translation = FactoryGirl.create(
-  			:translation,
-  			value: "Whatever",
-  			translation_key: translation_key,
-  			lang: "en"
-  		)
-
-  		de_translation = FactoryGirl.create(
-  			:translation,
-  			value: "Egal",
-  			translation_key: translation_key,
-  			lang: "de"
-  		)
-
   		# Arabic translation
   		expect(translation_key.translations.in("ar")).to eq([])
 
@@ -54,5 +58,44 @@ module TranslationCenter
   		# Deutsch translation
   		expect(translation_key.translations.in("de")).to eq([de_translation])
   	end
+
+    it "should accept a translation" do
+      expect(en_translation.status).to eq(Translation::PENDING)
+
+      en_translation.accept
+
+      expect(en_translation.status).to eq(Translation::ACCEPTED)
+    end
+
+    it "should unaccept a translation" do
+      en_translation.accept
+
+      expect(en_translation.status).to eq(Translation::ACCEPTED)
+
+      en_translation.unaccept
+
+      expect(en_translation.status).to eq(Translation::PENDING)
+    end
+
+    it "should flag the translation key as pending when translation is unaccepted" do
+      en_translation.accept
+
+      expect(en_translation.translation_key
+        .status(en_translation.lang)).to eq(TranslationKey::TRANSLATED)
+
+      en_translation.unaccept
+
+      expect(en_translation.translation_key
+        .status(en_translation.lang)).to eq(TranslationKey::PENDING)
+    end
+
+    it "should create one translation per lang per key" do
+      translation_attributes = en_translation.attributes.except("id")
+      duplicated_translation = FactoryGirl.build(:translation, translation_attributes)
+
+      expect(duplicated_translation.valid?).to eq false
+
+      expect(duplicated_translation.errors.messages).not_to be_empty
+    end
   end
 end

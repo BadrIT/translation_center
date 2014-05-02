@@ -4,6 +4,10 @@ module TranslationCenter
     CHANGES_PER_PAGE = 5
     NUMBER_PER_PAGE = 15
 
+    # Statuses
+    ACCEPTED = "accepted"
+    PENDING = "pending"
+
     # Accessible attributes
     attr_accessible :value, :lang, :translation_key_id, :user_id, :status
 
@@ -17,7 +21,7 @@ module TranslationCenter
 
     # Scopes
     # Returns accepted transations
-    scope :accepted, -> { where(status: 'accepted') }
+    scope :accepted, -> { where(status: ACCEPTED) }
 
     # Returns translations in a certain language
     scope :in, ->(lang) { where(lang: lang.to_s.strip) }
@@ -44,52 +48,54 @@ module TranslationCenter
 
     # called after save to update the key status
     def update_key_status
-      self.key.update_status self.lang
+      self.key.update_status(self.lang)
     end
 
     # called before destory to update the key status
     def notify_key
-      self.key.update_status self.lang
+      self.key.update_status(self.lang)
       self.audits.destroy_all
     end
 
     # returns true if the status of the translation is accepted
     def accepted?
-      self.status == 'accepted'
+      self.status == ACCEPTED
     end
 
     # returns true if the status of the translation is pending
     def pending?
-      self.status == 'pending'
+      self.status == PENDING
     end
 
-    # accept translation by changing its status and if there is an accepting translation
+    # Accept translation by changing its status and if there is an accepting translation
     # make it pending
     def accept
-      # if translation is accepted do nothing
+      # If translation is accepted do nothing
       unless self.accepted?
-        self.translation_key.accepted_translation_in(self.lang).try(:update_attribute, :status, 'pending')
+        self.translation_key.accepted_translation_in(self.lang)
+          .try(:update_attribute, :status, TranslationKey::PENDING)
+
         # reload the translation key as it has changed
         self.translation_key.reload
-        self.update_attribute(:status, 'accepted')
+        self.update_attribute(:status, ACCEPTED)
       end
-
     end
 
     # unaccept a translation
     def unaccept
-      self.update_attribute(:status, 'pending')
-    end
-
-    # gets recent changes on translations
-    # TODO: remove this method as it is not being used elsewhere
-    def self.recent_changes
-      Audited::Adapters::ActiveRecord::Audit.where('auditable_type = ?', 'TranslationCenter::Translation').search(params).relation.reorder('created_at DESC')
+      self.update_attribute(:status, PENDING)
     end
 
     # make sure user has one translation per key per lang
     def one_translation_per_lang_per_key
-      if Translation.where(lang: self.lang, translator_id: self.translator.id, translator_type: self.translator.class.name, translation_key_id: self.key.id).empty?
+      translation_exists = Translation.exists?(
+        lang: self.lang,
+        translator_id: self.translator.id,
+        translator_type: self.translator.class.name,
+        translation_key_id: self.key.id
+      )
+
+      unless translation_exists
         true
       else
         false
