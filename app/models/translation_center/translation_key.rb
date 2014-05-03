@@ -6,31 +6,31 @@ module TranslationCenter
     PENDING = "pending"
     TRANSLATED = "translated"
     UNTRANSLATED = "untranslated"
+    PER_PAGE = 7
 
     attr_accessible :name, :last_accessed, :category_id
+
+    # Relations
     belongs_to :category
     has_many :translations, dependent: :destroy
 
-    # validations
+    # Validations
     validates :name, uniqueness: true
     validates :name, presence: true
 
     # called after key is created or updated
     before_save :add_category
 
-    PER_PAGE = 7
-
-    scope :translated, lambda { |lang| where("#{lang.to_s}_status" => 'translated') }
-    scope :pending, lambda { |lang| where("#{lang.to_s}_status" => 'pending') }
-    scope :untranslated, lambda { |lang| where("#{lang.to_s}_status" => 'untranslated') }
-
+    scope :translated, ->(lang) { where("#{lang.to_s}_status" => TRANSLATED) }
+    scope :pending, ->(lang) { where("#{lang.to_s}_status" => PENDING) }
+    scope :untranslated, ->(lang) { where("#{lang.to_s}_status" => UNTRANSLATED) }
 
     # add a category of this translation key
     def add_category
       category_name = self.name.to_s.split('.').first
       # if one word then add to general category
       category_name = self.name.to_s.split('.').size == 1 ? 'general' : self.name.to_s.split('.').first
-      self.category = TranslationCenter::Category.find_or_create_by_name(category_name)
+      self.category = TranslationCenter::Category.where(name: category_name).first_or_create
       self.last_accessed = Time.now
     end
 
@@ -47,7 +47,7 @@ module TranslationCenter
 
     # returns true if the key is translated (has accepted translation) in this lang
     def accepted_in?(lang)
-      self.send("#{lang}_status") == 'translated'
+      self.send("#{lang}_status") == TRANSLATED
     end
     alias_method :translated_in?, :accepted_in?
 
@@ -58,7 +58,7 @@ module TranslationCenter
 
     # returns true if the translation key is untranslated (has no translations) in the language
     def no_translations_in?(lang)
-      self.send("#{lang}_status") == 'untranslated'
+      self.send("#{lang}_status") == UNTRANSLATED
     end
     alias_method :untranslated_in?, :no_translations_in?
 
@@ -69,7 +69,7 @@ module TranslationCenter
 
     # returns true if the key is pending (has translations but none is accepted)
     def pending_in?(lang)
-      self.send("#{lang}_status") == 'pending'
+      self.send("#{lang}_status") == PENDING
     end
 
     # returns the status of the key in a language
