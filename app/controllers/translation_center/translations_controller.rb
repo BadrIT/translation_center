@@ -2,7 +2,7 @@ require_dependency "translation_center/application_controller"
 
 module TranslationCenter
   class TranslationsController < ApplicationController
-    before_filter :can_admin?, only: [ :destroy, :accept, :unaccept ]
+    before_filter :can_admin?, only: [ :destroy, :accept, :unaccept, :suggest ]
     before_filter :set_page_number, only: [:search]
 
     # POST /translations/1/vote
@@ -41,7 +41,7 @@ module TranslationCenter
         format.js
       end
     end
-  
+
     # DELETE /translations/1
     # DELETE /translations/1.json
     def destroy
@@ -68,5 +68,15 @@ module TranslationCenter
       end
     end
 
+    # GET /translations/1/suggest
+    # GET /translations/1/suggest.js
+    def suggest
+      @translation = Translation.find(params[:id])
+
+      respond_to do |format|
+        format.json { render json: { translation: @translation.suggest_translation } }
+        format.js
+      end
+    end
   end
 end

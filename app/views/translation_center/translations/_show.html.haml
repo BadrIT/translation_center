@@ -1,7 +1,7 @@
 .well.well-small.translation_box{ id: "translation_id_#{translation.id}", 'data-key-id' => translation.translation_key.id }
 
   %div{class: "translation_info #{language_direction(to_lang)}"}
-    %span
+    %span.js-translation-value
       = translation.value
 
     - if translation_admin?
@@ -20,6 +20,7 @@
   %div.translation_voting
     - if translation_admin?
       = render 'translation_center/translations/accept_translation', translation: translation
+      = link_to t('.bing_suggestion'), suggest_translation_path(translation, format: :js), class: "btn btn-primary", remote: true
     .votes_count.badge.badge-success.pull-right
       %span.count{ 'data-translation-id' => translation.id }
         = translation.votes_for.count
