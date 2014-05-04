@@ -103,5 +103,11 @@ module TranslationCenter
         expect(duplicated_translation.errors.messages).not_to be_empty
       end
     end
+
+    context "suggest translation" do
+      it "should suggest an English translation" do
+        expect(en_translation.suggest_translation.downcase).to eq("whatever")
+      end
+    end
   end
 end
