@@ -1,4 +1,8 @@
+require 'bing_translator'
+
 module TranslationCenter
+  class MissingBingCredentials < StandardError; end
+
   class Translation < ActiveRecord::Base
     # Constants
     CHANGES_PER_PAGE = 5
@@ -103,5 +107,16 @@ module TranslationCenter
       end
     end
 
+    def suggest_translation
+      client_id = TranslationCenter::CONFIG["bing"]["client_id"]
+      client_secret = TranslationCenter::CONFIG["bing"]["client_secret"]
+
+      if client_id.present? && client_secret.present?
+        bing_translator = BingTranslator.new(client_id, client_secret)
+        bing_translator.translate(self.value, to: self.lang)
+      else
+        raise MissingBingCredentials
+      end
+    end
   end
 end

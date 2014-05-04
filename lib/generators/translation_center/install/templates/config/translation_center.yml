@@ -8,17 +8,21 @@ common_atts: &common_atts
     #   name: 'Arabic'
     #   direction: 'rtl'
 
-  # yaml imported translations created by translator email, usually User email 
+  # yaml imported translations created by translator email, usually User email
   yaml_translator_identifier: 'coder@tc.com'
 
   # when import translation from yaml to db set it to accepted by default
   yaml2db_translations_accepted: true # default is false
 
   # when admins add/edit translations they are considered accepted directly
-  accept_admin_translations: true 
+  accept_admin_translations: true
 
   # identifier_type: 'email' # Uncomment and change the identifier if your User model has no email attribute
   # translator_type: 'User' # Uncomment and change if you want to change the translator type
+
+  bing:
+    client_id: ~
+    client_secret: ~
 
 development:
   enabled: true # default false
@@ -33,7 +37,7 @@ development:
   i18n_source: 'db' # can be db or yaml; default is db
 
   # when a new key is added to db, the value of the key is added as the default translation in English
-  save_default_translation: true 
+  save_default_translation: true
 
   <<: *common_atts
 
@@ -50,6 +54,6 @@ production:
   i18n_source: 'yaml' # can be db or yaml; default is yaml
 
   # when a new key is added to db, the value of the key is added as the default translation in English
-  save_default_translation: false 
+  save_default_translation: false
 
   <<: *common_atts

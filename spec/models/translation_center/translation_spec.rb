@@ -105,7 +105,22 @@ module TranslationCenter
     end
 
     context "suggest translation" do
+      it "should raise error when Bing credentials are missing" do
+        expect{ en_translation.suggest_translation.downcase }.to(
+          raise_error(TranslationCenter::MissingBingCredentials)
+        )
+      end
+
       it "should suggest an English translation" do
+        TranslationCenter::CONFIG["bing"] = {
+          "client_id" => "fake",
+          "client_secret" => "fake"
+        }
+
+        translator_object = OpenStruct.new
+        BingTranslator.stub(:new).and_return(translator_object)
+        translator_object.stub(:translate).and_return(en_translation.value)
+
         expect(en_translation.suggest_translation.downcase).to eq("whatever")
       end
     end
