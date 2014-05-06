@@ -1,5 +1,5 @@
 TranslationCenter::Engine.routes.draw do
-  
+
   resources :translations do
     post :vote
     post :unvote
@@ -8,12 +8,14 @@ TranslationCenter::Engine.routes.draw do
     collection do
       get :search
     end
+
+    get :suggest, on: :member
   end
 
   resources :translation_keys, except: :create do
     post :update_translation
     get :translations
-    collection do 
+    collection do
       get :search
     end
   end

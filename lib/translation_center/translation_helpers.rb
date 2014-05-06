@@ -4,7 +4,7 @@ module TranslationCenter
   def self.prepare_translator
 
     translator = TranslationCenter::CONFIG['translator_type'].camelize.constantize.where(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier']).first
-    
+
     # if translator doesn't exist then create him
     if translator.blank?
       translator = TranslationCenter::CONFIG['translator_type'].camelize.constantize.new
@@ -95,8 +95,27 @@ module TranslationCenter
     TranslationCenter::CONFIG['translator_type'] ||= 'User'
   else
     puts "WARNING: translation_center will be using default options if config/translation_center.yml doesn't exists"
-    TranslationCenter::CONFIG = {'enabled' => false, 'inspector' => 'missing', 'lang' => {'en' => {'name' => 'English', 'direction' => 'ltr'}}, 'yaml_translator_identifier' => 'coder@tc.com', 'i18n_source' => 'yaml', 'yaml2db_translations_accepted' => true,
-                                'accept_admin_translations' => true,  'save_default_translation' => true, 'identifier_type' => 'email', 'translator_type' => 'User' }
+    TranslationCenter::CONFIG = {
+      'enabled' => false,
+      'inspector' => 'missing',
+      'lang' => {
+        'en' => {
+          'name' => 'English',
+          'direction' => 'ltr'
+        }
+      },
+      'yaml_translator_identifier' => 'coder@tc.com',
+      'i18n_source' => 'yaml',
+      'yaml2db_translations_accepted' => true,
+      'accept_admin_translations' => true,
+      'save_default_translation' => true,
+      'identifier_type' => 'email',
+      'translator_type' => 'User',
+      'bing' => {
+        'client_id' => nil,
+        'client_secret' => nil
+      }
+    }
   end
   I18n.available_locales = TranslationCenter::CONFIG['lang'].keys
 
