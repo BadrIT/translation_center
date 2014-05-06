@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   acts_as_translator
+
+	def can_admin_translations?
+    self.id == User.first.id
+ 	end
 end
