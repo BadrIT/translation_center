@@ -12,6 +12,6 @@ class User < ActiveRecord::Base
   acts_as_translator
 
 	def can_admin_translations?
-    self.id == User.first.id
- 	end
+		self.id == User.first.id
+	end
 end
