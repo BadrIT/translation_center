@@ -22,7 +22,7 @@
       = render 'translation_center/translations/accept_translation', translation: translation
     .votes_count.badge.badge-success.pull-right
       %span.count{ 'data-translation-id' => translation.id }
-        = translation.votes.count
+        = translation.count_votes_total
       = t('.votings')
     %a.pull-right{href: '#'}
       - voted = current_user.voted_on?(translation)
