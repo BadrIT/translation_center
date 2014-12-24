@@ -15,6 +15,7 @@ source "http://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
+=begin
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'mysql2'
@@ -27,6 +28,7 @@ gem 'devise'
 gem 'font-awesome-rails'
 gem 'audited-activerecord'
 
+
 group :development do
   gem 'ruby-debug-base19x', '~> 0.11.30.pre4'
   gem 'ruby-debug19'
@@ -34,6 +36,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
 end
+=end
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
