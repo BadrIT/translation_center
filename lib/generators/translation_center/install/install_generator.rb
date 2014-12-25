@@ -1,13 +1,10 @@
+require 'rails/generators/active_record'
+
 module TranslationCenter
 
-  class InstallGenerator < Rails::Generators::Base
-    include Rails::Generators::Migration
+  class InstallGenerator < ActiveRecord::Generators::Base
     source_root File.expand_path('../templates', __FILE__)
     argument :langs, type: :array, :default => ['en']
-
-    def self.next_migration_number(path)
-      @migration_number = Time.now.utc.strftime("%Y%m%d%H%M%S%6N").to_i.to_s
-    end
 
     def install_translation
       # Generate migration templates for the models needed
@@ -17,15 +14,18 @@ module TranslationCenter
 
       # generate votes if it doesn't already exist
       unless ActiveRecord::Base.connection.table_exists? 'votes'
-        Rails::Generators.invoke('acts_as_votable:migration')
+        # A workaround for act_as_votable migration version number generation
+        acts_as_votable_migration_class = Rails::Generators.find_by_namespace('acts_as_votable:migration')
+        next_migration_number = self.class.next_migration_number('db/migrate')
+        acts_as_votable_migration_class.class_eval(%Q{def self.next_migration_number(path); #{next_migration_number}; end})
+
+        acts_as_votable_migration_class.start
       end
-      
+
       copy_file 'config/translation_center.yml', 'config/translation_center.yml'
 
       # user can replace this logo to change the logo
       copy_file 'assets/translation_center_logo.png', 'app/assets/images/translation_center_logo.png'
-
-      sleep(1) # to avoid duplicate migrations between acts_as_votable and auditable
 
       unless ActiveRecord::Base.connection.table_exists? 'audits'
         # we use audited for tracking activity
