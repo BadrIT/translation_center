@@ -25,6 +25,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'ya2yaml'
   s.add_dependency 'font-awesome-rails'
   s.add_dependency 'audited-activerecord'
-  s.add_dependency 'jquery-ui-rails'
+  s.add_dependency 'jquery-ui-rails', '~> 5.0'
 
 end
