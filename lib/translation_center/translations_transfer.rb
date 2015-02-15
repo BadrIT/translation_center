@@ -28,7 +28,7 @@ module TranslationCenter
   # returns true if the translation was fonud in yaml 
   def self.yaml2db_key(locale, translation_key, translator, all_yamls)
     I18n.locale = locale
-    translation = TranslationCenter::Translation.find_or_initialize_by_translation_key_id_and_lang_and_translator_id(translation_key.id, locale.to_s, translator.id)
+    translation = TranslationCenter::Translation.find_or_initialize_by(translation_key_id: translation_key.id, lang: locale.to_s, translator_id: translator.id)
     translation.translator_type = TranslationCenter::CONFIG['translator_type']
     
     # get the translation for this key from the yamls
@@ -56,7 +56,7 @@ module TranslationCenter
     # the db in every locale
     keys.each do |key|
 
-      translation_key = TranslationCenter::TranslationKey.find_or_initialize_by_name(key)
+      translation_key = TranslationCenter::TranslationKey.find_or_initialize_by(name: key)
       if translation_key.new_record?
         translation_key.save
         new_keys += 1

@@ -60,7 +60,7 @@ module TranslationCenter
     complete_key = prepare_key(key, options) # prepare complete key
 
     # add the new key or update it
-    translation_key = TranslationCenter::TranslationKey.find_or_create_by_name(complete_key)
+    translation_key = TranslationCenter::TranslationKey.find_or_create_by(name: complete_key)
     #  UNCOMMENT THIS LATER TO SET LAST ACCESSED AT
     # translation_key.update_attribute(:last_accessed, Time.now)
 

@@ -1,7 +1,7 @@
 module TranslationCenter
 
   class TranslationKey < ActiveRecord::Base
-    attr_accessible :name, :last_accessed, :category_id
+    # attr_accessible :name, :last_accessed, :category_id
     belongs_to :category
     has_many :translations, dependent: :destroy
 
@@ -24,7 +24,7 @@ module TranslationCenter
       category_name = self.name.to_s.split('.').first
       # if one word then add to general category
       category_name = self.name.to_s.split('.').size == 1 ? 'general' : self.name.to_s.split('.').first
-      self.category = TranslationCenter::Category.find_or_create_by_name(category_name)
+      self.category = TranslationCenter::Category.find_or_create_by(name: category_name)
       self.last_accessed = Time.now
     end
 
@@ -162,6 +162,12 @@ module TranslationCenter
     end
 
     private
+
+
+      def translation_key_params
+        params.require(:translation_key).permit(:name, :last_accessed, :category_id)
+      end
+
       def add_to_hash_rec(all_translations, levels, lang)
         current_level = levels.first
         # if we are at the bottom level just return the translation
