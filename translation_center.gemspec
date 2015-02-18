@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", ">= 3.1.0", "<= 3.2.12"
+  s.add_dependency "rails", ">= 3.1.0", "~> 3.2.21"
   s.add_dependency "jquery-rails"
   s.add_dependency 'haml'
   s.add_dependency 'haml-rails'
@@ -25,6 +25,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'ya2yaml'
   s.add_dependency 'font-awesome-rails'
   s.add_dependency 'audited-activerecord'
-  s.add_dependency 'jquery-ui-rails'
+  s.add_dependency 'jquery-ui-rails', '~> 5.0'
 
 end

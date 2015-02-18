@@ -14,7 +14,7 @@
         - if translation.translator == current_user
           = t('.you')
         - else
-          = translation.translator.send(TranslationCenter::CONFIG['identifier_type'])
+          = translation.translator.send(TranslationCenter::CONFIG['identifier_type']) if translation.translator.present?
         = t('.on_date')
         = format_date(translation.created_at)
   %div.translation_voting
