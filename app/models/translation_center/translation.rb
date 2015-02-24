@@ -26,7 +26,7 @@ module TranslationCenter
     scope :in, lambda { |lang| where(lang: lang.to_s.strip) }
 
     # sorts translations by number of votes
-    scope :sorted_by_votes, where('votable_type IS NULL OR votable_type = ?', 'TranslationCenter::Translation').select('translation_center_translations.*, count(votes.id) as votes_count').joins('LEFT OUTER JOIN votes on votes.votable_id = translation_center_translations.id').group('translation_center_translations.id').order('votes_count desc')
+    scope :sorted_by_votes, -> {where('votable_type IS NULL OR votable_type = ?', 'TranslationCenter::Translation').select('translation_center_translations.*, count(votes.id) as votes_count').joins('LEFT OUTER JOIN votes on votes.votable_id = translation_center_translations.id').group('translation_center_translations.id').order('votes_count desc')}
 
     after_save :update_key_status
     after_destroy :notify_key
