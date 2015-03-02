@@ -35,7 +35,10 @@ module TranslationCenter
     value = get_translation_from_hash(translation_key.name, all_yamls[locale])
 
     # if the value is not empty and is different from the existing value the update
-    if !value.blank? && value != translation.value
+    if value.is_a? Proc
+      puts "proc removed for key #{translation_key.name}"
+      translation.destroy unless translation.new_record?
+    elsif !value.blank? && value != translation.value
       translation.update_attribute(:value, value)
       # accept this yaml translation
       translation.accept if TranslationCenter::CONFIG['yaml2db_translations_accepted']
@@ -55,7 +58,6 @@ module TranslationCenter
     # for each key create it in the db if it doesn't exist, and add its translation to
     # the db in every locale
     keys.each do |key|
-
       translation_key = TranslationCenter::TranslationKey.find_or_initialize_by(name: key)
       if translation_key.new_record?
         translation_key.save
@@ -97,7 +99,6 @@ module TranslationCenter
     all_keys = all_yamls.collect do |check_locale, translations|
       collect_keys([], translations).sort
     end.flatten.uniq
-
     puts "#{all_keys.size} #{all_keys.size == 1 ? 'unique key' : 'unique keys'} found."
 
     locales = locale.blank? ? I18n.available_locales : [locale.to_sym]
