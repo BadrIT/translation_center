@@ -54,7 +54,7 @@ module TranslationCenter
     # called before destory to update the key status
     def notify_key
       self.key.update_status(self.lang)
-      self.audits.destroy_all
+      self.audits.destroy
     end
 
     # returns true if the status of the translation is accepted

@@ -20,8 +20,9 @@ Gem::Specification.new do |s|
 
   # Development dependencies
   s.add_development_dependency 'sqlite3'
+  s.add_development_dependency "activerecord"
 
-  s.add_development_dependency 'debugger', '~> 1.6.5'
+  # s.add_development_dependency 'debugger', '~> 1.6.5'
   s.add_development_dependency 'better_errors'
   s.add_development_dependency 'binding_of_caller'
 
@@ -29,6 +30,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'generator_spec'
+  s.add_development_dependency 'actionpack'
+  s.add_development_dependency 'activesupport'
+  s.add_development_dependency 'test-unit'
+  s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'pry'
 
   # Dependencies
   s.add_dependency 'rails', '>= 3.1.0', '<= 3.2.12'

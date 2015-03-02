@@ -4,6 +4,7 @@ require 'generators/translation_center/add_lang/add_lang_generator'
 
 module TranslationCenter
   describe AddLangGenerator do
+    include GeneratorSpec::TestCase
     destination File.expand_path("../../tmp", __FILE__)
     arguments %w(fr)
 

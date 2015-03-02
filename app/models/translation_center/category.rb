@@ -10,7 +10,7 @@ module TranslationCenter
 
     # gets how much complete translation of category is in a certain language
     def complete_percentage_in(lang)
-      if self.keys.empty?
+      if self.keys.blank?
         100
       else
         accepted_keys = accepted_keys(lang)

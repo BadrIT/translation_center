@@ -70,7 +70,7 @@ module TranslationCenter
         expect(en_translation.status).to eq(Translation::ACCEPTED)
       end
 
-      it "should unaccept a translation" do
+      it "should unaccept a translation" do        
         en_translation.accept
 
         expect(en_translation.status).to eq(Translation::ACCEPTED)
@@ -78,6 +78,8 @@ module TranslationCenter
         en_translation.unaccept
 
         expect(en_translation.status).to eq(Translation::PENDING)
+
+        expect(en_translation.pending?).to be_truthy
       end
 
       it "should flag the translation key as pending when translation is unaccepted" do
@@ -102,6 +104,14 @@ module TranslationCenter
 
         expect(duplicated_translation.errors.messages).not_to be_empty
       end
+    end
+
+    it "should" do
+      # en_translation.update_attributes(translation_key_id: translation_key.id)
+    # FactoryGirl.create(:translation_key, name: "name", translation: en_translation)
+      puts translation_key.inspect
+      puts en_translation.inspect
+      en_translation.destroy
     end
   end
 end

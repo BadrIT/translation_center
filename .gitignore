@@ -14,3 +14,5 @@ spec/dummy/.sass-cache
 
 .ruby-gemset
 .ruby-version
+
+coverage
