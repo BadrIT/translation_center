@@ -13,7 +13,7 @@ module TranslationCenter
         # only admin can edit accepted translations
         if (current_user.can_admin_translations? || !@translation.accepted?) && !params[:value].to_s.strip.blank?
           # use yaml.load to handle arrays
-          @translation.update_attributes(value: YAML.load(params[:value].strip), status: 'pending')
+          @translation.update(value: YAML.load(params[:value].strip), status: 'pending')
           # translation added by admin is considered the accepted one as it is trusted
           @translation.accept if current_user.can_admin_translations? && CONFIG['accept_admin_translations']
           format.json {render json: { value: @translation.value, status: @translation.key.status(@translation.lang), key_before_status: @key_before_status  } }

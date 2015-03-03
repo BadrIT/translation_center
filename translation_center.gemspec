@@ -37,8 +37,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry'
 
   # Dependencies
-  s.add_dependency 'rails', '>= 3.1.0', '<= 3.2.12'
 
+  s.add_dependency "rails"#, ">= 3.1.0", "<= 3.2.12"
   s.add_dependency 'acts_as_votable'
 
   s.add_dependency 'ya2yaml'

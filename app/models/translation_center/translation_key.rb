@@ -11,6 +11,7 @@ module TranslationCenter
     attr_accessible :name, :last_accessed, :category_id
 
     # Relations
+    # attr_accessible :name, :last_accessed, :category_id
     belongs_to :category
     has_many :translations, dependent: :destroy
 
@@ -168,6 +169,12 @@ module TranslationCenter
     end
 
     private
+
+
+      def translation_key_params
+        params.require(:translation_key).permit(:name, :last_accessed, :category_id)
+      end
+
       def add_to_hash_rec(all_translations, levels, lang)
         current_level = levels.first
         # if we are at the bottom level just return the translation

@@ -1,6 +1,8 @@
 module TranslationCenter
   class Translation < ActiveRecord::Base
-    # Constants
+
+    # attr_accessible :value, :lang, :translation_key_id, :user_id, :status
+    # serialize as we could store arrays
     CHANGES_PER_PAGE = 5
     NUMBER_PER_PAGE = 15
 
@@ -101,6 +103,12 @@ module TranslationCenter
         false
         self.errors.add(:lang, I18n.t('.one_translation_per_lang_per_key'))
       end
+    end
+
+    private
+
+    def translation_params
+      params.require(:translation).permit(:value, :lang, :translation_key_id, :user_id, :status)
     end
 
   end

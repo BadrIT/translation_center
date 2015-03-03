@@ -18,7 +18,7 @@ module TranslationCenter
 
     # retuns and ActiveRecord Relation of Audit(s) that matches this search criteria
     def activities
-      query = Audited::Adapters::ActiveRecord::Audit.where(auditable_id: translation_ids).scoped
+      query = Audited::Adapters::ActiveRecord::Audit.where(auditable_id: translation_ids).all
       query = query.where("DATE(created_at) <= DATE(?)", created_at_lteq) unless created_at_lteq.blank?
       query = query.where("DATE(created_at) >= DATE(?)", created_at_gteq) unless created_at_gteq.blank?
       query.order('created_at DESC')
@@ -28,7 +28,7 @@ module TranslationCenter
 
     # return translation ids that matches this search criteria
     def translation_ids
-      query = Translation.scoped
+      query = Translation.all
       query = query.where(lang: lang) unless lang.blank?
       query = query.joins(:translation_key).where("translation_center_translation_keys.name LIKE ?", "%#{translation_key_name}%") unless translation_key_name.blank?
 
@@ -41,6 +41,5 @@ module TranslationCenter
 
       query.map(&:id)
     end
-
   end
 end

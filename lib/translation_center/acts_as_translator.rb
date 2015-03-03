@@ -9,7 +9,7 @@ module ActsAsTranslator
   module InstanceMethods
     # returns the translation a user has made for a certain key in a certain language
     def translation_for(key, lang)
-      self.translations.find_or_initialize_by_translation_key_id_and_lang_and_translator_type(key.id, lang.to_s, self.class.name)
+      self.translations.find_or_initialize_by(translation_key_id: key.id, lang: lang.to_s, translator_type: self.class.name)
     end
 
     # returns true if the user can admin translations

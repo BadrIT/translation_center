@@ -1,6 +1,6 @@
 module TranslationCenter
   class Category < ActiveRecord::Base
-    attr_accessible :name
+    # attr_accessible :name
     has_many :translation_keys, dependent: :destroy
 
     alias_method :keys, :translation_keys
@@ -43,5 +43,10 @@ module TranslationCenter
       self.name.titleize
     end
 
+    private
+
+    def category_params
+      params.require(:category).permit(:name)
+    end
   end
 end
