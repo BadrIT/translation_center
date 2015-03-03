@@ -11,7 +11,7 @@ TranslationCenter::Engine.routes.draw do
   end
 
   resources :translation_keys, except: :create do
-    post :update_translation
+    post :update_translation, defaults: { format: 'json' }
     get :translations
     collection do 
       get :search

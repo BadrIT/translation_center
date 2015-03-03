@@ -12,21 +12,21 @@ module TranslationCenter
 
    describe "GET set_language_from" do
  	it "should set language the user is translating from & render nothing" do
- 	  get :set_language_from, lang: "ar"
- 	  expect(I18n.locale).to eq :ar
+        get :set_language_from, lang: "en", use_route: "trancelaion_center"
+ 	  expect(I18n.locale).to eq :en
  	  expect(response.body).to be_blank
  	end
    end
 
    describe "GET set_language_to" do
 	it "should set language the user is translating to & redirect to root" do
- 	  get :set_language_to, lang: "ar"
+ 	  get :set_language_to, lang: "ar", use_route: "trancelaion_center"
  	  expect(session[:lang_to]).to eq :ar
         expect(response).to redirect_to(:root)
  	end
  
  	it "should render nothing" do
- 	  get :set_language_to, lang: "ar", format: :js
+ 	  get :set_language_to, lang: "ar", format: :js, use_route: "trancelaion_center"
  	  expect(session[:lang_to]).to eq :ar
  	  expect(response.body).to be_blank
  	end
@@ -34,21 +34,21 @@ module TranslationCenter
 
      describe "GET dashboard" do
  	it "should set dashboard stats & render dashboard.html" do
- 	  get :dashboard
+ 	  get :dashboard, use_route: "trancelaion_center"
   	  expect(assigns(:translations_changes).class.name).to eq "ActiveRecord::Relation"
   	  expect(assigns(:total_pages).class.name).to eq "Fixnum"
         expect(response).to render_template(:dashboard)
  	end
 
  	it "should render search_activity.html" do
- 	  get :dashboard, format: :js
+ 	  get :dashboard, format: :js, use_route: "trancelaion_center"
         expect(response).to render_template(:search_activity)
  	end
    end
      
     describe "GET search_activity" do
     	it "should render search_activity.js" do
- 	  get :search_activity, format: :js
+ 	  get :search_activity, format: :js, use_route: "trancelaion_center"
  	  expect(assigns(:translations_changes).class.name).to eq "ActiveRecord::Relation"
   	  expect(assigns(:total_pages).class.name).to eq "Fixnum"
         expect(response).to render_template(:search_activity)
@@ -58,17 +58,18 @@ module TranslationCenter
      describe "GET manage" do
         Dir.mkdir "config/locales"  
         File.open( "config/locales/en.yml", "w+")
+        File.open( "config/locales/ar.yml", "w+")
     	it "should run yaml2db" do
- 	  get :manage, locale: "en", manage_action: "yaml2db", format: :js
+ 	  get :manage, locale: "en", manage_action: "yaml2db", format: :js, use_route: "trancelaion_center"
  	end
 
  	it "should run db2yaml" do
 
- 	  get :manage, locale: "en", manage_action: "db2yaml", format: :js
+ 	  get :manage, locale: "en", manage_action: "db2yaml", format: :js, use_route: "trancelaion_center"
  	end
  	
  	it "should run yaml2db & render manage.js" do
- 	  get :manage, locale: "all", manage_action: "db2yaml", format: :js
+ 	  get :manage, locale: "all", manage_action: "db2yaml", format: :js, use_route: "trancelaion_center"
         expect(response).to render_template(:manage)
  	end
     end

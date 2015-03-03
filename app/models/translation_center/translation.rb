@@ -10,9 +10,6 @@ module TranslationCenter
     ACCEPTED = "accepted"
     PENDING = "pending"
 
-    # Accessible attributes
-    attr_accessible :value, :lang, :translation_key_id, :user_id, :status
-
     # Relations
     belongs_to :translation_key
     belongs_to :translator, polymorphic: true

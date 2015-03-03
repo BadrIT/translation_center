@@ -32,13 +32,15 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'generator_spec'
   s.add_development_dependency 'actionpack'
   s.add_development_dependency 'activesupport'
-  s.add_development_dependency 'test-unit'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'pry'
+  s.add_development_dependency 'activeresource'
+  s.add_development_dependency 'sprockets-rails'
+  # s.add_development_dependency 'audited'
 
   # Dependencies
 
-  s.add_dependency "rails"#, ">= 3.1.0", "<= 3.2.12"
+  s.add_dependency "rails"
   s.add_dependency 'acts_as_votable'
 
   s.add_dependency 'ya2yaml'

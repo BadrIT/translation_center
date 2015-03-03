@@ -8,8 +8,6 @@ module TranslationCenter
     UNTRANSLATED = "untranslated"
     PER_PAGE = 7
 
-    attr_accessible :name, :last_accessed, :category_id
-
     # Relations
     # attr_accessible :name, :last_accessed, :category_id
     belongs_to :category

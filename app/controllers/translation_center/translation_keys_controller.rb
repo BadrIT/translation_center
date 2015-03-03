@@ -18,7 +18,7 @@ module TranslationCenter
           @translation.accept if current_user.can_admin_translations? && CONFIG['accept_admin_translations']
           format.json {render json: { value: @translation.value, status: @translation.key.status(@translation.lang), key_before_status: @key_before_status  } }
         else
-          render nothing: true
+          format.any {render nothing: true}
         end 
       end
     end

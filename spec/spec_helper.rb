@@ -17,11 +17,13 @@ require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 RSpec.configure do |config|
   ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
   load 'schema.rb'
+  ActionDispatch::Request
   require 'rspec/rails'
   require 'active_record'
   require 'action_controller/base'
   require 'factory_girl_rails'
-  
+
+  config.include Rails.application.routes.url_helpers
   config.include Devise::TestHelpers, type: :controller
   config.order = "random"
   config.before(:suite) do
@@ -30,7 +32,7 @@ RSpec.configure do |config|
   end
   config.before(:all) do
     FactoryGirl.reload
-    Rails.application.routes.draw { match ':controller(/:action)' }
+    # Rails.application.routes.draw { ':controller(/:action)' }
   end
   config.before(:each) { DatabaseCleaner.start }
   config.after(:each) { DatabaseCleaner.clean }
@@ -39,3 +41,12 @@ end
 class ActionController::TestCase
   include Devise::TestHelpers
 end
+
+# ActionView::TestCase::TestController.instance_eval do
+#   helper Rails.application.routes.url_helpers#, (append other helpers you need)
+# end
+# ActionView::TestCase::TestController.class_eval do
+#   def _routes
+#     Rails.application.routes
+#   end
+# end

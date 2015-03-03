@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130801102021)  do
+ActiveRecord::Schema.define(:version => 20130801102021) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20130801102021)  do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
     t.string   "auditable_type"
@@ -33,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20130801102021)  do
     t.integer  "version",         :default => 0
     t.string   "comment"
     t.string   "remote_address"
+    t.string   "request_uuid"
     t.datetime "created_at"
   end
 
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20130801102021)  do
   add_index "audits", ["auditable_id", "auditable_type"], :name => "auditable_index"
   add_index "audits", ["created_at"], :name => "index_audits_on_created_at"
   add_index "audits", ["user_id", "user_type"], :name => "user_index"
+  add_index "audits", ["request_uuid"], :name => "request_uuid"
 
   create_table "translation_center_categories", :force => true do |t|
     t.string   "name"
@@ -97,8 +98,8 @@ ActiveRecord::Schema.define(:version => 20130801102021)  do
     t.integer  "voter_id"
     t.string   "voter_type"
     t.boolean  "vote_flag"
+    t.integer   "vote_weight"
     t.string   "vote_scope"
-    t.integer  "vote_weight"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

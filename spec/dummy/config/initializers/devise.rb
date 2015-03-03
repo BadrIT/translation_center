@@ -1,3 +1,4 @@
+require "devise"
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -210,6 +211,7 @@ Devise.setup do |config|
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
 
+  config.secret_key = '04d5a22f877c4424de01da12cf0af2c1682a1d272ac39c54fd73d16270b85bed033ffb1f6dc0b7ef51e24745b3e682c2459d45701f2bafc3de028c26e40a400b'
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.

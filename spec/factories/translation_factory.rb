@@ -3,6 +3,6 @@ FactoryGirl.define do
     lang "en"
     translation_key
     value "value"
-    translator
+    association :translator, factory: :user
   end
 end

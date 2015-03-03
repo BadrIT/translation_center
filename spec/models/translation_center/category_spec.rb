@@ -5,7 +5,7 @@ require 'spec_helper'
     let(:translation) { FactoryGirl.create(:translation) }
 
       it "should return array of keys" do 
-		expect(category.all_keys(nil).class.name).to eq 'Array'
+		expect(category.all_keys(nil).class.name).to eq 'ActiveRecord::Associations::CollectionProxy'
       end
 
       it "should return name" do 
