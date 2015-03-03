@@ -36,7 +36,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry'
   s.add_development_dependency 'activeresource'
   s.add_development_dependency 'sprockets-rails'
-  # s.add_development_dependency 'audited'
 
   # Dependencies
 
