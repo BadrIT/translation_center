@@ -2,7 +2,9 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
-
+#keys_ul{
+  height: 100%;
+}
 .translation_keys_listing {
   height: 410px;
   overflow: auto;

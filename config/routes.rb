@@ -11,7 +11,7 @@ TranslationCenter::Engine.routes.draw do
   end
 
   resources :translation_keys, except: :create do
-    post :update_translation
+    post :update_translation, defaults: { format: 'json' }
     get :translations
     collection do 
       get :search
@@ -29,6 +29,6 @@ TranslationCenter::Engine.routes.draw do
   root to: 'categories#index'
 
   # set the language from and to for the user
-  match "/set_language_from" => 'center#set_language_from', as: :set_lang_from
-  match "/set_language_to" => 'center#set_language_to', as: :set_lang_to
+  get "/set_language_from" => 'center#set_language_from', as: :set_lang_from
+  get "/set_language_to" => 'center#set_language_to', as: :set_lang_to
 end

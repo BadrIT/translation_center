@@ -12,7 +12,7 @@ module TranslationCenter
 
         render "translation_center/errors/exception"
       end
-      
+
     end
 
     # defaults
@@ -24,7 +24,7 @@ module TranslationCenter
     end
 
     protected
-    
+
     def can_admin?
       current_user.can_admin_translations?
     end

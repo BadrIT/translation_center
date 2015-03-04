@@ -5,7 +5,7 @@
 
 ## Introduction
 
-Translation Center is a multi lingual web engine for Rails 3 apps. It builds a translation center community with translators and admins from your system users.
+Translation Center is a multi lingual web engine for Rails apps. It builds a translation center community with translators and admins from your system users.
 
 ![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/view_keys.png "View category translations")
 
@@ -36,7 +36,7 @@ Manage all app translations; collect stats, accept, add, edit, remove translatio
 
 ## Getting started
 
-TranslationCenter works with Rails 3.1 onwards. You can add it to your Gemfile with:
+TranslationCenter works with Rails 4.x onwards. You can add it to your Gemfile with:
 
 ```ruby
 gem 'translation_center'
@@ -106,6 +106,37 @@ def can_admin_translations?
   self.email == 'admin@tc.com'
 end
 ```
+## Rails 3
+If you are Using rails 3 you can revert back to tag 1.7.2 
+
+## MongoDB Support
+  * Create a SQL database so your app connects to both MongoDB and this new SQL database.
+  * Create a new SQL table (ex: translator_users) that will be considered as translator user and has a foreign key for your MongoDB user (ex: mongo_user_id)
+  * Add `acts_as_translator` to your ActiverRecord user (ex: TranslatorUser) model not Mogno User 
+  * Update translation_center.yml to the translator model name if needed
+    ```ruby 
+      tranlator_type: 'TranslatorUser'
+    ```
+  * You also need to add these methods in an initializer in case Devise is not existing in Mongo, for example `translation_authentication.rb` :
+    ```ruby
+      module TranslationCenter
+        class ApplicationController < ActionController::Base
+
+          # current_user is needed in views
+          helper_method :current_user
+
+          def authenticate_user!
+            # redirect to login if user not signed in
+          end
+
+          def current_user
+            # write code that returns the current ActiveRecord user in session
+          end
+
+        end
+      end  
+      ```
+    in the current_user method make sure that you return the ActiveRecord user not the Mongo user because that's what we will use in translation center engine.
 
 ## How to use
 
@@ -284,6 +315,11 @@ http://www.youtube.com/watch?v=BTy6ZI31JmU
 ![BadrIT](http://www.badrit.com/images/logo-main.png)
 
 Translation Center is maintained and developed by [BadrIT](http://badrit.com/)
+
+## Contributing
+
+We hope that you will consider contributing to Translation Center.
+You will usually want to write tests for your changes. To run the test suite, go into Translation Center's top-level directory and run "bundle install" and then "rspec spec" 
 
 ## Support
 

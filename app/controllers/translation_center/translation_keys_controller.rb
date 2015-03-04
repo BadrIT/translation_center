@@ -11,14 +11,14 @@ module TranslationCenter
       @key_before_status = @translation_key.status(session[:lang_to])
       respond_to do |format|
         # only admin can edit accepted translations
-        if (current_user.can_admin_translations? || !@translation.accepted?) && !params[:value].strip.blank?
+        if (current_user.can_admin_translations? || !@translation.accepted?) && !params[:value].to_s.strip.blank?
           # use yaml.load to handle arrays
-          @translation.update_attributes(value: YAML.load(params[:value].strip), status: 'pending')
+          @translation.update(value: YAML.load(params[:value].strip), status: 'pending')
           # translation added by admin is considered the accepted one as it is trusted
           @translation.accept if current_user.can_admin_translations? && CONFIG['accept_admin_translations']
           format.json {render json: { value: @translation.value, status: @translation.key.status(@translation.lang), key_before_status: @key_before_status  } }
         else
-          render nothing: true
+          format.any {render nothing: true}
         end 
       end
     end
@@ -42,7 +42,7 @@ module TranslationCenter
     # PUT /translation_keys/1
     # PUT /translation_keys/1.json
     def update
-      params[:value].strip!
+      params[:value].to_s.strip!
       @old_value = @translation_key.category.name
       respond_to do |format|
         if !params[:value].blank? && @translation_key.update_attribute(:name, params[:value])

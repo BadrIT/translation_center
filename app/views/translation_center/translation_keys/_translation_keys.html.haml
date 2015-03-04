@@ -4,7 +4,7 @@
 - else
   .tabbable.tabs-left.all_listing
     
-    %ul.nav.nav-tabs.translation_keys_listing
+    %ul.nav.nav-tabs.translation_keys_listing#keys_ul
       - translation_keys.each_with_index do |translation_key, index|
         = render 'translation_center/translation_keys/show_keys', translation_key: translation_key, index: index
         
@@ -14,3 +14,5 @@
         = render 'translation_center/translation_keys/show', translation_key: translation_key, index: index
 
 
+:javascript   
+  $("#keys_ul").css('max-height', $(window).height()-220);

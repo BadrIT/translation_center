@@ -1,6 +1,6 @@
 module TranslationCenter
   class Category < ActiveRecord::Base
-    attr_accessible :name
+    # attr_accessible :name
     has_many :translation_keys, dependent: :destroy
 
     alias_method :keys, :translation_keys
@@ -10,7 +10,7 @@ module TranslationCenter
 
     # gets how much complete translation of category is in a certain language
     def complete_percentage_in(lang)
-      if self.keys.empty?
+      if self.keys.blank?
         100
       else
         accepted_keys = accepted_keys(lang)
@@ -43,5 +43,10 @@ module TranslationCenter
       self.name.titleize
     end
 
+    private
+
+    def category_params
+      params.require(:category).permit(:name)
+    end
   end
 end

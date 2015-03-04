@@ -5,7 +5,7 @@ source "http://rubygems.org"
 ###########################IMPORTANT################################
 ####################################################################
 ####################################################################
-# When add new gem, don't forget to add it to 
+# When add new gem, don't forget to add it to
 # 1- engine.rb
 # 2- translation_center.gemspec
 ####################################################################
@@ -14,6 +14,7 @@ source "http://rubygems.org"
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
 gemspec
+ gem 'devise'
 
 =begin
 gem 'jquery-rails'

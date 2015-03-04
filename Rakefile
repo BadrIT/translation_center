@@ -12,6 +12,7 @@ rescue LoadError
   RDoc::Task = Rake::RDocTask
 end
 
+desc 'Generating documentation'
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'TranslationCenter'
@@ -20,21 +21,15 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-APP_RAKEFILE = File.expand_path("../test/dummy/Rakefile", __FILE__)
+APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
 load 'rails/tasks/engine.rake'
 
-
-
 Bundler::GemHelper.install_tasks
+Dir[File.join(File.dirname(__FILE__), 'tasks/**/*.rake')].each {|f| load f }
 
-require 'rake/testtask'
+desc 'RSpec tests'
+require 'rspec/core'
+require 'rspec/core/rake_task'
 
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = false
-end
-
-
-task :default => :test
+RSpec::Core::RakeTask.new(:spec => 'app:db:test:prepare')
+task :default => :spec
