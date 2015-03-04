@@ -110,7 +110,7 @@ end
 If you are Using rails 3 you can revert back to tag 1.7.2 
 
 ## Mongo Support
-  * Create a sql database so your 
+  * Create a sql database so your app connects to both mongo and this new sql database 
   * Create new table in your new sql database that will be considered as translator user  and has a forign key for your mongo user 
   * Add `acts_as_translator` to your sql user table not mogno user 
   * You also need to add these methods in an initialize, for example `translation_authentication.rb` :
