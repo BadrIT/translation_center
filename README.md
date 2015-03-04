@@ -316,6 +316,11 @@ http://www.youtube.com/watch?v=BTy6ZI31JmU
 
 Translation Center is maintained and developed by [BadrIT](http://badrit.com/)
 
+## Contributing
+
+We hope that you will consider contributing to Translation Center.
+You will usually want to write tests for your changes. To run the test suite, go into Translation Center's top-level directory and run "bundle install" and then "rspec spec" 
+
 ## Support
 
 Help us make this engine better by submitting any bugs or enhancments in the issues page for this project.
