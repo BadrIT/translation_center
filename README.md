@@ -106,6 +106,33 @@ def can_admin_translations?
   self.email == 'admin@tc.com'
 end
 ```
+## rails 3
+If you are Using rails 3 you can revert back to tag 1.7.2 
+
+## Mongo Support
+  * Create a sql database so your 
+  * Create new table in your new sql database that will be considered as translator user  and has a forign key for your mongo user 
+  * Add `acts_as_translator` to your sql user table not mogno user 
+  * You also need to add these methods in an initialize, for example `translation_authentication.rb` :
+    ```ruby
+      module TranslationCenter
+        class ApplicationController < ActionController::Base
+
+          # current_user is needed in views
+          helper_method :current_user
+
+          def authenticate_user!
+            # redirect to login if user not signed in
+          end
+
+          def current_user
+            # write code that returns the current user in session
+          end
+
+        end
+      end  
+      ```
+    in the current user make sure that you have the sql user not the mongo user because that's what we will use in translation center enginer 
 
 ## How to use
 
