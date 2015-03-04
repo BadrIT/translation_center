@@ -5,7 +5,7 @@
 
 ## Introduction
 
-Translation Center is a multi lingual web engine for Rails 3 apps. It builds a translation center community with translators and admins from your system users.
+Translation Center is a multi lingual web engine for Rails apps. It builds a translation center community with translators and admins from your system users.
 
 ![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/view_keys.png "View category translations")
 
@@ -36,7 +36,7 @@ Manage all app translations; collect stats, accept, add, edit, remove translatio
 
 ## Getting started
 
-TranslationCenter works with Rails 3.1 onwards. You can add it to your Gemfile with:
+TranslationCenter works with Rails 4.x onwards. You can add it to your Gemfile with:
 
 ```ruby
 gem 'translation_center'
