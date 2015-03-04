@@ -35,7 +35,8 @@ module TranslationCenter
     # GET /categories/1/more_keys.js
     def more_keys
       @category = Category.find(params[:category_id])
-      @keys = @category.send("#{session[:current_filter]}_keys", session[:lang_to]).offset(@page - 1).limit(TranslationKey::PER_PAGE)
+      # @keys = @category.send("#{session[:current_filter]}_keys", session[:lang_to]).offset((@page - 1)* TranslationKey::PER_PAGE).limit(TranslationKey::PER_PAGE)
+      @keys = @category.send("#{session[:current_filter]}_keys", session[:lang_to]).offset((@page - 1)* TranslationKey::PER_PAGE).limit(TranslationKey::PER_PAGE)
       respond_to do |format|
         format.js { render 'keys' }
       end
