@@ -106,14 +106,18 @@ def can_admin_translations?
   self.email == 'admin@tc.com'
 end
 ```
-## rails 3
+## Rails 3
 If you are Using rails 3 you can revert back to tag 1.7.2 
 
-## Mongo Support
-  * Create a sql database so your app connects to both mongo and this new sql database 
-  * Create new table in your new sql database that will be considered as translator user  and has a forign key for your mongo user 
-  * Add `acts_as_translator` to your sql user table not mogno user 
-  * You also need to add these methods in an initialize, for example `translation_authentication.rb` :
+## MongoDB Support
+  * Create a SQL database so your app connects to both MongoDB and this new SQL database.
+  * Create a new SQL table (ex: translator_users) that will be considered as translator user and has a foreign key for your MongoDB user (ex: mongo_user_id)
+  * Add `acts_as_translator` to your ActiverRecord user (ex: TranslatorUser) model not Mogno User 
+  * Update translation_center.yml to the translator model name if needed
+    ```ruby 
+      tranlator_type: 'TranslatorUser'
+    ```
+  * You also need to add these methods in an initializer in case Devise is not existing in Mongo, for example `translation_authentication.rb` :
     ```ruby
       module TranslationCenter
         class ApplicationController < ActionController::Base
@@ -126,13 +130,13 @@ If you are Using rails 3 you can revert back to tag 1.7.2
           end
 
           def current_user
-            # write code that returns the current user in session
+            # write code that returns the current ActiveRecord user in session
           end
 
         end
       end  
       ```
-    in the current user make sure that you have the sql user not the mongo user because that's what we will use in translation center enginer 
+    in the current_user method make sure that you return the ActiveRecord user not the Mongo user because that's what we will use in translation center engine.
 
 ## How to use
 
