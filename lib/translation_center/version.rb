@@ -1,3 +1,3 @@
 module TranslationCenter
-  VERSION = "1.7.2"
+  VERSION = "2.0.1"
 end
