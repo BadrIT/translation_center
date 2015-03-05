@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    translation_center (2.0.1)
+    translation_center (2.0.2)
       acts_as_votable
       audited-activerecord
       devise
