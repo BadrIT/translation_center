@@ -9,8 +9,10 @@
   = form_tag manage_translations_path, remote: true, id: 'manage_form', class: 'form-search' do
     = select_tag 'locale', options_for_select(I18n.available_locales.collect{ |locale| [language_name(locale), locale.to_s] }.insert(0, [t('.all'), 'all'])), {:prompt => t('.select_locale')}
     = hidden_field_tag :manage_action
-    = link_to 'yaml2db', '#', class: 'manage-button btn btn-primary', 'data-action' => 'yaml2db'
-    = link_to 'db2yaml', '#', class: 'manage-button btn btn-primary', 'data-action' => 'db2yaml'
+    = link_to 'yaml2db', '#', class: 'manage-button btn btn-primary', 'data-action' => 'yaml2db', 'data-msg' => 'Transfering yaml translations to db'
+    = link_to 'db2yaml', '#', class: 'manage-button btn btn-primary', 'data-action' => 'db2yaml', 'data-msg' => 'Transfering db translations to yaml files'
+    = link_to 'js2db', '#', class: 'manage-button btn btn-primary', 'data-action' => 'js2db', 'data-msg' => 'Transfering js translations to db'
+    = link_to 'db2js', '#', class: 'manage-button btn btn-primary', 'data-action' => 'db2js', 'data-msg' => 'Transfering db translations to js files'
     #spinner
 
 %h1
@@ -67,7 +69,7 @@
       = t('.search')
     %button.btn#search_reset{ type: :button }
       = t('.reset')
-    
+
   #activity
     = render 'activity', translations_changes: @translations_changes
 
@@ -81,8 +83,7 @@
       var spinner = new Spinner(spinner_params).spin(target);
       $('#manage_action').val($(this).data('action'))
       $('#operation_progress').removeClass('alert-success')
-      var msg = $(this).data('action') == 'yaml2db' ? 'Transfering yaml translations to db' : 'Transfering db translations to yaml files'
-      $('#operation_progress strong').text(msg)
+      $('#operation_progress strong').text($(this).data('msg'))
       $('#manage_form').submit()
     }
     return false;
@@ -95,8 +96,8 @@
     }
   });
 
-      
 
 
-  
-  
+
+
+
