@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'better_errors'
   s.add_development_dependency 'binding_of_caller'
 
-  s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'rspec-rails', '~> 3.5'
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'generator_spec'
@@ -45,7 +45,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'devise'
 
-  s.add_dependency 'audited-activerecord'
+  s.add_dependency 'audited', '~> 4.3'
 
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'

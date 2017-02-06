@@ -8,26 +8,26 @@ en:
         actions:
             are_you_sure: "Are you sure ?"
         back_to_app: "Back To App"
-        categories: 
-            category: 
+        categories:
+            category:
                 complete: Complete
                 keys: Keys
-            index: 
+            index:
                 categories: Categories
-            show: 
+            show:
                 all: All
                 pending: Pending
                 translated: Translated
                 untranslated: Untranslated
-        center: 
-            activity: 
+        center:
+            activity:
                 ago: ago
                 changes: Changes
                 key: Key
                 locale: Locale
                 time: Time
                 user: User
-            dashboard: 
+            dashboard:
                 activity: Activity
                 all: All
                 controls: Controls
@@ -48,28 +48,30 @@ en:
         search_translations: "Translations"
         translate_to: "Translate To"
         translation_center: "Translation Center"
-        translation_keys: 
+        translation_keys:
             destroyed_successfully: "Destroyed Successfully"
-            show: 
+            show:
                 translations: Translations
                 add_edit_translation: "Add/Edit Translation"
                 back_to_category: "Back to"
                 destroy: Destroy
-            show_keys: 
+            show_keys:
                 created_on: "created on"
                 translated: Translated
-            translation_keys: 
+            translation_keys:
                 no_translation_keys: "No Translation Keys"
-        translations: 
-            accept_translation: 
+        translations:
+            accept_translation:
                 unaccept: Unaccept
-            index: 
+            index:
                 date: Date
                 sort_by: "Sort by"
                 votings: Votes
-            show: 
+            show:
                 by: by
                 on_date: "on"
                 vote: Vote
                 votings: Votes
                 you: You
+        errors:
+            one_translation_per_lang_per_key: "Translation already exists"

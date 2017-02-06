@@ -19,7 +19,7 @@ module TranslationCenter
       # unless ActiveRecord::Base.connection.table_exists? 'votes'
         Rails::Generators.invoke('acts_as_votable:migration')
       # end
-      
+
       copy_file 'config/translation_center.yml', 'config/translation_center.yml'
 
       # user can replace this logo to change the logo

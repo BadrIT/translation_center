@@ -70,7 +70,7 @@ module TranslationCenter
         expect(en_translation.status).to eq(Translation::ACCEPTED)
       end
 
-      it "should unaccept a translation" do        
+      it "should unaccept a translation" do
         en_translation.accept
 
         expect(en_translation.status).to eq(Translation::ACCEPTED)
@@ -101,7 +101,6 @@ module TranslationCenter
         duplicated_translation = FactoryGirl.build(:translation, translation_attributes)
 
         expect(duplicated_translation.valid?).to eq false
-
         expect(duplicated_translation.errors.messages).not_to be_empty
       end
     end

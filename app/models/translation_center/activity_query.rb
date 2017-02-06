@@ -4,11 +4,11 @@ module TranslationCenter
     include ActiveModel::Conversion
 
     attr_accessor :translation_key_name, :translator_identifier, :lang, :created_at_gteq, :created_at_lteq
-    
+
     def persisted?
       false
     end
-    
+
     def initialize args={}
       args ||= {}
       args.each do |k,v|
@@ -18,7 +18,7 @@ module TranslationCenter
 
     # retuns and ActiveRecord Relation of Audit(s) that matches this search criteria
     def activities
-      query = Audited::Adapters::ActiveRecord::Audit.where(auditable_id: translation_ids).all
+      query = Audited::Audit.where(auditable_id: translation_ids).all
       query = query.where("DATE(created_at) <= DATE(?)", created_at_lteq) unless created_at_lteq.blank?
       query = query.where("DATE(created_at) >= DATE(?)", created_at_gteq) unless created_at_gteq.blank?
       query.order('created_at DESC')

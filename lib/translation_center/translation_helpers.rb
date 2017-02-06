@@ -4,7 +4,7 @@ module TranslationCenter
   def self.prepare_translator
 
     translator = TranslationCenter::CONFIG['translator_type'].camelize.constantize.where(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier']).first
-    
+
     # if translator doesn't exist then create him
     if translator.blank?
       translator = TranslationCenter::CONFIG['translator_type'].camelize.constantize.new
@@ -22,7 +22,8 @@ module TranslationCenter
 
   def self.included(base)
     base.class_eval do
-      alias_method_chain :translate, :adding if(TranslationCenter::CONFIG['enabled'])
+      alias_method :translate_without_adding, :translate
+      alias_method :translate, :translate_with_adding
     end
   end
 
@@ -128,6 +129,3 @@ module I18n
 end
 
 I18n::Backend::Base.send :include, TranslationCenter
-
-
-
