@@ -7,7 +7,6 @@ require 'ya2yaml'
 require 'font-awesome-rails'
 require 'audited'
 require 'rails-observers'
-require 'rails-controller-testing'
 
 module TranslationCenter
 

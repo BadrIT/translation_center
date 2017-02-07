@@ -2,6 +2,9 @@
 require 'database_cleaner'
 require 'simplecov'
 
+require 'rails-controller-testing'
+Rails::Controller::Testing.install
+
 SimpleCov.start do
   add_filter '/config/'
   add_filter '/spec/'
