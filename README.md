@@ -36,7 +36,7 @@ Manage all app translations; collect stats, accept, add, edit, remove translatio
 
 ## Getting started
 
-TranslationCenter works with Rails 4.x onwards. You can add it to your Gemfile with:
+TranslationCenter works with Rails 5. You can add it to your Gemfile with:
 
 ```ruby
 gem "rails-observers", github: 'rails/rails-observers' # Rails 5
@@ -53,7 +53,7 @@ After you install TranslationCenter and add it to your Gemfile, you need to run 
 rails generate translation_center:install en ar de
 ```
 
-This will add three languages to the translation center, you need to add them in the config/translation_center.yaml
+This will add three languages to the translation center, you need to add them in the config/translation_center.yml
 
 ```ruby
 development:
