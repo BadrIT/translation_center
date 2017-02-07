@@ -14,7 +14,9 @@ source "http://rubygems.org"
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
 gemspec
- gem 'devise'
+
+gem 'devise'
+gem 'audited', "~> 4.3"
 
 =begin
 gem 'jquery-rails'
@@ -25,9 +27,8 @@ gem 'haml-rails'
 gem 'acts_as_votable'
 gem 'ya2yaml'
 # gem 'linecache19', :git => 'git://github.com/mark-moseley/linecache'
-gem 'devise'
 gem 'font-awesome-rails'
-gem 'audited'
+gem 'activeresource', github: 'rails/activeresource', branch: 'master'
 
 group :development do
   gem 'ruby-debug-base19x', '~> 0.11.30.pre4'
