@@ -13,6 +13,7 @@ source "http://rubygems.org"
 # Declare your gem's dependencies in translation_center.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
+gem "rails-observers", github: 'rails/rails-observers'
 gemspec
 
 gem 'devise'
@@ -29,6 +30,7 @@ gem 'ya2yaml'
 # gem 'linecache19', :git => 'git://github.com/mark-moseley/linecache'
 gem 'font-awesome-rails'
 gem 'activeresource', github: 'rails/activeresource', branch: 'master'
+gem 'rails-controller-testing'
 
 group :development do
   gem 'ruby-debug-base19x', '~> 0.11.30.pre4'
