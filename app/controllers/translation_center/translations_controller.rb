@@ -2,8 +2,8 @@ require_dependency "translation_center/application_controller"
 
 module TranslationCenter
   class TranslationsController < ApplicationController
-    before_filter :can_admin?, only: [ :destroy, :accept, :unaccept ]
-    before_filter :set_page_number, only: [:search]
+    before_action :can_admin?, only: [ :destroy, :accept, :unaccept ]
+    before_action :set_page_number, only: [:search]
 
     # POST /translations/1/vote
     def vote

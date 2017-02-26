@@ -193,7 +193,7 @@ i18n_source: 'yaml' # can be db or yaml; default is yaml
 ##Without Devise
 
 If your application doesn't use devise for authentication then you have to
-provide helper named `current_user` that returns the current user in the session and a before_filter named `authenticate_user!` that redirects a user
+provide helper named `current_user` that returns the current user in the session and a before_action named `authenticate_user!` that redirects a user
 to login page if not already signed in.
 
 You also need to add these methods in an initialize, for example `translation_authentication.rb` :
