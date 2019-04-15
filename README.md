@@ -36,9 +36,10 @@ Manage all app translations; collect stats, accept, add, edit, remove translatio
 
 ## Getting started
 
-TranslationCenter works with Rails 4.x onwards. You can add it to your Gemfile with:
+TranslationCenter works with Rails 5. You can add it to your Gemfile with:
 
 ```ruby
+gem "rails-observers", github: 'rails/rails-observers' # Rails 5
 gem 'translation_center'
 ```
 
@@ -52,12 +53,12 @@ After you install TranslationCenter and add it to your Gemfile, you need to run 
 rails generate translation_center:install en ar de
 ```
 
-This will add three languages to the translation center, you need to add them in the config/translation_center.yaml
+This will add three languages to the translation center, you need to add them in the config/translation_center.yml
 
 ```ruby
 development:
   lang:
-    en: 
+    en:
       name: 'English'
       direction: 'ltr'
     ar:
@@ -93,7 +94,7 @@ and change the `translator_type` in `translation_center.yml` to the translator m
 # tranlator_type: 'User'
 ```
 
-In routes file add 
+In routes file add
 
 ```ruby
 mount TranslationCenter::Engine => "/translation_center"
@@ -107,14 +108,14 @@ def can_admin_translations?
 end
 ```
 ## Rails 3
-If you are Using rails 3 you can revert back to tag 1.7.2 
+If you are Using rails 3 you can revert back to tag 1.7.2
 
 ## MongoDB Support
   * Create a SQL database so your app connects to both MongoDB and this new SQL database.
   * Create a new SQL table (ex: translator_users) that will be considered as translator user and has a foreign key for your MongoDB user (ex: mongo_user_id)
-  * Add `acts_as_translator` to your ActiverRecord user (ex: TranslatorUser) model not Mogno User 
+  * Add `acts_as_translator` to your ActiverRecord user (ex: TranslatorUser) model not Mogno User
   * Update translation_center.yml to the translator model name if needed
-    ```ruby 
+    ```ruby
       tranlator_type: 'TranslatorUser'
     ```
   * You also need to add these methods in an initializer in case Devise is not existing in Mongo, for example `translation_authentication.rb` :
@@ -155,7 +156,7 @@ To migrate translations from TranslationCenter database to yaml files
 rake translation_center:db2yaml
 ```
 
-To migrate translations from yaml files to TranslationCenter database 
+To migrate translations from yaml files to TranslationCenter database
 
 ```ruby
 rake translation_center:yaml2db
@@ -192,7 +193,7 @@ i18n_source: 'yaml' # can be db or yaml; default is yaml
 ## Without Devise
 
 If your application doesn't use devise for authentication then you have to
-provide helper named `current_user` that returns the current user in the session and a before_filter named `authenticate_user!` that redirects a user
+provide helper named `current_user` that returns the current user in the session and a before_action named `authenticate_user!` that redirects a user
 to login page if not already signed in.
 
 You also need to add these methods in an initialize, for example `translation_authentication.rb` :
@@ -215,7 +216,7 @@ module TranslationCenter
 end  
 ```
 
-**Email attribute:** 
+**Email attribute:**
 
 Translation Center assumes that the translator model (for example `User`) has an `email` attribute, this attribute is used when showing translations, activity log in dashboard and updating existing translations.
 
@@ -319,7 +320,7 @@ Translation Center is maintained and developed by [BadrIT](http://badrit.com/)
 ## Contributing
 
 We hope that you will consider contributing to Translation Center.
-You will usually want to write tests for your changes. To run the test suite, go into Translation Center's top-level directory and run "bundle install" and then "rspec spec" 
+You will usually want to write tests for your changes. To run the test suite, go into Translation Center's top-level directory and run "bundle install" and then "rspec spec"
 
 ## Support
 

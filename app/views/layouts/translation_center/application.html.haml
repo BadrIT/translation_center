@@ -25,7 +25,7 @@
               / .pull-left.nav_text
               /   = t('.from')
               / %li.dropdown.pull-left
-                
+
               /   %a.dropdown-toggle{"data-toggle" => "dropdown", href: '#'}
               /     = language_name(from_lang)
               /     %b.caret
@@ -34,7 +34,7 @@
               /       %li
               /         %a.language_from{ href: '#', lang_sym: locale}
               /           = language_name(locale)
-              
+
               .pull-left.nav_text
                 %span
                   = t('translation_center.translate_to')
@@ -56,11 +56,11 @@
                 %input#search_keys.search-query{placeholder: t('translation_center.search_keys'), type: "text", autocomplete: :off}
               %form.navbar-search{action: search_translations_path}
                 %input#translations.search-query{placeholder: t('translation_center.search_translations'), type: "text", autocomplete: :off, name: :translation_value, value: params[:translation_value]}
-            
+
             %ul.nav.pull-right
               %li
                 = link_to t('translation_center.back_to_app'), main_app.root_path, target: Rails.application.class.parent_name
-    - if flash[:alert] 
+    - if flash[:alert]
       .alert.alert-error
         %button{ type: 'button', class: 'close', 'data-dismiss' => 'alert' }
           ×
@@ -71,10 +71,9 @@
         %button{ type: 'button', class: 'close', 'data-dismiss' => 'alert' }
           ×
         = flash[:notice]
-        
+
     .container
       .row
         .span12
           %input#tc_no_inspector{ value: 'true' ,type: :hidden }
           = yield
-        

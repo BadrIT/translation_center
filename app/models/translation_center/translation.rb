@@ -94,11 +94,8 @@ module TranslationCenter
         translation_key_id: self.key.id
       )
 
-      unless translation_exists
-        true
-      else
-        false
-        self.errors.add(:lang, I18n.t('.one_translation_per_lang_per_key'))
+      if translation_exists
+        self.errors.add(:lang, I18n.t('translation_center.errors.one_translation_per_lang_per_key'))
       end
     end
 

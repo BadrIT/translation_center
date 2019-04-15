@@ -4,7 +4,7 @@ module TranslationCenter
   def self.prepare_translator
 
     translator = TranslationCenter::CONFIG['translator_type'].camelize.constantize.where(TranslationCenter::CONFIG['identifier_type'] => TranslationCenter::CONFIG['yaml_translator_identifier']).first
-    
+
     # if translator doesn't exist then create him
     if translator.blank?
       translator = TranslationCenter::CONFIG['translator_type'].camelize.constantize.new
@@ -22,7 +22,8 @@ module TranslationCenter
 
   def self.included(base)
     base.class_eval do
-      alias_method_chain :translate, :adding if(TranslationCenter::CONFIG['enabled'])
+      alias_method :translate_without_adding, :translate
+      alias_method :translate, :translate_with_adding
     end
   end
 
@@ -55,9 +56,9 @@ module TranslationCenter
   def translate_with_adding(locale, key, options = {})
     # handle calling translation with a blank key
     # or translation center tables don't exist
-    return translate_without_adding(locale, key, options) if key.blank? || !ActiveRecord::Base.connection.table_exists?('translation_center_translation_keys')
+    return translate_without_adding(locale, key, options) if key.blank? || !ActiveRecord::Base.connection.data_source_exists?('translation_center_translation_keys')
 
-    complete_key = prepare_key(key, options) # prepare complete key
+    complete_key = self.prepare_key(key, options) # prepare complete key
 
     # add the new key or update it
     translation_key = TranslationCenter::TranslationKey.find_or_create_by(name: complete_key)
@@ -128,6 +129,3 @@ module I18n
 end
 
 I18n::Backend::Base.send :include, TranslationCenter
-
-
-

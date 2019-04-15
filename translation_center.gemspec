@@ -33,19 +33,18 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'actionpack'
   s.add_development_dependency 'activesupport'
   s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'activeresource'
   s.add_development_dependency 'sprockets-rails'
+  s.add_development_dependency 'rails-controller-testing'
 
   # Dependencies
 
-  s.add_dependency "rails"
+  s.add_dependency "rails", "~> 5.0.0"
   s.add_dependency 'acts_as_votable'
 
   s.add_dependency 'ya2yaml'
 
   s.add_dependency 'devise'
-
-  s.add_dependency 'audited-activerecord'
+  s.add_dependency 'audited', "~> 4.3"
 
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'

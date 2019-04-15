@@ -2,8 +2,8 @@ require_dependency "translation_center/application_controller"
 
 module TranslationCenter
   class TranslationKeysController < ApplicationController
-    before_filter :get_translation_key, except: [ :search ]
-    before_filter :can_admin?, only: [ :destroy, :update ]
+    before_action :get_translation_key, except: [ :search ]
+    before_action :can_admin?, only: [ :destroy, :update ]
 
     # POST /translation_keys/1/update_translation.js
     def update_translation

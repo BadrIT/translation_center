@@ -3,8 +3,8 @@ require_dependency "translation_center/application_controller"
 module TranslationCenter
   class CenterController < ApplicationController
 
-    before_filter :can_admin?, only: [ :dashboard, :search_activity, :manage ]
-    before_filter :set_page_number, only: [ :dashboard, :search_activity ]
+    before_action :can_admin?, only: [ :dashboard, :search_activity, :manage ]
+    before_action :set_page_number, only: [ :dashboard, :search_activity ]
 
     # set language user translating from
     def set_language_from
