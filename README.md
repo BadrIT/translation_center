@@ -11,13 +11,13 @@ Translation Center is a multi lingual web engine for Rails apps. It builds a tra
 
 ## Translation Center can be used by:
 
-###App Users
+### App Users
 Contribute in translating your app in different locales using easy web interface.
 
-###Rails Developers
+### Rails Developers
 Avoid updating many yaml files as you will just use the easy web interface to manage translations.
 
-###Site Admin
+### Site Admin
 Manage all app translations; collect stats, accept, add, edit, remove translations...etc
 
 
@@ -189,7 +189,7 @@ You can control the translations source by changing the value of `i18n_source` i
 i18n_source: 'yaml' # can be db or yaml; default is yaml
 ```
 
-##Without Devise
+## Without Devise
 
 If your application doesn't use devise for authentication then you have to
 provide helper named `current_user` that returns the current user in the session and a before_filter named `authenticate_user!` that redirects a user
@@ -227,7 +227,7 @@ If your `User` model has no `email` attribute then change the `identifier_type` 
 
 
 
-##Inspector
+## Inspector
 
 Another nice option is the inspector that allows the users to go directly to the key from your application view.
 Just set `inspector` option in `translation_center.yml` to `all` if you want to inspect all keys otherwise set it to `missing` to inspect only untranslated keys, and then add this line to your `application.css`
@@ -251,7 +251,7 @@ In the previous image, if you click on the icon of 'Betrachten', you will be dir
 ![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/inspector_visit_key.png "Visit a key from inspector")
 
 
-##Add new language
+## Add new language
 
 If you want to add a language to the translation center, you need to run the generator:
 
@@ -276,7 +276,7 @@ development:
       direction: 'ltr'
 ```
 
-##Screen Shots
+## Screen Shots
 
 When you visit `/translation_center` you will see the list of all categories and how many keys they have.
 
@@ -303,7 +303,7 @@ or monitor activity of changes to translations.
 
 ![Alt text](https://raw.github.com/BadrIT/translation_center/master/samples/activity.png "Activity")
 
-##Video
+## Video
 
 Watch it on YouTube.
 http://www.youtube.com/watch?v=BTy6ZI31JmU
